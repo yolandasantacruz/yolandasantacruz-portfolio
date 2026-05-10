@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'portfolio-root',
   imports: [RouterLink, RouterOutlet],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <nav>
       <a routerLink="/">Home</a>

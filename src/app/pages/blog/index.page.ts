@@ -1,5 +1,5 @@
 import { injectContentFiles } from '@analogjs/content';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import PostAttributes from '../../post-attributes';
@@ -7,6 +7,7 @@ import PostAttributes from '../../post-attributes';
 @Component({
   selector: 'portfolio-blog',
   imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h1>Blog Archive</h1>
 

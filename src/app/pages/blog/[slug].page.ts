@@ -1,12 +1,13 @@
 import { injectContent, MarkdownComponent } from '@analogjs/content';
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import PostAttributes from '../../post-attributes';
 
 @Component({
   selector: 'portfolio-blog-post',
   imports: [AsyncPipe, MarkdownComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (post$ | async; as post) {
     <article>
