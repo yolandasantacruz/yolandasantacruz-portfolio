@@ -1,11 +1,11 @@
+import { injectContentFiles } from '@analogjs/content';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { injectContentFiles } from '@analogjs/content';
 
 import PostAttributes from '../../post-attributes';
 
 @Component({
-  selector: 'app-blog',
+  selector: 'portfolio-blog',
   imports: [RouterLink],
   template: `
     <h1>Blog Archive</h1>

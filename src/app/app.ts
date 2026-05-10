@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'portfolio-root',
   imports: [RouterLink, RouterOutlet],
   template: `
     <nav>
@@ -25,4 +25,4 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     }
   `,
 })
-export class App {}
+export class App { }
