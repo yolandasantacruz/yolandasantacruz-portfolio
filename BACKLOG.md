@@ -5,7 +5,6 @@
 ### Web Quality and Linting
 - [ ] Implement ESLint with Angular strict mode rules.
 - [ ] Integrate Prettier for deterministic code formatting.
-- [ ] Configure stylelint for standardizing Tailwind CSS classes.
 
 ### Git Hooks
 - [ ] Install Husky.

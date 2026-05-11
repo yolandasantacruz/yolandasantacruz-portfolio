@@ -26,8 +26,8 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - Follow Angular skills defined in the skills folder
 - Keep templates simple and avoid complex logic
 
-## Rule 6: Styling Constraints
-Agents must utilize Tailwind CSS utility classes exclusively. Writing custom CSS within component files is forbidden unless explicitly required for a hardware-accelerated keyframe animation defined in the Design System.
+## Rule 6: Avoid creating monolithic components
+- Try to break components into smaller, more focused components when the functionality becomes too complex or when it improves readability, reusability and maintainability.
 
 ## Rule 7: Accessibility Requirements
 - It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
