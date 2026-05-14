@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+// Triggering config reload to clear Analog content cache
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
@@ -17,7 +18,14 @@ export default defineConfig(({ mode }) => ({
         highlighter: 'prism',
       },
       prerender: {
-        routes: ['/blog', '/blog/2022-12-27-my-first-post'],
+        routes: [
+          '/',
+          '/projects',
+          {
+            contentDir: 'src/content/projects',
+            transform: (file: any) => `/projects/${file.name.replace('.md', '')}`,
+          },
+        ],
       },
     }),
   ],

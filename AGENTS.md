@@ -37,3 +37,12 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - When refactoring existing code, update the relevant spec files to ensure existing functionality is preserved.
 - When adding new features, add comprehensive unit tests that cover core logic and edge cases.
 - For interactive components, simulate user actions (click, hover, keyboard) and verify the expected state changes.
+## Rule 9: Sandbox & Environment Protocols
+- **Sandbox Boundaries**: Agents must operate strictly within the provided sandbox environment. Never attempt to run commands that require host-level access, elevated privileges (e.g., `sudo`), or access to system paths outside the workspace.
+- **Network Awareness**: Be aware that the sandbox may have restricted internet access. If a package installation or external request fails with `ENOTFOUND`, refrain from retrying and inform the user.
+- **Environment Verification**: If a command (e.g., `vite`, `pnpm`, `ng`) is not found, verify the local `node_modules/.bin` and check if the tool is listed in `package.json`. Prefer using `pnpm exec <command>` to ensure the local version is used.
+
+## Rule 10: Performance & DX
+- **Deterministic Tooling**: Always use `pnpm` for package management as per Rule 2.
+- **Error Handling**: When a command fails, analyze the output for environment-specific clues (like missing binaries) before attempting complex refactors.
+- **Proactive Maintenance**: If the environment is found to be in a broken state (e.g., missing dependencies in `node_modules`), recommend a clean install (`pnpm install --force`) or ask the user to verify the environment setup.

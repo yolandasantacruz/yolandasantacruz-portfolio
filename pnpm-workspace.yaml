@@ -1,3 +1,7 @@
+packages:
+  - '.'
+  - '!dist/**'
+
 allowBuilds:
   '@parcel/watcher': false
   esbuild: true

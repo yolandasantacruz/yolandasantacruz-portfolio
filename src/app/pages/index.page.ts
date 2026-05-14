@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollToTopComponent } from '../components/scroll-to-top/scroll-to-top.component';
+import ProjectAttributes from '../project-attributes';
 
 @Component({
   selector: 'portfolio-home',
@@ -46,37 +48,14 @@ import { ScrollToTopComponent } from '../components/scroll-to-top/scroll-to-top.
   `
 })
 export default class PortfolioHomeComponent {
-  projects: Project[] = [
-    {
-      title: 'Pay with App',
-      description: 'Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs.',
-      imageUrl: 'https://placehold.co/500x400/2a2a2a/55c5c7?text=Pay+with+App',
-      link: '/projects/pay-with-app',
-      align: 'right'
-    },
-    {
-      title: 'Fetch Pay',
-      description: 'Increasing user sign-ups by 20%, reducing activation costs by 32%, and boosting card activations by 35%.',
-      imageUrl: 'https://placehold.co/500x400/2a2a2a/55c5c7?text=Fetch+Pay',
-      link: '/projects/fetch-pay',
-      reverse: true,
-      align: 'left'
-    },
-    {
-      title: 'Isles at<br/>Bayshore',
-      description: 'Boosting lead generation by 125% through UX/UI enhancements.',
-      imageUrl: 'https://placehold.co/500x400/2a2a2a/55c5c7?text=Isles+at+Bayshore',
-      link: '/projects/isles-at-bayshore',
-      align: 'right'
-    },
-    {
-      title: 'Plant Me',
-      description: 'Designed a BtoC experience for a D2C app.',
-      imageUrl: 'https://placehold.co/500x400/2a2a2a/55c5c7?text=Plant+Me',
-      link: '/projects/plant-me',
-      reverse: true,
-      align: 'left'
-    }
-  ];
+  readonly projects: Project[] = injectContentFiles<ProjectAttributes>(file => file.filename.includes('/src/content/projects/'))
+    .map(project => ({
+      title: project.attributes.title,
+      description: project.attributes.description,
+      imageUrl: project.attributes.imageUrl,
+      link: `/projects/${project.attributes.slug}`,
+      align: project.attributes.align,
+      reverse: project.attributes.reverse
+    }));
 }
 
