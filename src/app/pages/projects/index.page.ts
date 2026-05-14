@@ -2,7 +2,7 @@ import { injectContentFiles } from '@analogjs/content';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import ProjectAttributes from '../../project-attributes';
+import { ProjectAttributes } from '../../project-attributes';
 
 @Component({
   selector: 'portfolio-projects',
@@ -32,5 +32,5 @@ import ProjectAttributes from '../../project-attributes';
   `,
 })
 export default class Projects {
-  readonly projects = injectContentFiles<ProjectAttributes>(file => file.filename.includes('/src/content/projects/'));
+  readonly projects = injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'));
 }

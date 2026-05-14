@@ -1,4 +1,4 @@
-export default interface ProjectAttributes {
+export interface ProjectAttributes {
   title: string;
   slug: string;
   description: string;

@@ -2,7 +2,7 @@ import { injectContent, MarkdownComponent } from '@analogjs/content';
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import ProjectAttributes from '../../project-attributes';
+import { ProjectAttributes } from '../../project-attributes';
 
 @Component({
   selector: 'portfolio-project-details',

@@ -5,7 +5,7 @@ import { HeroComponent } from '../components/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollToTopComponent } from '../components/scroll-to-top/scroll-to-top.component';
-import ProjectAttributes from '../project-attributes';
+import { ProjectAttributes } from '../project-attributes';
 
 @Component({
   selector: 'portfolio-home',
@@ -27,6 +27,8 @@ import ProjectAttributes from '../project-attributes';
       <section class="projects">
         @for (project of projects; track project.title) {
           <portfolio-project-card [project]="project" />
+        } @empty {
+          <p class="no-projects">No projects found. Check content directory.</p>
         }
       </section>
 
@@ -48,7 +50,7 @@ import ProjectAttributes from '../project-attributes';
   `
 })
 export default class PortfolioHomeComponent {
-  readonly projects: Project[] = injectContentFiles<ProjectAttributes>(file => file.filename.includes('/src/content/projects/'))
+  readonly projects: Project[] = injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'))
     .map(project => ({
       title: project.attributes.title,
       description: project.attributes.description,
