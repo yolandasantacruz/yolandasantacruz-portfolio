@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   build: {
     target: ['es2020'],
   },
@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
           '/projects',
           {
             contentDir: 'src/content/projects',
-            transform: (file: any) => `/projects/${file.name.replace('.md', '')}`,
+            transform: (file: { name: string }) => `/projects/${file.name.replace('.md', '')}`,
           },
         ],
       },

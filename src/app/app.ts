@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone, OnDestroy, OnInit, PLATFORM_ID, ViewChild, inject, afterNextRender } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone, OnDestroy, PLATFORM_ID, ViewChild, inject, afterNextRender } from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -55,6 +55,8 @@ export class App implements OnDestroy {
 
   private platformId = inject(PLATFORM_ID);
   private ngZone = inject(NgZone);
+  private document = inject(DOCUMENT);
+  private get window() { return this.document.defaultView; }
 
   // Interaction tracking
   private mouseX = 0;
@@ -76,7 +78,8 @@ export class App implements OnDestroy {
 
   private initShader() {
     const canvas = this.shaderCanvas?.nativeElement;
-    if (!canvas) return;
+    const win = this.window;
+    if (!canvas || !win) return;
 
     this.gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: false });
     if (!this.gl) return;
@@ -220,20 +223,20 @@ export class App implements OnDestroy {
     const uTrail = gl.getUniformLocation(program, 'u_trail');
 
     const resize = () => {
-      canvas.width = window.innerWidth * window.devicePixelRatio;
-      canvas.height = window.innerHeight * window.devicePixelRatio;
+      canvas.width = win.innerWidth * win.devicePixelRatio;
+      canvas.height = win.innerHeight * win.devicePixelRatio;
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(uResolution, canvas.width, canvas.height);
     };
 
-    window.addEventListener('resize', resize);
+    win.addEventListener('resize', resize);
     resize();
 
     // Initialize shooting star trail
-    const trail = Array.from({ length: 20 }, () => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+    const trail = Array.from({ length: 20 }, () => ({ x: win.innerWidth / 2, y: win.innerHeight / 2 }));
     const trailData = new Float32Array(40);
-    this.targetX = window.innerWidth / 2;
-    this.targetY = window.innerHeight / 2;
+    this.targetX = win.innerWidth / 2;
+    this.targetY = win.innerHeight / 2;
     this.lastX = this.targetX;
     this.lastY = this.targetY;
 
@@ -267,8 +270,8 @@ export class App implements OnDestroy {
 
         // Populate trail uniform data
         for (let i = 0; i < 20; i++) {
-          trailData[i * 2] = trail[i].x / window.innerWidth;
-          trailData[i * 2 + 1] = 1.0 - (trail[i].y / window.innerHeight); // WebGL Y invert
+          trailData[i * 2] = trail[i].x / win.innerWidth;
+          trailData[i * 2 + 1] = 1.0 - (trail[i].y / win.innerHeight); // WebGL Y invert
         }
 
         gl.uniform1f(uTime, currentTime);

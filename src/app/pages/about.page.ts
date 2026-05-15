@@ -54,18 +54,22 @@ import { NgClass } from '@angular/common';
             </div>
 
             <div class="carousel-controls">
-              <button class="nav-btn prev" (click)="prevSlide()" [disabled]="currentIndex() === 0">
+              <button class="nav-btn prev" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous slide">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                <span class="sr-only">Previous slide</span>
               </button>
               
               <div class="carousel-dots">
                 @for (dot of testimonials; track $index) {
-                  <button class="dot" [class.active]="currentIndex() === $index" (click)="goToSlide($index)"></button>
+                  <button class="dot" [class.active]="currentIndex() === $index" (click)="goToSlide($index)" [attr.aria-label]="'Go to slide ' + ($index + 1)">
+                    <span class="sr-only">Slide {{ $index + 1 }}</span>
+                  </button>
                 }
               </div>
 
-              <button class="nav-btn next" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1">
+              <button class="nav-btn next" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next slide">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <span class="sr-only">Next slide</span>
               </button>
             </div>
           </div>
@@ -101,7 +105,7 @@ import { NgClass } from '@angular/common';
     </div>
   `,
   styles: `
-    /* ... existing styles ... */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     .about-content { padding-top: 4rem; padding-bottom: 8rem; }
     .hero-section { display: flex; gap: 6rem; align-items: center; margin-bottom: 8rem; }
     .text-side { flex: 1; }
