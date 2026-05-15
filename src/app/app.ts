@@ -41,7 +41,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       height: 100%;
       z-index: 1;
       mix-blend-mode: multiply;
-      opacity: 0.5;
+      opacity: 0.72;
     }
 
     .content-wrapper {
@@ -59,8 +59,6 @@ export class App implements OnDestroy {
   private get window() { return this.document.defaultView; }
 
   // Interaction tracking
-  private mouseX = 0;
-  private mouseY = 0;
   private targetX = 0;
   private targetY = 0;
   private lastX = 0;
@@ -148,7 +146,7 @@ export class App implements OnDestroy {
             
             float d = sdSegment(stNoise, p1, p2);
             
-            // Taper from head to tail - severely reduced taper for a FATTER tail
+            // Taper from head to tail - securely balanced for a fat ribbon
             float sizeScale = mix(4.6, 8.5, t); 
             
             // Calculate glow for this segment
@@ -164,19 +162,18 @@ export class App implements OnDestroy {
 
         glow = clamp(glow, 0.0, 1.0);
         
-        // Hide when stationary
-        float alpha = glow * min(u_velocity * 1.5, 1.0);
+        // Hide when stationary with sharp ignition
+        float alpha = glow * min(u_velocity * 2.0, 1.0);
 
-        // Dark Prism Palette
-        vec3 deepCyan = vec3(0.0, 0.65, 0.85);
-        vec3 deepPurple = vec3(0.4, 0.1, 0.9);
-        vec3 deepPink = vec3(0.85, 0.1, 0.4);
+        // Rich Dark Prism Palette optimized for CSS Multiply Blending on White BG
+        vec3 deepCyan = vec3(0.0, 0.45, 0.75);
+        vec3 deepPurple = vec3(0.25, 0.05, 0.85);
+        vec3 deepPink = vec3(0.80, 0.05, 0.35);
 
         // Color flows along the screen and time
         vec3 color = mix(deepCyan, deepPurple, st.y);
         color = mix(color, deepPink, sin(u_time * 3.0 + st.x * 6.0) * 0.5 + 0.5);
 
-        // Full alpha output (master opacity is now strictly controlled by CSS .shader-canvas opacity)
         outColor = vec4(color, alpha);
       }
     `;
