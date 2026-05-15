@@ -1,21 +1,23 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'portfolio-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="header">
-      <nav class="nav-links">
-        <a routerLink="/" class="active">Work</a>
-        <a routerLink="/about">About</a>
-        <a routerLink="/resume">Resume</a>
-      </nav>
       <div class="logo">
-        <div class="logo-circle">YC</div>
+        <a routerLink="/" class="logo-link">
+          <div class="logo-circle">YSC</div>
+        </a>
       </div>
+      <nav class="nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Work</a>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a routerLink="/resume" routerLinkActive="active">Resume</a>
+      </nav>
     </header>
   `,
   styles: `
@@ -24,6 +26,7 @@ import { RouterLink } from '@angular/router';
       justify-content: space-between;
       align-items: center;
       margin-bottom: 4rem;
+      padding-top: 8px;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
@@ -34,6 +37,7 @@ import { RouterLink } from '@angular/router';
       transition: opacity 0.2s;
     }
     .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .logo-link { text-decoration: none; }
     .logo-circle {
       width: 40px; height: 40px;
       border-radius: 50%;

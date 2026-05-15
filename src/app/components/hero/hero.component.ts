@@ -20,7 +20,7 @@ import { RouterLink } from '@angular/router';
         
         <div class="social-links">
           <a href="https://behance.net" target="_blank" rel="noopener noreferrer">Be</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">In</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">in</a>
         </div>
       </div>
       
@@ -33,11 +33,11 @@ import { RouterLink } from '@angular/router';
   styles: `
     .hero {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 6rem; min-height: 60vh;
+      margin-bottom: 6rem; min-height: 70vh;
     }
     .hero-content { flex: 1; max-width: 500px; text-align: left; }
-    .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; }
-    .subtitle { font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem; opacity: 0.8; }
+    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; }
+    .subtitle { font-size: 1.25rem; line-height: 1.6; margin-bottom: 2.5rem; opacity: 0.8; }
     .about-link {
       display: inline-block; text-decoration: none; color: #55c5c7;
       font-weight: 600; font-size: 0.875rem; letter-spacing: 1px;
@@ -55,7 +55,7 @@ import { RouterLink } from '@angular/router';
       z-index: 1; border-radius: 20px;
     }
     @media (max-width: 768px) {
-      .hero { flex-direction: column; align-items: flex-start; text-align: left; gap: 4rem; }
+      .hero { flex-direction: column; align-items: flex-start; text-align: left; gap: 4rem; padding: 2rem 0; }
       .hero-content { text-align: left; }
       .social-links { justify-content: flex-start; }
       .hero-image-container { justify-content: flex-start; width: 100%; }
