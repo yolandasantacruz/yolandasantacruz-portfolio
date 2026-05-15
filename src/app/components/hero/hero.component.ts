@@ -31,29 +31,55 @@ import { RouterLink } from '@angular/router';
     </section>
   `,
   styles: `
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .hero {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 6rem; min-height: 70vh;
     }
     .hero-content { flex: 1; max-width: 500px; text-align: left; }
-    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; }
-    .subtitle { font-size: 1.25rem; line-height: 1.6; margin-bottom: 2.5rem; opacity: 0.8; }
+    
+    .hero h1 { 
+      font-size: 4rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; 
+      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .subtitle { 
+      font-size: 1.25rem; line-height: 1.6; margin-bottom: 2.5rem; opacity: 0.8; 
+      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
     .about-link {
       display: inline-block; text-decoration: none; color: #55c5c7;
       font-weight: 600; font-size: 0.875rem; letter-spacing: 1px;
       margin-bottom: 2rem; text-transform: uppercase; transition: transform 0.2s;
+      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
     }
     .about-link:hover { transform: translateX(5px); }
-    .social-links { display: flex; gap: 1rem; }
+    .social-links { 
+      display: flex; gap: 1rem; 
+      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+    }
     .social-links a { text-decoration: none; color: inherit; font-weight: 500; opacity: 0.7; }
     .social-links a:hover { opacity: 1; }
-    .hero-image-container { flex: 1; position: relative; display: flex; justify-content: flex-end; }
+    .hero-image-container { 
+      flex: 1; position: relative; display: flex; justify-content: flex-end; 
+      animation: heroFadeIn 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
     .profile-image { max-width: 400px; border-radius: 20px; position: relative; z-index: 2; }
     .wave-graphic {
       position: absolute; bottom: -40px; left: -100px; width: 300px; height: 100px;
       background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(85, 197, 199, 0.2) 10px, rgba(85, 197, 199, 0.2) 20px);
       z-index: 1; border-radius: 20px;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero h1, .subtitle, .about-link, .social-links, .hero-image-container {
+        animation: none !important;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero { flex-direction: column; align-items: flex-start; text-align: left; gap: 4rem; padding: 2rem 0; }
       .hero-content { text-align: left; }

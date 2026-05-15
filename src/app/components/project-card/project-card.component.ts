@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, input, afterNextRender } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 export interface Project {
@@ -52,7 +52,24 @@ export interface Project {
     :host {
       display: block;
       margin-bottom: 12rem;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    :host(.in-view) {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :host {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
 
     .project-card {
       display: flex;
@@ -226,4 +243,20 @@ export interface Project {
 })
 export class ProjectCardComponent {
   project = input.required<Project>();
+  private el = inject(ElementRef);
+
+  constructor() {
+    afterNextRender(() => {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          this.el.nativeElement.classList.add('in-view');
+          observer.disconnect();
+        }
+      }, { threshold: 0.15 });
+
+      if (this.el.nativeElement) {
+        observer.observe(this.el.nativeElement);
+      }
+    });
+  }
 }
