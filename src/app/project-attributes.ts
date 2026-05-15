@@ -3,6 +3,9 @@ export interface ProjectAttributes {
   slug: string;
   description: string;
   imageUrl: string;
-  align: 'left' | 'right';
-  reverse: boolean;
+  category: string;
+  role: string;
+  timeline: string;
+  techStack: string[];
+  order: number;
 }

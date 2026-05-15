@@ -16,9 +16,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     </footer>
   `,
   styles: `
-    .footer { text-align: center; padding: 4rem 0; border-top: 1px solid rgba(0,0,0,0.1); }
+    .footer { text-align: left; padding: 4rem 0; border-top: 1px solid rgba(0,0,0,0.1); }
     @media (prefers-color-scheme: dark) { .footer { border-top: 1px solid rgba(255,255,255,0.1); } }
-    .footer-social { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+    .footer-social { display: flex; justify-content: flex-start; gap: 2rem; margin-bottom: 2rem; }
     .footer-social a { text-decoration: none; color: inherit; font-weight: 500; opacity: 0.7; }
     .footer-social a:hover { opacity: 1; }
     .copyright { font-size: 0.875rem; opacity: 0.6; }

@@ -6,8 +6,11 @@ export interface Project {
   description: string;
   imageUrl: string;
   link: string;
+  category: string;
+  role: string;
+  timeline: string;
+  techStack: string[];
   reverse?: boolean;
-  align?: 'left' | 'right';
 }
 
 @Component({
@@ -17,34 +20,207 @@ export interface Project {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="project-card" [class.reverse]="project().reverse">
-      <div class="project-image">
-        <img [src]="project().imageUrl" [alt]="project().title + ' Mockups'" />
+      <div class="project-image-container">
+        <div class="category-tag">{{ project().category }}</div>
+        <img [src]="project().imageUrl" [alt]="project().title" class="project-image" />
       </div>
-      <div class="project-info" [class.left-align]="project().align === 'left'" [class.right-align]="project().align === 'right'">
-        <h2 [innerHTML]="project().title"></h2>
-        <p>{{ project().description }}</p>
-        <a [routerLink]="project().link" class="view-project-link">VIEW PROJECT &rarr;</a>
+      
+      <div class="project-details">
+        <div class="project-meta">
+          <span class="role">{{ project().role }}</span>
+          <span class="separator">•</span>
+          <span class="timeline">{{ project().timeline }}</span>
+        </div>
+        
+        <h2 class="project-title">{{ project().title }}</h2>
+        
+        <p class="project-description">{{ project().description }}</p>
+        
+        <div class="tech-stack">
+          @for (tech of project().techStack; track tech) {
+            <span class="tech-tag">{{ tech }}</span>
+          }
+        </div>
+        
+        <a [routerLink]="project().link" class="view-project">
+          View Project <span class="arrow">↗</span>
+        </a>
       </div>
     </div>
   `,
   styles: `
-    .project-card { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
-    .project-card.reverse { flex-direction: row-reverse; }
-    .project-image { flex: 1; display: flex; justify-content: center; }
-    .project-image img { max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: transform 0.3s; }
-    .project-image img:hover { transform: translateY(-10px); }
-    .project-info { flex: 1; max-width: 400px; }
-    .project-info h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
-    .project-info p { font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem; opacity: 0.8; }
-    .view-project-link {
-      display: inline-block; text-decoration: none; color: #55c5c7;
-      font-weight: 600; font-size: 0.875rem; letter-spacing: 1px;
-      margin-bottom: 2rem; text-transform: uppercase; transition: transform 0.2s;
+    :host {
+      display: block;
+      margin-bottom: 12rem;
     }
-    .view-project-link:hover { transform: translateX(5px); }
+
+    .project-card {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      width: 100%;
+    }
+
+    .project-card.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .project-image-container {
+      flex: 1.2;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #f4f4f4;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+    }
+
+    .category-tag {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #1a1a1a;
+      z-index: 2;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-image-container:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    .project-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 1.5rem;
+    }
+
+    .project-meta {
+      font-size: 0.875rem;
+      color: #666;
+      font-weight: 500;
+      text-align: left;
+      width: 100%;
+    }
+
+    .separator {
+      margin: 0 8px;
+      color: #ccc;
+    }
+
+    .project-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+      line-height: 1.2;
+      text-align: left;
+      width: 100%;
+    }
+
+    .project-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #4a4a4a;
+      margin: 0;
+      max-width: 90%;
+      text-align: left;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .tech-tag {
+      background: #f0f0f0;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .view-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      text-decoration: none;
+      margin-top: 1rem;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .view-project:hover {
+      color: #000;
+    }
+
+    .view-project:hover .arrow {
+      transform: translate(2px, -2px);
+    }
+
+    .arrow {
+      transition: transform 0.2s ease;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 1024px) {
+      .project-card {
+        gap: 2rem;
+      }
+      .project-title {
+        font-size: 1.75rem;
+      }
+    }
 
     @media (max-width: 768px) {
-      .project-card, .project-card.reverse { flex-direction: column; text-align: center; }
+      :host {
+        margin-bottom: 6rem;
+      }
+      .project-card, .project-card.reverse {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .project-image-container {
+        width: 100%;
+      }
+      .project-details {
+        width: 100%;
+      }
+      .project-description {
+        max-width: 100%;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .project-title { color: var(--color-text); }
+      .project-description { color: var(--color-text-muted); }
+      .project-meta { color: var(--color-text-muted); }
+      .tech-tag { background: #2a2a2a; color: var(--color-text-muted); }
+      .view-project { color: var(--color-text); }
+      .category-tag { background: rgba(0, 0, 0, 0.7); color: var(--color-text); }
+      .project-image-container { background: #1a1a1a; }
     }
   `
 })

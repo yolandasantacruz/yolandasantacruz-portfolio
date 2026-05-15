@@ -55,9 +55,11 @@ import { RouterLink } from '@angular/router';
       z-index: 1; border-radius: 20px;
     }
     @media (max-width: 768px) {
-      .hero { flex-direction: column; text-align: center; gap: 4rem; }
-      .hero-content { text-align: center; }
-      .social-links { justify-content: center; }
+      .hero { flex-direction: column; align-items: flex-start; text-align: left; gap: 4rem; }
+      .hero-content { text-align: left; }
+      .social-links { justify-content: flex-start; }
+      .hero-image-container { justify-content: flex-start; width: 100%; }
+      .profile-image { max-width: 100%; }
     }
   `
 })

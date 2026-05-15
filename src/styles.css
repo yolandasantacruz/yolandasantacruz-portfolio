@@ -1,79 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --max-width: 1400px;
+  --container-padding: 0 4rem;
+  --font-main: 'Nunito', sans-serif;
+  --font-header: 'Futura PT', 'Futura', 'Jost', system-ui, sans-serif;
+  --color-text: #1a1a1a;
+  --color-text-muted: #666;
+  --color-bg: #ffffff;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #f9f9f9;
+    --color-text-muted: #aaa;
+    --color-bg: #0f0f0f;
+  }
 }
-a:hover {
-  color: #535bf2;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-.analog-markdown p {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
   text-align: left;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 0 1.5rem;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Markdown Specifics */
+analog-markdown {
+  display: block;
+  text-align: left;
+}
+
+analog-markdown h1, 
+analog-markdown h2, 
+analog-markdown h3 {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-header);
+}
+
+analog-markdown p {
+  margin-bottom: 1.5rem;
+}
+
+analog-markdown img {
+  border-radius: 12px;
+  margin: 4rem 0;
+  width: 100%;
 }
