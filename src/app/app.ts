@@ -41,7 +41,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       height: 100%;
       z-index: 1;
       mix-blend-mode: multiply;
-      opacity: 0.72;
+      opacity: 0.50;
     }
 
     .content-wrapper {
@@ -128,9 +128,20 @@ export class App implements OnDestroy {
         st.x *= aspect;
 
         float glow = 0.0;
+        vec3 totalColor = vec3(0.0);
         
         // Make the entire trail thinner when moving fast
         float thickness = 1.0 + u_velocity * 4.0;
+
+        // Requested 4-Stop Gradient Palette (Head to Tail)
+        // Stop 0 (0% - Head): #5ed6cc
+        vec3 c1 = vec3(0.37, 0.84, 0.80);
+        // Stop 1 (60%): #8edeae
+        vec3 c2 = vec3(0.56, 0.87, 0.68);
+        // Stop 2 (82%): #f5ea8c
+        vec3 c3 = vec3(0.96, 0.92, 0.55);
+        // Stop 3 (100% - Tail): #f7f1cb
+        vec3 c4 = vec3(0.97, 0.95, 0.80);
 
         for(int i = 0; i < 19; i++) {
             float t = float(i) / 18.0;
@@ -140,41 +151,40 @@ export class App implements OnDestroy {
             p1.x *= aspect;
             p2.x *= aspect;
             
-            // Add fluid turbulence that ripples down the tail
-            vec2 offset = vec2(noise(st * 8.0 + u_time * 3.0 + t), noise(st * 8.0 - u_time * 3.0 + t)) * 0.05 * t;
+            // Ultra-soft fluid turbulence with gentle, velvety time ripples
+            vec2 offset = vec2(noise(st * 3.0 + u_time * 1.0 + t), noise(st * 3.0 - u_time * 1.0 + t)) * 0.08 * t;
             vec2 stNoise = st + offset * u_velocity;
             
             float d = sdSegment(stNoise, p1, p2);
             
-            // Taper from head to tail - securely balanced for a fat ribbon
-            float sizeScale = mix(4.6, 8.5, t); 
+            // Taper from head to tail - scaled for 30% size reduction
+            float sizeScale = mix(6.6, 12.2, t); 
             
-            // Calculate glow for this segment
+            // Calculate glow with an even softer falloff curve (1.8) for an incredibly velvety feathering
             float pGlow = max(1.0 - d * sizeScale * thickness, 0.0);
-            pGlow = pow(pGlow, 3.0); 
+            pGlow = pow(pGlow, 1.8); 
             
             // Fade opacity slower towards the tail to keep it thick and visible
             pGlow *= mix(1.0, 0.0, pow(t, 1.5));
             
-            // Additive accumulation creates a seamless fluid body
+            // Determine exact color at this anatomical segment along the trail
+            vec3 segColor = mix(c1, c2, smoothstep(0.0, 0.60, t));
+            segColor = mix(segColor, c3, smoothstep(0.60, 0.82, t));
+            segColor = mix(segColor, c4, smoothstep(0.82, 1.00, t));
+
+            // Accumulate weighted color and total glow
+            totalColor += segColor * pGlow;
             glow += pGlow;
         }
 
+        // Normalize color by accumulated glow
+        vec3 finalColor = glow > 0.0001 ? totalColor / glow : c1;
         glow = clamp(glow, 0.0, 1.0);
         
         // Hide when stationary with sharp ignition
         float alpha = glow * min(u_velocity * 2.0, 1.0);
 
-        // Rich Dark Prism Palette optimized for CSS Multiply Blending on White BG
-        vec3 deepCyan = vec3(0.0, 0.45, 0.75);
-        vec3 deepPurple = vec3(0.25, 0.05, 0.85);
-        vec3 deepPink = vec3(0.80, 0.05, 0.35);
-
-        // Color flows along the screen and time
-        vec3 color = mix(deepCyan, deepPurple, st.y);
-        color = mix(color, deepPink, sin(u_time * 3.0 + st.x * 6.0) * 0.5 + 0.5);
-
-        outColor = vec4(color, alpha);
+        outColor = vec4(finalColor, alpha);
       }
     `;
 
@@ -247,10 +257,10 @@ export class App implements OnDestroy {
         trail[0].x += (this.targetX - trail[0].x) * 0.35;
         trail[0].y += (this.targetY - trail[0].y) * 0.35;
 
-        // Fluid snake physics: each segment pulls the next one
+        // Ultra-silky fluid snake physics: softer coupling for a liquid wave motion
         for (let i = 1; i < 20; i++) {
-          trail[i].x += (trail[i - 1].x - trail[i].x) * 0.45;
-          trail[i].y += (trail[i - 1].y - trail[i].y) * 0.45;
+          trail[i].x += (trail[i - 1].x - trail[i].x) * 0.38;
+          trail[i].y += (trail[i - 1].y - trail[i].y) * 0.38;
         }
 
         // Calculate master velocity based on the head
