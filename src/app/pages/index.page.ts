@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal, afterNextRender, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
@@ -43,15 +43,6 @@ import { ProjectAttributes } from '../project-attributes';
       @for (project of projects(); track project.title; let i = $index) {
         <section [id]="'project-' + i" class="snap-section project-section">
           <div class="section-content">
-            @if (i === 0) {
-              <div class="section-header">
-                <div class="subtitle">
-                  <span class="dash"></span>
-                  SELECTED WORK
-                </div>
-                <h2 class="main-title">Projects that define my craft</h2>
-              </div>
-            }
             <portfolio-project-card [project]="{ ...project, reverse: i % 2 !== 0 }" />
           </div>
         </section>
@@ -108,6 +99,8 @@ import { ProjectAttributes } from '../project-attributes';
     .hero-section {
       align-items: flex-start;
       padding-top: 0;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero-content-wrapper {
@@ -129,35 +122,28 @@ import { ProjectAttributes } from '../project-attributes';
       width: 100%;
     }
 
-    .section-header {
-      margin-bottom: 3.5rem;
-      text-align: left;
+    #project-0 {
+      background: #e6fff1;
+      background: linear-gradient(180deg, rgba(230, 255, 241, 0) 0%, rgba(204, 242, 237, 0.64) 16%, rgba(204, 242, 236, 0.76) 83%, rgba(255, 244, 207, 0.8) 100%);
+      transition: background 0.35s ease;
     }
 
-    .subtitle {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: #666;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
+    #project-1 {
+      background: #e3f4ff;
+      background: linear-gradient(0deg, rgba(227, 244, 255, 1) 1%, rgba(255, 247, 214, 0.76) 33%, rgba(255, 244, 207, 0.8) 100%);
+      transition: background 0.35s ease;
     }
 
-    .dash {
-      width: 40px;
-      height: 1px;
-      background: #ccc;
+    #project-2 {
+      background: #e3f4ff;
+      background: linear-gradient(180deg, rgba(227, 244, 255, 1) 1%, rgba(171, 233, 255, 0.69) 86%, rgba(207, 255, 237, 0.8) 100%);
+      transition: background 0.35s ease;
     }
 
-    .main-title {
-      font-size: 3rem;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin: 0;
-      letter-spacing: -0.02em;
+    #project-3 {
+      background: #EDFBF9;
+      background: linear-gradient(0deg, rgba(237, 251, 249, 1) 0%, rgba(174, 245, 176, 0.48) 28%, rgba(207, 255, 237, 1) 100%);
+      transition: background 0.35s ease;
     }
 
     /* Floating Side Rail Navigation */
@@ -245,7 +231,6 @@ import { ProjectAttributes } from '../project-attributes';
     /* About Me Bridge Section */
     .bridge-section {
       background: #f0fbf9;
-      border-top: 1px solid rgba(94, 214, 204, 0.3);
     }
 
     .bridge-content {
@@ -327,7 +312,6 @@ import { ProjectAttributes } from '../project-attributes';
 
     @media (max-width: 1024px) {
       .floating-side-rail { right: 1rem; }
-      .main-title { font-size: 2.5rem; }
       .bridge-heading { font-size: 2.75rem; }
     }
 
@@ -342,12 +326,28 @@ import { ProjectAttributes } from '../project-attributes';
     }
 
     @media (prefers-color-scheme: dark) {
-      .main-title, .bridge-heading { color: #f9f9f9; }
-      .subtitle, .bridge-copy { color: #bbb; }
+      .bridge-heading { color: #f9f9f9; }
+      .bridge-copy { color: #bbb; }
+      #project-0 {
+        background: #112a28;
+        background: linear-gradient(180deg, rgba(17, 42, 40, 0) 0%, rgba(15, 38, 36, 0.64) 16%, rgba(14, 35, 33, 0.76) 83%, rgba(26, 33, 25, 0.8) 100%);
+      }
+      #project-1 {
+        background: #0f172a;
+        background: linear-gradient(0deg, rgba(15, 23, 42, 1) 1%, rgba(33, 31, 22, 0.76) 33%, rgba(33, 30, 20, 0.8) 100%);
+      }
+      #project-2 {
+        background: #0f172a;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 1) 1%, rgba(16, 38, 48, 0.69) 86%, rgba(18, 43, 38, 0.8) 100%);
+      }
+      #project-3 {
+        background: #0f2926;
+        background: linear-gradient(0deg, rgba(15, 41, 38, 1) 0%, rgba(24, 46, 32, 0.48) 28%, rgba(18, 43, 38, 1) 100%);
+      }
       .nav-pill { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #aaa; }
       .nav-pill:hover { background: #111a19; border-color: #5ed6cc; color: #fff; }
       .nav-pill.active { background: #5ed6cc; color: #111; }
-      .bridge-section { background: #111a19; border-color: rgba(255,255,255,0.08); }
+      .bridge-section { background: #111a19; }
       .bridge-cta { background: #ffffff; color: #111; }
       .bridge-cta:hover { background: #5ed6cc; color: #111; }
     }
@@ -355,6 +355,7 @@ import { ProjectAttributes } from '../project-attributes';
 })
 export default class PortfolioHomeComponent {
   private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
 
   readonly projects = signal<Project[]>(
     injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'))
@@ -392,7 +393,7 @@ export default class PortfolioHomeComponent {
           });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.snap-section').forEach(section => {
+        this.document.querySelectorAll('.snap-section').forEach(section => {
           observer.observe(section);
         });
       }
@@ -401,7 +402,7 @@ export default class PortfolioHomeComponent {
 
   scrollToSection(id: string) {
     if (isPlatformBrowser(this.platformId)) {
-      const element = document.getElementById(id);
+      const element = this.document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }

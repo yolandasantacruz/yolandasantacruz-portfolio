@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
     <section class="hero">
       <!-- Background glowing cursor trace ribbon -->
       <div class="hero-bg-trace">
-        <svg viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
           <defs>
             <linearGradient id="traceGrad" x1="0%" y1="100%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#f7f1cb" stop-opacity="0.15" />
@@ -18,20 +18,19 @@ import { RouterLink } from '@angular/router';
               <stop offset="65%" stop-color="#8edeae" stop-opacity="0.75" />
               <stop offset="100%" stop-color="#5ed6cc" stop-opacity="0.95" />
             </linearGradient>
-            <filter id="velvetGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="35" result="blur1" />
-              <feGaussianBlur stdDeviation="15" result="blur2" />
-              <feMerge>
-                <feMergeNode in="blur1" />
-                <feMergeNode in="blur2" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
+          <!-- Outer wide velvet glow -->
           <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="90" stroke-linecap="round" filter="url(#velvetGlow)" opacity="0.55" />
+                stroke="url(#traceGrad)" stroke-width="120" stroke-linecap="round" style="filter: blur(35px)" opacity="0.45" />
+          <!-- Mid soft glow -->
           <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="45" stroke-linecap="round" filter="url(#velvetGlow)" opacity="0.4" />
+                stroke="url(#traceGrad)" stroke-width="70" stroke-linecap="round" style="filter: blur(15px)" opacity="0.55" />
+          <!-- Sharp defined ribbon body -->
+          <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
+                stroke="url(#traceGrad)" stroke-width="45" stroke-linecap="round" opacity="0.75" />
+          <!-- Crisp vibrant core highlight -->
+          <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
+                stroke="url(#traceGrad)" stroke-width="20" stroke-linecap="round" opacity="0.85" />
         </svg>
       </div>
 
@@ -44,12 +43,6 @@ import { RouterLink } from '@angular/router';
         <a routerLink="/about" class="about-button">
           About Me <span class="arrow">&rarr;</span>
         </a>
-      </div>
-      
-      <div class="hero-image-container">
-        <div class="hero-image-mask">
-          <img src="https://placehold.co/500x650/111a19/5ed6cc?text=YSC" alt="Yolanda Santa Cruz" class="profile-image" />
-        </div>
       </div>
     </section>
   `,
@@ -67,15 +60,17 @@ import { RouterLink } from '@angular/router';
     .hero {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 6rem;
+      justify-content: flex-start;
       width: 100%;
-      position: relative;
+      position: static;
     }
 
     .hero-bg-trace {
       position: absolute;
-      inset: -100px -50px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
@@ -90,10 +85,12 @@ import { RouterLink } from '@angular/router';
       min-width: 1000px;
       animation: traceFloat 8s ease-in-out infinite;
       transform-origin: center;
+      will-change: transform;
     }
 
     .hero-content {
-      flex: 1.2;
+      width: 100%;
+      max-width: 960px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -114,7 +111,7 @@ import { RouterLink } from '@angular/router';
     }
 
     .hero-hook {
-      font-size: 4.25rem;
+      font-size: 4.5rem;
       font-weight: 300;
       letter-spacing: -0.03em;
       line-height: 1.1;
@@ -124,12 +121,12 @@ import { RouterLink } from '@angular/router';
     }
 
     .hero-subcopy {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       line-height: 1.8;
       color: #555;
       margin: 0 0 3.5rem 0;
       font-weight: 300;
-      max-width: 90%;
+      max-width: 800px;
       animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
     }
 
@@ -167,55 +164,19 @@ import { RouterLink } from '@angular/router';
       transform: translateX(4px);
     }
 
-    .hero-image-container {
-      flex: 0.8;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      position: relative;
-      z-index: 10;
-      animation: heroFadeIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
-    }
-
-    .hero-image-mask {
-      width: 100%;
-      max-width: 440px;
-      aspect-ratio: 4 / 5;
-      border-radius: 32px;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.06);
-      position: relative;
-    }
-
-    .profile-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .hero-image-mask:hover .profile-image {
-      transform: scale(1.05);
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      .hero-tag, .hero-hook, .hero-subcopy, .about-button, .hero-image-container, .hero-bg-trace svg {
+      .hero-tag, .hero-hook, .hero-subcopy, .about-button, .hero-bg-trace svg {
         animation: none !important;
       }
     }
 
     @media (max-width: 1024px) {
-      .hero-hook { font-size: 3.25rem; }
-      .hero { gap: 4rem; }
+      .hero-hook { font-size: 3.5rem; }
     }
 
     @media (max-width: 768px) {
-      .hero { flex-direction: column; gap: 3rem; }
-      .hero-content { width: 100%; flex: none; }
-      .hero-subcopy { max-width: 100%; }
-      .hero-image-container { width: 100%; justify-content: flex-start; }
-      .hero-image-mask { max-width: 100%; aspect-ratio: 16 / 10; }
+      .hero-hook { font-size: 2.75rem; }
+      .hero-subcopy { font-size: 1.1rem; }
     }
 
     @media (prefers-color-scheme: dark) {
@@ -223,7 +184,6 @@ import { RouterLink } from '@angular/router';
       .hero-subcopy { color: #bbb; }
       .about-button { background: #ffffff; color: #111; }
       .about-button:hover { background: #5ed6cc; color: #111; }
-      .hero-image-mask { border-color: rgba(255,255,255,0.08); box-shadow: 0 25px 60px rgba(0,0,0,0.3); }
       .hero-bg-trace { opacity: 0.65; }
     }
   `

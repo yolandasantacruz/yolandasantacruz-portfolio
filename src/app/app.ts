@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone, OnDestroy, PLATFORM_ID, ViewChild, inject, afterNextRender } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, PLATFORM_ID, ViewChild, inject, afterNextRender } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
@@ -232,8 +232,9 @@ export class App implements OnDestroy {
     const uTrail = gl.getUniformLocation(program, 'u_trail');
 
     const resize = () => {
-      canvas.width = win.innerWidth * win.devicePixelRatio;
-      canvas.height = win.innerHeight * win.devicePixelRatio;
+      const pixelRatio = Math.min(win.devicePixelRatio || 1, 1.25);
+      canvas.width = win.innerWidth * pixelRatio;
+      canvas.height = win.innerHeight * pixelRatio;
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(uResolution, canvas.width, canvas.height);
     };
@@ -250,6 +251,11 @@ export class App implements OnDestroy {
     this.lastY = this.targetY;
 
     this.ngZone.runOutsideAngular(() => {
+      win.addEventListener('mousemove', (e: MouseEvent) => {
+        this.targetX = e.clientX;
+        this.targetY = e.clientY;
+      }, { passive: true });
+
       const startTime = performance.now();
 
       const animate = () => {
@@ -309,13 +315,6 @@ export class App implements OnDestroy {
     return shader;
   }
 
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(e: MouseEvent) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.targetX = e.clientX;
-      this.targetY = e.clientY;
-    }
-  }
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId) && this.rafId) {

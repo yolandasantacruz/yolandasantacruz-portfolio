@@ -4,13 +4,6 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { NgClass } from '@angular/common';
 
-interface CarouselCard {
-  type: 'video' | 'image';
-  title: string;
-  subtitle: string;
-  mediaUrl: string;
-}
-
 interface TimelineItem {
   company: string;
   logo: string;
@@ -180,38 +173,43 @@ interface PublishedWork {
           </div>
         </section>
 
-        <!-- Section 4: Premium Testimonial Section (No Card Wrapper) -->
+        <!-- Section 4: Premium Testimonial Section (Inside Wavy SVG Container) -->
         <section class="premium-testimonial-section" portfolioScrollReveal>
-          <div class="testimonial-container">
-            <div class="testimonial-header">
-              <!-- Author Info First (Active Slide) -->
-              <div class="active-author-info">
-                <img [src]="testimonials[currentIndex()].avatar" [alt]="testimonials[currentIndex()].name" class="author-avatar" />
-                <div class="author-details">
-                  <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
-                  <span class="author-role">{{ testimonials[currentIndex()].role }}</span>
+          <div class="testimonial-card-wrapper">
+            <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" class="testimonial-wavy-bg">
+              <path class="wavy-card-path" d="M 100 80 C 150 20, 250 10, 350 25 C 450 40, 550 60, 650 55 C 750 50, 900 10, 1000 20 C 1100 30, 1160 80, 1180 180 C 1200 280, 1190 400, 1150 480 C 1110 560, 1000 590, 850 585 C 700 580, 600 520, 500 520 C 400 520, 250 570, 150 550 C 50 530, 10 400, 20 280 C 30 160, 50 140, 100 80 Z" />
+            </svg>
+            <div class="testimonial-container">
+              <div class="testimonial-header">
+                <!-- Author Info First (Active Slide) -->
+                <div class="active-author-info">
+                  <img [src]="testimonials[currentIndex()].avatar" [alt]="testimonials[currentIndex()].name" class="author-avatar" />
+                  <div class="author-details">
+                    <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
+                    <span class="author-role">{{ testimonials[currentIndex()].role }}</span>
+                  </div>
+                </div>
+
+                <!-- Navigation & Counter -->
+                <div class="testimonial-nav">
+                  <button class="quote-nav-btn" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <span class="testimonial-counter">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
+                  <button class="quote-nav-btn" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
                 </div>
               </div>
-
-              <!-- Navigation & Counter -->
-              <div class="testimonial-nav">
-                <button class="quote-nav-btn" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <span class="testimonial-counter">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
-                <button class="quote-nav-btn" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-              </div>
-            </div>
-            
-            <div class="testimonial-viewport">
-              <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
-                @for (item of testimonials; track item.name) {
-                  <div class="testimonial-slide">
-                    <p class="testimonial-quote">"{{ item.quote }}"</p>
-                  </div>
-                }
+              
+              <div class="testimonial-viewport">
+                <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
+                  @for (item of testimonials; track item.name) {
+                    <div class="testimonial-slide">
+                      <p class="testimonial-quote">"{{ item.quote }}"</p>
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           </div>
@@ -669,6 +667,27 @@ interface PublishedWork {
       margin-right: auto;
     }
 
+    .testimonial-card-wrapper {
+      position: relative;
+      padding: 160px;
+      margin: 0 auto;
+    }
+
+    .testimonial-wavy-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .wavy-card-path {
+      fill: #EDFBF9;
+      transition: fill 0.35s ease;
+    }
+
     .testimonial-container {
       display: flex;
       flex-direction: column;
@@ -773,10 +792,10 @@ interface PublishedWork {
     }
 
     .testimonial-quote {
-      font-size: 2.1rem;
+      font-size: 1.15rem;
       font-weight: 300;
       font-style: italic;
-      line-height: 1.6;
+      line-height: 1.8;
       color: #111;
       margin: 0;
       letter-spacing: -0.01em;
@@ -1014,12 +1033,13 @@ interface PublishedWork {
     @media (max-width: 768px) {
       .hero-greeting { font-size: 2.5rem; }
       .belief-statement, .pillar-title, .carousel-heading, .timeline-heading, .published-heading { font-size: 2rem; }
-      .testimonial-quote { font-size: 1.6rem; }
+      .testimonial-quote { font-size: 1.05rem; }
       .testimonial-header { flex-direction: column; align-items: flex-start; gap: 2rem; }
       .quiet-metrics-box { grid-template-columns: 1fr; gap: 1.5rem; }
       .portrait-wrapper { width: 100%; max-width: 320px; }
       .position-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .position-logo-box { width: 100%; height: 80px; }
+      .testimonial-card-wrapper { padding: 60px 40px; }
     }
 
     /* Dark Mode Styling */
@@ -1038,6 +1058,7 @@ interface PublishedWork {
       .positions-divider { background: rgba(255,255,255,0.08); }
       .work-badge { background: rgba(255, 255, 255, 0.9); color: #111; }
       .competencies, .quiet-metrics-box, .testimonial-controls { border-color: rgba(255,255,255,0.08); }
+      .wavy-card-path { fill: #111a19; }
     }
   `
 })

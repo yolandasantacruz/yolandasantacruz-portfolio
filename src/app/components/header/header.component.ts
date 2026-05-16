@@ -27,6 +27,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       align-items: center;
       margin-bottom: 4rem;
       padding-top: 8px;
+      position: relative;
+      z-index: 20;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
