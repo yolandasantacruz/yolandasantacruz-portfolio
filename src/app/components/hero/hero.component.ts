@@ -19,12 +19,12 @@ import { RouterLink } from '@angular/router';
               <stop offset="100%" stop-color="#5ed6cc" stop-opacity="0.95" />
             </linearGradient>
           </defs>
-          <!-- Outer wide velvet glow -->
+          <!-- Outer soft ambient glow -->
           <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="120" stroke-linecap="round" style="filter: blur(35px)" opacity="0.45" />
-          <!-- Mid soft glow -->
+                stroke="url(#traceGrad)" stroke-width="160" stroke-linecap="round" opacity="0.18" />
+          <!-- Mid velvet glow -->
           <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="70" stroke-linecap="round" style="filter: blur(15px)" opacity="0.55" />
+                stroke="url(#traceGrad)" stroke-width="90" stroke-linecap="round" opacity="0.35" />
           <!-- Sharp defined ribbon body -->
           <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
                 stroke="url(#traceGrad)" stroke-width="45" stroke-linecap="round" opacity="0.75" />
