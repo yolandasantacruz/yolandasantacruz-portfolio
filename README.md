@@ -1,39 +1,75 @@
-# yolandasantacruz-portfolio
+# Yolanda Santa Cruz Portfolio
 
-This project was generated with [Analog](https://analogjs.org), the fullstack meta-framework for Angular.
+This is the professional portfolio of Yolanda Santa Cruz, built using [Analog](https://analogjs.org), the full-stack meta-framework for Angular.
 
-## Content Management
+## 🚀 Tech Stack
 
-This portfolio leverages **Analog's Content Engine**, allowing for a "CMS-like" workflow where design and content are decoupled.
+- **Core**: [Angular 21](https://angular.io)
+- **Meta-Framework**: [AnalogJS](https://analogjs.org) (SSR, File-based routing, Content Engine)
+- **Styling**: Vanilla CSS with a strict [Design System](file:///Users/zorphdark/dev/yolandasantacruz-portfolio/DESIGN-SYSTEM.md)
+- **Interactive**: WebGL2 Mouse Trail Shader
+- **Tooling**: Vite, Vitest, ESLint, pnpm
+- **Content**: Markdown-driven via Analog Content Engine
+
+## 🎨 Design System & Protocols
+
+This project follows strict architectural and design guardrails to ensure high performance and maintainability.
+
+- **[Design System](./DESIGN-SYSTEM.md)**: Defines the single source of truth for typography, colors, and animations.
+- **[Agentic Protocols](./AGENTS.md)**: Outlines the engineering standards, including SRP, DRY, and SSR compatibility rules.
+
+## 📦 Content Management
+
+The portfolio uses **Analog's Content Engine**, decoupling design from content. You can update the site by modifying Markdown files in `src/content/`.
 
 ### About Page (Atomic Content)
-The About page content is organized into isolated sections within `src/content/about/`. This allows you to update specific parts of your story without touching the layout code:
+Located in `src/content/about/`, each section is isolated:
 
-- **hero.md**: Manages your greeting, mission, and social links.
-- **belief.md**: Your core philosophical statement (pull-quote).
-- **pillars.md**: Handles strategic data, including metrics and competencies.
-- **testimonials.md**: A dedicated space for managing social proof and client quotes.
-- **timeline.md**: Your professional career history and track record.
+- **hero.md**: Greeting, mission statement, and social links.
+- **belief.md**: Core philosophical statement (pull-quote).
+- **pillars.md**: Strategic data, metrics, and core competencies.
+- **testimonials.md**: Social proof and client quotes.
+- **timeline.md**: Professional career history and track record.
+- **publications.md**: Articles, interviews, and thought leadership.
+- **action.md**: Mentorship, keynotes, and community activities.
 
-## Setup
+### Project Case Studies
+Located in `src/content/projects/`, these files define the portfolio items:
 
-Run `pnpm install` to install the application dependencies.
+- Each `.md` file represents a project
+- Front-matter defines metadata: `title`, `slug`, `description`, `imageUrl`, `category`, `role`, `timeline`, and `techStack`.
 
-## Development
+## 🛠️ Development
 
-Run `pnpm start` for a dev server. Navigate to `http://localhost:5173/`. The application automatically reloads if you change any of the source files.
+### Setup
+```bash
+pnpm install
+```
 
-## Build
+### Local Development
+```bash
+pnpm start
+# Navigate to http://localhost:5173/
+```
 
-Run `pnpm run build` to build the client/server project. The client build artifacts are located in the `dist/analog/public` directory. The server for the API build artifacts are located in the `dist/analog/server` directory.
+### Build & Production
+```bash
+pnpm run build
+# Client: dist/analog/public
+# Server: dist/analog/server
+```
 
-## Test
+### Testing & Quality
+```bash
+pnpm run test    # Run unit tests with Vitest
+pnpm run lint    # Run ESLint
+```
 
-Run `pnpm run test` to run unit tests with [Vitest](https://vitest.dev).
+## ♿ Accessibility & Performance
 
-## Community
+- **A11y**: Committed to WCAG AA compliance, focus management, and semantic HTML.
+- **Performance**: High-performance animations (CSS-first), optimized asset loading, and 60fps interactive backgrounds.
+- **SSR**: Fully server-side rendered for SEO and fast initial paint.
 
-- Visit and Star the [GitHub Repo](https://github.com/analogjs/analog)
-- Join the [Discord](https://chat.analogjs.org)
-- Follow us on [Twitter](https://twitter.com/analogjs)
-- Become a [Sponsor](https://github.com/sponsors/brandonroberts)
+---
+Built with ❤️ by Yolanda Santa Cruz & Alejandro Cuba Ruiz
