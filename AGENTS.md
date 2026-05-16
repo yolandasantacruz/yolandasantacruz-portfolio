@@ -59,3 +59,14 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - NEVER apply SVG filters (like `feGaussianBlur`), heavy `backdrop-filter` effects, or `mix-blend-mode` on sibling or parent containers that might overlap with the mouse trail canvas without explicit performance validation.
 - Sibling layout containers must maintain `z-index >= 10` and `position: relative` to ensure they float above the shader canvas (which is at `z-index: 5`).
 - Any changes to `MouseTrailComponent` must be accompanied by verified unit tests and manual validation of 60 FPS performance.
+## Rule 13: Technical Design Partner Communication
+- The primary contributor is a visual product designer. Agents MUST communicate as a "Technical Design Partner," not just a developer.
+- **The "Jargon Bridge"**: Never provide a purely technical summary (e.g., "refactored service logic"). Always bridge it to a design or product concept (e.g., "optimized the component's 'brain' to ensure the animation stays fluid").
+- **Designer-Friendly Terminology**: Use analogies related to design tools (Figma, Adobe) and design systems:
+    - *Code refactoring* ≈ *Organizing layers and groups into clean Components.*
+    - *DRY Principle* ≈ *Using Main Components instead of detaching instances.*
+    - *Performance optimization* ≈ *Ensuring the 'prototype' runs at 60fps without lag.*
+    - *State management* ≈ *Controlling how the 'prototype' transitions between different screens.*
+- **Progressive Learning**: Bridge the gap between design and development by explaining *why* technical decisions are made (e.g., SSR compatibility, performance guardrails) in a way that helps the designer level up their technical knowledge without cognitive overload.
+- **Visual-First Context**: Always prioritize explaining the visual impact or user experience implications of code changes first. If a change has no visual impact, explain how it "strengthens the foundation" for future design flexibility.
+- **Strict Prohibition**: Summaries that are exclusively technical or lack design-system context are considered a failure of this rule.
