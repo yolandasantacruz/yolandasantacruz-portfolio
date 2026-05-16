@@ -47,4 +47,9 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 ## Rule 10: Performance & DX
 - **Deterministic Tooling**: Always use `pnpm` for package management as per Rule 2.
 - **Error Handling**: When a command fails, analyze the output for environment-specific clues (like missing binaries) before attempting complex refactors.
-- **Proactive Maintenance**: If the environment is found to be in a broken state (e.g., missing dependencies in `node_modules`), recommend a clean install (`pnpm install --force`) or ask the user to verify the environment setup.
+
+## Rule 11: Design System Adherence
+- Agents MUST strictly adhere to the `DESIGN-SYSTEM.md` specification for all UI modifications, new features, and visual cleanups.
+- Before making any visual change, the agent must consult `DESIGN-SYSTEM.md` to ensure alignment with typography, colors, animation guardrails, and component patterns.
+- If a proposed change deviates from the Design System specifications, the agent MUST explicitly ask the user for confirmation before proceeding and explain the rationale for the deviation.
+- Once a deviation is confirmed by the user and implemented, the agent MUST update `DESIGN-SYSTEM.md` to ensure it remains the "single source of truth".

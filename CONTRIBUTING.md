@@ -38,9 +38,9 @@ pnpm run test
 pnpm run lint
 ```
 
-## 4. Coding Standards
+## 4. Coding & Design Standards
 
-To maintain high code quality, please follow the guidelines listed in the AGENTS.md file.
+To maintain high code and visual quality, please follow the protocols defined in [AGENTS.md](AGENTS.md) and strictly adhere to the specifications in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 
 ## 5. Make a Pull Request
 
