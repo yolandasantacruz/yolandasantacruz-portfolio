@@ -49,3 +49,15 @@ The `MouseTrailComponent` provides a high-performance WebGL2 shader background.
 * **Implementation**: Isolated in `MouseTrailComponent`, uses `portfolio-mouse-trail` selector.
 * **Performance**: Must remain outside Angular's change detection zone.
 * **Styling**: Operates at `z-index: 5`. Overlapping containers must have `z-index >= 10`.
+
+## 6. Navigation System & Side Rail (Nav Dots)
+The floating side rail navigation uses interactive pill/dot components to indicate scroll progress and provide quick jumping between snap sections.
+* **Hover State Border**: When pills expand on hover, the border opacity is set to 70% (`color-mix(in srgb, var(--pill-color) 70%, transparent)`).
+* **Drop Shadow**: Maintained as a premium white glow across all states (`rgba(255, 255, 255, 0.5)` to `0.8`) to contrast elegantly against the WebGL shader canvas and colorful project backgrounds.
+* **Active State**: The active section indicator removes its border (`border-width: 0`), transforming into a solid accent dot for strong visual distinction.
+
+## 7. Testimonial Background Blob (Motion & Color Shifting)
+The testimonial section is framed within a sophisticated, organic SVG blob background that reacts dynamically to user interaction while maintaining continuous ambient life.
+* **Ambient State**: Vertices and control points drift continuously in a rhythmic sine/cosine wave pattern (speed 0.0015, amplitude 14-18px), resembling calm lagoon water ripples without inducing motion sickness.
+* **Morphing Interaction**: Navigating between testimonials triggers a satisfying quartic transformation (800ms duration) where the anchor points dramatically realign to form completely distinct organic cloud/lagoon shapes.
+* **Color-Shifting Palette**: Synchronized with the shape transformation, the blob fill smoothly transitions between curated soft pastel backgrounds (`#EDFBF9` mint, `#FFFCEB` yellow, `#F4F0FC` lavender).

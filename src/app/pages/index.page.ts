@@ -30,8 +30,12 @@ function homeFiles<T extends Record<string, unknown>>(slug: string) {
       <!-- Fixed Side Rail Navigation -->
       <div class="floating-side-rail" role="navigation" aria-label="Page sections">
         @for (sec of navSections(); track sec.id) {
-          <button class="nav-pill" [class.active]="activeSection() === sec.id" (click)="scrollToSection(sec.id)" [attr.aria-label]="'Scroll to ' + sec.label">
-            <span class="pill-dot"></span>
+          <button class="nav-pill" 
+                  [class.active]="activeSection() === sec.id" 
+                  (click)="scrollToSection(sec.id)" 
+                  [attr.aria-label]="'Scroll to ' + sec.label"
+                  [attr.aria-current]="activeSection() === sec.id ? 'step' : null"
+                  [style.--pill-color]="sec.color">
             <span class="pill-label">{{ sec.label }}</span>
           </button>
         }
@@ -169,77 +173,73 @@ function homeFiles<T extends Record<string, unknown>>(slug: string) {
       z-index: 50;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.25rem;
       align-items: flex-end;
     }
 
     .nav-pill {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      background: rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.08);
+      justify-content: center;
+      background: var(--pill-color);
+      border: 6px solid color-mix(in srgb, var(--pill-color) 20%, white);
+      background-clip: padding-box;
       height: 36px;
-      padding: 0 14px;
+      min-width: 36px;
+      max-width: 36px;
+      padding: 0 8px;
       border-radius: 100px;
       cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      color: #666;
-      font-size: 0.85rem;
-      font-weight: 600;
-      max-width: 36px;
-      overflow: hidden;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: currentColor;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+      transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, padding 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, border-width 0.3s ease, border-color 0.3s ease;
+      box-sizing: border-box;
+      outline: none;
+      opacity: 0.65;
     }
 
     .pill-label {
       opacity: 0;
-      transition: opacity 0.3s ease;
-      padding-right: 4px;
+      color: #111;
+      font-family: var(--font-header);
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 0;
+      transform: scale(0.95);
+      transition: opacity 0.3s ease, transform 0.4s ease, max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
     }
 
     .nav-pill:hover {
-      max-width: 280px;
+      max-width: 320px;
+      padding: 0 20px;
       background: #ffffff;
-      border-color: #5ed6cc;
-      color: #111;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .nav-pill:hover .pill-dot {
-      transform: scale(1.25);
-      color: #3b9f98;
+      border-color: color-mix(in srgb, var(--pill-color) 70%, transparent);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.6);
+      opacity: 1;
     }
 
     .nav-pill:hover .pill-label {
       opacity: 1;
+      max-width: 280px;
+      transform: scale(1);
     }
 
     .nav-pill.active {
-      max-width: 280px;
-      background: #111a19;
-      border-color: #5ed6cc;
-      color: #ffffff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-
-    .nav-pill.active .pill-dot {
-      color: #5ed6cc;
-      transform: scale(1.25);
-    }
-
-    .nav-pill.active .pill-label {
+      border-width: 0;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.7);
       opacity: 1;
+    }
+
+    .nav-pill.active:hover {
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-pill:focus-visible {
+      outline: 3px solid #111;
+      outline-offset: 2px;
     }
 
     /* About Me Bridge Section */
@@ -365,10 +365,18 @@ export default class PortfolioHomeComponent {
   readonly activeSection = signal<string>('hero');
 
   readonly navSections = computed(() => {
+    const colors = [
+      '#3ED4A2', // Top (Figma signature emerald)
+      '#43D3E0', // Project 0
+      '#ECC43B', // Project 1
+      '#4A82F7', // Project 2
+      '#3ED4A2', // Project 3
+      '#3B9F98'  // Bridge / Philosophy (matches bridge mint theme)
+    ];
     return [
-      { id: 'hero', label: 'Top' },
-      ...this.projects().map((p, i) => ({ id: `project-${i}`, label: p.title })),
-      { id: 'bridge', label: 'Philosophy' }
+      { id: 'hero', label: 'Top', color: colors[0] },
+      ...this.projects().map((p, i) => ({ id: `project-${i}`, label: p.title, color: colors[(i + 1) % colors.length] })),
+      { id: 'bridge', label: 'Philosophy', color: colors[(this.projects().length + 1) % colors.length] }
     ];
   });
 
@@ -393,7 +401,7 @@ export default class PortfolioHomeComponent {
   scrollToSection(id: string) {
     if (isPlatformBrowser(this.platformId)) {
       const element = this.document.getElementById(id);
-      if (element) {
+      if (element && typeof element.scrollIntoView === 'function') {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
