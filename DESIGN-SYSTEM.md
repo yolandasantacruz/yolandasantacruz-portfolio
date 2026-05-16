@@ -16,10 +16,27 @@ Animations are restricted to the following parameters to ensure high performance
 * Respect the "prefers-reduced-motion" media query.
 
 ## 3. Typography
-* Primary Font: (TODO)
-* Base Size: 16px.
-* Line Height: 1.6 for body copy, 1.2 for headings.
+* **Main Body Font**: 'Nunito', sans-serif (Weights: 400, 600, 700, 800).
+* **Header Font**: 'Futura PT', 'Futura', 'Jost', system-ui, sans-serif.
+* **Base Size**: 16px.
+* **Line Height**: 1.6 for body copy, 1.2 for headings.
+* **Heading Weight**: 800 (Extra Bold).
 
 ## 4. Color Palette
-To match standard high-fidelity design portfolios, the palette must utilize semantic CSS variables.
-(TODO: Define colors as per design requirements)
+The design system uses a curated, light-first palette focused on clarity and premium feel.
+
+* **Background**: `--color-bg: #ffffff`
+* **Text (Primary)**: `--color-text: #1a1a1a`
+* **Text (Muted)**: `--color-text-muted: #666666`
+* **Accents (Teal/Mint/Yellow)**:
+    * Primary Accent: `#5ed6cc` (Teal)
+    * Secondary Accent: `#8edeae` (Mint)
+    * Highlight: `#f5ea8c` (Light Yellow)
+    * Contrast Accent: `#3b9f98` (Dark Teal)
+
+## 5. Mouse Trail Background
+The `MouseTrailComponent` provides a high-performance WebGL2 shader background.
+* **Purpose**: Adds dynamic, premium interactivity without distracting from content.
+* **Implementation**: Isolated in `MouseTrailComponent`, uses `portfolio-mouse-trail` selector.
+* **Performance**: Must remain outside Angular's change detection zone.
+* **Styling**: Operates at `z-index: 5`. Overlapping containers must have `z-index >= 10`.

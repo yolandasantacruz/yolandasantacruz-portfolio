@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, PLAT
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 
 /**
- * @component NitroBackgroundComponent (Mouse Trail Shader)
+ * @component MouseTrailComponent (Mouse Trail Shader)
  * @description Dedicated, encapsulated WebGL2 high-performance mouse trail background.
  * ARCHITECTURAL RULE: This component is fully isolated from the rest of the application layout.
  * It operates entirely outside Angular's change detection using NgZone.runOutsideAngular and passive event listeners.
@@ -10,11 +10,11 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
  * in parent or sibling containers that overlap with this canvas.
  */
 @Component({
-  selector: 'portfolio-nitro-background',
+  selector: 'portfolio-mouse-trail',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="nitro-background" aria-hidden="true">
+    <div class="mouse-trail" aria-hidden="true">
       <canvas #shaderCanvas class="shader-canvas"></canvas>
     </div>
   `,
@@ -27,7 +27,7 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
       inset: 0;
     }
 
-    .nitro-background {
+    .mouse-trail {
       position: fixed;
       inset: 0;
       z-index: 5;
@@ -47,7 +47,7 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
     }
   `
 })
-export class NitroBackgroundComponent implements OnDestroy {
+export class MouseTrailComponent implements OnDestroy {
   @ViewChild('shaderCanvas', { static: true }) shaderCanvas!: ElementRef<HTMLCanvasElement>;
 
   private platformId = inject(PLATFORM_ID);

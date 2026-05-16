@@ -23,6 +23,6 @@
 
 ## Done
 - [x] Add view transitions for page navigation.
-- [x] Optimize mouse trail for performance and extract into standalone `NitroBackgroundComponent` design token.
+- [x] Optimize mouse trail for performance and extract into standalone `MouseTrailComponent` design token.
 - [x] Implement ESLint with Angular strict mode rules.
 - [x] Install Husky.

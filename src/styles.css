@@ -158,9 +158,9 @@ analog-markdown img {
 }
 
 /* ==========================================================================
-   DESIGN SYSTEM SPECIFICATION: WebGL Nitro Background Token
+   DESIGN SYSTEM SPECIFICATION: Mouse Trail Background Token
    ==========================================================================
-   The WebGL2 mouse trail background (<portfolio-nitro-background>) operates as an
+   The WebGL2 mouse trail background (<portfolio-mouse-trail>) operates as an
    isolated architectural token. It is locked at fixed position with inset: 0 and z-index: 5.
    CRITICAL SYSTEM RULE: Do not apply SVG Gaussian blur filters or heavy GPU rasterization
    effects on sibling containers. Sibling layout containers must maintain z-index >= 10
