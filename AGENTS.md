@@ -70,3 +70,13 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - **Progressive Learning**: Bridge the gap between design and development by explaining *why* technical decisions are made (e.g., SSR compatibility, performance guardrails) in a way that helps the designer level up their technical knowledge without cognitive overload.
 - **Visual-First Context**: Always prioritize explaining the visual impact or user experience implications of code changes first. If a change has no visual impact, explain how it "strengthens the foundation" for future design flexibility.
 - **Strict Prohibition**: Summaries that are exclusively technical or lack design-system context are considered a failure of this rule.
+
+## Rule 14: Content-First Architecture (Analog Markdown)
+- **All displayable content MUST live in markdown files** under `src/content/`, never hardcoded in Angular templates or TypeScript classes. This includes text copy, lists of items, social links, testimonials, timeline entries, and any data that a non-developer (e.g., a designer) might need to update.
+- **Analog's `injectContentFiles` / `injectContent` are the canonical data source.** Components receive content via `input()` signals; pages load content via Analog's content APIs and pass it down.
+- **No duplicate data sources.** If a `.md` file exists for a piece of content, no TypeScript file may contain a hardcoded copy of that same data. A single `.md` file is the "Main Component" — all consumers are "instances."
+- **When creating new features**, agents must create the corresponding `.md` content file(s) *first*, then build the component that consumes them. Content files are the "design tokens" of copy.
+- **Shared content** (e.g., social links, copyright text) should live in `src/content/shared/` and be consumed by every component that needs it, rather than duplicated across files.
+- **Structural content** (e.g., navigation labels, CTA text) is also subject to this rule unless the content is intrinsically coupled to routing logic.
+- **Type safety**: Every content file's frontmatter shape must have a corresponding TypeScript interface in `about.types.ts` (or a domain-appropriate types file). Content is loaded with explicit generic types: `injectContentFiles<MyType>(...)`.
+

@@ -1,11 +1,16 @@
 export interface HeroData {
   greeting: string;
   mission: string;
-  socials: { 
-    linkedin?: string; 
-    twitter?: string; 
-    dribbble?: string; 
-  };
+}
+
+export interface SocialLink {
+  platform: string;
+  url: string;
+  label: string;
+}
+
+export interface SocialsData {
+  links: SocialLink[];
 }
 
 export interface BeliefData {
