@@ -26,8 +26,10 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - Follow Angular skills defined in the skills folder
 - Keep templates simple and avoid complex logic
 
-## Rule 6: Avoid creating monolithic components
-- Try to break components into smaller, more focused components when the functionality becomes too complex or when it improves readability, reusability and maintainability.
+## Rule 6: Single Responsibility Principle (SRP) & DRY
+- Agents must strictly follow the Single Responsibility Principle (SRP). Each component or service should have one, and only one, reason to change.
+- Avoid creating monolithic components. Break components into smaller, more focused units when functionality becomes complex or when it improves readability, reusability, and maintainability.
+- Adhere to the DRY (Don't Repeat Yourself) principle. Abstract common logic into reusable services, directives, or components to prevent code duplication.
 
 ## Rule 7: Accessibility Requirements
 - It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
