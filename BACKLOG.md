@@ -2,6 +2,10 @@
 
 ## Todo
 
+### User Experience & Theming
+- [ ] Implement dark/light theme support based on browser preference with a toggle icon in the top navigation bar.
+
+
 ### Web Quality and Linting
 - [ ] Integrate Prettier for deterministic code formatting.
 

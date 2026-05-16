@@ -178,14 +178,6 @@ import { RouterLink } from '@angular/router';
       .hero-hook { font-size: 2.75rem; }
       .hero-subcopy { font-size: 1.1rem; }
     }
-
-    @media (prefers-color-scheme: dark) {
-      .hero-hook { color: #f9f9f9; }
-      .hero-subcopy { color: #bbb; }
-      .about-button { background: #ffffff; color: #111; }
-      .about-button:hover { background: #5ed6cc; color: #111; }
-      .hero-bg-trace { opacity: 0.65; }
-    }
   `
 })
 export class HeroComponent {}

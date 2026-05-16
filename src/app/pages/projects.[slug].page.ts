@@ -83,10 +83,6 @@ import { ProjectAttributes } from '../project-attributes';
       border-top: 1px solid rgba(0,0,0,0.1);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .project-meta { border-top-color: rgba(255,255,255,0.1); }
-    }
-
     .meta-item {
       display: flex;
       flex-direction: column;
@@ -117,10 +113,6 @@ import { ProjectAttributes } from '../project-attributes';
       background: rgba(0,0,0,0.05);
       padding: 2px 10px;
       border-radius: 4px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .tech-tag { background: rgba(255,255,255,0.1); }
     }
 
     .project-content {

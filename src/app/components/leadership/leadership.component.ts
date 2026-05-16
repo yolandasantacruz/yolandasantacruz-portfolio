@@ -488,22 +488,6 @@ interface MediaItem {
       .metric-divider { display: none; }
       .section-divider { margin: 4rem auto; }
     }
-
-    @media (prefers-color-scheme: dark) {
-      .full-width-leadership-section { background: linear-gradient(180deg, rgba(17, 26, 25, 1) 0%, rgba(17, 26, 25, 0) 100%); }
-      .wave-fill { fill: #111a19; }
-      .main-title, .quiet-title, .metric-num, .section-heading, .item-title { color: #f9f9f9; }
-      .quiet-philosophy, .item-desc { color: #bbb; }
-      .quiet-badge, .metric-label, .video-label, .item-time { color: #888; }
-      .metric-divider, .media-list-item, .media-list-item:first-of-type { border-color: rgba(255,255,255,0.1); }
-      .quiet-btn { background-color: #ffffff; color: #111; }
-      .quiet-btn:hover { background-color: #eee; }
-      .play-overlay { background: #111; color: #fff; }
-      .player-wrapper:hover .play-overlay { background: #222; }
-      .play-icon { color: #fff; }
-      .media-list-item:hover .item-arrow { color: #fff; }
-      .item-tag { color: #5ed6cc; }
-    }
   `
 })
 export class LeadershipComponent {

@@ -324,33 +324,6 @@ import { ProjectAttributes } from '../project-attributes';
       .bridge-heading { font-size: 2.25rem; }
       .bridge-copy { font-size: 1.1rem; }
     }
-
-    @media (prefers-color-scheme: dark) {
-      .bridge-heading { color: #f9f9f9; }
-      .bridge-copy { color: #bbb; }
-      #project-0 {
-        background: #112a28;
-        background: linear-gradient(180deg, rgba(17, 42, 40, 0) 0%, rgba(15, 38, 36, 0.64) 16%, rgba(14, 35, 33, 0.76) 83%, rgba(26, 33, 25, 0.8) 100%);
-      }
-      #project-1 {
-        background: #0f172a;
-        background: linear-gradient(0deg, rgba(15, 23, 42, 1) 1%, rgba(33, 31, 22, 0.76) 33%, rgba(33, 30, 20, 0.8) 100%);
-      }
-      #project-2 {
-        background: #0f172a;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 1) 1%, rgba(16, 38, 48, 0.69) 86%, rgba(18, 43, 38, 0.8) 100%);
-      }
-      #project-3 {
-        background: #0f2926;
-        background: linear-gradient(0deg, rgba(15, 41, 38, 1) 0%, rgba(24, 46, 32, 0.48) 28%, rgba(18, 43, 38, 1) 100%);
-      }
-      .nav-pill { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #aaa; }
-      .nav-pill:hover { background: #111a19; border-color: #5ed6cc; color: #fff; }
-      .nav-pill.active { background: #5ed6cc; color: #111; }
-      .bridge-section { background: #111a19; }
-      .bridge-cta { background: #ffffff; color: #111; }
-      .bridge-cta:hover { background: #5ed6cc; color: #111; }
-    }
   `
 })
 export default class PortfolioHomeComponent {

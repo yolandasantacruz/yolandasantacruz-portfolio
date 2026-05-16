@@ -231,16 +231,6 @@ export interface Project {
         max-width: 100%;
       }
     }
-
-    @media (prefers-color-scheme: dark) {
-      .project-title { color: var(--color-text); }
-      .project-description { color: var(--color-text-muted); }
-      .project-meta { color: var(--color-text-muted); }
-      .tech-tag { background: #2a2a2a; color: var(--color-text-muted); }
-      .view-project { color: var(--color-text); }
-      .category-tag { background: rgba(0, 0, 0, 0.7); color: var(--color-text); }
-      .project-image-container { background: #1a1a1a; }
-    }
   `
 })
 export class ProjectCardComponent {

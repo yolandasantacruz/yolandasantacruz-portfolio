@@ -1037,25 +1037,6 @@ interface PublishedWork {
       .position-logo-box { width: 100%; height: 80px; }
       .testimonial-card-wrapper { padding: 60px 40px; }
     }
-
-    /* Dark Mode Styling */
-    @media (prefers-color-scheme: dark) {
-      .hero-greeting, .belief-statement, .pillar-title, .metric-num, .carousel-heading, .caption-title, .testimonial-quote, .author-name, .testimonial-counter, .timeline-heading, .logo-text, .position-role, .published-heading, .work-title { color: #f9f9f9; }
-      .hero-mission, .pillar-desc, .timeline-subhead, .work-desc { color: #bbb; }
-      .comp-label { color: #ddd; }
-      .social-btn { border-color: rgba(255,255,255,0.15); color: #fff; }
-      .social-btn:hover { background: #5ed6cc; color: #111; }
-      .testimonial-header { border-color: rgba(255,255,255,0.08); }
-      .author-role, .position-loc { color: #888; }
-      .quote-nav-btn { border-color: rgba(255,255,255,0.15); color: #fff; }
-      .quote-nav-btn:hover:not(:disabled) { background: #5ed6cc; color: #111; }
-      .position-logo-box { background: #111a19; border-color: rgba(255,255,255,0.08); }
-      .position-logo-box:hover { border-color: #5ed6cc; }
-      .positions-divider { background: rgba(255,255,255,0.08); }
-      .work-badge { background: rgba(255, 255, 255, 0.9); color: #111; }
-      .competencies, .quiet-metrics-box, .testimonial-controls { border-color: rgba(255,255,255,0.08); }
-      .wavy-card-path { fill: #111a19; }
-    }
   `
 })
 export default class AboutComponent {

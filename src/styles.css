@@ -10,14 +10,6 @@
   --color-bg: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #1a1a1a;
-    --color-text-muted: #666;
-    --color-bg: #ffffff;
-  }
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
