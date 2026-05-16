@@ -65,6 +65,9 @@ function aboutFiles<T extends Record<string, unknown>>(slug: string) {
 
     .about-main > * {
       display: block;
+    }
+
+    .about-main > *:not(:first-child) {
       scroll-snap-align: start;
       scroll-snap-stop: normal;
       scroll-margin-top: 6rem;

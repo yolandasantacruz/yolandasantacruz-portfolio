@@ -19,7 +19,6 @@
 html {
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -32,14 +31,11 @@ body {
 }
 
 .snap-center {
-  scroll-snap-align: center;
   scroll-snap-stop: normal;
 }
 
 .snap-start {
-  scroll-snap-align: start;
   scroll-snap-stop: normal;
-  scroll-margin-top: 4rem;
 }
 
 .container {
@@ -90,8 +86,6 @@ analog-markdown h3 {
   margin-top: 4rem;
   margin-bottom: 2rem;
   font-family: var(--font-header);
-  scroll-snap-align: start;
-  scroll-margin-top: 6rem;
 }
 
 analog-markdown p {

@@ -33,7 +33,6 @@ import { DOCUMENT } from '@angular/common';
       margin-bottom: 4rem;
       position: relative;
       z-index: 20;
-      view-transition-name: portfolio-header;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
