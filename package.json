@@ -12,6 +12,7 @@
     "build": "vite build",
     "watch": "vite build --watch",
     "test": "vitest",
+    "lint": "ng lint",
     "preview": "node dist/analog/server/index.mjs",
     "prepare": "husky"
   },

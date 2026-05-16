@@ -53,3 +53,9 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - Before making any visual change, the agent must consult `DESIGN-SYSTEM.md` to ensure alignment with typography, colors, animation guardrails, and component patterns.
 - If a proposed change deviates from the Design System specifications, the agent MUST explicitly ask the user for confirmation before proceeding and explain the rationale for the deviation.
 - Once a deviation is confirmed by the user and implemented, the agent MUST update `DESIGN-SYSTEM.md` to ensure it remains the "single source of truth".
+
+## Rule 12: Mouse Trail Protection
+- The `MouseTrailComponent` is a critical design token. Its performance is highly sensitive to external CSS changes.
+- NEVER apply SVG filters (like `feGaussianBlur`), heavy `backdrop-filter` effects, or `mix-blend-mode` on sibling or parent containers that might overlap with the mouse trail canvas without explicit performance validation.
+- Sibling layout containers must maintain `z-index >= 10` and `position: relative` to ensure they float above the shader canvas (which is at `z-index: 5`).
+- Any changes to `MouseTrailComponent` must be accompanied by verified unit tests and manual validation of 60 FPS performance.
