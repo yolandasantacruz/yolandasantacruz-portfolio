@@ -82,6 +82,7 @@ function homeFiles<T extends Record<string, unknown>>(slug: string) {
       scroll-behavior: smooth;
       width: 100%;
       position: relative;
+      scrollbar-gutter: stable;
     }
 
     .snap-section {

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'portfolio-header',
@@ -9,12 +10,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   template: `
     <header class="header">
       <div class="logo">
-        <a routerLink="/" class="logo-link">
+        <a routerLink="/" class="logo-link" (click)="scrollToTop($event)">
           <div class="logo-circle">YSC</div>
         </a>
       </div>
       <nav class="nav-links">
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Work</a>
+        <a routerLink="/" 
+           routerLinkActive="active" 
+           [routerLinkActiveOptions]="{exact: true}"
+           (click)="scrollToTop($event)">Work</a>
         <a routerLink="/about" routerLinkActive="active">About</a>
         <a routerLink="/resume" routerLinkActive="active">Resume</a>
       </nav>
@@ -25,8 +29,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 80px;
       margin-bottom: 4rem;
-      padding-top: 8px;
       position: relative;
       z-index: 20;
       view-transition-name: portfolio-header;
@@ -50,4 +54,17 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     }
   `
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  private router = inject(Router);
+  private document = inject(DOCUMENT);
+
+  scrollToTop(event: Event) {
+    if (this.router.url === '/' || this.router.url === '/#hero') {
+      const snapContainer = this.document.querySelector('.snap-container');
+      if (snapContainer) {
+        event.preventDefault();
+        snapContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }
+}
