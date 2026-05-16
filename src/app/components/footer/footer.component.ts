@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">in</a>
       </div>
       <p class="copyright">
-        Made with <span class="heart">❤️</span> by Yolanda Santa Cruz © 2024. All rights reserved.
+        Made with <span class="heart">❤️</span> by Yolanda Santa Cruz © 2026. All rights reserved.
       </p>
     </footer>
   `,
@@ -33,4 +33,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     .heart { color: #55c5c7; }
   `
 })
-export class FooterComponent {}
+export class FooterComponent { }
