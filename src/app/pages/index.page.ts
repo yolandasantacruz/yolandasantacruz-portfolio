@@ -90,9 +90,9 @@ import { ProjectAttributes } from '../project-attributes';
 
     .section-content {
       width: 100%;
-      max-width: 1200px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: var(--container-padding);
       box-sizing: border-box;
     }
 

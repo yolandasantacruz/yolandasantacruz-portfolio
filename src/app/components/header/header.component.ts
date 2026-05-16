@@ -29,6 +29,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       padding-top: 8px;
       position: relative;
       z-index: 20;
+      view-transition-name: portfolio-header;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {

@@ -298,10 +298,6 @@ interface PublishedWork {
     .about-main {
       padding-top: 6rem;
       padding-bottom: 8rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-left: 2rem;
-      padding-right: 2rem;
     }
 
     /* Common Section Tags & Headers */

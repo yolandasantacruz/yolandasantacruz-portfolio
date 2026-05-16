@@ -3,7 +3,6 @@
 ## Todo
 
 ### UI
-- [ ]  Add view transitions for page navigation.
 - [ ]  Optimize mouse trail for performance. Use three.js instead of CSS.
 
 ### Web Quality and Linting
@@ -26,3 +25,4 @@
 ## In Progress
 
 ## Done
+- [x] Add view transitions for page navigation.
