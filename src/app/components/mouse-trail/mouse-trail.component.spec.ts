@@ -1,16 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MouseTrailComponent } from './mouse-trail.component';
 import { By } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 describe('MouseTrailComponent', () => {
   let component: MouseTrailComponent;
   let fixture: ComponentFixture<MouseTrailComponent>;
+  let document: Document;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MouseTrailComponent],
     }).compileComponents();
 
+    document = TestBed.inject(DOCUMENT);
     fixture = TestBed.createComponent(MouseTrailComponent);
     component = fixture.componentInstance;
     
@@ -18,33 +21,32 @@ describe('MouseTrailComponent', () => {
     const canvas = fixture.debugElement.query(By.css('canvas')).nativeElement;
     canvas.getContext = (type: string) => {
       if (type === 'webgl2') {
-        /* eslint-disable @typescript-eslint/no-empty-function */
+        const noop = () => { /* no-op */ };
         return {
           createShader: () => ({}),
-          shaderSource: () => {},
-          compileShader: () => {},
+          shaderSource: noop,
+          compileShader: noop,
           getShaderParameter: () => true,
           createProgram: () => ({}),
-          attachShader: () => {},
-          linkProgram: () => {},
+          attachShader: noop,
+          linkProgram: noop,
           getProgramParameter: () => true,
-          useProgram: () => {},
+          useProgram: noop,
           getAttribLocation: () => 0,
           createBuffer: () => ({}),
-          bindBuffer: () => {},
-          bufferData: () => {},
-          enableVertexAttribArray: () => {},
-          vertexAttribPointer: () => {},
+          bindBuffer: noop,
+          bufferData: noop,
+          enableVertexAttribArray: noop,
+          vertexAttribPointer: noop,
           getUniformLocation: () => ({}),
-          viewport: () => {},
-          clearColor: () => {},
-          clear: () => {},
-          uniform1f: () => {},
-          uniform2f: () => {},
-          uniform2fv: () => {},
-          drawArrays: () => {},
+          viewport: noop,
+          clearColor: noop,
+          clear: noop,
+          uniform1f: noop,
+          uniform2f: noop,
+          uniform2fv: noop,
+          drawArrays: noop,
         };
-        /* eslint-enable @typescript-eslint/no-empty-function */
       }
       return null;
     };
@@ -64,8 +66,10 @@ describe('MouseTrailComponent', () => {
 
   it('should have the correct architectural z-index and positioning', () => {
     const hostElement = fixture.nativeElement;
-    // eslint-disable-next-line no-restricted-globals
-    const styles = window.getComputedStyle(hostElement);
+    const win = document.defaultView;
+    if (!win) throw new Error('Window is not available');
+    
+    const styles = win.getComputedStyle(hostElement);
     
     // In actual browser these would be '5' and 'absolute'
     // In test environment we check the component's defined styles
