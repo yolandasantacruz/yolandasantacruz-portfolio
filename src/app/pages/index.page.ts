@@ -78,7 +78,7 @@ import { ProjectAttributes } from '../project-attributes';
 
     .snap-section {
       scroll-snap-align: start;
-      scroll-snap-stop: normal;
+      scroll-snap-stop: always;
       min-height: 100vh;
       width: 100%;
       display: flex;
@@ -125,25 +125,25 @@ import { ProjectAttributes } from '../project-attributes';
     #project-0 {
       background: #e6fff1;
       background: linear-gradient(180deg, rgba(230, 255, 241, 0) 0%, rgba(204, 242, 237, 0.64) 16%, rgba(204, 242, 236, 0.76) 83%, rgba(255, 244, 207, 0.8) 100%);
-      transition: background 0.35s ease;
+      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #project-1 {
       background: #e3f4ff;
       background: linear-gradient(0deg, rgba(227, 244, 255, 1) 1%, rgba(255, 247, 214, 0.76) 33%, rgba(255, 244, 207, 0.8) 100%);
-      transition: background 0.35s ease;
+      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #project-2 {
       background: #e3f4ff;
       background: linear-gradient(180deg, rgba(227, 244, 255, 1) 1%, rgba(171, 233, 255, 0.69) 86%, rgba(207, 255, 237, 0.8) 100%);
-      transition: background 0.35s ease;
+      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #project-3 {
       background: #EDFBF9;
       background: linear-gradient(0deg, rgba(237, 251, 249, 1) 0%, rgba(174, 245, 176, 0.48) 28%, rgba(207, 255, 237, 1) 100%);
-      transition: background 0.35s ease;
+      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* Floating Side Rail Navigation */

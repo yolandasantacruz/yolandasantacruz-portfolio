@@ -15,7 +15,16 @@ Animations are restricted to the following parameters to ensure high performance
 * Maximum transition duration: 300ms.
 * Respect the "prefers-reduced-motion" media query.
 
-## 3. Typography
+## 3. Scroll Snapping Guardrails
+To ensure a premium and fluid navigation experience, we utilize a tiered snapping approach:
+
+* **Landing/Hero Experience**: Use `y mandatory` with `scroll-snap-stop: always`. This creates a focused, full-screen story-telling experience. Combine with long background transitions (e.g., `0.8s`) to ensure the visual shift feels "smooth" and intentional.
+* **Content/Reading Experience**: Use `y proximity`. This ensures the scroll only "locks" when the user stops near a section boundary, preventing interference with natural reading rhythms.
+* **Alignment**: Use `scroll-snap-align: start`.
+* **Breathing Room**: Implement `scroll-margin-top` (typically `4rem` to `6rem`) on snap targets.
+* **Easing**: Visual transitions accompanying snaps should use standard premium easing: `cubic-bezier(0.16, 1, 0.3, 1)`.
+
+## 4. Typography
 * **Main Body Font**: 'Nunito', sans-serif (Weights: 400, 600, 700, 800).
 * **Header Font**: 'Futura PT', 'Futura', 'Jost', system-ui, sans-serif.
 * **Base Size**: 16px.

@@ -62,6 +62,13 @@ function aboutFiles<T extends Record<string, unknown>>(slug: string) {
       padding-top: 6rem;
       padding-bottom: 8rem;
     }
+
+    .about-main > * {
+      display: block;
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+      scroll-margin-top: 6rem;
+    }
   `
 })
 export default class AboutComponent {
