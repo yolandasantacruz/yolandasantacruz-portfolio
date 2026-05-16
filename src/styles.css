@@ -24,6 +24,11 @@
   padding: 0;
 }
 
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--color-bg);
@@ -31,6 +36,17 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-align: left;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 4rem;
 }
 
 .container {
@@ -92,3 +108,42 @@ analog-markdown img {
   margin: 4rem 0;
   width: 100%;
 }
+
+/* Global Subtle Animations & Scroll Reveal */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-on-load {
+  animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.fade-in-stagger-1 {
+  animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.fade-in-stagger-2 {
+  animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.scroll-reveal-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-hidden.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-on-load, .fade-in-stagger-1, .fade-in-stagger-2, .scroll-reveal-hidden {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

@@ -1,103 +1,295 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { NgClass } from '@angular/common';
+
+interface CarouselCard {
+  type: 'video' | 'image';
+  title: string;
+  subtitle: string;
+  mediaUrl: string;
+}
+
+interface TimelineItem {
+  company: string;
+  logo: string;
+  period: string;
+  role: string;
+  location: string;
+}
+
+interface PublishedWork {
+  tag: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  url: string;
+}
 
 @Component({
   selector: 'portfolio-about',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, NgClass],
+  imports: [HeaderComponent, FooterComponent, NgClass, ScrollRevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
       <portfolio-header />
 
-      <main class="about-content">
-        <!-- Hero Section remains the same -->
-        <section class="hero-section">
-          <div class="text-side">
-            <h1 class="page-title">About</h1>
-            <p>I’m a philomath (aka very curious person). I love thinking about how things work and analyzing why they influence the way we feel. Product design has given me a space to do this.</p>
-            <p>I’ve built products at different stages, from end-to-end launches to scaled growth, and I get especially excited by complex challenges and thoughtful collaboration.</p>
-            <p>Outside of design, I like to spend time painting, writing, chilling with friends, and occasionally tracking down the best dark chocolate bar (Hu Salty still holds the crown). 👑</p>
-            <p>I believe great experiences should anticipate what someone needs before they even realize it, and do so in a way that feels almost a little magical. If you feel the same, I’d love to connect.</p>
+      <main class="about-main">
+        <!-- Section 1: Hero Intro (Asymmetric Layout) -->
+        <section class="about-hero" portfolioScrollReveal>
+          <div class="hero-left">
+            <h1 class="hero-greeting">Hola there, I'm Yolanda Santa Cruz</h1>
+            <p class="hero-mission">
+              Lead product designer crafting intuitive, human-centered, and engaging digital experiences. Specializing in fintech, complex SaaS systems, and design consulting.
+            </p>
+            <div class="social-links">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.91h2.79v8.37H6.46v-8.37M7.86 6.32a1.62 1.62 0 0 0-1.63 1.62 1.62 1.62 0 0 0 1.63 1.63 1.62 1.62 0 0 0 1.62-1.63 1.62 1.62 0 0 0-1.62-1.62z"/></svg>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" class="social-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm8.17 7.7a8.55 8.55 0 0 1 .33 2.3 8.35 8.35 0 0 1-.72 3.44c-.3-.14-3.52-1.57-6.22-1.16v-.06a26.24 26.24 0 0 0 1.54-6.42 16.7 16.7 0 0 1 5.07 1.9zm-8.17-6.2a8.5 8.5 0 0 1 5.62 2.1c-1.32.96-3.78 1.66-5.48 1.83a28.44 28.44 0 0 0-3.32-5.75A8.34 8.34 0 0 1 12 3.5zm-5 2.53a8.4 8.4 0 0 1 3.5-1.58c1.1 1.76 2.17 3.84 2.8 5.34-3.38.8-6.8 1-7.85 1a8.45 8.45 0 0 1 1.55-4.76zm-1.5 6c1.1-.03 4.8-.23 8.4-1.14a28.2 28.2 0 0 1-1.36 5.66 18.15 18.15 0 0 1-5.7 1.7 8.5 8.5 0 0 1-1.34-6.22zm6.85 7.17a15.7 15.7 0 0 0 5-1.5 15.4 15.4 0 0 0 2.45 2.1 8.5 8.5 0 0 1-7.45-.6z"/></svg>
+              </a>
+            </div>
           </div>
-          <div class="image-side">
-            <div class="portrait-container">
-              <img src="/about_portrait_1778866767765.png" alt="Yolanda Santa Cruz" class="portrait">
+          <div class="hero-right">
+            <div class="portrait-wrapper">
+              <img src="/about_portrait_1778866767765.png" alt="Yolanda Santa Cruz" class="hero-portrait" />
+              <div class="portrait-glow"></div>
             </div>
           </div>
         </section>
 
-        <div class="wave-divider">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,60 C150,110 350,10 500,60 C650,110 850,10 1000,60 C1150,110 1200,60 1200,60 L1200,120 L0,120 Z" class="wave-path"></path>
-          </svg>
-        </div>
+        <!-- Centered Core Belief Pull-Quote -->
+        <section class="belief-section" portfolioScrollReveal>
+          <h2 class="belief-statement">
+            "I believe in crafting simple, human-centered designs that solve problems and forge deep emotional connections."
+          </h2>
+          <div class="belief-dash"></div>
+        </section>
 
-        <section class="testimonials-section">
-          <h2 class="section-title">What Colleagues Say About Me</h2>
-          
-          <div class="carousel-container">
-            <div class="carousel-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
-              @for (testimonial of testimonials; track $index) {
-                <div class="testimonial-slide">
-                  <div class="testimonial-content">
-                    <p class="quote">"{{ testimonial.quote }}"</p>
-                    <div class="author">
-                      <span class="name">- {{ testimonial.name }}</span>
-                      <span class="role">{{ testimonial.role }}</span>
-                    </div>
+        <!-- Section 2: Dual Pillars ('At Work' vs 'Leadership & Community') -->
+        <section class="dual-pillars-section">
+          <!-- Pillar 1: At Work -->
+          <div class="pillar-row pillar-work" portfolioScrollReveal>
+            <div class="pillar-text">
+              <span class="pillar-badge">01 // EXECUTION & STRATEGY</span>
+              <h3 class="pillar-title">At Work</h3>
+              <p class="pillar-desc">
+                I thrive in environments where cross-functional alignment and rigorous user research drive innovation. By bridging the gap between engineering complexity and user intuition, I design scalable design systems and robust product architectures that deliver measurable business impact.
+              </p>
+              <div class="competencies">
+                <div class="competency-item">
+                  <span class="comp-label">Design Systems Architecture</span>
+                  <span class="comp-val">Expert</span>
+                </div>
+                <div class="competency-item">
+                  <span class="comp-label">Fintech & High-Regulation UX</span>
+                  <span class="comp-val">Expert</span>
+                </div>
+                <div class="competency-item">
+                  <span class="comp-label">Cross-Functional Strategy</span>
+                  <span class="comp-val">Advanced</span>
+                </div>
+              </div>
+            </div>
+            <div class="pillar-visual">
+              <div class="masked-image arch-mask">
+                <img src="https://placehold.co/800x1000/1e293b/5ed6cc?text=Systems+Thinking" alt="Design Execution" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Philosophy & Mentorship -->
+          <div class="pillar-row pillar-philosophy" portfolioScrollReveal>
+            <div class="pillar-visual">
+              <div class="masked-image pill-mask">
+                <img src="https://placehold.co/800x1000/111a19/f5ea8c?text=Mentorship+%26+Culture" alt="Mentorship Philosophy" />
+              </div>
+            </div>
+            <div class="pillar-text">
+              <span class="pillar-badge">02 // PHILOSOPHY & COMMUNITY</span>
+              <h3 class="pillar-title">Philosophy</h3>
+              <p class="pillar-desc">
+                Growing up with a drive to create, I realized early on that technology shapes our shared reality. My philosophy centers on empowering the next generation of designers through empathetic mentorship, opening doors for underrepresented talent, and building inclusive design cultures.
+              </p>
+              <div class="quiet-metrics-box">
+                <div class="quiet-metric">
+                  <span class="metric-num">50+</span>
+                  <span class="metric-label">Designers Mentored</span>
+                </div>
+                <div class="quiet-metric">
+                  <span class="metric-num">120+</span>
+                  <span class="metric-label">Sessions Hosted</span>
+                </div>
+                <div class="quiet-metric">
+                  <span class="metric-num">Top 1%</span>
+                  <span class="metric-label">ADPList Mentor Badge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Media & Mentorship Carousel -->
+        <section class="action-carousel-section" portfolioScrollReveal>
+          <div class="section-header">
+            <span class="section-tag">IN ACTION</span>
+            <h2 class="carousel-heading">Mentorship, Keynotes & Community</h2>
+          </div>
+
+          <div class="action-grid">
+            <!-- Main Video Slot -->
+            <div class="action-card video-card">
+              <div class="video-player-box">
+                <img src="https://placehold.co/1200x675/121212/ffffff?text=Mentorship+Session+Preview" alt="Mentorship Preview" class="video-thumb" />
+                <div class="play-indicator">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="play-svg"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="card-caption">
+                <span class="caption-tag">VIDEO FEATURE</span>
+                <h4 class="caption-title">Live 1:1 Mentorship Session — Navigating SaaS Complexity</h4>
+              </div>
+            </div>
+
+            <!-- Supporting Cards -->
+            <div class="action-card">
+              <div class="media-box">
+                <img src="https://placehold.co/800x600/1a1a1a/5ed6cc?text=UX+Keynote" alt="Conference Keynote" class="media-img" />
+              </div>
+              <div class="card-caption">
+                <span class="caption-tag">KEYNOTE</span>
+                <h4 class="caption-title">Keynote at Global Design Conference 2025</h4>
+              </div>
+            </div>
+
+            <div class="action-card">
+              <div class="media-box">
+                <img src="https://placehold.co/800x600/1a1a1a/f5ea8c?text=Design+Workshop" alt="Workshop Session" class="media-img" />
+              </div>
+              <div class="card-caption">
+                <span class="caption-tag">WORKSHOP</span>
+                <h4 class="caption-title">Design Systems Engineering Masterclass</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Premium Testimonial Section (No Card Wrapper) -->
+        <section class="premium-testimonial-section" portfolioScrollReveal>
+          <div class="testimonial-container">
+            <div class="testimonial-header">
+              <!-- Author Info First (Active Slide) -->
+              <div class="active-author-info">
+                <img [src]="testimonials[currentIndex()].avatar" [alt]="testimonials[currentIndex()].name" class="author-avatar" />
+                <div class="author-details">
+                  <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
+                  <span class="author-role">{{ testimonials[currentIndex()].role }}</span>
+                </div>
+              </div>
+
+              <!-- Navigation & Counter -->
+              <div class="testimonial-nav">
+                <button class="quote-nav-btn" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <span class="testimonial-counter">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
+                <button class="quote-nav-btn" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="testimonial-viewport">
+              <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
+                @for (item of testimonials; track item.name) {
+                  <div class="testimonial-slide">
+                    <p class="testimonial-quote">"{{ item.quote }}"</p>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Career Timeline Grid -->
+        <section class="timeline-section" portfolioScrollReveal>
+          <!-- Top Header + Subheader Next To It -->
+          <div class="timeline-header-grid">
+            <div class="header-left">
+              <span class="section-tag">TRACK RECORD</span>
+              <h2 class="timeline-heading">14+ years of experience in crafting exceptional digital experiences</h2>
+            </div>
+            <div class="header-right">
+              <p class="timeline-subhead">
+                I've honed my skills across diverse projects and industries, transforming this passion into a fulfilling career. Each experience has shaped my perspective and fueled my growth, allowing me to approach design with a unique blend of expertise and enthusiasm.
+              </p>
+            </div>
+          </div>
+
+          <!-- Two Columns for Positions (with center divider) -->
+          <div class="timeline-positions-container">
+            <div class="positions-col left-col">
+              @for (item of leftTimelineItems; track item.company) {
+                <div class="position-item">
+                  <div class="position-logo-box">
+                    <span class="logo-text">{{ item.logo }}</span>
+                  </div>
+                  <div class="position-copy">
+                    <span class="position-period">{{ item.period }}</span>
+                    <h3 class="position-role">{{ item.role }}</h3>
+                    <span class="position-loc">{{ item.location }}</span>
                   </div>
                 </div>
               }
             </div>
 
-            <div class="carousel-controls">
-              <button class="nav-btn prev" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous slide">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                <span class="sr-only">Previous slide</span>
-              </button>
-              
-              <div class="carousel-dots">
-                @for (dot of testimonials; track $index) {
-                  <button class="dot" [class.active]="currentIndex() === $index" (click)="goToSlide($index)" [attr.aria-label]="'Go to slide ' + ($index + 1)">
-                    <span class="sr-only">Slide {{ $index + 1 }}</span>
-                  </button>
-                }
-              </div>
+            <div class="positions-divider" aria-hidden="true"></div>
 
-              <button class="nav-btn next" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next slide">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                <span class="sr-only">Next slide</span>
-              </button>
+            <div class="positions-col right-col">
+              @for (item of rightTimelineItems; track item.company) {
+                <div class="position-item">
+                  <div class="position-logo-box">
+                    <span class="logo-text">{{ item.logo }}</span>
+                  </div>
+                  <div class="position-copy">
+                    <span class="position-period">{{ item.period }}</span>
+                    <h3 class="position-role">{{ item.role }}</h3>
+                    <span class="position-loc">{{ item.location }}</span>
+                  </div>
+                </div>
+              }
             </div>
           </div>
         </section>
 
-        <div class="wave-divider flipped">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,60 C150,110 350,10 500,60 C650,110 850,10 1000,60 C1150,110 1200,60 1200,60 L1200,120 L0,120 Z" class="wave-path"></path>
-          </svg>
-        </div>
+        <!-- Section 6: Published Works & Media Grid (Footer Bridge) -->
+        <section class="published-section" portfolioScrollReveal>
+          <div class="published-header">
+            <span class="section-tag">PUBLICATIONS</span>
+            <h2 class="published-heading">Articles, interviews & thought leadership</h2>
+          </div>
 
-        <section class="connect-section">
-          <h2 class="section-title">Let's Connect</h2>
-          <form class="connect-form">
-            <div class="form-group">
-              <label for="name">Name *</label>
-              <input type="text" id="name" placeholder="What should I call you?" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" placeholder="Where can I drop a reply?" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="What brings you here?" rows="4"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send</button>
-          </form>
+          <div class="works-grid">
+            @for (work of publishedWorks; track work.title) {
+              <a [href]="work.url" target="_blank" rel="noopener noreferrer" class="work-card">
+                <div class="work-thumb-box">
+                  <img [src]="work.imageUrl" [alt]="work.title" class="work-thumb" />
+                  <span class="work-badge">{{ work.tag }}</span>
+                </div>
+                <div class="work-info">
+                  <h3 class="work-title">{{ work.title }}</h3>
+                  <p class="work-desc">{{ work.description }}</p>
+                  <span class="work-arrow">Explore &rarr;</span>
+                </div>
+              </a>
+            }
+          </div>
         </section>
       </main>
 
@@ -105,142 +297,837 @@ import { NgClass } from '@angular/common';
     </div>
   `,
   styles: `
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-    .about-content { padding-top: 4rem; padding-bottom: 8rem; }
-    .hero-section { display: flex; gap: 6rem; align-items: center; margin-bottom: 8rem; }
-    .text-side { flex: 1; }
-    .text-side p { font-size: 1.125rem; line-height: 1.6; margin-bottom: 1.5rem; color: var(--color-text); }
-    .page-title { font-size: 4rem; margin-bottom: 3rem; text-align: center; }
-    .image-side { flex: 0 0 400px; display: flex; justify-content: center; }
-    .portrait-container { width: 350px; height: 350px; border-radius: 50%; overflow: hidden; border: 8px solid #55c5c7; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-    .portrait { width: 100%; height: 100%; object-fit: cover; }
-    .wave-divider { margin: 6rem 0; height: 100px; width: 100%; opacity: 0.2; }
-    .wave-divider.flipped { transform: scaleX(-1); }
-    .wave-path { fill: none; stroke: #55c5c7; stroke-width: 2; }
-    .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 4rem; }
-    
-    .carousel-container {
-      max-width: 800px;
+    .about-main {
+      padding-top: 6rem;
+      padding-bottom: 8rem;
+      max-width: 1200px;
       margin: 0 auto;
-      overflow: hidden;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* Common Section Tags & Headers */
+    .section-tag, .pillar-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #3b9f98;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    /* Section 1: Hero Intro */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      margin-bottom: 10rem;
+    }
+
+    .hero-greeting {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #111;
+      margin-bottom: 2rem;
+    }
+
+    .hero-mission {
+      font-size: 1.3rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 3rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      transition: all 0.25s ease;
+      background: transparent;
+    }
+
+    .social-btn:hover {
+      border-color: #5ed6cc;
+      background: #5ed6cc;
+      color: #111;
+      transform: translateY(-2px);
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-right {
+      display: flex;
+      justify-content: center;
       position: relative;
     }
 
-    .carousel-track {
+    .portrait-wrapper {
+      position: relative;
+      width: 380px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+      border: 2px solid rgba(94, 214, 204, 0.3);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portrait-wrapper:hover {
+      transform: scale(1.02);
+      border-color: #5ed6cc;
+    }
+
+    .hero-portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Core Belief Pull-Quote */
+    .belief-section {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 12rem auto;
+      padding: 4rem 2rem;
+    }
+
+    .belief-statement {
+      font-size: 2.75rem;
+      font-weight: 300;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 3rem;
+    }
+
+    .belief-dash {
+      width: 60px;
+      height: 2px;
+      background: #5ed6cc;
+      margin: 0 auto;
+    }
+
+    /* Section 2: Dual Pillars */
+    .dual-pillars-section {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      flex-direction: column;
+      gap: 12rem;
+      margin-bottom: 12rem;
+    }
+
+    .pillar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .pillar-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-desc {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .competencies {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 2rem;
+    }
+
+    .competency-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .comp-label {
+      font-weight: 600;
+      color: #222;
+    }
+
+    .comp-val {
+      color: #3b9f98;
+      font-weight: 500;
+      background: rgba(59, 159, 152, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+    }
+
+    .masked-image {
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      background: #f0f0f0;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .masked-image:hover {
+      transform: translateY(-8px);
+    }
+
+    .arch-mask {
+      aspect-ratio: 4 / 5;
+      border-radius: 200px 200px 16px 16px;
+    }
+
+    .pill-mask {
+      aspect-ratio: 4 / 5;
+      border-radius: 16px 200px 200px 16px;
+    }
+
+    .masked-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .masked-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Quiet Metrics Box */
+    .quiet-metrics-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 2.5rem;
+    }
+
+    .quiet-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .metric-num {
+      font-size: 2rem;
+      font-weight: 300;
+      color: #111;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #777;
+    }
+
+    /* Section 3: Action Carousel Section */
+    .action-carousel-section {
+      margin-bottom: 12rem;
+    }
+
+    .carousel-heading {
+      font-size: 2.75rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 4rem;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .action-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      background: transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .action-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .video-card {
+      grid-column: span 1;
+    }
+
+    .video-player-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      cursor: pointer;
+    }
+
+    .video-thumb, .media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .video-player-box:hover .video-thumb {
+      transform: scale(1.03);
+    }
+
+    .play-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .video-player-box:hover .play-indicator {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: #fff;
+    }
+
+    .play-svg {
+      width: 24px;
+      height: 24px;
+      color: #111;
+      margin-left: 3px;
+    }
+
+    .media-box {
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #eee;
+    }
+
+    .action-card:hover .media-img {
+      transform: scale(1.05);
+    }
+
+    .caption-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #3b9f98;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .caption-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #111;
+      margin: 0;
+    }
+
+    /* Section 4: Premium Testimonial Section */
+    .premium-testimonial-section {
+      margin-bottom: 12rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .testimonial-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 2.5rem;
+    }
+
+    .active-author-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .author-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #5ed6cc;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .author-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .author-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.01em;
+    }
+
+    .author-role {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .testimonial-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .testimonial-counter {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #111;
+      letter-spacing: 0.08em;
+      min-width: 3rem;
+      text-align: center;
+    }
+
+    .quote-nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #333;
+      transition: all 0.25s ease;
+    }
+
+    .quote-nav-btn:hover:not(:disabled) {
+      border-color: #5ed6cc;
+      background: #5ed6cc;
+      color: #111;
+      transform: scale(1.05);
+    }
+
+    .quote-nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .testimonial-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .testimonial-slide {
       min-width: 100%;
       box-sizing: border-box;
-      padding: 0 1rem;
     }
 
-    .testimonial-content {
-      text-align: center;
-    }
-
-    .quote {
-      font-size: 1.5rem;
+    .testimonial-quote {
+      font-size: 2.1rem;
+      font-weight: 300;
       font-style: italic;
       line-height: 1.6;
-      margin-bottom: 2.5rem;
-      color: var(--color-text);
-      font-family: var(--font-header);
+      color: #111;
+      margin: 0;
+      letter-spacing: -0.01em;
     }
 
-    .author {
+    /* Section 5: Timeline Track Record */
+    .timeline-section {
+      margin-bottom: 12rem;
+    }
+
+    .timeline-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+      margin-bottom: 6rem;
+    }
+
+    .timeline-heading {
+      font-size: 2.75rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .timeline-subhead {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #555;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .timeline-positions-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .positions-divider {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .positions-col {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 3.5rem;
     }
 
-    .author .name { font-weight: 700; font-size: 1.125rem; }
-    .author .role { font-size: 0.875rem; color: var(--color-text-muted); }
-
-    .carousel-controls {
+    .position-item {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 2rem;
-      margin-top: 3rem;
     }
 
-    .nav-btn {
-      background: none;
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+    .position-logo-box {
+      flex: 0 0 130px;
+      height: 130px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.05);
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      color: var(--color-text);
-      transition: all 0.2s;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .nav-btn:hover:not(:disabled) {
-      border-color: #55c5c7;
-      color: #55c5c7;
-      background: rgba(85, 197, 199, 0.05);
+    .position-item:hover .position-logo-box {
+      transform: translateY(-5px);
+      border-color: #5ed6cc;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.1);
     }
 
-    .nav-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
     }
 
-    .nav-btn svg { width: 24px; height: 24px; }
-
-    .carousel-dots { display: flex; gap: 0.75rem; }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.1);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.2s;
+    .position-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
 
-    .dot.active { background: #55c5c7; transform: scale(1.2); }
-
-    @media (prefers-color-scheme: dark) {
-      .nav-btn { border-color: rgba(255,255,255,0.1); }
-      .dot { background: rgba(255,255,255,0.1); }
+    .position-period {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #3b9f98;
+      text-transform: uppercase;
     }
 
-    .connect-section { max-width: 600px; margin: 0 auto; }
-    .connect-form { display: flex; flex-direction: column; gap: 1.5rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-    .form-group label { font-size: 0.875rem; font-weight: 600; }
-    .form-group input, .form-group textarea { padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; font-family: inherit; font-size: 1rem; }
-    @media (prefers-color-scheme: dark) { .form-group input, .form-group textarea { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: white; } }
-    .submit-btn { align-self: center; padding: 0.75rem 3rem; background-color: #55c5c7; color: white; border: none; border-radius: 20px; font-weight: 600; cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
-    .submit-btn:hover { background-color: #44b4b6; transform: translateY(-2px); }
+    .position-role {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
 
+    .position-loc {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* Section 6: Published Works & Media Grid */
+    .published-section {
+      margin-bottom: 6rem;
+    }
+
+    .published-heading {
+      font-size: 2.75rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 4rem;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .work-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-decoration: none;
+      background: transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .work-thumb-box {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #eee;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .work-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .work-card:hover .work-thumb {
+      transform: scale(1.05);
+    }
+
+    .work-badge {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(17, 26, 25, 0.85);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 0.4rem 0.8rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+    }
+
+    .work-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .work-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #111;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .work-desc {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .work-arrow {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #3b9f98;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.2s ease;
+    }
+
+    .work-card:hover .work-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Responsive Queries */
     @media (max-width: 1024px) {
-      .hero-section { flex-direction: column; gap: 3rem; }
-      .quote { font-size: 1.25rem; }
+      .about-hero, .pillar-row { grid-template-columns: 1fr; gap: 4rem; }
+      .action-grid { grid-template-columns: 1fr; }
+      .works-grid { grid-template-columns: 1fr; }
+      .dual-pillars-section { gap: 8rem; margin-bottom: 8rem; }
+      .hero-right { order: -1; }
     }
-  `,
+
+    @media (max-width: 992px) {
+      .timeline-header-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .timeline-positions-container { grid-template-columns: 1fr; gap: 3.5rem; }
+      .positions-divider { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-greeting { font-size: 2.5rem; }
+      .belief-statement, .pillar-title, .carousel-heading, .timeline-heading, .published-heading { font-size: 2rem; }
+      .testimonial-quote { font-size: 1.6rem; }
+      .testimonial-header { flex-direction: column; align-items: flex-start; gap: 2rem; }
+      .quiet-metrics-box { grid-template-columns: 1fr; gap: 1.5rem; }
+      .portrait-wrapper { width: 100%; max-width: 320px; }
+      .position-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .position-logo-box { width: 100%; height: 80px; }
+    }
+
+    /* Dark Mode Styling */
+    @media (prefers-color-scheme: dark) {
+      .hero-greeting, .belief-statement, .pillar-title, .metric-num, .carousel-heading, .caption-title, .testimonial-quote, .author-name, .testimonial-counter, .timeline-heading, .logo-text, .position-role, .published-heading, .work-title { color: #f9f9f9; }
+      .hero-mission, .pillar-desc, .timeline-subhead, .work-desc { color: #bbb; }
+      .comp-label { color: #ddd; }
+      .social-btn { border-color: rgba(255,255,255,0.15); color: #fff; }
+      .social-btn:hover { background: #5ed6cc; color: #111; }
+      .testimonial-header { border-color: rgba(255,255,255,0.08); }
+      .author-role, .position-loc { color: #888; }
+      .quote-nav-btn { border-color: rgba(255,255,255,0.15); color: #fff; }
+      .quote-nav-btn:hover:not(:disabled) { background: #5ed6cc; color: #111; }
+      .position-logo-box { background: #111a19; border-color: rgba(255,255,255,0.08); }
+      .position-logo-box:hover { border-color: #5ed6cc; }
+      .positions-divider { background: rgba(255,255,255,0.08); }
+      .work-badge { background: rgba(255, 255, 255, 0.9); color: #111; }
+      .competencies, .quiet-metrics-box, .testimonial-controls { border-color: rgba(255,255,255,0.08); }
+    }
+  `
 })
 export default class AboutComponent {
   readonly currentIndex = signal(0);
-  
+
   readonly testimonials = [
     {
       name: 'Haley Anikas',
-      role: 'Senior Product Designer',
+      role: 'Senior Product Designer @ Enterprise SaaS',
+      avatar: 'https://placehold.co/120/111/fff?text=HA',
       quote: 'Yolanda is an incredibly passionate and talented designer who cares deeply about her craft. She’s an artist through and through who also uses data and research to back up her design decisions, knowing that the business’s needs matter too. The best of both worlds.'
     },
     {
       name: 'Ryan Huels-Morrissey',
-      role: 'Senior iOS Developer',
-      quote: 'I’ve always been impressed that Yolanda stays up-to-date with what is going on in the design world. She doesn’t shy away from learning new technologies and tools. It is clear that this use of work is her passion and she demonstrates that every day.'
+      role: 'Senior iOS Developer @ Mobile Labs',
+      avatar: 'https://placehold.co/120/111/fff?text=RH',
+      quote: 'I’ve always been impressed that Yolanda stays up-to-date with what is going on in the design world. She doesn’t shy away from learning new technologies and tools. It is clear that this line of work is her passion and she demonstrates that every day.'
+    }
+  ];
+
+  readonly leftTimelineItems: TimelineItem[] = [
+    {
+      company: 'Google',
+      logo: 'Google',
+      period: '2021 — PRESENT',
+      role: 'Lead Product Designer',
+      location: 'Remote'
+    },
+    {
+      company: 'ANGUSTIA',
+      logo: 'ANGUSTIA',
+      period: '2019 — PRESENT',
+      role: 'Product Designer',
+      location: 'Remote'
+    },
+    {
+      company: 'Comcast',
+      logo: 'Comcast',
+      period: '2018 — 2021',
+      role: 'Senior Product Designer',
+      location: 'Philadelphia, PA'
+    }
+  ];
+
+  readonly rightTimelineItems: TimelineItem[] = [
+    {
+      company: 'DLA',
+      logo: 'DLA',
+      period: '2016 — 2018',
+      role: 'Product & UI Designer',
+      location: 'Miami, FL'
+    },
+    {
+      company: 'AXIS',
+      logo: 'AXIS',
+      period: '2014 — 2016',
+      role: 'Sr. Digital Designer',
+      location: 'Miami, FL'
+    },
+    {
+      company: 'Nobox',
+      logo: 'Nobox',
+      period: '2011 — 2014',
+      role: 'Art Director Jr.',
+      location: 'Miami, FL'
+    }
+  ];
+
+  readonly publishedWorks: PublishedWork[] = [
+    {
+      tag: 'ARTICLE',
+      title: 'Architecting Design Tokens for Multi-Brand SaaS',
+      description: 'A deep dive into standardizing design variables across Figma and React to ensure flawless visual parity.',
+      imageUrl: 'https://placehold.co/800x500/1a1a1a/5ed6cc?text=Design+Tokens',
+      url: 'https://medium.com'
+    },
+    {
+      tag: 'VIDEO',
+      title: 'Breaking Down Fintech UX Patterns',
+      description: 'An interactive session on building user trust through micro-copy, clear data visualization, and transparent permissions.',
+      imageUrl: 'https://placehold.co/800x500/1a1a1a/f5ea8c?text=Fintech+UX',
+      url: 'https://youtube.com'
+    },
+    {
+      tag: 'THOUGHT LEADERSHIP',
+      title: 'Mentorship as a Catalyst for Engineering Alignment',
+      description: 'How designing collaborative feedback loops within product teams leads to faster shipping and higher code quality.',
+      imageUrl: 'https://placehold.co/800x500/1a1a1a/3da49c?text=Engineering+Alignment',
+      url: 'https://medium.com'
     }
   ];
 

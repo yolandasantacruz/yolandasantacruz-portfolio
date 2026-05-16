@@ -2,6 +2,10 @@
 
 ## Todo
 
+### UI
+- [ ]  Add view transitions for page navigation.
+- [ ]  Optimize mouse trail for performance. Use three.js instead of CSS.
+
 ### Web Quality and Linting
 - [ ] Implement ESLint with Angular strict mode rules.
 - [ ] Integrate Prettier for deterministic code formatting.

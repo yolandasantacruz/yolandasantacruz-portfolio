@@ -70,7 +70,9 @@ export class App implements OnDestroy {
 
   constructor() {
     afterNextRender(() => {
-      this.initShader();
+      if (isPlatformBrowser(this.platformId)) {
+        this.initShader();
+      }
     });
   }
 

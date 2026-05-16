@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, input, afterNextRender } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, input, afterNextRender, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface Project {
@@ -12,6 +13,7 @@ export interface Project {
   techStack: string[];
   reverse?: boolean;
 }
+
 
 @Component({
   selector: 'portfolio-project-card',
@@ -51,10 +53,10 @@ export interface Project {
   styles: `
     :host {
       display: block;
-      margin-bottom: 12rem;
+      margin-bottom: 13.5rem;
       opacity: 0;
       transform: translateY(60px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     :host(.in-view) {
@@ -213,7 +215,7 @@ export interface Project {
 
     @media (max-width: 768px) {
       :host {
-        margin-bottom: 6rem;
+        margin-bottom: 7.5rem;
       }
       .project-card, .project-card.reverse {
         flex-direction: column;
@@ -244,19 +246,25 @@ export interface Project {
 export class ProjectCardComponent {
   project = input.required<Project>();
   private el = inject(ElementRef);
+  private platformId = inject(PLATFORM_ID);
 
   constructor() {
     afterNextRender(() => {
-      const observer = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          this.el.nativeElement.classList.add('in-view');
-          observer.disconnect();
-        }
-      }, { threshold: 0.15 });
+      if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            this.el.nativeElement.classList.add('in-view');
+            observer.disconnect();
+          }
+        }, { threshold: 0.15 });
 
-      if (this.el.nativeElement) {
-        observer.observe(this.el.nativeElement);
+        if (this.el.nativeElement) {
+          observer.observe(this.el.nativeElement);
+        }
+      } else if (this.el.nativeElement) {
+        this.el.nativeElement.classList.add('in-view');
       }
     });
   }
 }
+
