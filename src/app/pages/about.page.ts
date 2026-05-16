@@ -74,7 +74,9 @@ function aboutFiles<T extends Record<string, unknown>>(slug: string) {
 export default class AboutComponent {
   /** Content loaded from src/content/about/*.md via Analog's content API */
   readonly heroData = aboutFiles<HeroData & Record<string, unknown>>('hero');
-  readonly socialsData = aboutFiles<SocialsData & Record<string, unknown>>('socials');
+  readonly socialsData = injectContentFiles<SocialsData & Record<string, unknown>>(file => 
+    file.filename.includes('/shared/socials')
+  )[0]?.attributes;
   readonly beliefData = aboutFiles<BeliefData & Record<string, unknown>>('belief');
   readonly pillarsData = aboutFiles<PillarsData & Record<string, unknown>>('pillars');
   readonly actionData = aboutFiles<ActionData & Record<string, unknown>>('action');

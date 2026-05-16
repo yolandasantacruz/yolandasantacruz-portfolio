@@ -7,6 +7,12 @@ import { HeroComponent } from '../components/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
+import { HomeHeroData, HomeBridgeData } from './home.types';
+
+/** Loads the attributes from the first matching content file for a given home/ slug */
+function homeFiles<T extends Record<string, unknown>>(slug: string) {
+  return injectContentFiles<T>(file => file.filename.includes(`/home/${slug}`))[0]?.attributes;
+}
 
 @Component({
   selector: 'portfolio-home',
@@ -35,7 +41,7 @@ import { ProjectAttributes } from '../project-attributes';
       <section id="hero" class="snap-section hero-section">
         <div class="section-content hero-content-wrapper">
           <portfolio-header />
-          <portfolio-hero />
+          <portfolio-hero [data]="heroData" />
         </div>
       </section>
 
@@ -51,16 +57,18 @@ import { ProjectAttributes } from '../project-attributes';
       <!-- About Me Bridge Section (Snap 5) -->
       <section id="bridge" class="snap-section bridge-section">
         <div class="section-content bridge-content">
-          <div class="bridge-card">
-            <span class="bridge-tag">PHILOSOPHY & LEADERSHIP</span>
-            <h2 class="bridge-heading">My design philosophy extends far beyond the final execution.</h2>
-            <p class="bridge-copy">
-              If you would like to explore my approach to leading teams, read my industry articles, view my recorded mentorship sessions, or see what colleagues say about working with me, visit my story.
-            </p>
-            <a routerLink="/about" class="bridge-cta">
-              Explore My Story <span class="arrow">&rarr;</span>
-            </a>
-          </div>
+          @if (bridgeData) {
+            <div class="bridge-card">
+              <span class="bridge-tag">{{ bridgeData.tag }}</span>
+              <h2 class="bridge-heading">{{ bridgeData.heading }}</h2>
+              <p class="bridge-copy">
+                {{ bridgeData.description }}
+              </p>
+              <a routerLink="/about" class="bridge-cta">
+                Explore My Story <span class="arrow">&rarr;</span>
+              </a>
+            </div>
+          }
           <portfolio-footer />
         </div>
       </section>
@@ -344,6 +352,9 @@ export default class PortfolioHomeComponent {
         techStack: project.attributes.techStack
       }))
   );
+
+  readonly heroData = homeFiles<HomeHeroData & Record<string, unknown>>('hero');
+  readonly bridgeData = homeFiles<HomeBridgeData & Record<string, unknown>>('bridge');
 
   readonly activeSection = signal<string>('hero');
 

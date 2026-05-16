@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { injectContentFiles } from '@analogjs/content';
+import { FooterData, SocialsData } from '../../pages/shared.types';
 
 @Component({
   selector: 'portfolio-footer',
@@ -7,12 +9,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <footer class="footer">
       <div class="footer-social">
-        <a href="https://behance.net" target="_blank" rel="noopener noreferrer">Be</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">in</a>
+        @if (socials) {
+          @for (social of socials.links; track social.platform) {
+            @if (social.platform === 'linkedin' || social.platform === 'behance') {
+              <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+                {{ social.shortLabel }}
+              </a>
+            }
+          }
+        }
       </div>
-      <p class="copyright">
-        Made with <span class="heart">❤️</span> by Yolanda Santa Cruz © 2026. All rights reserved.
-      </p>
+      @if (footer) {
+        <p class="copyright" [innerHTML]="footer.copyright"></p>
+      }
     </footer>
   `,
   styles: `
@@ -33,4 +42,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     .heart { color: #55c5c7; }
   `
 })
-export class FooterComponent { }
+export class FooterComponent {
+  readonly footer = injectContentFiles<FooterData>(file => 
+    file.filename.includes('/shared/footer')
+  )[0]?.attributes;
+
+  readonly socials = injectContentFiles<SocialsData>(file => 
+    file.filename.includes('/shared/socials')
+  )[0]?.attributes;
+}
