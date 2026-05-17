@@ -1,10 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
-import { provideClientHydration } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { provideContent } from '@analogjs/content';
 import PortfolioHomeComponent from './index.page';
+import { HeroComponent } from '../components/hero/hero.component';
 import { By } from '@angular/platform-browser';
+import { HomeHeroData } from './home.types';
+
+/** Lightweight stub that satisfies the `data` input without needing full HeroComponent rendering */
+@Component({
+  selector: 'portfolio-hero',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: ''
+})
+class HeroStubComponent {
+  readonly data = input<HomeHeroData | undefined>();
+}
 
 describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
   beforeEach(async () => {
@@ -13,10 +25,14 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
       providers: [
         provideRouter([]),
         provideLocationMocks(),
-        provideClientHydration(),
-        provideContent()
+        provideContent(),
       ],
-    }).compileComponents();
+    })
+      .overrideComponent(PortfolioHomeComponent, {
+        remove: { imports: [HeroComponent] },
+        add: { imports: [HeroStubComponent] },
+      })
+      .compileComponents();
   });
 
   it('should render navigation pills in floating side rail', () => {
@@ -42,11 +58,12 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
 
     const component = fixture.componentInstance;
     const navPills = fixture.debugElement.queryAll(By.css('.nav-pill'));
-    
+
     // Simulate clicking the second pill (project-0)
     navPills[1].nativeElement.click();
     fixture.detectChanges();
 
+    // activeSection stays 'hero' because IntersectionObserver doesn't fire in unit tests
     expect(component.activeSection()).toBe('hero');
   });
 });

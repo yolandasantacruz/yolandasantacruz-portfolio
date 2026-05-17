@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HomeHeroData } from '../../pages/home.types';
 
 @Component({
   selector: 'portfolio-hero',
@@ -35,14 +36,16 @@ import { RouterLink } from '@angular/router';
       </div>
 
       <div class="hero-content">
-        <span class="hero-tag">YOLANDA SANTA CRUZ | LEAD PRODUCT DESIGNER</span>
-        <h1 class="hero-hook">Let's create impactful solutions</h1>
-        <p class="hero-subcopy">
-          With over 14 years of experience in product design and systems architecture, I balance rigorous individual execution with strategic team leadership. I specialize in transforming complex business goals into intuitive, human-centered digital experiences.
-        </p>
-        <a routerLink="/about" class="about-button">
-          About Me <span class="arrow">&rarr;</span>
-        </a>
+        @if (data()) {
+          <span class="hero-tag">{{ data()!.tag }}</span>
+          <h1 class="hero-hook">{{ data()!.hook }}</h1>
+          <p class="hero-subcopy">
+            {{ data()!.subcopy }}
+          </p>
+          <a routerLink="/about" class="about-button">
+            About Me <span class="arrow">&rarr;</span>
+          </a>
+        }
       </div>
     </section>
   `,
@@ -180,4 +183,6 @@ import { RouterLink } from '@angular/router';
     }
   `
 })
-export class HeroComponent { }
+export class HeroComponent {
+  readonly data = input<HomeHeroData | undefined>();
+}

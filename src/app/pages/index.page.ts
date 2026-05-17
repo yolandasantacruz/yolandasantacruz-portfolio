@@ -11,7 +11,8 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
 /** Loads the attributes from the first matching content file for a given home/ slug */
 function homeFiles<T extends Record<string, unknown>>(slug: string) {
-  return injectContentFiles<T>(file => file.filename.includes(`/home/${slug}`))[0]?.attributes;
+  return injectContentFiles<T>(file => file.filename.includes('/home/'))
+    .find(file => file.filename.includes(`/${slug}.md`))?.attributes;
 }
 
 @Component({

@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
-import { provideClientHydration } from '@angular/platform-browser';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { By } from '@angular/platform-browser';
 import { Testimonial } from './about.types';
@@ -17,7 +16,7 @@ const MOCK_TESTIMONIALS: Testimonial[] = [
     name: 'Ryan Huels-Morrissey',
     role: 'Senior iOS Developer @ Mobile Labs',
     avatar: 'https://placehold.co/120/111/fff?text=RH',
-    quote: 'I\'ve always been impressed that Yolanda stays up-to-date.',
+    quote: "I've always been impressed that Yolanda stays up-to-date.",
   },
 ];
 
@@ -25,11 +24,7 @@ describe('AboutTestimonialsComponent - Premium Testimonial & Blob Motion', () =>
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AboutTestimonialsComponent],
-      providers: [
-        provideRouter([]),
-        provideLocationMocks(),
-        provideClientHydration(),
-      ],
+      providers: [provideRouter([]), provideLocationMocks()],
     }).compileComponents();
   });
 
@@ -52,7 +47,6 @@ describe('AboutTestimonialsComponent - Premium Testimonial & Blob Motion', () =>
     const component = fixture.componentInstance;
     expect(component.currentIndex()).toBe(0);
 
-    // Click next slide button
     const nextBtn = fixture.debugElement.queryAll(By.css('.quote-nav-btn'))[1];
     nextBtn.nativeElement.click();
     fixture.detectChanges();
