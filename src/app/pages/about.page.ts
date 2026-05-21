@@ -20,12 +20,6 @@ import {
   PublicationsData,
 } from './about.types';
 
-/** Loads the attributes from the first matching content file for a given about/ slug */
-function aboutFiles<T extends Record<string, unknown>>(slug: string) {
-  return injectContentFiles<T>(file => file.filename.includes('/about/'))
-    .find(file => file.filename.includes(`/${slug}.md`))?.attributes;
-}
-
 @Component({
   selector: 'portfolio-about',
   standalone: true,
@@ -77,17 +71,37 @@ function aboutFiles<T extends Record<string, unknown>>(slug: string) {
 })
 export default class AboutComponent {
   /** Content loaded from src/content/about/*.md via Analog's content API */
-  readonly heroData = aboutFiles<HeroData & Record<string, unknown>>('hero');
-  readonly socialsData = injectContentFiles<SocialsData & Record<string, unknown>>(file => 
-    file.filename.includes('/shared/socials')
+  readonly heroData = injectContentFiles<HeroData & Record<string, unknown>>(file =>
+    file.filename.includes('about/hero.md')
   )[0]?.attributes;
-  readonly beliefData = aboutFiles<BeliefData & Record<string, unknown>>('belief');
-  readonly pillarsData = aboutFiles<PillarsData & Record<string, unknown>>('pillars');
-  readonly actionData = aboutFiles<ActionData & Record<string, unknown>>('action');
-  readonly timelineData = aboutFiles<TimelineData & Record<string, unknown>>('timeline');
-  readonly publicationsData = aboutFiles<PublicationsData & Record<string, unknown>>('publications');
+
+  readonly socialsData = injectContentFiles<SocialsData & Record<string, unknown>>(file => 
+    file.filename.includes('shared/socials.md')
+  )[0]?.attributes;
+
+  readonly beliefData = injectContentFiles<BeliefData & Record<string, unknown>>(file =>
+    file.filename.includes('about/belief.md')
+  )[0]?.attributes;
+
+  readonly pillarsData = injectContentFiles<PillarsData & Record<string, unknown>>(file =>
+    file.filename.includes('about/pillars.md')
+  )[0]?.attributes;
+
+  readonly actionData = injectContentFiles<ActionData & Record<string, unknown>>(file =>
+    file.filename.includes('about/action.md')
+  )[0]?.attributes;
+
+  readonly timelineData = injectContentFiles<TimelineData & Record<string, unknown>>(file =>
+    file.filename.includes('about/timeline.md')
+  )[0]?.attributes;
+
+  readonly publicationsData = injectContentFiles<PublicationsData & Record<string, unknown>>(file =>
+    file.filename.includes('about/publications.md')
+  )[0]?.attributes;
 
   /** Testimonials need unwrapping: md has { items: [...] }, component expects Testimonial[] */
-  readonly testimonialItems = aboutFiles<{ items: Testimonial[] } & Record<string, unknown>>('testimonials')?.items;
+  readonly testimonialItems = injectContentFiles<{ items: Testimonial[] } & Record<string, unknown>>(file =>
+    file.filename.includes('about/testimonials.md')
+  )[0]?.attributes?.items;
 }
 

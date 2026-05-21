@@ -9,12 +9,6 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
 
-/** Loads the attributes from the first matching content file for a given home/ slug */
-function homeFiles<T extends Record<string, unknown>>(slug: string) {
-  return injectContentFiles<T>(file => file.filename.includes('/home/'))
-    .find(file => file.filename.includes(`/${slug}.md`))?.attributes;
-}
-
 @Component({
   selector: 'portfolio-home',
   standalone: true,
@@ -360,8 +354,12 @@ export default class PortfolioHomeComponent {
       }))
   );
 
-  readonly heroData = homeFiles<HomeHeroData & Record<string, unknown>>('hero');
-  readonly bridgeData = homeFiles<HomeBridgeData & Record<string, unknown>>('bridge');
+  readonly heroData = injectContentFiles<HomeHeroData & Record<string, unknown>>(file =>
+    file.filename.includes('/home/hero.md')
+  )[0]?.attributes;
+  readonly bridgeData = injectContentFiles<HomeBridgeData & Record<string, unknown>>(file =>
+    file.filename.includes('/home/bridge.md')
+  )[0]?.attributes;
 
   readonly activeSection = signal<string>('hero');
 

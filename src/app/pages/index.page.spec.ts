@@ -43,6 +43,8 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
     expect(navPills.length).toBeGreaterThan(0);
   });
 
+
+
   it('should apply active class and aria attributes to active section nav pill', () => {
     const fixture = TestBed.createComponent(PortfolioHomeComponent);
     fixture.detectChanges();
