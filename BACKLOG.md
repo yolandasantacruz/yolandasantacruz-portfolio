@@ -3,7 +3,9 @@
 ## Todo
 
 ### User Experience & Theming
+- [ ] Bring the mouse trail over images, to have the maximum z-index to overlap any content.
 - [ ] Implement dark/light theme support based on browser preference with a toggle icon in the top navigation bar.
+- [ ] Replace hero-bg-trace with the SVG I will provide as an attachment
 
 
 ### Web Quality and Linting
