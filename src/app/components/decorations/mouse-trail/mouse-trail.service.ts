@@ -1,4 +1,4 @@
-import { NgZone } from '@angular/core';
+import { Injectable, NgZone, inject } from '@angular/core';
 
 export interface MouseTrailConfig {
   trailLength: number;
@@ -6,7 +6,21 @@ export interface MouseTrailConfig {
   physicsFriction: number;
 }
 
-export class MouseTrailEngine {
+const DEFAULT_CONFIG: MouseTrailConfig = {
+  trailLength: 40,
+  physicsSpeed: 0.82,
+  physicsFriction: 0.54,
+};
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MouseTrailService {
+  private ngZone = inject(NgZone);
+
+  private canvas: HTMLCanvasElement | null = null;
+  private config: MouseTrailConfig = DEFAULT_CONFIG;
+
   private gl: WebGL2RenderingContext | null = null;
   private rafId?: number;
   private targetX = 0;
@@ -16,30 +30,23 @@ export class MouseTrailEngine {
   private velocity = 0;
   private startTime = 0;
   private pixelRatio = 1;
-  
+
   private trail: { x: number; y: number }[] = [];
-  private trailData: Float32Array;
-  
+  private trailData: Float32Array = new Float32Array(0);
+
   private program: WebGLProgram | null = null;
   private uResolution: WebGLUniformLocation | null = null;
   private uTime: WebGLUniformLocation | null = null;
   private uVelocity: WebGLUniformLocation | null = null;
   private uTrail: WebGLUniformLocation | null = null;
 
-  constructor(
-    private canvas: HTMLCanvasElement,
-    private ngZone: NgZone,
-    private config: MouseTrailConfig = {
-      trailLength: 40,
-      physicsSpeed: 0.82,
-      physicsFriction: 0.54
-    }
-  ) {
+  public init(canvas: HTMLCanvasElement, config: MouseTrailConfig = DEFAULT_CONFIG) {
+    this.canvas = canvas;
+    this.config = config;
+
     this.trail = Array.from({ length: this.config.trailLength }, () => ({ x: 0, y: 0 }));
     this.trailData = new Float32Array(this.config.trailLength * 2);
-  }
 
-  public init() {
     this.gl = this.canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: false });
     if (!this.gl) return;
 
@@ -68,7 +75,7 @@ export class MouseTrailEngine {
 
     this.setupBuffers(gl);
     this.setupUniforms(gl);
-    
+
     this.startTime = performance.now();
     this.startAnimation();
   }
@@ -79,14 +86,14 @@ export class MouseTrailEngine {
   }
 
   public resize(width: number, height: number, pixelRatio: number) {
-    if (!this.gl || !this.program) return;
-    
+    if (!this.gl || !this.program || !this.canvas) return;
+
     this.pixelRatio = pixelRatio;
     const gl = this.gl;
     this.canvas.width = width * pixelRatio;
     this.canvas.height = height * pixelRatio;
     gl.viewport(0, 0, this.canvas.width, this.canvas.height);
-    
+
     gl.useProgram(this.program);
     gl.uniform2f(this.uResolution, this.canvas.width, this.canvas.height);
   }
@@ -96,6 +103,9 @@ export class MouseTrailEngine {
       cancelAnimationFrame(this.rafId);
     }
     // Clean up WebGL resources if needed
+    this.gl = null;
+    this.canvas = null;
+    this.program = null;
   }
 
   private startAnimation() {
@@ -125,14 +135,14 @@ export class MouseTrailEngine {
     const dy = this.trail[0].y - this.lastY;
     const currentSpeed = Math.sqrt(dx * dx + dy * dy) / 10.0;
     this.velocity += (Math.min(currentSpeed, 1.0) - this.velocity) * 0.1;
-    
+
     this.lastX = this.trail[0].x;
     this.lastY = this.trail[0].y;
   }
 
   private render() {
     const gl = this.gl;
-    if (!gl || !this.program) return;
+    if (!gl || !this.program || !this.canvas) return;
 
     const currentTime = (performance.now() - this.startTime) / 1000.0;
 

@@ -1,16 +1,18 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { provideContent } from '@analogjs/content';
 import PortfolioHomeComponent from './index.page';
-import { HeroComponent } from '../components/hero/hero.component';
+import { HeroComponent } from '../components/home/hero/hero.component';
 import { By } from '@angular/platform-browser';
 import { HomeHeroData } from './home.types';
 
 /** Lightweight stub that satisfies the `data` input without needing full HeroComponent rendering */
 @Component({
   selector: 'portfolio-hero',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ''
 })
@@ -65,7 +67,6 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
     navPills[1].nativeElement.click();
     fixture.detectChanges();
 
-    // activeSection stays 'hero' because IntersectionObserver doesn't fire in unit tests
-    expect(component.activeSection()).toBe('hero');
+    expect(component.activeSection()).toBe('project-0');
   });
 });

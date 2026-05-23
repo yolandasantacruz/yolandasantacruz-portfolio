@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, afterNextRender, PLATFORM_I
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink, RouterOutlet, Router, NavigationStart } from '@angular/router';
 import { filter } from 'rxjs';
-import { MouseTrailComponent } from './components/mouse-trail/mouse-trail.component';
+import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-trail.component';
 
 @Component({
   selector: 'portfolio-root',

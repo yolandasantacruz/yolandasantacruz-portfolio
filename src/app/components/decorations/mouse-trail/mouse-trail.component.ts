@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, PLATFORM_ID, ViewChild, inject, afterNextRender } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { MouseTrailEngine } from './mouse-trail.engine';
+import { MouseTrailService } from './mouse-trail.service';
 
 /**
  * @component MouseTrailComponent
@@ -51,7 +51,7 @@ export class MouseTrailComponent implements OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private ngZone = inject(NgZone);
   private document = inject(DOCUMENT);
-  private engine?: MouseTrailEngine;
+  private mouseTrailService = inject(MouseTrailService);
   private resizeListener?: () => void;
 
   constructor() {
@@ -67,8 +67,7 @@ export class MouseTrailComponent implements OnDestroy {
     const win = this.document.defaultView;
     if (!canvas || !win) return;
 
-    this.engine = new MouseTrailEngine(canvas, this.ngZone);
-    this.engine.init();
+    this.mouseTrailService.init(canvas);
 
     this.setupEventListeners(win);
     this.handleResize(win);
@@ -77,7 +76,7 @@ export class MouseTrailComponent implements OnDestroy {
   private setupEventListeners(win: Window) {
     this.ngZone.runOutsideAngular(() => {
       win.addEventListener('mousemove', (e: MouseEvent) => {
-        this.engine?.setMousePosition(e.clientX, e.clientY);
+        this.mouseTrailService.setMousePosition(e.clientX, e.clientY);
       }, { passive: true });
 
       this.resizeListener = () => this.handleResize(win);
@@ -87,11 +86,11 @@ export class MouseTrailComponent implements OnDestroy {
 
   private handleResize(win: Window) {
     const pixelRatio = Math.min(win.devicePixelRatio || 1, 1.25);
-    this.engine?.resize(win.innerWidth, win.innerHeight, pixelRatio);
+    this.mouseTrailService.resize(win.innerWidth, win.innerHeight, pixelRatio);
   }
 
   ngOnDestroy() {
-    this.engine?.destroy();
+    this.mouseTrailService.destroy();
     const win = this.document.defaultView;
     if (win && this.resizeListener) {
       win.removeEventListener('resize', this.resizeListener);

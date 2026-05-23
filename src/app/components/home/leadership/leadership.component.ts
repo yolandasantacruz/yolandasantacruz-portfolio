@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 import { MediaListComponent, MediaItem } from './media-list.component';
 import { MentorshipSectionComponent } from './mentorship-section.component';
 

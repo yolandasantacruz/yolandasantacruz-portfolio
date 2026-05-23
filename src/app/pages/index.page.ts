@@ -3,8 +3,8 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
-import { HeroComponent } from '../components/hero/hero.component';
-import { ProjectCardComponent, Project } from '../components/project-card/project-card.component';
+import { HeroComponent } from '../components/home/hero/hero.component';
+import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
@@ -106,6 +106,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       max-width: var(--max-width);
       margin: 0 auto;
       padding: var(--container-padding);
+      padding-right: 5rem; /* Clear floating side-rail + 16px safety gap (40px right + 24px dot + 16px gap) */
       box-sizing: border-box;
     }
 
@@ -177,12 +178,12 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       align-items: center;
       justify-content: center;
       background: var(--pill-color);
-      border: 6px solid color-mix(in srgb, var(--pill-color) 20%, white);
+      border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
       background-clip: padding-box;
-      height: 36px;
-      min-width: 36px;
-      max-width: 36px;
-      padding: 0 8px;
+      height: 24px;
+      min-width: 24px;
+      max-width: 24px;
+      padding: 0 6px;
       border-radius: 100px;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
@@ -209,7 +210,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
     .nav-pill:hover {
       max-width: 320px;
-      padding: 0 20px;
+      padding: 0 14px;
       background: #ffffff;
       border-color: color-mix(in srgb, var(--pill-color) 70%, transparent);
       box-shadow: 0 8px 24px rgba(255, 255, 255, 0.6);
@@ -321,6 +322,9 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
     @media (max-width: 1024px) {
       .floating-side-rail { right: 1rem; }
+      .section-content {
+        padding-right: 3.5rem; /* Clear tablet floating side-rail + 16px safety gap (16px right + 24px dot + 16px gap) */
+      }
       .bridge-heading { font-size: 2.75rem; }
     }
 
@@ -328,6 +332,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       .snap-container { scroll-snap-type: none; overflow-y: visible; height: auto; }
       .snap-section { min-height: auto; padding: 4rem 0; scroll-snap-align: none; }
       .floating-side-rail { display: none; }
+      .section-content { padding-right: 1.5rem; } /* Restore default mobile padding since nav is hidden */
       .hero-content-wrapper { min-height: auto; }
       .bridge-content { min-height: auto; padding-top: 4rem; }
       .bridge-heading { font-size: 2.25rem; }
@@ -355,10 +360,10 @@ export default class PortfolioHomeComponent {
   );
 
   readonly heroData = injectContentFiles<HomeHeroData & Record<string, unknown>>(file =>
-    file.filename.includes('/home/hero.md')
+    file.filename.includes('home/hero.md')
   )[0]?.attributes;
   readonly bridgeData = injectContentFiles<HomeBridgeData & Record<string, unknown>>(file =>
-    file.filename.includes('/home/bridge.md')
+    file.filename.includes('home/bridge.md')
   )[0]?.attributes;
 
   readonly activeSection = signal<string>('hero');
@@ -398,6 +403,7 @@ export default class PortfolioHomeComponent {
   }
 
   scrollToSection(id: string) {
+    this.activeSection.set(id);
     if (isPlatformBrowser(this.platformId)) {
       const element = this.document.getElementById(id);
       if (element && typeof element.scrollIntoView === 'function') {

@@ -52,12 +52,19 @@ The `MouseTrailComponent` provides a high-performance WebGL2 shader background.
 
 ## 6. Navigation System & Side Rail (Nav Dots)
 The floating side rail navigation uses interactive pill/dot components to indicate scroll progress and provide quick jumping between snap sections.
+* **Dot Dimensions**: The dots have a standard size of `24px` width/height (with a `4px` default border). This keeps them visually light and ensures they don't dominate the viewport.
+* **Layout Clearance (Safe Padding)**: To prevent any visual overlapping between page content and the side-rail navigation, a minimum clearance gap of `16px` is enforced. This translates to an extra right padding on the section content container:
+    * Desktop viewports: `padding-right: 5rem` (80px, accounts for 40px right offset + 24px dot width + 16px safety gap).
+    * Tablet viewports: `padding-right: 3.5rem` (56px, accounts for 16px right offset + 24px dot width + 16px safety gap).
+    * Mobile viewports: Resets to default `1.5rem` (24px) since the side rail is hidden.
 * **Hover State Border**: When pills expand on hover, the border opacity is set to 70% (`color-mix(in srgb, var(--pill-color) 70%, transparent)`).
 * **Drop Shadow**: Maintained as a premium white glow across all states (`rgba(255, 255, 255, 0.5)` to `0.8`) to contrast elegantly against the WebGL shader canvas and colorful project backgrounds.
 * **Active State**: The active section indicator removes its border (`border-width: 0`), transforming into a solid accent dot for strong visual distinction.
 
 ## 7. Testimonial Background Blob (Motion & Color Shifting)
 The testimonial section is framed within a sophisticated, organic SVG blob background that reacts dynamically to user interaction while maintaining continuous ambient life.
-* **Ambient State**: Vertices and control points drift continuously in a rhythmic sine/cosine wave pattern (speed 0.0015, amplitude 14-18px), resembling calm lagoon water ripples without inducing motion sickness.
+* **Ambient State**: Vertices drift continuously in a rhythmic sine/cosine wave pattern (speed 0.0015, amplitude 12px), resembling calm lagoon water ripples without inducing motion sickness.
+* **Dynamic Tangents**: To prevent kinks or vector path creases when moving or morphing, tangent handles are computed dynamically at runtime based on the positions of adjacent anchor points using Catmull-Rom spline logic with a tension factor of `k = 0.22` (relative to neighbor chord lengths). This ensures the curves remain perfectly smooth ($C^1$ continuity) and eliminates flat angles or sharp creases. Vector handles must never be animated independently from their endpoints.
 * **Morphing Interaction**: Navigating between testimonials triggers a satisfying quartic transformation (800ms duration) where the anchor points dramatically realign to form completely distinct organic cloud/lagoon shapes.
 * **Color-Shifting Palette**: Synchronized with the shape transformation, the blob fill smoothly transitions between curated soft pastel backgrounds (`#EDFBF9` mint, `#FFFCEB` yellow, `#F4F0FC` lavender).
+
