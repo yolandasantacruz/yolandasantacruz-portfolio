@@ -133,6 +133,12 @@ importers:
         specifier: 21.2.12
         version: 21.2.12
 
+  .angular/cache/angular-cli-tmp-packages-6HYmM2:
+    dependencies:
+      '@angular/cli':
+        specifier: 21.2.12
+        version: 21.2.12
+
 packages:
 
   '@algolia/abtesting@1.14.1':
