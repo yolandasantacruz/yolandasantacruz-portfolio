@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { LeadershipComponent } from './leadership.component';
+import { PublicationsComponent } from './publications.component';
 
-describe('LeadershipComponent', () => {
-  let component: LeadershipComponent;
-  let fixture: ComponentFixture<LeadershipComponent>;
+describe('PublicationsComponent', () => {
+  let component: PublicationsComponent;
+  let fixture: ComponentFixture<PublicationsComponent>;
   let httpMock: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LeadershipComponent],
+      imports: [PublicationsComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LeadershipComponent);
+    fixture = TestBed.createComponent(PublicationsComponent);
     component = fixture.componentInstance;
     httpMock = TestBed.inject(HttpTestingController);
   });
@@ -27,7 +27,6 @@ describe('LeadershipComponent', () => {
   });
 
   it('should create and set fallback items initially', () => {
-    // Before HTTP request returns, it should set fallback items
     fixture.detectChanges(); // Trigger ngOnInit
 
     const request = httpMock.expectOne('/api/v1/publications');

@@ -4,6 +4,8 @@ import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { provideContent } from '@analogjs/content';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import PortfolioHomeComponent from './index.page';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { By } from '@angular/platform-browser';
@@ -28,6 +30,8 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
         provideRouter([]),
         provideLocationMocks(),
         provideContent(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ],
     })
       .overrideComponent(PortfolioHomeComponent, {
@@ -44,8 +48,6 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
     const navPills = fixture.debugElement.queryAll(By.css('.nav-pill'));
     expect(navPills.length).toBeGreaterThan(0);
   });
-
-
 
   it('should apply active class and aria attributes to active section nav pill', () => {
     const fixture = TestBed.createComponent(PortfolioHomeComponent);
@@ -68,5 +70,20 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
     fixture.detectChanges();
 
     expect(component.activeSection()).toBe('project-0');
+  });
+
+  it('should include Mentorship and Publications sections in navSections', () => {
+    const fixture = TestBed.createComponent(PortfolioHomeComponent);
+    fixture.detectChanges();
+
+    const component = fixture.componentInstance;
+
+    const mentorshipSection = component.navSections().find(s => s.id === 'mentorship');
+    expect(mentorshipSection).toBeDefined();
+    expect(mentorshipSection?.label).toBe('Mentorship');
+
+    const publicationsSection = component.navSections().find(s => s.id === 'publications');
+    expect(publicationsSection).toBeDefined();
+    expect(publicationsSection?.label).toBe('Publications');
   });
 });

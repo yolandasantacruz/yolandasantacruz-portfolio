@@ -2,92 +2,54 @@ import { ChangeDetectionStrategy, Component, inject, signal, OnInit } from '@ang
 import { HttpClient } from '@angular/common/http';
 import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 import { MediaListComponent, MediaItem } from './media-list.component';
-import { MentorshipSectionComponent } from './mentorship-section.component';
 
 @Component({
-  selector: 'portfolio-leadership',
+  selector: 'portfolio-home-publications',
   standalone: true,
-  imports: [ScrollRevealDirective, MediaListComponent, MentorshipSectionComponent],
+  imports: [ScrollRevealDirective, MediaListComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="full-width-leadership-section" portfolioScrollReveal>
-      <!-- Top Wave Border -->
-      <div class="wave-container top-wave" aria-hidden="true">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="wave-svg">
-          <path d="M 0 30 C 150 50, 150 50, 300 30 C 450 10, 450 10, 600 30 C 750 50, 750 50, 900 30 C 1050 10, 1050 10, 1200 30 L 1200 60 L 0 60 Z" class="wave-fill" stroke="none" />
-        </svg>
-      </div>
-
-      <div class="leadership-content-container">
+    <section class="full-width-publications-section" portfolioScrollReveal>
+      <div class="publications-content-container">
         <!-- Section Header -->
         <div class="section-header">
           <div class="subtitle">
             <span class="dash"></span>
             LEADERSHIP & COMMUNITY
           </div>
-          <h2 class="main-title">Beyond the Pixels</h2>
+          <h2 class="main-title">Publications</h2>
         </div>
 
-        <!-- Part 1: Media & Insights -->
         <portfolio-media-list [items]="mediaItems()" />
-
-        <!-- Horizontal Separator Line -->
-        <div class="section-divider" aria-hidden="true"></div>
-
-        <!-- Part 2: ADPList Mentorship -->
-        <portfolio-mentorship-section />
       </div>
     </section>
   `,
   styles: `
-    .full-width-leadership-section {
+    .full-width-publications-section {
       position: relative;
       width: 100vw;
       left: 50%;
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
-      background: linear-gradient(180deg, rgba(240, 251, 249, 1) 0%, rgba(240, 251, 249, 0) 100%);
-      margin-top: 10rem;
-      margin-bottom: 8rem;
-      padding: 6rem 0;
+      background: linear-gradient(180deg, rgba(240, 251, 249, 0.4) 0%, rgba(255, 255, 255, 1) 100%);
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 4rem 0;
     }
 
-    .wave-container {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 48px;
-      overflow: hidden;
-      line-height: 0;
-      z-index: 1;
-    }
-
-    .top-wave {
-      top: -47px;
-    }
-
-    .wave-svg {
-      width: 100%;
-      height: 48px;
-      display: block;
-    }
-
-    .wave-fill {
-      fill: #f0fbf9;
-    }
-
-    .leadership-content-container {
+    .publications-content-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 5rem 0 2rem;
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
     }
 
     /* Section Header */
     .section-header {
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
 
     .subtitle {
@@ -99,7 +61,7 @@ import { MentorshipSectionComponent } from './mentorship-section.component';
       letter-spacing: 0.1em;
       color: #666;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .dash {
@@ -116,22 +78,25 @@ import { MentorshipSectionComponent } from './mentorship-section.component';
       letter-spacing: -0.02em;
     }
 
-    /* Horizontal Line Separator */
-    .section-divider {
-      width: 240px;
-      height: 2px;
-      background: #5ed6cc;
-      margin: 6rem auto;
-      border-radius: 2px;
+    @media (max-width: 1024px) {
+      .publications-content-container {
+        padding: 0 3.5rem 0 2rem;
+      }
     }
 
     @media (max-width: 768px) {
-      .full-width-leadership-section { padding: 4rem 0; margin-top: 8rem; margin-bottom: 6rem; }
-      .section-divider { margin: 4rem auto; }
+      .full-width-publications-section {
+        padding: 4rem 0;
+        margin-top: 6rem;
+        margin-bottom: 0;
+      }
+      .publications-content-container {
+        padding: 0 1.5rem;
+      }
     }
   `
 })
-export class LeadershipComponent implements OnInit {
+export class PublicationsComponent implements OnInit {
   private http = inject(HttpClient);
 
   readonly mediaItems = signal<MediaItem[]>([]);

@@ -15,7 +15,6 @@ export interface MediaItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="thought-leadership-container">
-      <h3 class="section-heading">Media & Insights</h3>
       <div class="media-list">
         @for (item of items; track item.title) {
           <a [href]="item.url" target="_blank" rel="noopener noreferrer" class="media-list-item">
