@@ -131,7 +131,16 @@ const INITIAL_BLOB_PATH =
               <div class="active-author-info">
                 <img [src]="testimonials[currentIndex()].avatar" [alt]="testimonials[currentIndex()].name" class="author-avatar" />
                 <div class="author-details">
-                  <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
+                  @if (testimonials[currentIndex()].profileUrl) {
+                    <a [href]="testimonials[currentIndex()].profileUrl" target="_blank" rel="noopener noreferrer" class="author-link" [attr.aria-label]="'Visit ' + testimonials[currentIndex()].name + ' on LinkedIn'">
+                      <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
+                      <svg class="lnk-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </a>
+                  } @else {
+                    <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
+                  }
                   <span class="author-role">{{ testimonials[currentIndex()].role }}</span>
                 </div>
               </div>
@@ -224,10 +233,35 @@ const INITIAL_BLOB_PATH =
       gap: 0.3rem;
     }
 
+    .author-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #111;
+      transition: color 0.2s ease;
+    }
+
+    .author-link:hover {
+      color: #3b9f98; /* Contrast Accent from design system */
+    }
+
+    .lnk-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+
+    .author-link:hover .lnk-icon {
+      opacity: 1;
+    }
+
     .author-name {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #111;
+      color: inherit;
       letter-spacing: -0.01em;
     }
 

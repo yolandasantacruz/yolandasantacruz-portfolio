@@ -11,7 +11,7 @@ describe('AboutTestimonialsComponent', () => {
   let catmullRomService: CatmullRomService;
 
   const mockTestimonials = [
-    { name: 'John Doe', role: 'CEO', avatar: 'avatar1.png', quote: 'Great work!' },
+    { name: 'John Doe', role: 'CEO', avatar: 'avatar1.png', quote: 'Great work!', profileUrl: 'https://linkedin.com/in/johndoe' },
     { name: 'Jane Smith', role: 'CTO', avatar: 'avatar2.png', quote: 'Stunning designs.' },
     { name: 'Bob Johnson', role: 'Product Manager', avatar: 'avatar3.png', quote: 'Highly professional.' },
   ];
@@ -100,6 +100,36 @@ describe('AboutTestimonialsComponent', () => {
     fixture.detectChanges();
     expect(prevButton.disabled).toBe(false);
     expect(nextButton.disabled).toBe(true);
+  });
+
+  it('should render LinkedIn link and icon when profileUrl is provided', () => {
+    componentRef.setInput('items', mockTestimonials);
+    fixture.detectChanges();
+
+    const link = fixture.debugElement.query(By.css('.author-link'));
+    expect(link).toBeTruthy();
+    expect(link.nativeElement.getAttribute('href')).toBe('https://linkedin.com/in/johndoe');
+    expect(link.nativeElement.getAttribute('aria-label')).toBe('Visit John Doe on LinkedIn');
+
+    const icon = fixture.debugElement.query(By.css('.lnk-icon'));
+    expect(icon).toBeTruthy();
+  });
+
+  it('should not render LinkedIn link and icon when profileUrl is absent', () => {
+    componentRef.setInput('items', mockTestimonials);
+    fixture.detectChanges();
+
+    // Navigate to slide 2 (Jane Smith, who has no profileUrl)
+    const buttons = fixture.debugElement.queryAll(By.css('.quote-nav-btn'));
+    const nextButton = buttons[1].nativeElement;
+    nextButton.click();
+    fixture.detectChanges();
+
+    const link = fixture.debugElement.query(By.css('.author-link'));
+    expect(link).toBeNull();
+
+    const icon = fixture.debugElement.query(By.css('.lnk-icon'));
+    expect(icon).toBeNull();
   });
 
   it('should inject CatmullRomService', () => {

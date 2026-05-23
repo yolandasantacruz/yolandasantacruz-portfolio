@@ -47,6 +47,7 @@ export interface Testimonial {
   role: string;
   avatar: string;
   quote: string;
+  profileUrl?: string;
 }
 
 export interface TimelineItem {
