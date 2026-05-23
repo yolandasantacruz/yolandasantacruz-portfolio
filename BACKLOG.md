@@ -21,6 +21,9 @@
 - [ ] Install and configure Playwright.
 - [ ] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc
 
+### Backend & API Integrations
+- [ ] Implement a server route to dynamically generate a PDF resume on demand when clicking the "Download Resume" button.
+
 ## In Progress
 
 ## Done
