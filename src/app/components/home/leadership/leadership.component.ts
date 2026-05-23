@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 import { MediaListComponent, MediaItem } from './media-list.component';
 import { MentorshipSectionComponent } from './mentorship-section.component';
@@ -28,7 +29,7 @@ import { MentorshipSectionComponent } from './mentorship-section.component';
         </div>
 
         <!-- Part 1: Media & Insights -->
-        <portfolio-media-list [items]="mediaItems" />
+        <portfolio-media-list [items]="mediaItems()" />
 
         <!-- Horizontal Separator Line -->
         <div class="section-divider" aria-hidden="true"></div>
@@ -130,8 +131,12 @@ import { MentorshipSectionComponent } from './mentorship-section.component';
     }
   `
 })
-export class LeadershipComponent {
-  readonly mediaItems: MediaItem[] = [
+export class LeadershipComponent implements OnInit {
+  private http = inject(HttpClient);
+
+  readonly mediaItems = signal<MediaItem[]>([]);
+
+  private readonly fallbackItems: MediaItem[] = [
     {
       title: 'Mastering Complex SaaS Workflows & Payment Systems',
       category: 'Article',
@@ -157,4 +162,19 @@ export class LeadershipComponent {
       description: 'A practical framework for tokenizing UI components, maintaining Figma-to-code parity, and establishing robust governance.'
     }
   ];
+
+  ngOnInit() {
+    this.mediaItems.set(this.fallbackItems);
+
+    this.http.get<{ success: boolean; items?: MediaItem[] }>('/api/v1/publications').subscribe({
+      next: (res) => {
+        if (res.success && res.items?.length) {
+          this.mediaItems.set(res.items.slice(0, 3));
+        }
+      },
+      error: () => {
+        // Keep the already set fallbackItems
+      }
+    });
+  }
 }
