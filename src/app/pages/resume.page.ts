@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'portfolio-resume',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, ScrollRevealDirective],
+  imports: [HeaderComponent, FooterComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
@@ -17,12 +16,12 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
         <div class="resume-grid">
           <div class="main-column">
-            <section class="intro" portfolioScrollReveal>
+            <section class="intro">
               <h2 class="name">Yolanda Santa Cruz</h2>
               <p class="summary">Product Designer with experience in product strategy, data-driven solutions, and cross-functional teamwork. Background in payment flow optimization, growth initiatives, mobile UX enhancements, and consistent cross-platform design.</p>
             </section>
 
-            <section class="work-experience" portfolioScrollReveal>
+            <section class="work-experience">
               <h3 class="section-heading">Work Experience</h3>
               
               <div class="job-entry">
@@ -101,7 +100,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
             </section>
           </div>
 
-          <aside class="sidebar" portfolioScrollReveal>
+          <aside class="sidebar">
             <div class="contact-info">
               <p>Miami, FL</p>
               <p>yolandasantacruz.com</p>

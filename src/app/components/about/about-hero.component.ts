@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { HeroData, SocialsData, SocialLink } from '../../pages/about.types';
 
 /** SVG path data keyed by platform name for social link icons */
@@ -15,11 +14,11 @@ const SOCIAL_ICON_PATHS: Record<string, string> = {
 @Component({
   selector: 'portfolio-about-hero',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as hero) {
-      <section class="about-hero" portfolioScrollReveal>
+      <section class="about-hero">
         <div class="hero-left">
           <h1 class="hero-greeting">{{ hero.greeting }}</h1>
           <p class="hero-mission">{{ hero.mission }}</p>

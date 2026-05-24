@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { TimelineData } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-timeline',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as timeline) {
-      <section class="timeline-section" portfolioScrollReveal>
+      <section class="timeline-section">
         <div class="timeline-header-grid">
           <div class="header-left">
             <span class="section-tag">TRACK RECORD</span>

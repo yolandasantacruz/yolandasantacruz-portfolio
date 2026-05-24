@@ -13,7 +13,6 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { Testimonial } from '../../pages/about.types';
 import { CatmullRomService } from './catmull-rom.service';
 
@@ -117,11 +116,11 @@ const INITIAL_BLOB_PATH =
 @Component({
   selector: 'portfolio-about-testimonials',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (items(); as testimonials) {
-      <section class="premium-testimonial-section" portfolioScrollReveal>
+      <section class="premium-testimonial-section">
         <div class="testimonial-card-wrapper">
           <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" class="testimonial-wavy-bg">
             <path #wavyBlobPath class="wavy-card-path" [attr.d]="initialBlobPath" [style.fill]="currentBlobColor()" />

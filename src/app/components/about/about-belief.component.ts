@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { BeliefData } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-belief',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as belief) {
-      <section class="belief-section" portfolioScrollReveal>
+      <section class="belief-section">
         <h2 class="belief-statement">
           "{{ belief.statement }}"
         </h2>

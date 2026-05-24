@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { PillarsData } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-pillars',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as pillars) {
       <section class="dual-pillars-section">
         <!-- Pillar 1: At Work -->
-        <div class="pillar-row pillar-work" portfolioScrollReveal>
+        <div class="pillar-row pillar-work">
           <div class="pillar-text">
             <span class="pillar-badge">{{ pillars.work.badge }}</span>
             <h3 class="pillar-title">{{ pillars.work.title }}</h3>
@@ -36,7 +35,7 @@ import { PillarsData } from '../../pages/about.types';
         </div>
 
         <!-- Pillar 2: Philosophy & Mentorship -->
-        <div class="pillar-row pillar-philosophy" portfolioScrollReveal>
+        <div class="pillar-row pillar-philosophy">
           <div class="pillar-visual">
             <div class="masked-image pill-mask">
               <img src="https://placehold.co/800x1000/111a19/f5ea8c?text=Mentorship+%26+Culture" alt="Mentorship Philosophy" />

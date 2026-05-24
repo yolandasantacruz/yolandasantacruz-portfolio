@@ -3,13 +3,12 @@ import { AsyncPipe, NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { ProjectAttributes } from '../project-attributes';
 
 @Component({
   selector: 'portfolio-project-details',
   standalone: true,
-  imports: [AsyncPipe, MarkdownComponent, HeaderComponent, FooterComponent, NgForOf, ScrollRevealDirective],
+  imports: [AsyncPipe, MarkdownComponent, HeaderComponent, FooterComponent, NgForOf],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
@@ -41,7 +40,7 @@ import { ProjectAttributes } from '../project-attributes';
             </div>
           </header>
 
-          <div class="project-content" portfolioScrollReveal>
+          <div class="project-content">
             <analog-markdown [content]="project.content" />
           </div>
         </article>

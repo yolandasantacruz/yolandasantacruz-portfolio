@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { ActionData } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-action-carousel',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as action) {
-      <section class="action-carousel-section" portfolioScrollReveal>
+      <section class="action-carousel-section">
         <div class="section-header">
           <span class="section-tag">{{ action.tag }}</span>
           <h2 class="carousel-heading">{{ action.heading }}</h2>

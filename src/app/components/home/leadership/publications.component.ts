@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, signal, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 import { MediaListComponent, MediaItem } from './media-list.component';
 
 @Component({
   selector: 'portfolio-home-publications',
   standalone: true,
-  imports: [ScrollRevealDirective, MediaListComponent],
+  imports: [MediaListComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="full-width-publications-section" portfolioScrollReveal>
+    <section class="full-width-publications-section">
       <div class="publications-content-container">
         <!-- Section Header -->
         <div class="section-header">
@@ -99,9 +98,7 @@ import { MediaListComponent, MediaItem } from './media-list.component';
 export class PublicationsComponent implements OnInit {
   private http = inject(HttpClient);
 
-  readonly mediaItems = signal<MediaItem[]>([]);
-
-  private readonly fallbackItems: MediaItem[] = [
+  readonly mediaItems = signal<MediaItem[]>([
     {
       title: 'Mastering Complex SaaS Workflows & Payment Systems',
       category: 'Article',
@@ -126,11 +123,9 @@ export class PublicationsComponent implements OnInit {
       url: 'https://medium.com',
       description: 'A practical framework for tokenizing UI components, maintaining Figma-to-code parity, and establishing robust governance.'
     }
-  ];
+  ]);
 
   ngOnInit() {
-    this.mediaItems.set(this.fallbackItems);
-
     this.http.get<{ success: boolean; items?: MediaItem[] }>('/api/v1/publications').subscribe({
       next: (res) => {
         if (res.success && res.items?.length) {

@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { PublicationsData } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-published-works',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as publications) {
-      <section class="published-section" portfolioScrollReveal>
+      <section class="published-section">
         <div class="published-header">
           <span class="section-tag">PUBLICATIONS</span>
           <h2 class="published-heading">{{ publications.heading }}</h2>

@@ -241,6 +241,14 @@ export class ProjectCardComponent {
   constructor() {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
+        const rect = this.el.nativeElement.getBoundingClientRect();
+        const isInViewport = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
+
+        if (isInViewport) {
+          this.el.nativeElement.classList.add('in-view');
+          return;
+        }
+
         const observer = new IntersectionObserver(([entry]) => {
           if (entry.isIntersecting) {
             this.el.nativeElement.classList.add('in-view');

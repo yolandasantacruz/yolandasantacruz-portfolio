@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ScrollRevealDirective } from '../../../directives/scroll-reveal.directive';
 import { MentorshipSectionComponent } from './mentorship-section.component';
 
 @Component({
   selector: 'portfolio-home-mentorship',
   standalone: true,
-  imports: [ScrollRevealDirective, MentorshipSectionComponent],
+  imports: [MentorshipSectionComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="full-width-mentorship-section" portfolioScrollReveal>
+    <section class="full-width-mentorship-section">
       <!-- Top Wave Border -->
       <div class="wave-container top-wave" aria-hidden="true">
         <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="wave-svg">
