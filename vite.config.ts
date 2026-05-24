@@ -4,8 +4,18 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 
+// Normalizing base path for production builds (e.g., GitHub Pages subpaths)
+let base = process.env['VITE_BASE_URL'] || '/';
+if (!base.startsWith('/')) {
+  base = '/' + base;
+}
+if (!base.endsWith('/')) {
+  base = base + '/';
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
+  base,
   build: {
     target: ['es2020'],
   },
@@ -28,6 +38,14 @@ export default defineConfig(() => ({
         ],
       },
     }),
+    {
+      name: 'transform-base-href',
+      transformIndexHtml(html) {
+        return html
+          .replace('<base href="/" />', `<base href="${base}" />`)
+          .replace('<base href="/"', `<base href="${base}"`);
+      }
+    }
   ],
   test: {
     globals: true,
