@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, input, afterNextRender, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface Project {
@@ -237,12 +237,16 @@ export class ProjectCardComponent {
   project = input.required<Project>();
   private el = inject(ElementRef);
   private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
 
   constructor() {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
         const rect = this.el.nativeElement.getBoundingClientRect();
-        const isInViewport = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
+        const win = this.document.defaultView;
+        const height = win ? win.innerHeight : 0;
+        const clientHeight = this.document.documentElement?.clientHeight || 0;
+        const isInViewport = rect.top < (height || clientHeight) && rect.bottom > 0;
 
         if (isInViewport) {
           this.el.nativeElement.classList.add('in-view');
