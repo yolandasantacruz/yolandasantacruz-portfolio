@@ -4,6 +4,16 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
+    ignores: [
+      "dist/",
+      ".angular/",
+      ".cache/",
+      "node_modules/",
+      "Library/",
+      "public/"
+    ]
+  },
+  {
     files: ["**/*.ts"],
     extends: [
       ...tseslint.configs.recommended,

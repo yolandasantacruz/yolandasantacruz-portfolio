@@ -23,7 +23,6 @@ export interface Project {
   template: `
     <div class="project-card" [class.reverse]="project().reverse">
       <div class="project-image-container">
-        <div class="category-tag">{{ project().category }}</div>
         <img [src]="project().imageUrl" [alt]="project().title" class="project-image" />
       </div>
       
@@ -45,7 +44,7 @@ export interface Project {
         </div>
         
         <a [routerLink]="project().link" class="view-project">
-          View Project <span class="arrow">↗</span>
+          View Project
         </a>
       </div>
     </div>
@@ -89,25 +88,9 @@ export interface Project {
       position: relative;
       border-radius: 12px;
       overflow: hidden;
-      aspect-ratio: 16 / 10;
-      background: #f4f4f4;
-      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+      height: 40vh;
     }
 
-    .category-tag {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: #1a1a1a;
-      z-index: 2;
-    }
 
     .project-image {
       width: 100%;
@@ -195,14 +178,7 @@ export interface Project {
       color: #000;
     }
 
-    .view-project:hover .arrow {
-      transform: translate(2px, -2px);
-    }
 
-    .arrow {
-      transition: transform 0.2s ease;
-      font-size: 1.1rem;
-    }
 
     @media (max-width: 1024px) {
       .project-card {

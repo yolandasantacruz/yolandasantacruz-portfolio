@@ -46,7 +46,6 @@ describe('ProjectCardComponent', () => {
     fixture.detectChanges();
 
     const title = fixture.debugElement.query(By.css('.project-title')).nativeElement.textContent.trim();
-    const category = fixture.debugElement.query(By.css('.category-tag')).nativeElement.textContent.trim();
     const description = fixture.debugElement.query(By.css('.project-description')).nativeElement.textContent.trim();
     const role = fixture.debugElement.query(By.css('.role')).nativeElement.textContent.trim();
     const timeline = fixture.debugElement.query(By.css('.timeline')).nativeElement.textContent.trim();
@@ -54,7 +53,6 @@ describe('ProjectCardComponent', () => {
     const link = fixture.debugElement.query(By.css('.view-project')).nativeElement;
 
     expect(title).toBe('Test Project');
-    expect(category).toBe('Design');
     expect(description).toBe('A test project description.');
     expect(role).toBe('Lead Designer');
     expect(timeline).toBe('3 months');
