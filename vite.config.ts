@@ -88,7 +88,7 @@ export default defineConfig(() => ({
     }),
     ...clientPwa({
       registerType: 'autoUpdate',
-      injectRegister: 'script',
+      injectRegister: 'inline',
       manifest: {
         name: 'Yolanda Santa Cruz - Portfolio',
         short_name: 'Yolanda SC',
