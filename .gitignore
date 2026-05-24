@@ -2,3 +2,7 @@ node_modules
 /dist
 .angular
 .cache/
+.pnpm-store/
+Library/
+.DS_Store
+**/.DS_Store

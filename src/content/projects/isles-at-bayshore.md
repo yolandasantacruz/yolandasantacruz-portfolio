@@ -1,13 +1,13 @@
 ---
 title: Isles at Bayshore
-slug: isles-at-bayshore
-description: Streamlining property management and resident communication for a luxury community, resulting in a 40% increase in resident engagement.
-imageUrl: https://placehold.co/800x600/f4f4f4/1a1a1a?text=Isles+at+Bayshore
-category: PROPTECH
-role: Senior UX/UI Designer
-timeline: Mar 2022 - Dec 2022
-techStack: ["Angular", "SCSS", "Firebase"]
-order: 4
+slug: Isles at Bayshore
+description: Boosting lead generation by 125% through UX/UI enhancements
+imageUrl: /images/IslesAtBayshore-HomeCover.png
+category: WEB
+role: Product Designer
+timeline: Jun 2018 - Nov 2024
+techStack: ["React", "TypeScript", "Figma Plugin API"]
+order: 3
 ---
 
-Streamlining property management and resident communication for a luxury community, resulting in a 40% increase in resident engagement.
+High-fidelity CTV, web, and mobile prototypes plus internal tooling that helped teams validate ideas quickly and ship with fewer reversals.

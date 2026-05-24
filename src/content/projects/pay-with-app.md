@@ -1,8 +1,8 @@
 ---
 title: Pay with App
 slug: pay-with-app
-description: Increase user sign ups by 20%, reducing activation costs by 32%, and boosting card activations by 35% through a redesigned onboarding flow.
-imageUrl: https://placehold.co/800x600/f4f4f4/1a1a1a?text=Pay+with+App
+description: Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%
+imageUrl: /images/PayWithApp-HomeCover.png
 category: FINTECH
 role: Lead Product Designer
 timeline: Jan 2023 - May 2024
