@@ -1,0 +1,63 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HeroComponent } from './hero.component';
+import { By } from '@angular/platform-browser';
+import { ComponentRef } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { describe, it, expect, beforeEach } from 'vitest';
+
+describe('HeroComponent', () => {
+  let component: HeroComponent;
+  let componentRef: ComponentRef<HeroComponent>;
+  let fixture: ComponentFixture<HeroComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HeroComponent],
+      providers: [provideRouter([])]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(HeroComponent);
+    component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
+  });
+
+  it('should create the component', () => {
+    componentRef.setInput('data', {
+      tag: 'TEST TAG',
+      hook: 'Test Hook Line',
+      subcopy: 'This is a test subcopy description.'
+    });
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  });
+
+  it('should render tag, hook, and subcopy when data is provided', () => {
+    componentRef.setInput('data', {
+      tag: 'TEST TAG',
+      hook: 'Test Hook Line',
+      subcopy: 'This is a test subcopy description.'
+    });
+    fixture.detectChanges();
+
+    const tag = fixture.debugElement.query(By.css('.hero-tag'));
+    const hook = fixture.debugElement.query(By.css('.hero-hook'));
+    const subcopy = fixture.debugElement.query(By.css('.hero-subcopy'));
+
+    expect(tag.nativeElement.textContent).toBe('TEST TAG');
+    expect(hook.nativeElement.textContent).toBe('Test Hook Line');
+    expect(subcopy.nativeElement.textContent.trim()).toBe('This is a test subcopy description.');
+  });
+
+  it('should render the About Me button pointing to /about', () => {
+    componentRef.setInput('data', {
+      tag: 'TEST TAG',
+      hook: 'Test Hook Line',
+      subcopy: 'This is a test subcopy description.'
+    });
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('.about-button'));
+    expect(button).toBeTruthy();
+    expect(button.nativeElement.getAttribute('href')).toBe('/about');
+  });
+});

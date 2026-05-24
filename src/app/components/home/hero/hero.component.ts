@@ -36,16 +36,10 @@ import { HomeHeroData } from '../../../pages/home.types';
       </div>
 
       <div class="hero-content">
-        @if (data()) {
-          <span class="hero-tag">{{ data()!.tag }}</span>
-          <h1 class="hero-hook">{{ data()!.hook }}</h1>
-          <p class="hero-subcopy">
-            {{ data()!.subcopy }}
-          </p>
-          <a routerLink="/about" class="about-button">
-            About Me <span class="arrow">&rarr;</span>
-          </a>
-        }
+        <span class="hero-tag">{{ data().tag }}</span>
+        <h1 class="hero-hook">{{ data().hook }}</h1>
+        <p class="hero-subcopy">{{ data().subcopy }}</p>
+        <a routerLink="/about" class="about-button">About Me <span class="arrow">&rarr;</span></a>
       </div>
     </section>
   `,
@@ -101,7 +95,6 @@ import { HomeHeroData } from '../../../pages/home.types';
       position: relative;
       z-index: 10;
     }
-
     .hero-tag {
       font-size: 0.8rem;
       font-weight: 700;
@@ -110,7 +103,10 @@ import { HomeHeroData } from '../../../pages/home.types';
       text-transform: uppercase;
       margin-bottom: 2rem;
       display: inline-block;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .hero-hook {
@@ -120,7 +116,10 @@ import { HomeHeroData } from '../../../pages/home.types';
       line-height: 1.1;
       color: #111;
       margin: 0 0 2.5rem 0;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
     }
 
     .hero-subcopy {
@@ -130,7 +129,10 @@ import { HomeHeroData } from '../../../pages/home.types';
       margin: 0 0 3.5rem 0;
       font-weight: 300;
       max-width: 800px;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
     .about-button {
@@ -148,9 +150,11 @@ import { HomeHeroData } from '../../../pages/home.types';
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid transparent;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
     }
-
     .about-button:hover {
       background: #5ed6cc;
       color: #111;
@@ -170,6 +174,8 @@ import { HomeHeroData } from '../../../pages/home.types';
     @media (prefers-reduced-motion: reduce) {
       .hero-tag, .hero-hook, .hero-subcopy, .about-button, .hero-bg-trace svg {
         animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
 
@@ -184,5 +190,5 @@ import { HomeHeroData } from '../../../pages/home.types';
   `
 })
 export class HeroComponent {
-  readonly data = input<HomeHeroData | undefined>();
+  readonly data = input.required<HomeHeroData>();
 }

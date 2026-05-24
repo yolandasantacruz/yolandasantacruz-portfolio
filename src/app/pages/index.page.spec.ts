@@ -19,7 +19,7 @@ import { HomeHeroData } from './home.types';
   template: ''
 })
 class HeroStubComponent {
-  readonly data = input<HomeHeroData | undefined>();
+  readonly data = input.required<HomeHeroData>();
 }
 
 describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
