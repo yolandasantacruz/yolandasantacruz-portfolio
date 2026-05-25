@@ -13,7 +13,16 @@ Agents must produce deterministic outputs. When generating components or modifyi
 - Agents are strictly prohibited from mutating "package.json" or "package-lock.json" without explicit human authorization. Dependency upgrades require a dedicated, isolated Pull Request.
 
 ## Rule 3: SSR Compatibility
-Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM manipulation (e.g., "document.getElementById", "window.innerWidth") inside component constructors or initialization lifecycle hooks. Browser-specific APIs must be wrapped in "afterNextRender" or checked via platform injection tokens.
+Analog.js utilizes Server-Side Rendering (SSR).
+- **No Direct Globals**: Direct access to `window` or `document` is strictly forbidden and will fail the linter (`no-restricted-globals`).
+- **Standard Injection**: Always inject Angular's `DOCUMENT` token from `@angular/common` to interact with the document or window:
+  ```typescript
+  import { DOCUMENT } from '@angular/common';
+  // ...
+  private document = inject(DOCUMENT);
+  ```
+- **Safe Window Access**: Access the global window object via `this.document.defaultView` (which is nullable and safe to mock/simulate in server builds).
+- **Execution Wrapping**: Browser-specific API calls and DOM manipulation must be wrapped inside `afterNextRender()` or checked with `isPlatformBrowser(this.platformId)` to prevent execution during SSR.
 
 ## Rule 4: TypeScript Best Practices
 - Use strict type checking

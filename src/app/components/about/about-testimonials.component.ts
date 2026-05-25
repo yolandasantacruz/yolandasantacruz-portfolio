@@ -11,8 +11,10 @@ import {
   ElementRef,
   ViewChild,
   OnDestroy,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { Testimonial } from '../../pages/about.types';
 import { CatmullRomService } from './catmull-rom.service';
 
@@ -155,10 +157,10 @@ const INITIAL_BLOB_PATH =
               </div>
             </div>
 
-            <div class="testimonial-viewport">
+            <div class="testimonial-viewport" [style.height.px]="currentHeight()">
               <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
                 @for (item of testimonials; track item.name) {
-                  <div class="testimonial-slide">
+                  <div #slideElement class="testimonial-slide">
                     <p class="testimonial-quote">"{{ item.quote }}"</p>
                   </div>
                 }
@@ -313,10 +315,12 @@ const INITIAL_BLOB_PATH =
     .testimonial-viewport {
       overflow: hidden;
       width: 100%;
+      transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .testimonial-track {
       display: flex;
+      align-items: flex-start;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -329,7 +333,8 @@ const INITIAL_BLOB_PATH =
       font-size: 1.15rem;
       font-weight: 300;
       font-style: italic;
-      line-height: 1.8;
+      line-height: 1.5;
+      max-width: 65ch;
       color: #111;
       margin: 0;
       letter-spacing: -0.01em;
@@ -350,16 +355,20 @@ const INITIAL_BLOB_PATH =
 })
 export class AboutTestimonialsComponent implements OnDestroy {
   @ViewChild('wavyBlobPath', { static: false }) blobPathElement?: ElementRef<SVGPathElement>;
+  @ViewChildren('slideElement') slideElements?: QueryList<ElementRef<HTMLDivElement>>;
 
   private ngZone = inject(NgZone);
   private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
   private catmullRom = inject(CatmullRomService);
   private animFrameId?: number;
+  private resizeListener?: () => void;
 
   items = input<Testimonial[] | undefined>();
   readonly initialBlobPath = INITIAL_BLOB_PATH;
   readonly currentIndex = signal(0);
   readonly currentBlobColor = computed(() => BLOB_COLORS[this.currentIndex() % BLOB_COLORS.length]);
+  readonly currentHeight = signal<number | undefined>(undefined);
 
   private currentShapeIndex = 0;
   private targetShapeIndex = 0;
@@ -372,6 +381,16 @@ export class AboutTestimonialsComponent implements OnDestroy {
       if (isPlatformBrowser(this.platformId)) {
         this.ngZone.runOutsideAngular(() => {
           this.startAnimationLoop();
+        });
+
+        this.ngZone.run(() => {
+          this.resizeListener = () => this.updateHeight();
+          const win = this.document.defaultView;
+          if (win) {
+            win.addEventListener('resize', this.resizeListener);
+          }
+          this.updateHeight();
+          setTimeout(() => this.updateHeight(), 0);
         });
       }
     });
@@ -429,11 +448,23 @@ export class AboutTestimonialsComponent implements OnDestroy {
     this.animFrameId = requestAnimationFrame(loop);
   }
 
+  updateHeight(): void {
+    if (isPlatformBrowser(this.platformId) && this.slideElements) {
+      const slides = this.slideElements.toArray();
+      const activeIndex = this.currentIndex();
+      if (slides[activeIndex]) {
+        const height = slides[activeIndex].nativeElement.offsetHeight;
+        this.currentHeight.set(height);
+      }
+    }
+  }
+
   nextSlide(): void {
     const list = this.items();
     if (list && this.currentIndex() < list.length - 1) {
       this.currentIndex.update(v => v + 1);
       this.triggerMorph(this.currentIndex());
+      this.updateHeight();
     }
   }
 
@@ -441,6 +472,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
     if (this.currentIndex() > 0) {
       this.currentIndex.update(v => v - 1);
       this.triggerMorph(this.currentIndex());
+      this.updateHeight();
     }
   }
 
@@ -457,6 +489,12 @@ export class AboutTestimonialsComponent implements OnDestroy {
   ngOnDestroy(): void {
     if (this.animFrameId !== undefined) {
       cancelAnimationFrame(this.animFrameId);
+    }
+    if (this.resizeListener && isPlatformBrowser(this.platformId)) {
+      const win = this.document.defaultView;
+      if (win) {
+        win.removeEventListener('resize', this.resizeListener);
+      }
     }
   }
 }
