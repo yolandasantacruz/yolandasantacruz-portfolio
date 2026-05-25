@@ -11,28 +11,27 @@ import { HomeHeroData } from '../../../pages/home.types';
     <section class="hero">
       <!-- Background glowing cursor trace ribbon -->
       <div class="hero-bg-trace">
-        <svg viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <svg width="1244" height="779" viewBox="0 0 1244 779" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="traceGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#f7f1cb" stop-opacity="0.15" />
-              <stop offset="30%" stop-color="#f5ea8c" stop-opacity="0.5" />
-              <stop offset="65%" stop-color="#8edeae" stop-opacity="0.75" />
-              <stop offset="100%" stop-color="#5ed6cc" stop-opacity="0.95" />
+            <filter id="f-blur" x="-107.25" y="-188.066" width="1427.95" height="1009.19" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="70"/>
+            </filter>
+            <linearGradient id="g-trace" x1="1159" y1="-68.5" x2="0" y2="651.5" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#8AE7DA"/>
+              <stop offset="0.5" stop-color="#E2F6BC"/>
+              <stop offset="1" stop-color="#FCFBE9"/>
             </linearGradient>
           </defs>
-          <!-- Outer soft ambient glow -->
-          <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="160" stroke-linecap="round" opacity="0.18" />
-          <!-- Mid velvet glow -->
-          <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="90" stroke-linecap="round" opacity="0.35" />
-          <!-- Sharp defined ribbon body -->
-          <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="45" stroke-linecap="round" opacity="0.75" />
-          <!-- Crisp vibrant core highlight -->
-          <path d="M -50,580 C 350,520 550,420 800,180 C 900,80 920,20 950,-50" 
-                stroke="url(#traceGrad)" stroke-width="20" stroke-linecap="round" opacity="0.85" />
+          <!-- soft outer glow layer 1 -->
+          <path opacity="0.9" filter="url(#f-blur)" d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="140"/>
+          <!-- soft outer glow layer 2 (doubles the glow intensity) -->
+          <path opacity="0.9" filter="url(#f-blur)" d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="140"/>
+          <!-- mid diffuse band -->
+          <path opacity="0.55" d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="140"/>
+          <!-- sharp bright core -->
+          <path d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="80"/>
         </svg>
+
       </div>
 
       <div class="hero-content">

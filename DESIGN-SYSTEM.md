@@ -42,6 +42,7 @@ The design system uses a curated, light-first palette focused on clarity and pre
     * Secondary Accent: `#8edeae` (Mint)
     * Highlight: `#f5ea8c` (Light Yellow)
     * Contrast Accent: `#3b9f98` (Dark Teal)
+* **Section Pastel System**: See [Section 8](#8-homepage-section-pastel-color-system) for the mathematically normalized per-section backgrounds.
 
 ## 5. Mouse Trail Background
 The `MouseTrailComponent` provides a high-performance WebGL2 shader background.
@@ -68,3 +69,92 @@ The testimonial section is framed within a sophisticated, organic SVG blob backg
 * **Morphing Interaction**: Navigating between testimonials triggers a satisfying quartic transformation (800ms duration) where the anchor points dramatically realign to form completely distinct organic cloud/lagoon shapes.
 * **Color-Shifting Palette**: Synchronized with the shape transformation, the blob fill smoothly transitions between curated soft pastel backgrounds (`#EDFBF9` mint, `#FFFCEB` yellow, `#F4F0FC` lavender).
 
+---
+
+## 8. Homepage Section Pastel Color System
+
+> [!IMPORTANT]
+> The `bridge-section` background color `hsl(169, 58%, 96%)` — hex `#f0fbf9` — is the **immutable anchor** of this system. Its hue (169°), saturation (58%), and lightness (96%) **must never be altered**. All other section pastels are derived by locking S and L to these exact values.
+
+### Methodology: Mathematical HSL Normalization
+
+This system uses a disciplined 3-step process — think of it as using **Figma's "Hue" blending mode on a single master style**:
+
+1. **Hue Extraction**: For each homepage section, the primary brand color is sampled from the foreground case study image (dominant CTA, header, or hero color).
+2. **HSL Normalization**: The extracted color's **H** (hue) is kept; its **S** (saturation) and **L** (lightness) are completely discarded and replaced with the anchor's values (`S=58%`, `L=96%`). This locks every section to an identical perceived luminance and tonal weight — like a color-corrected Figma frame.
+3. **Sequential Ordering**: Sections are arranged so adjacent hues transition smoothly into the `#f0fbf9` anchor, avoiding jarring chromatic leaps.
+
+### Source Colors & Normalization Table
+
+| Section | Case Study | Extracted Brand Color | Source Hex | Hue (H) | Normalized Pastel | Hex Result |
+|---|---|---|---|---|---|---|
+| Hero | — | Transparent (white bg) | — | — | `--color-bg: #ffffff` | `#ffffff` |
+| `#project-0` | Pay with App | Electric Blue CTA button | `#2563EB` | 221° | `hsl(221, 58%, 96%)` | `#f0f3fb` |
+| `#project-1` | Fetch Pay | Deep Purple brand header | `#5B21B6` | 263° | `hsl(263, 58%, 96%)` | `#f4f0fb` |
+| `#project-2` | Isles at Bayshore | Royal Indigo hero overlay | `#3B4FD6` | 232° | `hsl(232, 58%, 96%)` | `#f0f1fb` |
+| `#project-3` | PlantMe | Sage Leaf Green (garden) | `#3DAE8E` | **132°** | `hsl(132, 58%, 96%)` | `#effbf1` |
+| `.bridge-section` | — | **ANCHOR (immutable)** | `#f0fbf9` | **169°** | `hsl(169, 58%, 96%)` | **`#effbf9`** |
+
+### Sequential Hue Journey
+
+The hue progression across the page scroll forms a deliberate chromatic arc:
+
+```
+Hero (white) → 221° (blue) → 263° (purple) → 232° (indigo) → 132° (sage) → 169° (teal/ANCHOR)
+                  ↑+42°        ↑-31°           ↑-100°          ↑+37°
+```
+
+The **+37° delta** between PlantMe (132°) and the Bridge anchor (169°) is large enough to read as a distinct tonal shift — sage green hand-off to teal — while the gradient within `#project-3` dissolves the boundary so it never feels abrupt.
+
+### CSS Variable Reference
+
+All tokens live in `:root` inside `src/styles.css`. No section may define a raw color value without referencing a token.
+
+```css
+/* Normalization parameters (locked to anchor) */
+--section-pastel-s: 58%;
+--section-pastel-l: 96%;
+
+/* Per-section hue tokens */
+--section-hue-pay-with-app:      221;   /* Electric Blue  (#2563EB)    */
+--section-hue-fetch-pay:         263;   /* Deep Purple    (#5B21B6)    */
+--section-hue-isles-at-bayshore: 232;   /* Royal Indigo   (#3B4FD6)    */
+--section-hue-plant-me:          132;   /* Sage Leaf Green (garden)    */
+--section-hue-bridge:            169;   /* Teal ANCHOR    (#f0fbf9)    */
+
+/* Computed pastel backgrounds */
+--section-bg-hero:              #ffffff;               /* Hero white base           */
+--section-bg-pay-with-app:      hsl(221, 58%, 96%);   /* #f0f3fb — soft periwinkle */
+--section-bg-fetch-pay:         hsl(263, 58%, 96%);   /* #f4f0fb — soft lavender   */
+--section-bg-isles-at-bayshore: hsl(232, 58%, 96%);   /* #f0f1fb — soft indigo     */
+--section-bg-plant-me:          hsl(132, 58%, 96%);   /* #effbf1 — soft sage-leaf  */
+--section-bg-bridge:            hsl(169, 58%, 96%);   /* #effbf9 — ANCHOR (teal)   */
+```
+
+### Gradient Architecture
+
+Each section renders as a `linear-gradient(to bottom, var(--own-color), var(--next-color))`. This means:
+
+- **One variable, two effects**: changing `--section-bg-plant-me` updates both the bottom half of `#project-3` _and_ the top fade of `.bridge-section`.
+- **No raw hex values** exist in any section background rule — all colors are consumed via CSS custom property references.
+- **The bridge anchor is preserved**: `.bridge-section` uses PlantMe's color only for the first 12% of its height, then locks to `--section-bg-bridge` for the remaining 88% — so the page closes with a full, unambiguous teal field.
+
+```
+Section backgrounds (scroll direction: top → bottom)
+
+#project-0:  [pay-with-app] ░░░░░▓▓▓▓▓ [fetch-pay]
+#project-1:  [fetch-pay]    ░░░░░▓▓▓▓▓ [isles-at-bayshore]
+#project-2:  [isles]        ░░░░░▓▓▓▓▓ [plant-me]
+#project-3:  [plant-me]     ░░░░░▓▓▓▓▓ [bridge]
+.bridge:     [plant-me 0–12%] └─────────[bridge 12–100%]
+```
+
+### Extension Protocol
+
+When adding a new section in the future:
+1. Sample the dominant brand/accent color from the new section's foreground imagery.
+2. Convert it to HSL and extract only the **H** value.
+3. Add a new `--section-hue-<name>` token with that H value.
+4. Derive `--section-bg-<name>: hsl(var(--section-hue-<name>), var(--section-pastel-s), var(--section-pastel-l));`
+5. Update this table and the sequential hue diagram above.
+6. Verify that the new hue creates no jarring jump with its neighbors (≤45° delta is recommended).

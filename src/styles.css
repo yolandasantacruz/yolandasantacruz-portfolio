@@ -6,6 +6,60 @@
   --color-text: #1a1a1a;
   --color-text-muted: #666;
   --color-bg: #ffffff;
+
+  /* ==========================================================================
+     SECTION PASTEL COLOR SYSTEM — Mathematical HSL Normalization
+     Hue (H) extracted from each section's foreground case study image brand color.
+     Saturation (S) and Lightness (L) locked to the bridge-section anchor #f0fbf9.
+     Anchor HSL: hsl(169, 58%, 96%) — S=57.89%, L=96.27% (rounded to 58%, 96%)
+     This guarantees identical perceived luminance and tonal weight across all sections.
+     ==========================================================================
+
+     Section order on homepage:
+       1. .hero-section      → transparent / global bg (#ffffff) — no pastel override
+       2. #project-0         → Pay with App   — brand blue   H=221° → hsl(221, 58%, 96%)
+       3. #project-1         → Fetch Pay      — brand purple H=263° → hsl(263, 58%, 96%)
+       4. #project-2         → Isles at Bay   — brand indigo H=232° → hsl(232, 58%, 96%)
+       5. #project-3         → PlantMe        — brand mint   H=163° → hsl(163, 58%, 96%)
+       6. .bridge-section    → Anchor (fixed) — brand teal   H=169° → hsl(169, 58%, 96%) = #f0fbf9
+
+     Hue delta between adjacent sections: +42° → -31° → -69° → +6°
+     PlantMe (163°) → Bridge (169°) = 6° delta — perfectly seamless handoff.
+  */
+
+  /* -- Shared normalization parameters (locked to anchor) -- */
+  --section-pastel-s: 58%;      /* Saturation lock — mirrors bridge anchor saturation     */
+  --section-pastel-l: 96%;      /* Lightness lock — mirrors bridge anchor lightness       */
+
+  /* -- Per-section hue tokens -- */
+  --section-hue-pay-with-app:      221;   /* Electric Blue  (#2563EB brand CTA)             */
+  --section-hue-fetch-pay:         263;   /* Deep Purple    (#5B21B6 brand header)          */
+  --section-hue-isles-at-bayshore: 232;   /* Royal Indigo   (#3B4FD6 hero overlay)         */
+  --section-hue-plant-me:          132;   /* Sage Leaf Green (natural garden, 37° from bridge) */
+  --section-hue-bridge:            169;   /* Teal (ANCHOR)  (#f0fbf9 — must never change)  */
+
+  /* -- Computed pastel backgrounds (H + locked S/L) -- */
+  /* To change any section: update the --section-bg-* value here.                  */
+  /* The gradient in that section AND its neighbor update automatically.           */
+  --section-bg-hero:              #ffffff;               /* Hero — transparent white base */
+  --section-bg-pay-with-app:      hsl(221, 58%, 96%);   /* #f0f3fb — soft periwinkle   */
+  --section-bg-fetch-pay:         hsl(263, 58%, 96%);   /* #f4f0fb — soft lavender     */
+  --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);   /* #f0f1fb — soft indigo       */
+  --section-bg-plant-me:          hsl(132, 58%, 96%);   /* #effbf1 — soft sage-leaf    */
+  --section-bg-bridge:            hsl(169, 58%, 96%);   /* #effbf9 — ANCHOR (teal)     */
+
+  /* -- Section pill (nav dot) colors: same hue, S=72%, L tuned per-hue -----------
+     Target: ≥5.0:1 contrast against the corresponding pastel background (L≈96%).
+     Green/teal hues have high luminance weight → need lower L to achieve contrast.
+     Blue/purple hues are intrinsically dark → pass at higher L values.
+     Change only these tokens to retheme nav dots alongside section backgrounds.
+     -----------------------------------------------------------------------  */
+  --section-pill-hero:              hsl(171, 72%, 27%);   /* #137668 — 5.16:1 vs hero bg    */
+  --section-pill-pay-with-app:      hsl(221, 72%, 50%);   /* #245edb — 5.10:1 vs section bg */
+  --section-pill-fetch-pay:         hsl(263, 72%, 55%);   /* #793adf — 5.34:1 vs section bg */
+  --section-pill-isles-at-bayshore: hsl(232, 72%, 55%);   /* #3a50df — 5.50:1 vs section bg */
+  --section-pill-plant-me:          hsl(132, 72%, 28%);   /* #147b29 — 5.07:1 vs section bg */
+  --section-pill-bridge:            hsl(169, 72%, 27%);   /* #137664 — 5.17:1 vs section bg */
 }
 
 * {

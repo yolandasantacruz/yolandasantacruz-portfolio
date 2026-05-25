@@ -117,6 +117,15 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       padding-top: 0;
       position: relative;
       overflow: hidden;
+      /* Bottom edge bleeds into project-0's periwinkle so the first snap section
+         feels like a continuation rather than an abrupt cut. The gradient occupies
+         only the last 15% of the section height — invisible while reading. */
+      background: linear-gradient(
+        to bottom,
+        transparent                      0%,
+        transparent                      85%,
+        var(--section-bg-pay-with-app)   100%
+      );
     }
 
     .hero-content-wrapper {
@@ -138,27 +147,60 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       width: 100%;
     }
 
+    /* -------------------------------------------------------------------------
+     * SECTION GRADIENT SYSTEM
+     * Strategy: each section holds its pure pastel for the top 78% of its height,
+     * then fades into the next section's color in the bottom 22% only.
+     * This keeps sections visually distinct while the bottom "hem" provides the
+     * seamless bleed — nothing bleeds into the section's readable content area.
+     *
+     * To retheme: change a single --section-bg-* in styles.css — the token
+     * updates in BOTH the owning section AND its neighbor automatically.
+     * -------------------------------------------------------------------------
+     */
+
     #project-0 {
-      background: #e6fff1;
-      background: linear-gradient(180deg, rgba(230, 255, 241, 0) 0%, rgba(204, 242, 237, 0.64) 16%, rgba(204, 242, 236, 0.76) 83%, rgba(255, 244, 207, 0.8) 100%);
+      /* Starts from hero's white, holds periwinkle, bleeds to Fetch Pay purple */
+      background: linear-gradient(
+        to bottom,
+        var(--section-bg-hero)           0%,
+        var(--section-bg-pay-with-app)   12%,
+        var(--section-bg-pay-with-app)   78%,
+        var(--section-bg-fetch-pay)      100%
+      );
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #project-1 {
-      background: #e3f4ff;
-      background: linear-gradient(0deg, rgba(227, 244, 255, 1) 1%, rgba(255, 247, 214, 0.76) 33%, rgba(255, 244, 207, 0.8) 100%);
+      /* Fetch Pay purple — holds, bleeds to Isles indigo */
+      background: linear-gradient(
+        to bottom,
+        var(--section-bg-fetch-pay)         0%,
+        var(--section-bg-fetch-pay)         78%,
+        var(--section-bg-isles-at-bayshore) 100%
+      );
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #project-2 {
-      background: #e3f4ff;
-      background: linear-gradient(180deg, rgba(227, 244, 255, 1) 1%, rgba(171, 233, 255, 0.69) 86%, rgba(207, 255, 237, 0.8) 100%);
+      /* Isles indigo — holds, bleeds to PlantMe sage */
+      background: linear-gradient(
+        to bottom,
+        var(--section-bg-isles-at-bayshore) 0%,
+        var(--section-bg-isles-at-bayshore) 78%,
+        var(--section-bg-plant-me)          100%
+      );
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #project-3 {
-      background: #EDFBF9;
-      background: linear-gradient(0deg, rgba(237, 251, 249, 1) 0%, rgba(174, 245, 176, 0.48) 28%, rgba(207, 255, 237, 1) 100%);
+      /* PlantMe sage — holds, bleeds to bridge teal anchor */
+      background: linear-gradient(
+        to bottom,
+        var(--section-bg-plant-me)          0%,
+        var(--section-bg-plant-me)          78%,
+        var(--section-bg-bridge)            100%
+      );
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -240,9 +282,15 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       outline-offset: 2px;
     }
 
-    /* About Me Bridge Section */
+    /* About Me Bridge Section — ANCHOR: hsl(169,58%,96%) must remain immutable */
+    /* PlantMe's sage fades in at top for 6% only — bridge teal dominates 94%   */
     .bridge-section {
-      background: #f0fbf9;
+      background: linear-gradient(
+        to bottom,
+        var(--section-bg-plant-me)  0%,
+        var(--section-bg-bridge)    6%,
+        var(--section-bg-bridge)    100%
+      );
     }
 
     .bridge-content {
@@ -371,37 +419,40 @@ export default class PortfolioHomeComponent {
   readonly activeSection = signal<string>('hero');
 
   readonly navSections = computed(() => {
-    const colors = [
-      '#3ED4A2', // Top (Figma signature emerald)
-      '#43D3E0', // Project 0
-      '#ECC43B', // Project 1
-      '#4A82F7', // Project 2
-      '#3ED4A2', // Project 3
-      '#5ed6cc', // Mentorship
-      '#69ffa7', // Publications
-      '#3B9F98'  // Bridge / Philosophy (matches bridge mint theme)
-    ];
+    // Maps each section ID to its CSS custom property reference.
+    // ALL color values live exclusively in styles.css :root — this file holds no hex codes.
+    // Rule 16: Map used instead of bracket notation to avoid dynamic property access.
+    const pillColors = new Map<string, string>([
+      ['hero',              'var(--section-pill-hero)'],
+      ['project-0',         'var(--section-pill-pay-with-app)'],
+      ['project-1',         'var(--section-pill-fetch-pay)'],
+      ['project-2',         'var(--section-pill-isles-at-bayshore)'],
+      ['project-3',         'var(--section-pill-plant-me)'],
+      ['bridge',            'var(--section-pill-bridge)'],
+    ]);
 
     const sections = [
-      { id: 'hero', label: 'Top', color: colors[0] }
+      { id: 'hero', label: 'Top', color: pillColors.get('hero') ?? 'var(--section-pill-hero)' }
     ];
 
     this.projects().forEach((p, i) => {
+      const sectionId = `project-${i}`;
       sections.push({
-        id: `project-${i}`,
+        id: sectionId,
         label: p.title,
-        color: colors[(i + 1) % colors.length]
+        color: pillColors.get(sectionId) ?? 'var(--section-pill-hero)'
       });
     });
 
     sections.push({
       id: 'bridge',
       label: 'Philosophy',
-      color: colors[(this.projects().length + 1) % colors.length]
+      color: pillColors.get('bridge') ?? 'var(--section-pill-bridge)'
     });
 
     return sections;
   });
+
 
   constructor() {
     afterNextRender(() => {
