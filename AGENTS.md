@@ -94,3 +94,10 @@ Analog.js utilizes Server-Side Rendering (SSR).
 - **Inlined PWA Registration**: The Service Worker registration script must be inlined into the HTML using `injectRegister: 'inline'` in the `vite.config.ts` PWA options to avoid a separate render-blocking JS file request.
 - **Client CSS Inlining**: The compiled client CSS must be inlined directly inside a `<style>` tag in the HTML at build time using the custom `inlineCssPlugin` in `vite.config.ts`. Deleting the CSS asset from the bundle is required to prevent generating a separate render-blocking file.
 - **Vite 6/8 Environment API Compliance**: PWA and CSS inlining plugins must be wrapped with the `clientPwa` environment helper in `vite.config.ts` to ensure their hooks only execute during the `client` environment build, avoiding configuration state conflicts with the concurrent `ssr` environment build.
+
+## Rule 16: Safe Dynamic Property and Array Access (No Dynamic Bracket Notation)
+- **No Dynamic Bracket Access**: Do NOT use bracket notation (e.g. `obj[variable]`, `arr[index]`) when indexing objects or arrays with dynamic keys/indices or variable variables. This triggers security scanner flags due to potential prototype pollution or out-of-bounds security holes.
+- **Safe Alternatives**:
+  - For arrays, use the ES2022 `Array.prototype.at(index)` method (e.g., `arr.at(index) ?? defaultValue`) instead of dynamic bracket index lookups.
+  - For templates, avoid dynamic bracket lookups (e.g., `list[currentIndex()]`) by defining a `computed` signal that resolves the active item in the TypeScript class layer, and reference that resolved item in the template.
+  - For objects, check against a known key whitelist or verify key membership using `Object.prototype.hasOwnProperty.call(obj, key)` before dynamic access, or use a `Map` structure.

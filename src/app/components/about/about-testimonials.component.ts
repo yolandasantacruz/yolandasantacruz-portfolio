@@ -122,53 +122,55 @@ const INITIAL_BLOB_PATH =
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (items(); as testimonials) {
-      <section class="premium-testimonial-section">
-        <div class="testimonial-card-wrapper">
-          <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" class="testimonial-wavy-bg">
-            <path #wavyBlobPath class="wavy-card-path" [attr.d]="initialBlobPath" [style.fill]="currentBlobColor()" />
-          </svg>
-          <div class="testimonial-container">
-            <div class="testimonial-header">
-              <div class="active-author-info">
-                <img [src]="testimonials[currentIndex()].avatar" [alt]="testimonials[currentIndex()].name" class="author-avatar" />
-                <div class="author-details">
-                  @if (testimonials[currentIndex()].profileUrl) {
-                    <a [href]="testimonials[currentIndex()].profileUrl" target="_blank" rel="noopener noreferrer" class="author-link" [attr.aria-label]="'Visit ' + testimonials[currentIndex()].name + ' on LinkedIn'">
-                      <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
-                      <svg class="lnk-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                      </svg>
-                    </a>
-                  } @else {
-                    <span class="author-name">{{ testimonials[currentIndex()].name }}</span>
-                  }
-                  <span class="author-role">{{ testimonials[currentIndex()].role }}</span>
+      @if (currentTestimonial(); as activeTestimonial) {
+        <section class="premium-testimonial-section">
+          <div class="testimonial-card-wrapper">
+            <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" class="testimonial-wavy-bg">
+              <path #wavyBlobPath class="wavy-card-path" [attr.d]="initialBlobPath" [style.fill]="currentBlobColor()" />
+            </svg>
+            <div class="testimonial-container">
+              <div class="testimonial-header">
+                <div class="active-author-info">
+                  <img [src]="activeTestimonial.avatar" [alt]="activeTestimonial.name" class="author-avatar" />
+                  <div class="author-details">
+                    @if (activeTestimonial.profileUrl) {
+                      <a [href]="activeTestimonial.profileUrl" target="_blank" rel="noopener noreferrer" class="author-link" [attr.aria-label]="'Visit ' + activeTestimonial.name + ' on LinkedIn'">
+                        <span class="author-name">{{ activeTestimonial.name }}</span>
+                        <svg class="lnk-icon" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                      </a>
+                    } @else {
+                      <span class="author-name">{{ activeTestimonial.name }}</span>
+                    }
+                    <span class="author-role">{{ activeTestimonial.role }}</span>
+                  </div>
+                </div>
+
+                <div class="testimonial-nav">
+                  <button class="quote-nav-btn" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <span class="testimonial-counter">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
+                  <button class="quote-nav-btn" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
                 </div>
               </div>
 
-              <div class="testimonial-nav">
-                <button class="quote-nav-btn" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <span class="testimonial-counter">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
-                <button class="quote-nav-btn" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-              </div>
-            </div>
-
-            <div class="testimonial-viewport" [style.height.px]="currentHeight()">
-              <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
-                @for (item of testimonials; track item.name) {
-                  <div #slideElement class="testimonial-slide">
-                    <p class="testimonial-quote">"{{ item.quote }}"</p>
-                  </div>
-                }
+              <div class="testimonial-viewport" [style.height.px]="currentHeight()">
+                <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
+                  @for (item of testimonials; track item.name) {
+                    <div #slideElement class="testimonial-slide">
+                      <p class="testimonial-quote">"{{ item.quote }}"</p>
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      }
     }
   `,
   styles: `
@@ -367,7 +369,11 @@ export class AboutTestimonialsComponent implements OnDestroy {
   items = input<Testimonial[] | undefined>();
   readonly initialBlobPath = INITIAL_BLOB_PATH;
   readonly currentIndex = signal(0);
-  readonly currentBlobColor = computed(() => BLOB_COLORS[this.currentIndex() % BLOB_COLORS.length]);
+  readonly currentBlobColor = computed(() => BLOB_COLORS.at(this.currentIndex() % BLOB_COLORS.length) ?? BLOB_COLORS[0]);
+  readonly currentTestimonial = computed(() => {
+    const list = this.items();
+    return list ? (list.at(this.currentIndex()) ?? null) : null;
+  });
   readonly currentHeight = signal<number | undefined>(undefined);
 
   private currentShapeIndex = 0;
@@ -409,12 +415,12 @@ export class AboutTestimonialsComponent implements OnDestroy {
           const progress = Math.min(elapsed / this.morphDuration, 1);
           const easeProgress = 1 - Math.pow(1 - progress, 4); // Quartic ease out
 
-          const startDef = BLOB_DEFINITIONS[this.currentShapeIndex];
-          const endDef = BLOB_DEFINITIONS[this.targetShapeIndex];
+          const startDef = BLOB_DEFINITIONS.at(this.currentShapeIndex) ?? BLOB_DEFINITIONS[0];
+          const endDef = BLOB_DEFINITIONS.at(this.targetShapeIndex) ?? BLOB_DEFINITIONS[0];
 
           for (let i = 0; i < startDef.endpoints.length; i++) {
-            const sE = startDef.endpoints[i];
-            const eE = endDef.endpoints[i];
+            const sE = startDef.endpoints.at(i) ?? [0, 0];
+            const eE = endDef.endpoints.at(i) ?? [0, 0];
             currentEndpoints.push([
               sE[0] + (eE[0] - sE[0]) * easeProgress,
               sE[1] + (eE[1] - sE[1]) * easeProgress,
@@ -426,7 +432,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
             this.currentShapeIndex = this.targetShapeIndex;
           }
         } else {
-          currentEndpoints = BLOB_DEFINITIONS[this.targetShapeIndex].endpoints;
+          currentEndpoints = (BLOB_DEFINITIONS.at(this.targetShapeIndex) ?? BLOB_DEFINITIONS[0]).endpoints;
         }
 
         // Animate endpoints with a gentle drift to maintain natural bubble motion
