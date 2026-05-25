@@ -69,7 +69,9 @@ pnpm run lint    # Run ESLint
 
 - **A11y**: Committed to WCAG AA compliance, focus management, and semantic HTML.
 - **Performance**: High-performance animations (CSS-first), optimized asset loading, and 60fps interactive backgrounds.
-- **SSR**: Fully server-side rendered for SEO and fast initial paint.
+  - **PWA Caching**: Caching of hashed static assets using `vite-plugin-pwa` for sub-second repeat page load times.
+  - **Critical Rendering Path**: Elimination of render-blocking requests by asynchronously preloading Google Fonts stylesheets, inlining PWA registration script directly in the HTML, and inlining compiled client CSS inside `index.html` at build time.
+- **SSR**: Fully server-side rendered for SEO and fast initial paint. Prerendered HTML files inherit the inlined critical styles and scripts out of the box.
 
 ---
 Built with ❤️ by Yolanda Santa Cruz & Alejandro Cuba Ruiz

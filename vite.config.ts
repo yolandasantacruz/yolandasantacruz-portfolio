@@ -61,6 +61,54 @@ function clientPwa(options: any) {
   });
 }
 
+// Custom plugin to inline client CSS directly into index.html at build time (Vite 6/8 Environment API compatibility)
+function inlineCssPlugin() {
+  return {
+    name: 'inline-css-plugin',
+    apply: 'build' as const,
+    enforce: 'post' as const,
+    applyToEnvironment(environment: any) {
+      return environment.name === 'client';
+    },
+    generateBundle(options: any, bundle: any) {
+      const cssAssets = Object.keys(bundle).filter((key) => key.endsWith('.css'));
+      const htmlAssets = Object.keys(bundle).filter((key) => key.endsWith('.html'));
+
+      console.log('[inline-css-plugin] cssAssets:', cssAssets, 'htmlAssets:', htmlAssets);
+
+      if (cssAssets.length === 0 || htmlAssets.length === 0) return;
+
+      cssAssets.forEach((cssKey) => {
+        const cssAsset = bundle[cssKey];
+        if (cssAsset && cssAsset.type === 'asset') {
+          const cssContent = cssAsset.source.toString();
+
+          htmlAssets.forEach((htmlKey) => {
+            const htmlAsset = bundle[htmlKey];
+            if (htmlAsset && htmlAsset.type === 'asset') {
+              let htmlSource = htmlAsset.source.toString();
+
+              const cssFilename = cssAsset.fileName.split('/').pop();
+              const regex = new RegExp(`<link[^>]*href=["'][^"']*${cssFilename}["'][^>]*>`, 'g');
+              
+              console.log(`[inline-css-plugin] Checking link tag for ${cssFilename} in ${htmlKey}`);
+
+              if (regex.test(htmlSource)) {
+                htmlSource = htmlSource.replace(regex, `<style>${cssContent}</style>`);
+                htmlAsset.source = htmlSource;
+                console.log(`[inline-css-plugin] Successfully inlined ${cssKey} into ${htmlKey}`);
+                
+                // Remove the CSS asset from the bundle so it's not written to disk
+                delete bundle[cssKey];
+              }
+            }
+          });
+        }
+      });
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
   base,
@@ -108,6 +156,7 @@ export default defineConfig(() => ({
         ]
       }
     }),
+    inlineCssPlugin(),
     {
       name: 'transform-base-href',
       transformIndexHtml(html) {

@@ -80,3 +80,8 @@ Analog.js utilizes Server-Side Rendering. Agents must never inject direct DOM ma
 - **Structural content** (e.g., navigation labels, CTA text) is also subject to this rule unless the content is intrinsically coupled to routing logic.
 - **Type safety**: Every content file's frontmatter shape must have a corresponding TypeScript interface in `about.types.ts` (or a domain-appropriate types file). Content is loaded with explicit generic types: `injectContentFiles<MyType>(...)`.
 
+## Rule 15: Critical Rendering Path & Render-Blocking Protection
+- **No Render-Blocking Fonts**: Google Fonts must be loaded asynchronously using the `<link rel="preload" as="style" ...>` pattern and applied via a print-media switcher (`onload="this.media='all'"`).
+- **Inlined PWA Registration**: The Service Worker registration script must be inlined into the HTML using `injectRegister: 'inline'` in the `vite.config.ts` PWA options to avoid a separate render-blocking JS file request.
+- **Client CSS Inlining**: The compiled client CSS must be inlined directly inside a `<style>` tag in the HTML at build time using the custom `inlineCssPlugin` in `vite.config.ts`. Deleting the CSS asset from the bundle is required to prevent generating a separate render-blocking file.
+- **Vite 6/8 Environment API Compliance**: PWA and CSS inlining plugins must be wrapped with the `clientPwa` environment helper in `vite.config.ts` to ensure their hooks only execute during the `client` environment build, avoiding configuration state conflicts with the concurrent `ssr` environment build.
