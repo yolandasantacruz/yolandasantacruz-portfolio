@@ -30,16 +30,16 @@ describe('AboutHeroComponent', () => {
 
   it('should render hero greeting and mission when data is provided', () => {
     componentRef.setInput('data', {
-      greeting: 'Hello, Designer',
-      mission: 'Crafting experiences.',
+      greeting: 'Hello there! ',
+      mission: 'I\'m a UX/UI Designer with 8+ years of experience passionate about designing inclusive, accessible, and user-centric products. My work spans across product design, UX research, service design, and brand identity, with a focus on solving complex problems for diverse audiences. I\'ve had the privilege of working with clients across the globe, including those in the US, LATAM, and Europe.',
     });
     fixture.detectChanges();
 
     const greeting = fixture.debugElement.query(By.css('.hero-greeting'));
     const mission = fixture.debugElement.query(By.css('.hero-mission'));
 
-    expect(greeting.nativeElement.textContent).toBe('Hello, Designer');
-    expect(mission.nativeElement.textContent.trim()).toBe('Crafting experiences.');
+    expect(greeting.nativeElement.textContent).toBe(component.data()?.greeting);
+    expect(mission.nativeElement.textContent.trim()).toBe(component.data()?.mission);
   });
 
   it('should not render social links when socials input is undefined', () => {
