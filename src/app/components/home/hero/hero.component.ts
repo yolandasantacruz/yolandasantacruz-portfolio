@@ -110,12 +110,13 @@ import { HomeHeroData } from '../../../pages/home.types';
 
     .hero-hook {
       font-size: 4.5rem;
-      font-weight: 300;
+      font-weight: 500;
       letter-spacing: -0.03em;
       line-height: 1.1;
       color: #111;
       margin: 0 0 2.5rem 0;
       opacity: 0;
+      text-wrap: balance;
       transform: translateY(30px);
       will-change: transform, opacity;
       animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
