@@ -72,18 +72,5 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
     expect(component.activeSection()).toBe('project-0');
   });
 
-  it('should include Mentorship and Publications sections in navSections', () => {
-    const fixture = TestBed.createComponent(PortfolioHomeComponent);
-    fixture.detectChanges();
 
-    const component = fixture.componentInstance;
-
-    const mentorshipSection = component.navSections().find(s => s.id === 'mentorship');
-    expect(mentorshipSection).toBeDefined();
-    expect(mentorshipSection?.label).toBe('Mentorship');
-
-    const publicationsSection = component.navSections().find(s => s.id === 'publications');
-    expect(publicationsSection).toBeDefined();
-    expect(publicationsSection?.label).toBe('Publications');
-  });
 });

@@ -23,6 +23,8 @@ export interface PillarData {
   description: string;
   competencies?: { label: string; value: string; }[];
   metrics?: { num: string; label: string; }[];
+  linkUrl?: string;
+  linkLabel?: string;
 }
 
 export interface PillarsData {

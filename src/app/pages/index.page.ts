@@ -6,8 +6,6 @@ import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { MentorshipComponent } from '../components/home/leadership/mentorship.component';
-import { PublicationsComponent } from '../components/home/leadership/publications.component';
 import { ProjectAttributes } from '../project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
 
@@ -19,8 +17,6 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
     HeaderComponent,
     HeroComponent,
     ProjectCardComponent,
-    MentorshipComponent,
-    PublicationsComponent,
     FooterComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,15 +53,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
         </section>
       }
 
-      <!-- Mentorship Section (Snap 5) -->
-      <section id="mentorship" class="snap-section mentorship-section">
-        <portfolio-home-mentorship />
-      </section>
 
-      <!-- Publications Section (Snap 6) -->
-      <section id="publications" class="snap-section publications-section">
-        <portfolio-home-publications />
-      </section>
 
       <!-- About Me Bridge Section (Snap 7) -->
       <section id="bridge" class="snap-section bridge-section">
@@ -407,21 +395,9 @@ export default class PortfolioHomeComponent {
     });
 
     sections.push({
-      id: 'mentorship',
-      label: 'Mentorship',
-      color: colors[(this.projects().length + 1) % colors.length]
-    });
-
-    sections.push({
-      id: 'publications',
-      label: 'Publications',
-      color: colors[(this.projects().length + 2) % colors.length]
-    });
-
-    sections.push({
       id: 'bridge',
       label: 'Philosophy',
-      color: colors[(this.projects().length + 3) % colors.length]
+      color: colors[(this.projects().length + 1) % colors.length]
     });
 
     return sections;

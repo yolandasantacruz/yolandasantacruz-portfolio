@@ -37,14 +37,30 @@ import { PillarsData } from '../../pages/about.types';
         <!-- Pillar 2: Philosophy & Mentorship -->
         <div class="pillar-row pillar-philosophy">
           <div class="pillar-visual">
-            <div class="masked-image pill-mask">
-              <img src="https://placehold.co/800x1000/111a19/f5ea8c?text=Mentorship+%26+Culture" alt="Mentorship Philosophy" />
+            <div class="adplist-video">
+              <div class="video-header">
+                <span class="video-label">VIEW: A Sample Mentorship Session</span>
+              </div>
+              <div class="player-wrapper">
+                <img src="https://placehold.co/1200x675/121212/ffffff?text=Sample+Mentorship+Session" alt="Sample Mentorship Session" class="video-thumbnail" />
+                <div class="play-overlay">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
             </div>
           </div>
           <div class="pillar-text">
             <span class="pillar-badge">{{ pillars.philosophy.badge }}</span>
             <h3 class="pillar-title">{{ pillars.philosophy.title }}</h3>
             <p class="pillar-desc">{{ pillars.philosophy.description }}</p>
+
+            @if (pillars.philosophy.linkUrl && pillars.philosophy.linkLabel) {
+              <div class="pillar-cta">
+                <a [href]="pillars.philosophy.linkUrl" target="_blank" rel="noopener noreferrer" class="pillar-btn">
+                  {{ pillars.philosophy.linkLabel }} &rarr;
+                </a>
+              </div>
+            }
             
             @if (pillars.philosophy.metrics) {
               <div class="quiet-metrics-box">
@@ -190,6 +206,104 @@ import { PillarsData } from '../../pages/about.types';
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #777;
+    }
+
+    /* Video Player Styles */
+    .adplist-video {
+      width: 100%;
+    }
+
+    .video-header {
+      margin-bottom: 1rem;
+    }
+
+    .video-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    .player-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #121212;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s;
+    }
+
+    .player-wrapper:hover .video-thumbnail {
+      transform: scale(1.03);
+      opacity: 0.8;
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+    }
+
+    .player-wrapper:hover .play-overlay {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: #ffffff;
+    }
+
+    .play-icon {
+      width: 28px;
+      height: 28px;
+      color: #111;
+      margin-left: 4px;
+    }
+
+    /* CTA Button Styles */
+    .pillar-cta {
+      margin-top: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .pillar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #111a19;
+      color: #ffffff;
+      padding: 0.9rem 2.25rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .pillar-btn:hover {
+      background: #5ed6cc;
+      color: #111;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(94, 214, 204, 0.25);
     }
 
     @media (max-width: 1024px) {

@@ -86,16 +86,15 @@ export interface Project {
     .project-image-container {
       flex: 1.2;
       position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 40vh;
+      height: auto;
     }
 
 
     .project-image {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
+      border-radius: 12px;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 

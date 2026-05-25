@@ -5,7 +5,6 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { AboutHeroComponent } from '../components/about/about-hero.component';
 import { AboutBeliefComponent } from '../components/about/about-belief.component';
 import { AboutPillarsComponent } from '../components/about/about-pillars.component';
-import { AboutActionCarouselComponent } from '../components/about/about-action-carousel.component';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
 import { AboutPublishedWorksComponent } from '../components/about/about-published-works.component';
@@ -14,7 +13,6 @@ import {
   SocialsData,
   BeliefData,
   PillarsData,
-  ActionData,
   Testimonial,
   TimelineData,
   PublicationsData,
@@ -29,7 +27,6 @@ import {
     AboutHeroComponent,
     AboutBeliefComponent,
     AboutPillarsComponent,
-    AboutActionCarouselComponent,
     AboutTestimonialsComponent,
     AboutTimelineComponent,
     AboutPublishedWorksComponent,
@@ -43,7 +40,6 @@ import {
         <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
         <portfolio-about-belief [data]="beliefData" />
         <portfolio-about-pillars [data]="pillarsData" />
-        <portfolio-about-action-carousel [data]="actionData" />
         <portfolio-about-testimonials [items]="testimonialItems" />
         <portfolio-about-timeline [data]="timelineData" />
         <portfolio-about-published-works [data]="publicationsData" />
@@ -87,9 +83,7 @@ export default class AboutComponent {
     file.filename.includes('about/pillars.md')
   )[0]?.attributes;
 
-  readonly actionData = injectContentFiles<ActionData & Record<string, unknown>>(file =>
-    file.filename.includes('about/action.md')
-  )[0]?.attributes;
+
 
   readonly timelineData = injectContentFiles<TimelineData & Record<string, unknown>>(file =>
     file.filename.includes('about/timeline.md')

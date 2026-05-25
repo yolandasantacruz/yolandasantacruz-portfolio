@@ -12,8 +12,10 @@ work:
       value: "Advanced"
 philosophy:
   badge: "02 // PHILOSOPHY & COMMUNITY"
-  title: "Philosophy"
-  description: "Growing up with a drive to create, I realized early on that technology shapes our shared reality. My philosophy centers on empowering the next generation of designers through empathetic mentorship, opening doors for underrepresented talent, and building inclusive design cultures."
+  title: "Contributions"
+  description: "I believe in the power of paying it forward. My focus is on making a positive impact by helping others navigate their professional journeys, grow their skills, and reach their goals."
+  linkUrl: "https://adplist.org"
+  linkLabel: "Mentorship on ADPList"
   metrics:
     - num: "50+"
       label: "Designers Mentored"
