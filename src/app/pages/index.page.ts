@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal, afterNextRender, inject, PLATFORM_ID } from '@angular/core';
-import { APP_BASE_HREF, isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { ImageUrlService } from '../services/image-url.service';
 import { RouterLink } from '@angular/router';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
@@ -393,23 +394,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 export default class PortfolioHomeComponent {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
-  /** Resolves to the deployed base path (e.g. '/yolandasantacruz-portfolio/' on GH Pages, '/' locally). */
-  private baseHref = inject(APP_BASE_HREF, { optional: true }) ?? '/';
-
-  /**
-   * Normalizes a root-relative image path from markdown frontmatter
-   * by prepending the app's base href. This ensures images resolve
-   * correctly on GitHub Pages, where the site lives at a subpath.
-   * e.g. '/images/foo.png' → '/yolandasantacruz-portfolio/images/foo.png'
-   */
-  private resolveImageUrl(imageUrl: string): string {
-    if (!imageUrl || imageUrl.startsWith('http')) {
-      return imageUrl;
-    }
-    const base = this.baseHref.endsWith('/') ? this.baseHref.slice(0, -1) : this.baseHref;
-    const path = imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
-    return `${base}${path}`;
-  }
+  private imageUrlService = inject(ImageUrlService);
 
   readonly projects = signal<Project[]>(
     injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'))
@@ -417,7 +402,7 @@ export default class PortfolioHomeComponent {
       .map(project => ({
         title: project.attributes.title,
         description: project.attributes.description,
-        imageUrl: this.resolveImageUrl(project.attributes.imageUrl),
+        imageUrl: this.imageUrlService.resolve(project.attributes.imageUrl),
         link: `/projects/${project.attributes.slug}`,
         category: project.attributes.category,
         role: project.attributes.role,
