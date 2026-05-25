@@ -36,7 +36,7 @@ const SOCIAL_ICON_PATHS: Record<string, string> = {
         </div>
         <div class="hero-right">
           <div class="portrait-wrapper">
-            <img src="/images/yolanda_portrait.png" alt="Yolanda Santa Cruz" class="hero-portrait" />
+            <img src="/images/AboutMe-Image.png" alt="Yolanda Santa Cruz's image" class="hero-portrait" />
             <div class="portrait-glow"></div>
           </div>
         </div>
