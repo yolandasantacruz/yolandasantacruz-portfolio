@@ -1,5 +1,7 @@
 # Yolanda Santa Cruz Portfolio
 
+[![Build Status](https://github.com/yolandasantacruz/yolandasantacruz-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/yolandasantacruz/yolandasantacruz-portfolio/actions/workflows/deploy.yml) [![Deployment Status](https://img.shields.io/badge/Deployed%20to-GitHub%20Pages-3b9f98?style=flat-square&logo=github&logoColor=white)](https://yolandasantacruz.github.io/yolandasantacruz-portfolio/) [![Framework: Angular](https://img.shields.io/badge/Angular-21-DD0031?style=flat-square&logo=angular&logoColor=white)](https://angular.io) [![Meta-Framework: AnalogJS](https://img.shields.io/badge/AnalogJS-2.5-E03E2F?style=flat-square&logo=angular&logoColor=white)](https://analogjs.org) [![Unit Tests: Vitest](https://img.shields.io/badge/Unit%20Tests-Vitest-729B1B?style=flat-square&logo=vitest&logoColor=white)](https://vitest.dev)
+
 This is the professional portfolio of Yolanda Santa Cruz, built using [Analog](https://analogjs.org), the full-stack meta-framework for Angular.
 
 ## 🚀 Tech Stack
