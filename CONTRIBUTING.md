@@ -1,6 +1,6 @@
-# Contributing to Marble Finances
+# Contributing to Yolanda Santa Cruz's Portfolio
 
-First off, thank you for considering contributing to Marble Finances! Your help is what makes this project possible.
+First off, thank you for considering contributing to Yolanda Santa Cruz's Portfolio! Your help is what makes this project possible.
 
 ## 1. Where do I go from here?
 
