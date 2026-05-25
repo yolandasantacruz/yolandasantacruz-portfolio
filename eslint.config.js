@@ -10,7 +10,8 @@ export default tseslint.config(
       ".cache/",
       "node_modules/",
       "Library/",
-      "public/"
+      "public/",
+      "vite.config.ts"
     ]
   },
   {

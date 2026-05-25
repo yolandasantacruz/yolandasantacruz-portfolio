@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, afterNextRender, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { RouterLink, RouterOutlet, Router, NavigationStart } from '@angular/router';
+import { RouterOutlet, Router, NavigationStart } from '@angular/router';
 import { filter } from 'rxjs';
 import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-trail.component';
 
 @Component({
   selector: 'portfolio-root',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, MouseTrailComponent],
+  imports: [RouterOutlet, MouseTrailComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- High-Performance WebGL2 Shader Canvas (Isolated Design System Token) -->
