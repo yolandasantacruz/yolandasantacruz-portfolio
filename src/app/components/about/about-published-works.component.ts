@@ -1,15 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input, linkedSignal, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { PublicationsData, PublishedWork } from '../../pages/about.types';
-
-interface ApiMediaItem {
-  title: string;
-  category: string;
-  readTime?: string;
-  imageUrl: string;
-  url: string;
-  description: string;
-}
+import { PublicationsService } from '../../services/publications.service';
 
 @Component({
   selector: 'portfolio-about-published-works',
@@ -156,7 +147,7 @@ interface ApiMediaItem {
   `
 })
 export class AboutPublishedWorksComponent implements OnInit {
-  private http = inject(HttpClient);
+  private publicationsService = inject(PublicationsService);
 
   data = input<PublicationsData | undefined>();
 
@@ -166,22 +157,11 @@ export class AboutPublishedWorksComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.http.get<{ success: boolean; items?: ApiMediaItem[] }>('/api/v1/publications').subscribe({
-      next: (res) => {
-        if (res.success && res.items?.length) {
-          const mapped: PublishedWork[] = res.items.slice(0, 3).map((item) => ({
-            tag: item.category || 'ARTICLE',
-            title: item.title,
-            description: item.description,
-            imageUrl: item.imageUrl,
-            url: item.url
-          }));
-          this.items.set(mapped);
-        }
-      },
-      error: () => {
-        // Fallback is handled automatically by linkedSignal initializing with input data
+    this.publicationsService.load().subscribe((works) => {
+      if (works.length > 0) {
+        this.items.set(works);
       }
+      // Empty result means API failed — linkedSignal fallback from markdown stays active
     });
   }
 }
