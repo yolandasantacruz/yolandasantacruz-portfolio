@@ -1,9 +1,8 @@
-
 :root {
   --max-width: 1200px;
   --container-padding: 0 2rem;
   --font-main: 'Nunito', sans-serif;
-  --font-header: 'Futura PT', 'Futura', 'Jost', system-ui, sans-serif;
+  --font-header: 'Libre Baskerville', system-ui, sans-serif;
   --color-text: #1a1a1a;
   --color-text-muted: #666;
   --color-bg: #ffffff;
@@ -49,11 +48,16 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-header);
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  font-weight: 800;
+  font-weight: 400;
   text-align: left;
 }
 
@@ -79,8 +83,8 @@ analog-markdown {
   text-align: left;
 }
 
-analog-markdown h1, 
-analog-markdown h2, 
+analog-markdown h1,
+analog-markdown h2,
 analog-markdown h3 {
   margin-top: 4rem;
   margin-bottom: 2rem;
@@ -99,8 +103,15 @@ analog-markdown img {
 
 /* Global Subtle Animations & Scroll Reveal */
 @keyframes pageFadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fade-in-on-load {
@@ -116,7 +127,10 @@ analog-markdown img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-in-on-load, .fade-in-stagger-1, .fade-in-stagger-2 {
+
+  .fade-in-on-load,
+  .fade-in-stagger-1,
+  .fade-in-stagger-2 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -128,18 +142,29 @@ analog-markdown img {
 ::view-transition-old(root) {
   animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
 }
+
 ::view-transition-new(root) {
   animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
 }
 
 @keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* ==========================================================================
@@ -151,4 +176,3 @@ analog-markdown img {
    effects on sibling containers. Sibling layout containers must maintain z-index >= 10
    and position: relative to float seamlessly above the shader canvas.
    ========================================================================== */
-

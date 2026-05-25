@@ -26,10 +26,10 @@ To ensure a premium and fluid navigation experience, we utilize a tiered snappin
 
 ## 4. Typography
 * **Main Body Font**: 'Nunito', sans-serif (Weights: 400, 600, 700, 800).
-* **Header Font**: 'Futura PT', 'Futura', 'Jost', system-ui, sans-serif.
+* **Header Font**: 'Libre Baskerville', system-ui, sans-serif.
 * **Base Size**: 16px.
 * **Line Height**: 1.6 for body copy, 1.2 for headings.
-* **Heading Weight**: 800 (Extra Bold).
+* **Heading Weight**: 400 (Regular).
 
 ## 4. Color Palette
 The design system uses a curated, light-first palette focused on clarity and premium feel.
