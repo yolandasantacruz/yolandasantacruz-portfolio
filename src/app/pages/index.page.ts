@@ -338,13 +338,13 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
     @keyframes blob-morph {
       0%, 100% {
-        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
       }
-      34% {
-        border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+      33% {
+        border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
       }
       66% {
-        border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%;
+        border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
       }
     }
 

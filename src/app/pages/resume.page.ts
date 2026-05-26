@@ -142,9 +142,9 @@ import { FooterComponent } from '../components/footer/footer.component';
 
             <div class="sidebar-wave">
               <svg viewBox="0 0 200 100" preserveAspectRatio="none">
-                <path d="M0,50 C50,100 150,0 200,50 C200,50 200,100 200,100 L0,100 Z" fill="none" stroke="#55c5c7" stroke-width="2" opacity="0.3"></path>
-                <path d="M0,60 C50,110 150,10 200,60" fill="none" stroke="#55c5c7" stroke-width="2" opacity="0.2"></path>
-                <path d="M0,70 C50,120 150,20 200,70" fill="none" stroke="#55c5c7" stroke-width="2" opacity="0.1"></path>
+                <path d="M0,50 C50,100 150,0 200,50 C200,50 200,100 200,100 L0,100 Z" fill="none" stroke="#3b9f98" stroke-width="2" opacity="0.3"></path>
+                <path d="M0,60 C50,110 150,10 200,60" fill="none" stroke="#3b9f98" stroke-width="2" opacity="0.2"></path>
+                <path d="M0,70 C50,120 150,20 200,70" fill="none" stroke="#3b9f98" stroke-width="2" opacity="0.1"></path>
               </svg>
             </div>
           </aside>
@@ -179,10 +179,13 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .name {
+      font-family: var(--font-main);
       font-size: 2.5rem;
-      color: #55c5c7;
-      margin-bottom: 1.5rem;
       font-weight: 700;
+      color: #3b9f98;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
     }
 
     .summary {
@@ -193,13 +196,14 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .section-heading {
-      color: #55c5c7;
-      text-transform: uppercase;
-      font-size: 0.875rem;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      color: #3b9f98;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(85, 197, 199, 0.2);
+      border-bottom: 1px solid rgba(59, 159, 152, 0.2);
       padding-bottom: 0.5rem;
     }
 
@@ -271,7 +275,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 
     .sidebar-list li::before {
       content: "•";
-      color: #55c5c7;
+      color: #3b9f98;
       position: absolute;
       left: -1rem;
     }
@@ -306,7 +310,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 
     .download-btn {
       padding: 1rem 3rem;
-      background-color: #55c5c7;
+      background-color: #3b9f98;
       color: white;
       border: none;
       border-radius: 30px;
@@ -317,9 +321,9 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .download-btn:hover {
-      background-color: #44b4b6;
+      background-color: #2d827c;
       transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(85, 197, 199, 0.2);
+      box-shadow: 0 10px 20px rgba(59, 159, 152, 0.2);
     }
 
     @media (max-width: 900px) {
