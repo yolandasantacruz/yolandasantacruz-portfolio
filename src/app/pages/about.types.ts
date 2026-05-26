@@ -62,7 +62,6 @@ export interface TimelineItem {
 
 export interface TimelineData {
   heading: string;
-  subhead: string;
   items: TimelineItem[];
 }
 

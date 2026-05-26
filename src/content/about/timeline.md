@@ -1,6 +1,5 @@
 ---
 heading: "10+ years of experience in crafting exceptional digital experiences"
-subhead: "I've honed my skills across diverse projects and industries, transforming this passion into a fulfilling career. Each experience has shaped my perspective and fueled my growth, allowing me to approach design with a unique blend of expertise and enthusiasm."
 items:
   - company: "Discover Financial Services"
     logo: "/images/logos/discover.png"

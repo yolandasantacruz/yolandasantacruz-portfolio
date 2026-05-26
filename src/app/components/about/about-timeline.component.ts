@@ -11,11 +11,11 @@ import { TimelineData } from '../../pages/about.types';
       <section class="timeline-section">
         <div class="timeline-header-grid">
           <div class="header-left">
-            <span class="section-tag">TRACK RECORD</span>
+            <span class="section-tag">Career Overview</span>
             <h2 class="timeline-heading">{{ timeline.heading }}</h2>
           </div>
           <div class="header-right">
-            <p class="timeline-subhead">{{ timeline.subhead }}</p>
+            <a href="/resume" class="download-btn">View My Resume</a>
           </div>
         </div>
 
@@ -38,8 +38,6 @@ import { TimelineData } from '../../pages/about.types';
               </div>
             }
           </div>
-
-          <div class="positions-divider" aria-hidden="true"></div>
 
           <div class="positions-col right-col">
             @for (item of rightTimelineItems(); track item.company) {
@@ -95,14 +93,6 @@ import { TimelineData } from '../../pages/about.types';
       line-height: 1.2;
     }
 
-    .timeline-subhead {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #666;
-      font-weight: 300;
-      margin: 0;
-    }
-
     .timeline-positions-container {
       display: flex;
       gap: 4rem;
@@ -114,11 +104,6 @@ import { TimelineData } from '../../pages/about.types';
       display: flex;
       flex-direction: column;
       gap: 3rem;
-    }
-
-    .positions-divider {
-      width: 1px;
-      background: rgba(0,0,0,0.08);
     }
 
     .position-item {
@@ -195,7 +180,6 @@ import { TimelineData } from '../../pages/about.types';
 
     @media (max-width: 768px) {
       .timeline-positions-container { flex-direction: column; gap: 3rem; }
-      .positions-divider { display: none; }
       .timeline-heading { font-size: 2rem; }
     }
   `

@@ -5,7 +5,6 @@ import { By } from '@angular/platform-browser';
 
 const MOCK_TIMELINE_DATA: TimelineData = {
   heading: '10+ years of experience in crafting digital experiences',
-  subhead: 'Mock subhead text detailing track record history.',
   items: [
     {
       company: 'Discover',
@@ -31,7 +30,7 @@ describe('AboutTimelineComponent', () => {
     }).compileComponents();
   });
 
-  it('should render section, heading, and subhead when data is provided', () => {
+  it('should render section and heading when data is provided', () => {
     const fixture = TestBed.createComponent(AboutTimelineComponent);
     fixture.componentRef.setInput('data', MOCK_TIMELINE_DATA);
     fixture.detectChanges();
@@ -39,10 +38,6 @@ describe('AboutTimelineComponent', () => {
     const heading = fixture.debugElement.query(By.css('.timeline-heading'));
     expect(heading).toBeTruthy();
     expect(heading.nativeElement.textContent).toBe('10+ years of experience in crafting digital experiences');
-
-    const subhead = fixture.debugElement.query(By.css('.timeline-subhead'));
-    expect(subhead).toBeTruthy();
-    expect(subhead.nativeElement.textContent).toBe('Mock subhead text detailing track record history.');
   });
 
   it('should partition timeline items into left and right columns', () => {

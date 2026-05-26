@@ -69,6 +69,7 @@ import { SocialIconService } from '../../services/social-icon.service';
     }
 
     .greeting-smiley {
+      margin-left: 0.75rem;
       font-style: normal;
       display: inline-block;
     }
