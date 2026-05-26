@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ScrollRevealDirective } from './scroll-reveal.directive';
 import { By } from '@angular/platform-browser';
@@ -8,7 +8,8 @@ import { By } from '@angular/platform-browser';
     <div portfolioScrollReveal id="test-div">Test Component Content</div>
   `,
   imports: [ScrollRevealDirective],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestHostComponent {}
 
