@@ -66,9 +66,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
               <p class="bridge-copy">
                 {{ bridgeData.description }}
               </p>
-              <a routerLink="/about" class="bridge-cta">
-                Explore My Story <span class="arrow">&rarr;</span>
-              </a>
+              <a routerLink="/about" class="bridge-cta">TRACE MY PATH</a>
             </div>
           }
           <portfolio-footer />
@@ -338,37 +336,42 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       font-weight: 300;
     }
 
+    @keyframes blob-morph {
+      0%, 100% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      }
+      34% {
+        border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+      }
+      66% {
+        border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%;
+      }
+    }
+
     .bridge-cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      background: #111a19;
-      color: #ffffff;
-      padding: 1.1rem 2.5rem;
-      border-radius: 100px;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      justify-content: center;
+      background: rgba(0, 200, 201, 0.1);
+      color: #3b9f98;
+      width: 220px;
+      height: 90px;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      animation: blob-morph 6s ease-in-out infinite alternate;
       margin-top: 1rem;
     }
 
     .bridge-cta:hover {
-      background: #5ed6cc;
-      color: #111;
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(94, 214, 204, 0.3);
-    }
-
-    .bridge-cta .arrow {
-      transition: transform 0.3s ease;
-      font-size: 1.2rem;
-    }
-
-    .bridge-cta:hover .arrow {
-      transform: translateX(4px);
+      background: rgba(0, 200, 201, 0.2);
+      color: #3b9f98;
+      transform: scale(1.05);
     }
 
     @media (max-width: 1024px) {

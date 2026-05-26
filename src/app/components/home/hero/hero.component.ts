@@ -38,7 +38,9 @@ import { HomeHeroData } from '../../../pages/home.types';
         <span class="hero-tag">{{ data().tag }}</span>
         <h1 class="hero-hook">@if (hookParts().highlight) {<span class="cohesive-phrase">{{ hookParts().main }}</span><br class="hero-break" /><span class="cohesive-phrase italic-text">{{ hookParts().highlight }}</span>} @else {{{ data().hook }}}</h1>
         <p class="hero-subcopy">{{ data().subcopy }}</p>
-        <a routerLink="/about" class="about-button">About Me <span class="arrow">&rarr;</span></a>
+        <div class="about-button-wrapper">
+          <a routerLink="/about" class="about-button">ABOUT ME</a>
+        </div>
       </div>
     </section>
   `,
@@ -51,6 +53,18 @@ import { HomeHeroData } from '../../../pages/home.types';
     @keyframes traceFloat {
       0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
       50% { transform: translateY(-15px) scale(1.03) rotate(1deg); }
+    }
+
+    @keyframes blob-morph {
+      0%, 100% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      }
+      34% {
+        border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+      }
+      66% {
+        border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%;
+      }
     }
 
     .hero {
@@ -145,44 +159,40 @@ import { HomeHeroData } from '../../../pages/home.types';
       animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
-    .about-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: #111a19;
-      color: #ffffff;
-      padding: 1rem 2.25rem;
-      border-radius: 100px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid transparent;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    .about-button-wrapper {
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
       animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
     }
+
+    .about-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 200, 201, 0.1);
+      color: #3b9f98;
+      width: 220px;
+      height: 90px;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      animation: blob-morph 6s ease-in-out infinite alternate;
+    }
+
     .about-button:hover {
-      background: #5ed6cc;
-      color: #111;
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(94, 214, 204, 0.3);
-    }
-
-    .about-button .arrow {
-      transition: transform 0.3s ease;
-      font-size: 1.2rem;
-    }
-
-    .about-button:hover .arrow {
-      transform: translateX(4px);
+      background: rgba(0, 200, 201, 0.2);
+      color: #3b9f98;
+      transform: scale(1.05);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-tag, .hero-hook, .hero-subcopy, .about-button, .hero-bg-trace svg {
+      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper, .about-button, .hero-bg-trace svg {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;

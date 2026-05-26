@@ -33,22 +33,57 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="container">
-      <portfolio-header />
+    <div class="about-wrapper">
+      <!-- Fluid background line winding down the page behind text -->
+      <div class="fluid-line-bg" aria-hidden="true">
+        <svg viewBox="0 0 1200 3200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 200,-100 C 250,200 1000,300 1000,800 C 1000,1300 150,1400 150,1900 C 150,2400 1050,2500 1050,2900 C 1050,3100 600,3150 400,3250 L 408,3250 C 605,3150 1042,3100 1042,2900 C 1042,2400 240,2400 240,1900 C 240,1400 994,1300 994,800 C 994,300 300,200 205,-100 Z" fill="#00C8C9" opacity="0.05" />
+        </svg>
+      </div>
 
-      <main class="about-main">
-        <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
-        <portfolio-about-belief [data]="beliefData" />
-        <portfolio-about-pillars [data]="pillarsData" />
-        <portfolio-about-testimonials [items]="testimonialItems" />
-        <portfolio-about-timeline [data]="timelineData" />
-        <portfolio-about-published-works [data]="publicationsData" />
-      </main>
+      <div class="container relative-container">
+        <portfolio-header />
 
-      <portfolio-footer />
+        <main class="about-main">
+          <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
+          <portfolio-about-belief [data]="beliefData" />
+          <portfolio-about-pillars [data]="pillarsData" />
+          <portfolio-about-testimonials [items]="testimonialItems" />
+          <portfolio-about-timeline [data]="timelineData" />
+          <portfolio-about-published-works [data]="publicationsData" />
+        </main>
+
+        <portfolio-footer />
+      </div>
     </div>
   `,
   styles: `
+    .about-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .fluid-line-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 6; /* Sits above WebGL mouse trail (z-index 5) but below content */
+      pointer-events: none;
+    }
+
+    .fluid-line-bg svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .relative-container {
+      position: relative;
+      z-index: 10; /* Ensures readable content floats above the background line */
+    }
+
     .about-main {
       padding-top: 6rem;
       padding-bottom: 8rem;

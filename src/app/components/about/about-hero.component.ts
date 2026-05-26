@@ -119,14 +119,7 @@ import { SocialIconService } from '../../services/social-icon.service';
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
       border: 2px solid rgba(94, 214, 204, 0.3);
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .portrait-wrapper:hover {
-      transform: scale(1.02);
-      border-color: #5ed6cc;
     }
 
     .hero-portrait {

@@ -168,7 +168,7 @@ import { FooterComponent } from '../components/footer/footer.component';
       font-size: 4rem;
       text-align: center;
       margin-bottom: 6rem;
-      font-weight: 800;
+      font-weight: 400;
     }
 
     .resume-grid {
