@@ -38,7 +38,7 @@ import { DOCUMENT } from '@angular/common';
     .nav-links a {
       text-decoration: none;
       color: inherit;
-      font-weight: 500;
+      font-weight: 400;
       opacity: 0.7;
       transition: opacity 0.2s;
     }

@@ -36,18 +36,18 @@ import { FooterData, SocialsData } from '../../pages/shared.types';
       gap: 2rem; 
       margin-bottom: 2rem; 
     }
-    .footer-social a { text-decoration: none; color: inherit; font-weight: 500; opacity: 0.7; }
+    .footer-social a { text-decoration: none; color: inherit; font-weight: 400; opacity: 0.7; }
     .footer-social a:hover { opacity: 1; }
     .copyright { font-size: 0.875rem; opacity: 0.6; text-align: center; }
     .heart { color: #55c5c7; }
   `
 })
 export class FooterComponent {
-  readonly footer = injectContentFiles<FooterData>(file => 
+  readonly footer = injectContentFiles<FooterData>(file =>
     file.filename.includes('/shared/footer')
   )[0]?.attributes;
 
-  readonly socials = injectContentFiles<SocialsData>(file => 
+  readonly socials = injectContentFiles<SocialsData>(file =>
     file.filename.includes('/shared/socials')
   )[0]?.attributes;
 }

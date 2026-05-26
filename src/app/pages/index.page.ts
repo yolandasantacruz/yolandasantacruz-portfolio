@@ -323,9 +323,9 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
     .bridge-heading {
       font-size: 3.25rem;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.15;
       color: #111;
       margin: 0;
     }

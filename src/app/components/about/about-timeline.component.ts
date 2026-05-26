@@ -147,10 +147,13 @@ import { TimelineData } from '../../pages/about.types';
     }
 
     .position-role {
+      font-family: var(--font-header);
       font-size: 1.25rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #111;
       margin: 0;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
     .position-loc {

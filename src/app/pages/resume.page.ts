@@ -215,8 +215,11 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .job-title {
+      font-family: var(--font-header);
       font-size: 1.25rem;
       font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
     .job-meta {

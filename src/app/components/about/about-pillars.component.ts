@@ -140,7 +140,7 @@ import { PillarsData } from '../../pages/about.types';
 
     .comp-val {
       color: #3b9f98;
-      font-weight: 500;
+      font-weight: 400;
       background: rgba(59, 159, 152, 0.1);
       padding: 0.25rem 0.75rem;
       border-radius: 100px;

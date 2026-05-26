@@ -13,7 +13,7 @@ import { SocialIconService } from '../../services/social-icon.service';
     @if (data(); as hero) {
       <section class="about-hero">
         <div class="hero-left">
-          <h1 class="hero-greeting">{{ hero.greeting }}</h1>
+          <h1 class="hero-greeting">@if (greetingParts().name) {<span class="cohesive-phrase">{{ greetingParts().welcome }}</span><br class="hero-break" /><span class="cohesive-phrase italic-text">{{ greetingParts().name }}</span>@if (greetingParts().smiley) {<span class="greeting-smiley"> {{ greetingParts().smiley }}</span>}} @else {{{ hero.greeting }}}</h1>
           <p class="hero-mission">{{ hero.mission }}</p>
           @if (socialLinks().length > 0) {
             <div class="social-links">
@@ -46,12 +46,27 @@ import { SocialIconService } from '../../services/social-icon.service';
     }
 
     .hero-greeting {
+      font-family: var(--font-header);
       font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
       color: #111;
       margin-bottom: 2rem;
+    }
+
+    .cohesive-phrase {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .italic-text {
+      font-style: italic;
+    }
+
+    .greeting-smiley {
+      font-style: normal;
+      display: inline-block;
     }
 
     .hero-mission {
@@ -127,6 +142,8 @@ import { SocialIconService } from '../../services/social-icon.service';
         margin-bottom: 6rem;
       }
       .hero-greeting { font-size: 2.5rem; }
+      .hero-break { display: none; }
+      .cohesive-phrase { white-space: normal; display: inline; }
       .portrait-wrapper { width: 280px; }
     }
   `
@@ -138,6 +155,32 @@ export class AboutHeroComponent {
 
   /** Resolved list of social links from the socials input */
   socialLinks = computed<SocialLink[]>(() => this.socials()?.links ?? []);
+
+  /** Parse greeting text to split greeting and name with optional smiley */
+  readonly greetingParts = computed(() => {
+    const greeting = this.data()?.greeting ?? '';
+    const commaIndex = greeting.indexOf(',');
+    if (commaIndex !== -1) {
+      const welcome = greeting.slice(0, commaIndex + 1).trim();
+      const rest = greeting.slice(commaIndex + 1).trim();
+
+      const smileyIndex = rest.indexOf(':)');
+      if (smileyIndex !== -1) {
+        return {
+          welcome,
+          name: rest.slice(0, smileyIndex).trim(),
+          smiley: rest.slice(smileyIndex).trim()
+        };
+      }
+
+      return {
+        welcome,
+        name: rest,
+        smiley: ''
+      };
+    }
+    return { welcome: greeting, name: '', smiley: '' };
+  });
 
   /** Retrieves the SVG path for a given platform name from the shared icon registry */
   iconPath(platform: string): string | undefined {

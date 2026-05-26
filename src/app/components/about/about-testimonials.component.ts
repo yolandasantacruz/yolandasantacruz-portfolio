@@ -166,10 +166,12 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .author-name {
+      font-family: var(--font-header);
       font-size: 1.25rem;
       font-weight: 700;
       color: inherit;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
     .author-role {
@@ -236,10 +238,11 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .testimonial-quote {
+      font-family: var(--font-main);
       font-size: 1.15rem;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.5;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.8;
       max-width: 65ch;
       color: #111;
       margin: 0;

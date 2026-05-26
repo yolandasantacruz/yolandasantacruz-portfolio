@@ -161,4 +161,27 @@ describe('AboutHeroComponent', () => {
   it('should return empty array for socialLinks when socials is undefined', () => {
     expect(component.socialLinks()).toEqual([]);
   });
+
+  it('should parse greeting and render cohesive-phrase spans, layout break and normal smiley when greeting contains a comma and smiley', async () => {
+    componentRef.setInput('data', {
+      greeting: "Welcome, I'm Yolanda :)",
+      mission: "Mission copy text"
+    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const greeting = fixture.debugElement.query(By.css('.hero-greeting'));
+    const phrases = greeting.queryAll(By.css('.cohesive-phrase'));
+    const breakEl = greeting.query(By.css('.hero-break'));
+    const smileyEl = greeting.query(By.css('.greeting-smiley'));
+
+    expect(phrases.length).toBe(2);
+    expect(phrases[0].nativeElement.textContent).toBe('Welcome,');
+    expect(phrases[1].nativeElement.textContent).toBe("I'm Yolanda");
+    expect(phrases[1].nativeElement.classList.contains('italic-text')).toBe(true);
+    expect(smileyEl).toBeTruthy();
+    expect(smileyEl.nativeElement.textContent.trim()).toBe(':)');
+    expect(smileyEl.nativeElement.classList.contains('italic-text')).toBe(false);
+    expect(breakEl).toBeTruthy();
+  });
 });

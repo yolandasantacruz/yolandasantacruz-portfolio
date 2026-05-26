@@ -125,11 +125,13 @@ export interface Project {
     }
 
     .project-title {
+      font-family: var(--font-header);
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: 400;
       color: #1a1a1a;
       margin: 0;
-      line-height: 1.2;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       text-align: left;
       width: 100%;
     }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HomeHeroData } from '../../../pages/home.types';
 
@@ -36,7 +36,7 @@ import { HomeHeroData } from '../../../pages/home.types';
 
       <div class="hero-content">
         <span class="hero-tag">{{ data().tag }}</span>
-        <h1 class="hero-hook">{{ data().hook }}</h1>
+        <h1 class="hero-hook">@if (hookParts().highlight) {<span class="cohesive-phrase">{{ hookParts().main }}</span><br class="hero-break" /><span class="cohesive-phrase italic-text">{{ hookParts().highlight }}</span>} @else {{{ data().hook }}}</h1>
         <p class="hero-subcopy">{{ data().subcopy }}</p>
         <a routerLink="/about" class="about-button">About Me <span class="arrow">&rarr;</span></a>
       </div>
@@ -109,10 +109,11 @@ import { HomeHeroData } from '../../../pages/home.types';
     }
 
     .hero-hook {
+      font-family: var(--font-header);
       font-size: 4.5rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
       color: #111;
       margin: 0 0 2.5rem 0;
       opacity: 0;
@@ -120,6 +121,15 @@ import { HomeHeroData } from '../../../pages/home.types';
       transform: translateY(30px);
       will-change: transform, opacity;
       animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    .cohesive-phrase {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .italic-text {
+      font-style: italic;
     }
 
     .hero-subcopy {
@@ -186,9 +196,23 @@ import { HomeHeroData } from '../../../pages/home.types';
     @media (max-width: 768px) {
       .hero-hook { font-size: 2.75rem; }
       .hero-subcopy { font-size: 1.1rem; }
+      .hero-break { display: none; }
+      .cohesive-phrase { white-space: normal; display: inline; }
     }
   `
 })
 export class HeroComponent {
   readonly data = input.required<HomeHeroData>();
+
+  readonly hookParts = computed(() => {
+    const hook = this.data()?.hook ?? '';
+    const commaIndex = hook.indexOf(',');
+    if (commaIndex !== -1) {
+      return {
+        main: hook.slice(0, commaIndex + 1).trim(),
+        highlight: hook.slice(commaIndex + 1).trim()
+      };
+    }
+    return { main: hook, highlight: '' };
+  });
 }

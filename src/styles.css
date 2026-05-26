@@ -77,7 +77,9 @@ body {
   font-family: var(--font-main);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.8;
+  font-weight: 400;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   text-align: left;
 }
@@ -109,15 +111,19 @@ h4,
 h5,
 h6 {
   font-family: var(--font-header);
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   text-align: left;
 }
 
 p {
   margin-bottom: 1.5rem;
   text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 a {
