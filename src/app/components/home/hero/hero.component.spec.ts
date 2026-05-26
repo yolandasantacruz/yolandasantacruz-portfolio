@@ -64,7 +64,7 @@ describe('HeroComponent', () => {
   it('should parse hook and render cohesive-phrase spans and layout break when hook contains a comma', () => {
     componentRef.setInput('data', {
       tag: 'TEST TAG',
-      hook: 'Designing for ease, impact, and scale',
+      hook: 'Designing for impact, scale, and ease',
       subcopy: 'This is a test subcopy description.'
     });
     fixture.detectChanges();
@@ -74,8 +74,8 @@ describe('HeroComponent', () => {
     const breakEl = hook.query(By.css('.hero-break'));
 
     expect(phrases.length).toBe(2);
-    expect(phrases[0].nativeElement.textContent).toBe('Designing for ease,');
-    expect(phrases[1].nativeElement.textContent).toBe('impact, and scale');
+    expect(phrases[0].nativeElement.textContent).toBe('Designing for impact,');
+    expect(phrases[1].nativeElement.textContent).toBe('scale, and ease');
     expect(phrases[1].nativeElement.classList.contains('italic-text')).toBe(true);
     expect(breakEl).toBeTruthy();
   });

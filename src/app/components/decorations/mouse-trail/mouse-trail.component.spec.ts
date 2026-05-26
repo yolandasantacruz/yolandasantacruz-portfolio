@@ -71,10 +71,10 @@ describe('MouseTrailComponent', () => {
     
     const styles = win.getComputedStyle(hostElement);
     
-    // In actual browser these would be '5' and 'absolute'
+    // In actual browser these would be '999999' and 'fixed'
     // In test environment we check the component's defined styles
-    expect(styles.zIndex).toBe('5');
-    expect(styles.position).toBe('absolute');
+    expect(styles.zIndex).toBe('999999');
+    expect(styles.position).toBe('fixed');
     expect(styles.pointerEvents).toBe('none');
   });
 

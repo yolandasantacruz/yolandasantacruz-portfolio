@@ -159,11 +159,10 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
      */
 
     #project-0 {
-      /* Starts from hero's white, holds periwinkle, bleeds to Fetch Pay purple */
+      /* Holds periwinkle, bleeds to Fetch Pay purple */
       background: linear-gradient(
         to bottom,
-        var(--section-bg-hero)           0%,
-        var(--section-bg-pay-with-app)   12%,
+        var(--section-bg-pay-with-app)   0%,
         var(--section-bg-pay-with-app)   78%,
         var(--section-bg-fetch-pay)      100%
       );
@@ -238,11 +237,12 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
     .pill-label {
       opacity: 0;
-      color: #111;
-      font-family: var(--font-header);
-      font-size: 0.95rem;
-      font-weight: 300;
-      letter-spacing: -0.03em;
+      color: #3b9f98;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       white-space: nowrap;
       overflow: hidden;
       max-width: 0;
@@ -255,7 +255,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       max-width: 320px;
       padding: 0 14px;
       background: #ffffff;
-      border-color: color-mix(in srgb, var(--pill-color) 70%, transparent);
+      border: 4px solid #ffffff;
       box-shadow: 0 8px 24px rgba(255, 255, 255, 0.6);
       opacity: 1;
     }
@@ -354,8 +354,8 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       justify-content: center;
       background: rgba(0, 200, 201, 0.1);
       color: #3b9f98;
-      width: 220px;
-      height: 90px;
+      width: 180px;
+      height: 76px;
       font-family: var(--font-main);
       font-size: 0.8rem;
       font-weight: 700;

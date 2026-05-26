@@ -27,7 +27,7 @@ import { FooterComponent } from '../components/footer/footer.component';
               <div class="job-entry">
                 <div class="job-header">
                   <span class="job-title">Lead Product Designer</span>
-                  <span class="job-meta">Discover Financial Services, Chicago, IL (Remote) · January 2023 - Present</span>
+                  <span class="job-meta">Discover Financial Services, Chicago, IL (Remote) · January 2025 - Present</span>
                 </div>
                 <ul class="job-bullets">
                   <li>Led end-to-end design for a $200M initiative, focused on increasing user engagement and visibility of card-related benefits.</li>
@@ -64,7 +64,7 @@ import { FooterComponent } from '../components/footer/footer.component';
               <div class="job-entry">
                 <div class="job-header">
                   <span class="job-title">Product Designer</span>
-                  <span class="job-meta">Zalando, Miami, FL (Remote) · December 2019 - February 2021</span>
+                  <span class="job-meta">Zelenia, Miami, FL (Remote) · December 2019 - February 2021</span>
                 </div>
                 <ul class="job-bullets">
                   <li>Led product discussions and captured requirements across various industries.</li>
@@ -180,7 +180,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 
     .name {
       font-family: var(--font-main);
-      font-size: 2.5rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #3b9f98;
       letter-spacing: 0.2em;
@@ -189,7 +189,7 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .summary {
-      font-size: 1.125rem;
+      font-size: 1.3 rem;
       line-height: 1.6;
       margin-bottom: 4rem;
       max-width: 800px;
@@ -336,4 +336,4 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
   `,
 })
-export default class ResumeComponent {}
+export default class ResumeComponent { }

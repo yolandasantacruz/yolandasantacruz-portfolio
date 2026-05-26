@@ -114,7 +114,7 @@ export interface Project {
     .project-meta {
       font-size: 0.875rem;
       color: #666;
-      font-weight: 500;
+      font-weight: 400;
       text-align: left;
       width: 100%;
     }
@@ -125,13 +125,11 @@ export interface Project {
     }
 
     .project-title {
-      font-family: var(--font-header);
       font-size: 2rem;
-      font-weight: 400;
+      font-weight: 700;
       color: #1a1a1a;
       margin: 0;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.2;
       text-align: left;
       width: 100%;
     }
@@ -159,7 +157,7 @@ export interface Project {
       padding: 6px 14px;
       border-radius: 100px;
       font-size: 0.8125rem;
-      font-weight: 500;
+      font-weight: 400;
       color: #555;
     }
 
@@ -167,7 +165,7 @@ export interface Project {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-weight: 600;
+      font-weight: 400;
       color: #1a1a1a;
       text-decoration: none;
       margin-top: 1rem;

@@ -19,16 +19,16 @@ import { MouseTrailService } from './mouse-trail.service';
   styles: `
     :host {
       display: block;
-      position: absolute;
+      position: fixed;
       pointer-events: none;
-      z-index: 5;
+      z-index: 999999;
       inset: 0;
     }
 
     .mouse-trail {
       position: fixed;
       inset: 0;
-      z-index: 5;
+      z-index: 999999;
       overflow: hidden;
       pointer-events: none;
       background: transparent !important;
@@ -39,7 +39,7 @@ import { MouseTrailService } from './mouse-trail.service';
       inset: 0;
       width: 100%;
       height: 100%;
-      z-index: 1;
+      z-index: 999999;
       mix-blend-mode: multiply;
       opacity: 0.50;
     }
