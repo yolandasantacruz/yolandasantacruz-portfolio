@@ -15,7 +15,7 @@ import { TimelineData } from '../../pages/about.types';
             <h2 class="timeline-heading">{{ timeline.heading }}</h2>
           </div>
           <div class="header-right">
-            <a href="/resume" class="download-btn">View My Resume</a>
+            <a href="/resume" class="btn-blob download-btn">View My Resume</a>
           </div>
         </div>
 
@@ -175,7 +175,7 @@ import { TimelineData } from '../../pages/about.types';
     }
 
     @media (max-width: 1024px) {
-      .timeline-header-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .timeline-header-grid { grid-template-columns: 1fr; gap: 2rem;  }
     }
 
     @media (max-width: 768px) {

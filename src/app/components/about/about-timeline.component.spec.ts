@@ -88,4 +88,15 @@ describe('AboutTimelineComponent', () => {
     const img = zeleniaBox.query(By.css('img.logo-image'));
     expect(img).toBeNull();
   });
+
+  it('should render the View My Resume link with the global btn-blob class', () => {
+    const fixture = TestBed.createComponent(AboutTimelineComponent);
+    fixture.componentRef.setInput('data', MOCK_TIMELINE_DATA);
+    fixture.detectChanges();
+
+    const resumeLink = fixture.debugElement.query(By.css('.download-btn'));
+    expect(resumeLink).toBeTruthy();
+    expect(resumeLink.nativeElement.getAttribute('href')).toBe('/resume');
+    expect(resumeLink.nativeElement.classList.contains('btn-blob')).toBe(true);
+  });
 });

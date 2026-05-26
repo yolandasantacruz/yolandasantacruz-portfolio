@@ -63,7 +63,36 @@ The floating side rail navigation uses interactive pill/dot components to indica
 * **Drop Shadow**: Maintained as a premium white glow across all states (`rgba(255, 255, 255, 0.5)` to `0.8`) to contrast elegantly against the WebGL shader canvas and colorful project backgrounds.
 * **Active State**: The active section indicator removes its border (`border-width: 0`), transforming into a solid accent dot for strong visual distinction.
 
-## 7. Testimonial Background Blob (Motion & Color Shifting)
+## 7. Blob Button Token (`.btn-blob`)
+
+The `.btn-blob` global utility class is the **single source of truth** for the morphing teal CTA button pattern. It is used across:
+
+| Usage | Location | Width Override |
+|---|---|---|
+| "ABOUT ME" hero CTA | `HeroComponent` → `.about-button` | `--btn-blob-width: 180px` |
+| "View My Resume" timeline link | `AboutTimelineComponent` → `.download-btn` | *(default 200px)* |
+| "DOWNLOAD RESUME" resume page | `ResumeComponent` → `.download-btn` | `--btn-blob-width: 220px` |
+
+### Design Tokens
+
+* **Base width**: `--btn-blob-width: 200px` (override per-use via CSS custom property)
+* **Height**: `76px` (fixed — do not alter)
+* **Background**: `rgba(0, 200, 201, 0.1)` → `rgba(0, 200, 201, 0.2)` on hover
+* **Color**: `#3b9f98` (Dark Teal Contrast Accent)
+* **Animation**: `blob-morph` (6s, `ease-in-out`, `infinite alternate`) — defined globally in `src/styles.css`
+* **Hover**: `scale(1.05)`, `0.5s cubic-bezier(0.16, 1, 0.3, 1)` — aligns with animation guardrails
+* **Reduced Motion**: animation disabled, `border-radius: 30px` fallback
+
+### Extension Protocol
+
+To add a new blob button anywhere in the codebase:
+1. Add `class="btn-blob"` to the element.
+2. If a non-default width is needed, set `--btn-blob-width: <value>` on the element or its scoped class.
+3. **Do not** copy-paste the visual rules — always reference the global class.
+
+---
+
+## 8. Testimonial Background Blob (Motion & Color Shifting)
 The testimonial section is framed within a sophisticated, organic SVG blob background that reacts dynamically to user interaction while maintaining continuous ambient life.
 * **Ambient State**: Vertices drift continuously in a rhythmic sine/cosine wave pattern (speed 0.0015, amplitude 12px), resembling calm lagoon water ripples without inducing motion sickness.
 * **Dynamic Tangents**: To prevent kinks or vector path creases when moving or morphing, tangent handles are computed dynamically at runtime based on the positions of adjacent anchor points using Catmull-Rom spline logic with a tension factor of `k = 0.22` (relative to neighbor chord lengths). This ensures the curves remain perfectly smooth ($C^1$ continuity) and eliminates flat angles or sharp creases. Vector handles must never be animated independently from their endpoints.

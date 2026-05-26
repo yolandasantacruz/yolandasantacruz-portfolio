@@ -48,7 +48,7 @@ describe('HeroComponent', () => {
     expect(subcopy.nativeElement.textContent.trim()).toBe('This is a test subcopy description.');
   });
 
-  it('should render the About Me button pointing to /about', () => {
+  it('should render the About Me button pointing to /about with the blob button styling', () => {
     componentRef.setInput('data', {
       tag: 'TEST TAG',
       hook: 'Test Hook Line',
@@ -59,6 +59,7 @@ describe('HeroComponent', () => {
     const button = fixture.debugElement.query(By.css('.about-button'));
     expect(button).toBeTruthy();
     expect(button.nativeElement.getAttribute('href')).toBe('/about');
+    expect(button.nativeElement.classList.contains('btn-blob')).toBe(true);
   });
 
   it('should parse hook and render cohesive-phrase spans and layout break when hook contains a comma', () => {

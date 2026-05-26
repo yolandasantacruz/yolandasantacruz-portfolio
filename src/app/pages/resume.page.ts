@@ -144,7 +144,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
         </div>
 
         <div class="download-section" portfolioScrollReveal>
-          <button class="download-btn">DOWNLOAD RESUME</button>
+          <button class="btn-blob download-btn">DOWNLOAD RESUME</button>
         </div>
       </main>
 
@@ -349,43 +349,9 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
       margin-top: 4rem;
     }
 
+    /* Width override for the resume CTA — global .btn-blob defaults to 200px */
     .download-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 200, 201, 0.1);
-      color: #3b9f98;
-      width: 220px;
-      height: 76px;
-      font-family: var(--font-main);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 24px rgba(0, 200, 201, 0.05);
-      animation: blob-morph 6s ease-in-out infinite alternate;
-    }
-
-    .download-btn:hover {
-      background: rgba(0, 200, 201, 0.2);
-      color: #3b9f98;
-      transform: scale(1.05);
-    }
-
-    @keyframes blob-morph {
-      0%, 100% {
-        border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
-      }
-      33% {
-        border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
-      }
-      66% {
-        border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
-      }
+      --btn-blob-width: 220px;
     }
 
     @media (max-width: 900px) {
@@ -398,10 +364,6 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .download-btn {
-        animation: none !important;
-        border-radius: 30px !important;
-      }
       .page-title, .name, .summary, .contact-info {
         animation: none !important;
         opacity: 1 !important;

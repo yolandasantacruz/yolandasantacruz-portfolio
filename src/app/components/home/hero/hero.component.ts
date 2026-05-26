@@ -39,7 +39,7 @@ import { HomeHeroData } from '../../../pages/home.types';
         <h1 class="hero-hook">@if (hookParts().highlight) {<span class="cohesive-phrase">{{ hookParts().main }}</span><br class="hero-break" /><span class="cohesive-phrase italic-text">{{ hookParts().highlight }}</span>} @else {{{ data().hook }}}</h1>
         <p class="hero-subcopy">{{ data().subcopy }}</p>
         <div class="about-button-wrapper">
-          <a routerLink="/about" class="about-button">ABOUT ME</a>
+          <a routerLink="/about" class="btn-blob about-button">ABOUT ME</a>
         </div>
       </div>
     </section>
@@ -53,18 +53,6 @@ import { HomeHeroData } from '../../../pages/home.types';
     @keyframes traceFloat {
       0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
       50% { transform: translateY(-15px) scale(1.03) rotate(1deg); }
-    }
-
-    @keyframes blob-morph {
-      0%, 100% {
-        border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
-      }
-      33% {
-        border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
-      }
-      66% {
-        border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
-      }
     }
 
     .hero {
@@ -167,33 +155,13 @@ import { HomeHeroData } from '../../../pages/home.types';
       animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
     }
 
+    /* Width override for the hero CTA — global .btn-blob defaults to 200px */
     .about-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 200, 201, 0.1);
-      color: #3b9f98;
-      width: 180px;
-      height: 76px;
-      font-family: var(--font-main);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid transparent;
-      animation: blob-morph 6s ease-in-out infinite alternate;
-    }
-
-    .about-button:hover {
-      background: rgba(0, 200, 201, 0.2);
-      color: #3b9f98;
-      transform: scale(1.05);
+      --btn-blob-width: 180px;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper, .about-button, .hero-bg-trace svg {
+      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper, .hero-bg-trace svg {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
