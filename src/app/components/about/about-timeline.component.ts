@@ -23,13 +23,17 @@ import { TimelineData } from '../../pages/about.types';
           <div class="positions-col left-col">
             @for (item of leftTimelineItems(); track item.company) {
               <div class="position-item">
-                <div class="position-logo-box">
-                  <span class="logo-text">{{ item.logo }}</span>
+                <div class="position-logo-box" [class.has-text-logo]="!isImagePath(item.logo)">
+                  @if (isImagePath(item.logo)) {
+                    <img [src]="item.logo" [alt]="item.company + ' logo'" class="logo-image" />
+                  } @else {
+                    <span class="logo-text">{{ item.logo }}</span>
+                  }
                 </div>
                 <div class="position-copy">
                   <span class="position-period">{{ item.period }}</span>
                   <h3 class="position-role">{{ item.role }}</h3>
-                  <span class="position-loc">{{ item.location }}</span>
+                  <span class="position-loc">{{ item.company }} · {{ item.location }}</span>
                 </div>
               </div>
             }
@@ -40,13 +44,17 @@ import { TimelineData } from '../../pages/about.types';
           <div class="positions-col right-col">
             @for (item of rightTimelineItems(); track item.company) {
               <div class="position-item">
-                <div class="position-logo-box">
-                  <span class="logo-text">{{ item.logo }}</span>
+                <div class="position-logo-box" [class.has-text-logo]="!isImagePath(item.logo)">
+                  @if (isImagePath(item.logo)) {
+                    <img [src]="item.logo" [alt]="item.company + ' logo'" class="logo-image" />
+                  } @else {
+                    <span class="logo-text">{{ item.logo }}</span>
+                  }
                 </div>
                 <div class="position-copy">
                   <span class="position-period">{{ item.period }}</span>
                   <h3 class="position-role">{{ item.role }}</h3>
-                  <span class="position-loc">{{ item.location }}</span>
+                  <span class="position-loc">{{ item.company }} · {{ item.location }}</span>
                 </div>
               </div>
             }
@@ -120,17 +128,37 @@ import { TimelineData } from '../../pages/about.types';
     }
 
     .position-logo-box {
-      width: 48px;
-      height: 48px;
-      background: #111;
-      color: #fff;
+      width: 72px;
+      height: 72px;
+      background: #ffffff;
+      border: 1px solid rgba(59, 159, 152, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 0.9rem;
+      border-radius: 16px;
       flex-shrink: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .position-logo-box.has-text-logo {
+      background: #111;
+      color: #fff;
+      border: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .logo-text {
+      text-transform: uppercase;
+    }
+
+    .logo-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 12px;
+      box-sizing: border-box;
     }
 
     .position-copy {
@@ -184,4 +212,8 @@ export class AboutTimelineComponent {
     const items = this.data()?.items || [];
     return items.slice(Math.ceil(items.length / 2));
   });
+
+  isImagePath(logo: string): boolean {
+    return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg');
+  }
 }

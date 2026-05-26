@@ -189,7 +189,7 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .summary {
-      font-size: 1.3 rem;
+      font-size: 1.3rem;
       line-height: 1.6;
       margin-bottom: 4rem;
       max-width: 800px;

@@ -223,47 +223,72 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
       background-clip: padding-box;
       height: 24px;
+      width: 24px;
       min-width: 24px;
       max-width: 24px;
-      padding: 0 6px;
-      border-radius: 100px;
+      padding: 0;
+      border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
-      transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, padding 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, border-width 0.3s ease, border-color 0.3s ease;
+      transition: box-shadow 0.4s ease, opacity 0.4s ease, border-color 0.3s ease, transform 0.3s ease;
       box-sizing: border-box;
       outline: none;
       opacity: 0.65;
+      position: relative;
     }
 
     .pill-label {
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translate(24px, -50%) scale(0);
+      transform-origin: right center;
       opacity: 0;
-      color: #3b9f98;
+      pointer-events: none;
+      
+      background: #ffffff;
+      border: 1.5px solid color-mix(in srgb, var(--pill-color) 20%, white);
+      border-radius: 100px;
+      padding: 6px 14px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+      color: #4a4a4a;
       font-family: var(--font-main);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       white-space: nowrap;
-      overflow: hidden;
-      max-width: 0;
-      transform: scale(0.95);
-      transition: opacity 0.3s ease, transform 0.4s ease, max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
+      
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pill-label::after {
+      content: "";
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      width: 12px;
+      height: 1.5px;
+      background: color-mix(in srgb, var(--pill-color) 20%, white);
+      transform: translateY(-50%);
     }
 
     .nav-pill:hover {
-      max-width: 320px;
-      padding: 0 14px;
-      background: #ffffff;
-      border: 4px solid #ffffff;
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.6);
       opacity: 1;
+      transform: scale(1.1);
+      border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.6);
     }
 
     .nav-pill:hover .pill-label {
       opacity: 1;
-      max-width: 280px;
-      transform: scale(1);
+      transform: translate(0, -50%) scale(1);
     }
 
     .nav-pill.active {
