@@ -8,6 +8,7 @@ import { AboutPillarsComponent } from '../components/about/about-pillars.compone
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
 import { AboutPublishedWorksComponent } from '../components/about/about-published-works.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import {
   HeroData,
   SocialsData,
@@ -30,6 +31,7 @@ import {
     AboutTestimonialsComponent,
     AboutTimelineComponent,
     AboutPublishedWorksComponent,
+    ScrollRevealDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -46,11 +48,11 @@ import {
 
         <main class="about-main">
           <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
-          <portfolio-about-belief [data]="beliefData" />
-          <portfolio-about-pillars [data]="pillarsData" />
-          <portfolio-about-testimonials [items]="testimonialItems" />
-          <portfolio-about-timeline [data]="timelineData" />
-          <portfolio-about-published-works [data]="publicationsData" />
+          <portfolio-about-belief [data]="beliefData" portfolioScrollReveal />
+          <portfolio-about-pillars [data]="pillarsData" portfolioScrollReveal />
+          <portfolio-about-testimonials [items]="testimonialItems" portfolioScrollReveal />
+          <portfolio-about-timeline [data]="timelineData" portfolioScrollReveal />
+          <portfolio-about-published-works [data]="publicationsData" portfolioScrollReveal />
         </main>
 
         <portfolio-footer />

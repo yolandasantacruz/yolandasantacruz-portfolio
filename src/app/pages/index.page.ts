@@ -107,7 +107,6 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       max-width: var(--max-width);
       margin: 0 auto;
       padding: var(--container-padding);
-      padding-right: 5rem; /* Clear floating side-rail + 16px safety gap (40px right + 24px dot + 16px gap) */
       box-sizing: border-box;
     }
 
@@ -139,6 +138,38 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       display: flex;
       align-items: center;
       width: 100%;
+    }
+
+    .project-section .section-content,
+    .bridge-section .section-content {
+      padding-right: 5rem;
+    }
+
+    portfolio-hero {
+      padding-right: 5rem;
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .project-section .section-content,
+      .bridge-section .section-content {
+        padding-right: 3.5rem;
+      }
+      portfolio-hero {
+        padding-right: 3.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .project-section .section-content,
+      .bridge-section .section-content {
+        padding-right: 1.5rem;
+      }
+      portfolio-hero {
+        padding-right: 0;
+      }
     }
 
     .project-section portfolio-project-card {
@@ -401,9 +432,6 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
     @media (max-width: 1024px) {
       .floating-side-rail { right: 1rem; }
-      .section-content {
-        padding-right: 3.5rem; /* Clear tablet floating side-rail + 16px safety gap (16px right + 24px dot + 16px gap) */
-      }
       .bridge-heading { font-size: 2.75rem; }
     }
 
@@ -411,7 +439,6 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       .snap-container { scroll-snap-type: none; overflow-y: visible; height: auto; }
       .snap-section { min-height: auto; padding: 4rem 0; scroll-snap-align: none; }
       .floating-side-rail { display: none; }
-      .section-content { padding-right: 1.5rem; } /* Restore default mobile padding since nav is hidden */
       .hero-content-wrapper { min-height: auto; }
       .bridge-content { min-height: auto; padding-top: 4rem; }
       .bridge-heading { font-size: 2.25rem; }

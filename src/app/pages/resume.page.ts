@@ -1,18 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'portfolio-resume',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent, ScrollRevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
       <portfolio-header />
 
       <main class="resume-content">
-        <h1 class="page-title fade-in-on-load">Resume</h1>
+        <h1 class="page-title">Resume</h1>
 
         <div class="resume-grid">
           <div class="main-column">
@@ -22,9 +23,9 @@ import { FooterComponent } from '../components/footer/footer.component';
             </section>
 
             <section class="work-experience">
-              <h3 class="section-heading">Work Experience</h3>
+              <h3 class="section-heading" portfolioScrollReveal>Work Experience</h3>
               
-              <div class="job-entry">
+              <div class="job-entry" portfolioScrollReveal>
                 <div class="job-header">
                   <span class="job-title">Lead Product Designer</span>
                   <span class="job-meta">Discover Financial Services, Chicago, IL (Remote) · January 2025 - Present</span>
@@ -36,7 +37,7 @@ import { FooterComponent } from '../components/footer/footer.component';
                 </ul>
               </div>
 
-              <div class="job-entry">
+              <div class="job-entry" portfolioScrollReveal>
                 <div class="job-header">
                   <span class="job-title">Senior Product Designer</span>
                   <span class="job-meta">Upside, Washington, DC (Remote) · November 2022 - July 2024</span>
@@ -49,7 +50,7 @@ import { FooterComponent } from '../components/footer/footer.component';
                 </ul>
               </div>
 
-              <div class="job-entry">
+              <div class="job-entry" portfolioScrollReveal>
                 <div class="job-header">
                   <span class="job-title">Senior Product Designer</span>
                   <span class="job-meta">Fetch Rewards, Chicago, IL (Remote) · February 2021 - October 2022</span>
@@ -61,7 +62,7 @@ import { FooterComponent } from '../components/footer/footer.component';
                 </ul>
               </div>
 
-              <div class="job-entry">
+              <div class="job-entry" portfolioScrollReveal>
                 <div class="job-header">
                   <span class="job-title">Product Designer</span>
                   <span class="job-meta">Zelenia, Miami, FL (Remote) · December 2019 - February 2021</span>
@@ -74,7 +75,7 @@ import { FooterComponent } from '../components/footer/footer.component';
                 </ul>
               </div>
 
-              <div class="job-entry">
+              <div class="job-entry" portfolioScrollReveal>
                 <div class="job-header">
                   <span class="job-title">UX/UI Designer</span>
                   <span class="job-meta">Home61, Miami, FL · September 2018 - December 2019</span>
@@ -86,7 +87,7 @@ import { FooterComponent } from '../components/footer/footer.component';
                 </ul>
               </div>
 
-              <div class="job-entry">
+              <div class="job-entry" portfolioScrollReveal>
                 <div class="job-header">
                   <span class="job-title">Graphic Designer</span>
                   <span class="job-meta">Pacific Service Center, Portland, OR · October 2016 - August 2018</span>
@@ -107,24 +108,24 @@ import { FooterComponent } from '../components/footer/footer.component';
               <p>linkedin.com/in/yolandasantacruz</p>
             </div>
 
-            <div class="sidebar-section">
+            <div class="sidebar-section" portfolioScrollReveal>
               <h3 class="section-heading">Software</h3>
               <p>Figma · Illustrator · Photoshop · InDesign · Framer · Midjourney · Spline · AI Notion · Miro · Slack · Dovetail · UserTesting · Mixpanel · LogRocket · Tableau · Hotjar · JIRA</p>
             </div>
 
-            <div class="sidebar-section">
+            <div class="sidebar-section" portfolioScrollReveal>
               <h3 class="section-heading">Skills</h3>
               <p>Cross-functional Collaboration · UX Strategy · Stakeholder Engagement · Mentorship & Team Leadership · User Research · Journey Mapping · Data Literacy · A/B Testing · Information Architecture · Wireframing · Rapid Prototyping · Interaction Design · Visual Design · Generative Design · Accessibility Design · Agile Methodologies · Product Engineering · Critical Thinking · Creative Problem Solving · Effective Communication · Presentation Skills</p>
             </div>
 
-            <div class="sidebar-section">
+            <div class="sidebar-section" portfolioScrollReveal>
               <h3 class="section-heading">Languages</h3>
               <p>English · Spanish</p>
             </div>
 
-            <div class="sidebar-section">
+            <div class="sidebar-section" portfolioScrollReveal>
               <h3 class="section-heading">Additional</h3>
-              <ul class="sidebar-list">
+              <ul class="sidebar-list no-bullets">
                 <li>ADP Mentor</li>
                 <li>Community involvement with non-profits</li>
                 <li>Volunteering and teaching experience in thesis consulting, drawing, photography, and clay modeling.</li>
@@ -132,26 +133,18 @@ import { FooterComponent } from '../components/footer/footer.component';
               </ul>
             </div>
 
-            <div class="sidebar-section">
+            <div class="sidebar-section" portfolioScrollReveal>
               <h3 class="section-heading">Education</h3>
               <div class="education-entry">
                 <span class="degree">Bachelor of Fine Arts, BFA</span>
                 <span class="school">San Alejandro Fine Arts Academy, Havana, Cuba</span>
               </div>
             </div>
-
-            <div class="sidebar-wave">
-              <svg viewBox="0 0 200 100" preserveAspectRatio="none">
-                <path d="M0,50 C50,100 150,0 200,50 C200,50 200,100 200,100 L0,100 Z" fill="none" stroke="#3b9f98" stroke-width="2" opacity="0.3"></path>
-                <path d="M0,60 C50,110 150,10 200,60" fill="none" stroke="#3b9f98" stroke-width="2" opacity="0.2"></path>
-                <path d="M0,70 C50,120 150,20 200,70" fill="none" stroke="#3b9f98" stroke-width="2" opacity="0.1"></path>
-              </svg>
-            </div>
           </aside>
         </div>
 
-        <div class="download-section">
-          <button class="download-btn">Download Resume</button>
+        <div class="download-section" portfolioScrollReveal>
+          <button class="download-btn">DOWNLOAD RESUME</button>
         </div>
       </main>
 
@@ -159,6 +152,17 @@ import { FooterComponent } from '../components/footer/footer.component';
     </div>
   `,
   styles: `
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .resume-content {
       padding-top: 4rem;
       padding-bottom: 8rem;
@@ -169,6 +173,8 @@ import { FooterComponent } from '../components/footer/footer.component';
       text-align: center;
       margin-bottom: 6rem;
       font-weight: 400;
+      opacity: 0;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .resume-grid {
@@ -186,6 +192,8 @@ import { FooterComponent } from '../components/footer/footer.component';
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
     }
 
     .summary {
@@ -193,6 +201,8 @@ import { FooterComponent } from '../components/footer/footer.component';
       line-height: 1.6;
       margin-bottom: 4rem;
       max-width: 800px;
+      opacity: 0;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
     .section-heading {
@@ -202,68 +212,97 @@ import { FooterComponent } from '../components/footer/footer.component';
       color: #3b9f98;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(59, 159, 152, 0.2);
-      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .work-experience {
+      display: flex;
+      flex-direction: column;
     }
 
     .job-entry {
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .job-header {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
-      margin-bottom: 1rem;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .job-title {
       font-family: var(--font-header);
-      font-size: 1.25rem;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #111;
+      line-height: 1.2;
     }
 
     .job-meta {
-      font-size: 0.875rem;
-      color: var(--color-text-muted);
+      font-size: 0.85rem;
+      color: #666;
     }
 
     .job-bullets {
-      padding-left: 1.5rem;
+      list-style-type: none;
+      padding-left: 0;
       margin: 0;
     }
 
     .job-bullets li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #4a4a4a;
       margin-bottom: 0.75rem;
-      line-height: 1.5;
-      font-size: 1rem;
+    }
+
+    .job-bullets li::before {
+      content: "•";
+      color: #3b9f98;
+      position: absolute;
+      left: 0.25rem;
+      top: 0;
     }
 
     .sidebar {
       display: flex;
       flex-direction: column;
-      gap: 3rem;
+      gap: 4rem;
     }
 
-    .contact-info p {
-      margin: 0 0 0.5rem 0;
-      font-size: 0.875rem;
-      color: var(--color-text-muted);
+    .contact-info {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.6;
+      opacity: 0;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+    }
+
+    .sidebar-section {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-section .section-heading {
+      margin-bottom: 1.5rem;
     }
 
     .sidebar-section p {
-      font-size: 0.875rem;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #555;
       margin: 0;
     }
 
     .sidebar-list {
+      list-style-type: none;
       padding-left: 1rem;
       margin: 0;
-      list-style-type: none;
     }
 
     .sidebar-list li {
@@ -278,6 +317,14 @@ import { FooterComponent } from '../components/footer/footer.component';
       color: #3b9f98;
       position: absolute;
       left: -1rem;
+    }
+
+    .sidebar-list.no-bullets {
+      padding-left: 0;
+    }
+
+    .sidebar-list.no-bullets li::before {
+      content: none;
     }
 
     .education-entry {
@@ -296,12 +343,6 @@ import { FooterComponent } from '../components/footer/footer.component';
       color: var(--color-text-muted);
     }
 
-    .sidebar-wave {
-      margin-top: 2rem;
-      height: 80px;
-      opacity: 0.5;
-    }
-
     .download-section {
       display: flex;
       justify-content: center;
@@ -309,21 +350,42 @@ import { FooterComponent } from '../components/footer/footer.component';
     }
 
     .download-btn {
-      padding: 1rem 3rem;
-      background-color: #3b9f98;
-      color: white;
-      border: none;
-      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 200, 201, 0.1);
+      color: #3b9f98;
+      width: 220px;
+      height: 76px;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
       font-weight: 700;
-      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
+      border: 1px solid transparent;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 200, 201, 0.05);
+      animation: blob-morph 6s ease-in-out infinite alternate;
     }
 
     .download-btn:hover {
-      background-color: #2d827c;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(59, 159, 152, 0.2);
+      background: rgba(0, 200, 201, 0.2);
+      color: #3b9f98;
+      transform: scale(1.05);
+    }
+
+    @keyframes blob-morph {
+      0%, 100% {
+        border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
+      }
+      33% {
+        border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
+      }
+      66% {
+        border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
+      }
     }
 
     @media (max-width: 900px) {
@@ -332,6 +394,18 @@ import { FooterComponent } from '../components/footer/footer.component';
       }
       .sidebar {
         order: -1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .download-btn {
+        animation: none !important;
+        border-radius: 30px !important;
+      }
+      .page-title, .name, .summary, .contact-info {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
   `,

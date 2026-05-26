@@ -53,6 +53,10 @@ import { SocialIconService } from '../../services/social-icon.service';
       line-height: 1.15;
       color: #111;
       margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .cohesive-phrase {
@@ -75,11 +79,19 @@ import { SocialIconService } from '../../services/social-icon.service';
       line-height: 1.7;
       color: #555;
       margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
     }
 
     .social-links {
       display: flex;
       gap: 1.25rem;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
     .social-btn {
@@ -120,6 +132,26 @@ import { SocialIconService } from '../../services/social-icon.service';
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid rgba(94, 214, 204, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+    }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-greeting,
+      .hero-mission,
+      .social-links,
+      .portrait-wrapper {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
 
     .hero-portrait {
