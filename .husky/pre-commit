@@ -19,4 +19,4 @@ if [ "$BEHIND" -gt 0 ]; then
 fi
 
 echo "✨ Workspace is in sync. Running pre-flight checks (lint & tests)..."
-HOME="$(pwd)" pnpm lint && pnpm test -- --run
+HOME="$(pwd)" node_modules/.bin/ng lint && node_modules/.bin/vitest run

@@ -30,6 +30,7 @@ export class MouseTrailService {
   private velocity = 0;
   private startTime = 0;
   private pixelRatio = 1;
+  private hasMouseMoved = false;
 
   private trail: { x: number; y: number }[] = [];
   private trailData: Float32Array = new Float32Array(0);
@@ -43,6 +44,12 @@ export class MouseTrailService {
   public init(canvas: HTMLCanvasElement, config: MouseTrailConfig = DEFAULT_CONFIG) {
     this.canvas = canvas;
     this.config = config;
+    this.hasMouseMoved = false;
+    this.targetX = 0;
+    this.targetY = 0;
+    this.lastX = 0;
+    this.lastY = 0;
+    this.velocity = 0;
 
     this.trail = Array.from({ length: this.config.trailLength }, () => ({ x: 0, y: 0 }));
     this.trailData = new Float32Array(this.config.trailLength * 2);
@@ -81,8 +88,23 @@ export class MouseTrailService {
   }
 
   public setMousePosition(x: number, y: number) {
-    this.targetX = x;
-    this.targetY = y;
+    if (!this.hasMouseMoved) {
+      this.hasMouseMoved = true;
+      this.targetX = x;
+      this.targetY = y;
+      this.lastX = x;
+      this.lastY = y;
+      for (let i = 0; i < this.trail.length; i++) {
+        const point = this.trail.at(i);
+        if (point) {
+          point.x = x;
+          point.y = y;
+        }
+      }
+    } else {
+      this.targetX = x;
+      this.targetY = y;
+    }
   }
 
   public resize(width: number, height: number, pixelRatio: number) {
@@ -121,23 +143,33 @@ export class MouseTrailService {
 
   private updatePhysics() {
     // The head tracks the target
-    this.trail[0].x += (this.targetX - this.trail[0].x) * this.config.physicsSpeed;
-    this.trail[0].y += (this.targetY - this.trail[0].y) * this.config.physicsSpeed;
+    const head = this.trail.at(0);
+    if (head) {
+      head.x += (this.targetX - head.x) * this.config.physicsSpeed;
+      head.y += (this.targetY - head.y) * this.config.physicsSpeed;
+    }
 
     // Follower segments
     for (let i = 1; i < this.config.trailLength; i++) {
-      this.trail[i].x += (this.trail[i - 1].x - this.trail[i].x) * this.config.physicsFriction;
-      this.trail[i].y += (this.trail[i - 1].y - this.trail[i].y) * this.config.physicsFriction;
+      const prev = this.trail.at(i - 1);
+      const curr = this.trail.at(i);
+      if (prev && curr) {
+        curr.x += (prev.x - curr.x) * this.config.physicsFriction;
+        curr.y += (prev.y - curr.y) * this.config.physicsFriction;
+      }
     }
 
     // Velocity calculation
-    const dx = this.trail[0].x - this.lastX;
-    const dy = this.trail[0].y - this.lastY;
-    const currentSpeed = Math.sqrt(dx * dx + dy * dy) / 10.0;
-    this.velocity += (Math.min(currentSpeed, 1.0) - this.velocity) * 0.1;
+    const currentHead = this.trail.at(0);
+    if (currentHead) {
+      const dx = currentHead.x - this.lastX;
+      const dy = currentHead.y - this.lastY;
+      const currentSpeed = Math.sqrt(dx * dx + dy * dy) / 10.0;
+      this.velocity += (Math.min(currentSpeed, 1.0) - this.velocity) * 0.1;
 
-    this.lastX = this.trail[0].x;
-    this.lastY = this.trail[0].y;
+      this.lastX = currentHead.x;
+      this.lastY = currentHead.y;
+    }
   }
 
   private render() {
@@ -153,8 +185,11 @@ export class MouseTrailService {
 
     // Update trail data for uniforms
     for (let i = 0; i < this.config.trailLength; i++) {
-      this.trailData[i * 2] = this.trail[i].x / (this.canvas.width / this.pixelRatio);
-      this.trailData[i * 2 + 1] = 1.0 - (this.trail[i].y / (this.canvas.height / this.pixelRatio));
+      const point = this.trail.at(i);
+      if (point) {
+        this.trailData[i * 2] = point.x / (this.canvas.width / this.pixelRatio);
+        this.trailData[i * 2 + 1] = 1.0 - (point.y / (this.canvas.height / this.pixelRatio));
+      }
     }
 
     gl.uniform1f(this.uTime, currentTime);

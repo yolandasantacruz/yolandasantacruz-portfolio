@@ -21,6 +21,18 @@ describe('MouseTrailService', () => {
     expect(service['targetY']).toBe(200);
   });
 
+  it('should snap all trail segments to the initial mouse position on the first move', () => {
+    service['trail'] = Array.from({ length: 40 }, () => ({ x: 0, y: 0 }));
+    service.setMousePosition(150, 250);
+    expect(service['targetX']).toBe(150);
+    expect(service['targetY']).toBe(250);
+    expect(service['lastX']).toBe(150);
+    expect(service['lastY']).toBe(250);
+    for (let i = 0; i < 40; i++) {
+      expect(service['trail'].at(i)).toEqual({ x: 150, y: 250 });
+    }
+  });
+
   it('should allow destroying service and canceling animation frame', () => {
     service['rafId'] = 123;
     const cancelSpy = vi.spyOn(globalThis, 'cancelAnimationFrame');

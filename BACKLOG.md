@@ -3,10 +3,8 @@
 ## Todo
 
 ### User Experience & Theming
-- [ ] Bring the mouse trail over images, to have the maximum z-index to overlap any content.
 - [ ] Implement dark/light theme support based on browser preference with a toggle icon in the top navigation bar.
 - [ ] Replace hero-bg-trace with the SVG I will provide as an attachment
-
 
 ### Web Quality and Linting
 - [ ] Integrate Prettier for deterministic code formatting.
@@ -27,7 +25,9 @@
 ## In Progress
 
 ## Done
+- [x] Bug: when the user moves the mouse for the first time, the mouse trail effect appears in the top-left corner of the screen. It should appear where the mouse is.
 - [x] Add view transitions for page navigation.
 - [x] Optimize mouse trail for performance and extract into standalone `MouseTrailComponent` design token.
 - [x] Implement ESLint with Angular strict mode rules.
 - [x] Install Husky.
+- [x] Bring the mouse trail over images, to have the maximum z-index to overlap any content.
