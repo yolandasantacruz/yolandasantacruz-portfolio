@@ -57,7 +57,6 @@ export interface TimelineItem {
   logo: string;
   period: string;
   role: string;
-  location: string;
 }
 
 export interface TimelineData {

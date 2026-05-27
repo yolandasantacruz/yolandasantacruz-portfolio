@@ -98,7 +98,7 @@ import { HomeHeroData } from '../../../pages/home.types';
       z-index: 10;
     }
     .hero-tag {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       color: #3b9f98;
@@ -174,7 +174,7 @@ import { HomeHeroData } from '../../../pages/home.types';
 
     @media (max-width: 768px) {
       .hero-hook { font-size: 2.75rem; }
-      .hero-subcopy { font-size: 1.1rem; }
+      .hero-subcopy { font-size: 1.2rem; }
       .hero-break { display: none; }
       .cohesive-phrase { white-space: normal; display: inline; }
     }

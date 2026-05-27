@@ -17,10 +17,6 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
         <div class="resume-grid">
           <div class="main-column">
-            <section class="intro">
-              <h2 class="name">Yolanda Santa Cruz</h2>
-              <p class="summary">Product Designer with experience in product strategy, data-driven solutions, and cross-functional teamwork. Background in payment flow optimization, growth initiatives, mobile UX enhancements, and consistent cross-platform design.</p>
-            </section>
 
             <section class="work-experience">
               <h3 class="section-heading" portfolioScrollReveal>Work Experience</h3>
@@ -102,12 +98,6 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
           </div>
 
           <aside class="sidebar">
-            <div class="contact-info">
-              <p>Miami, FL</p>
-              <p>yolandasantacruz.com</p>
-              <p>linkedin.com/in/yolandasantacruz</p>
-            </div>
-
             <div class="sidebar-section" portfolioScrollReveal>
               <h3 class="section-heading">Software</h3>
               <p>Figma · Illustrator · Photoshop · InDesign · Framer · Midjourney · Spline · AI Notion · Miro · Slack · Dovetail · UserTesting · Mixpanel · LogRocket · Tableau · Hotjar · JIRA</p>
@@ -170,7 +160,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
     .page-title {
       font-size: 4rem;
-      text-align: center;
+      text-align: left;
       margin-bottom: 6rem;
       font-weight: 400;
       opacity: 0;
@@ -184,30 +174,9 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
       margin-bottom: 6rem;
     }
 
-    .name {
-      font-family: var(--font-main);
-      font-size: 1rem;
-      font-weight: 700;
-      color: #3b9f98;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-    }
-
-    .summary {
-      font-size: 1.3rem;
-      line-height: 1.6;
-      margin-bottom: 4rem;
-      max-width: 800px;
-      opacity: 0;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
-    }
-
     .section-heading {
       font-family: var(--font-main);
-      font-size: 0.8rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #3b9f98;
       letter-spacing: 0.2em;
@@ -242,7 +211,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
     }
 
     .job-meta {
-      font-size: 0.85rem;
+      font-size: 1.2rem;
       color: #666;
     }
 
@@ -255,7 +224,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
     .job-bullets li {
       position: relative;
       padding-left: 1.5rem;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
       line-height: 1.7;
       color: #4a4a4a;
       margin-bottom: 0.75rem;
@@ -293,7 +262,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
     }
 
     .sidebar-section p {
-      font-size: 0.9rem;
+      font-size: 1.2rem;
       line-height: 1.8;
       color: #555;
       margin: 0;
@@ -306,7 +275,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
     }
 
     .sidebar-list li {
-      font-size: 0.875rem;
+      font-size: 1.2rem;
       margin-bottom: 0.5rem;
       line-height: 1.4;
       position: relative;
@@ -335,11 +304,11 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
     .degree {
       font-weight: 700;
-      font-size: 0.875rem;
+      font-size: 1.2rem;
     }
 
     .school {
-      font-size: 0.875rem;
+      font-size: 1.2rem;
       color: var(--color-text-muted);
     }
 
@@ -364,7 +333,7 @@ import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .page-title, .name, .summary, .contact-info {
+      .page-title, .contact-info {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;

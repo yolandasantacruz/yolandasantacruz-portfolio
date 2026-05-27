@@ -47,24 +47,14 @@ describe('ProjectCardComponent', () => {
 
     const title = fixture.debugElement.query(By.css('.project-title')).nativeElement.textContent.trim();
     const description = fixture.debugElement.query(By.css('.project-description')).nativeElement.textContent.trim();
-    const role = fixture.debugElement.query(By.css('.role')).nativeElement.textContent.trim();
-    const timeline = fixture.debugElement.query(By.css('.timeline')).nativeElement.textContent.trim();
     const image = fixture.debugElement.query(By.css('.project-image')).nativeElement;
     const link = fixture.debugElement.query(By.css('.view-project')).nativeElement;
 
     expect(title).toBe('Test Project');
     expect(description).toBe('A test project description.');
-    expect(role).toBe('Lead Designer');
-    expect(timeline).toBe('3 months');
     expect(image.getAttribute('src')).toBe('test-image.png');
     expect(image.getAttribute('alt')).toBe('Test Project');
     expect(link.getAttribute('href')).toBe('/projects/test-project');
-
-    const techTags = fixture.debugElement.queryAll(By.css('.tech-tag'));
-    expect(techTags.length).toBe(3);
-    expect(techTags[0].nativeElement.textContent.trim()).toBe('Angular');
-    expect(techTags[1].nativeElement.textContent.trim()).toBe('TypeScript');
-    expect(techTags[2].nativeElement.textContent.trim()).toBe('CSS');
   });
 
   it('should apply reverse class when reverse input is true', () => {

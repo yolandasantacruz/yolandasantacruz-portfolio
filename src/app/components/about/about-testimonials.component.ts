@@ -175,7 +175,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .author-role {
-      font-size: 0.9rem;
+      font-size: 1.2rem;
       color: #666;
     }
 
@@ -186,7 +186,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .testimonial-counter {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #111;
       letter-spacing: 0.08em;
@@ -239,7 +239,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
 
     .testimonial-quote {
       font-family: var(--font-main);
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 400;
       font-style: normal;
       line-height: 1.8;
@@ -258,7 +258,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       .testimonial-card-wrapper { padding: 80px 40px; }
       .testimonial-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
       .testimonial-nav { align-self: flex-end; }
-      .testimonial-quote { font-size: 1rem; }
+      .testimonial-quote { font-size: 1.2rem; }
     }
   `
 })

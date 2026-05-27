@@ -27,21 +27,9 @@ export interface Project {
       </div>
       
       <div class="project-details">
-        <div class="project-meta">
-          <span class="role">{{ project().role }}</span>
-          <span class="separator">•</span>
-          <span class="timeline">{{ project().timeline }}</span>
-        </div>
-        
         <h2 class="project-title">{{ project().title }}</h2>
         
         <p class="project-description">{{ project().description }}</p>
-        
-        <div class="tech-stack">
-          @for (tech of project().techStack; track tech) {
-            <span class="tech-tag">{{ tech }}</span>
-          }
-        </div>
         
         <a [routerLink]="project().link" class="view-project">
           View Project
@@ -111,21 +99,8 @@ export interface Project {
       gap: 1.5rem;
     }
 
-    .project-meta {
-      font-size: 0.875rem;
-      color: #666;
-      font-weight: 400;
-      text-align: left;
-      width: 100%;
-    }
-
-    .separator {
-      margin: 0 8px;
-      color: #ccc;
-    }
-
     .project-title {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: #1a1a1a;
       margin: 0;
@@ -135,30 +110,12 @@ export interface Project {
     }
 
     .project-description {
-      font-size: 1rem;
+      font-size: 1.2rem;
       line-height: 1.6;
       color: #4a4a4a;
       margin: 0;
       max-width: 90%;
       text-align: left;
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-      justify-content: flex-start;
-      width: 100%;
-    }
-
-    .tech-tag {
-      background: #f0f0f0;
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 0.8125rem;
-      font-weight: 400;
-      color: #555;
     }
 
     .view-project {
@@ -169,7 +126,7 @@ export interface Project {
       color: #1a1a1a;
       text-decoration: none;
       margin-top: 1rem;
-      font-size: 1rem;
+      font-size: 1.2rem;
       transition: color 0.2s ease;
     }
 

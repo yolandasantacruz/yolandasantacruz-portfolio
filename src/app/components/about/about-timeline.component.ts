@@ -33,7 +33,7 @@ import { TimelineData } from '../../pages/about.types';
                 <div class="position-copy">
                   <span class="position-period">{{ item.period }}</span>
                   <h3 class="position-role">{{ item.role }}</h3>
-                  <span class="position-loc">{{ item.company }} · {{ item.location }}</span>
+                  <span class="position-company">{{ item.company }}</span>
                 </div>
               </div>
             }
@@ -52,7 +52,7 @@ import { TimelineData } from '../../pages/about.types';
                 <div class="position-copy">
                   <span class="position-period">{{ item.period }}</span>
                   <h3 class="position-role">{{ item.role }}</h3>
-                  <span class="position-loc">{{ item.company }} · {{ item.location }}</span>
+                  <span class="position-company">{{ item.company }}</span>
                 </div>
               </div>
             }
@@ -75,7 +75,7 @@ import { TimelineData } from '../../pages/about.types';
     }
 
     .section-tag {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -153,7 +153,7 @@ import { TimelineData } from '../../pages/about.types';
     }
 
     .position-period {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #3b9f98;
       letter-spacing: 0.05em;
@@ -169,8 +169,8 @@ import { TimelineData } from '../../pages/about.types';
       letter-spacing: -0.02em;
     }
 
-    .position-loc {
-      font-size: 0.85rem;
+    .position-company {
+      font-size: 1.2rem;
       color: #888;
     }
 

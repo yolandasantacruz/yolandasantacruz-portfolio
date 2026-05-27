@@ -290,7 +290,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 
       color: #4a4a4a;
       font-family: var(--font-main);
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -368,7 +368,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
     }
 
     .bridge-tag {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       color: #3b9f98;
@@ -442,7 +442,7 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
       .hero-content-wrapper { min-height: auto; }
       .bridge-content { min-height: auto; padding-top: 4rem; }
       .bridge-heading { font-size: 2.25rem; }
-      .bridge-copy { font-size: 1.1rem; }
+      .bridge-copy { font-size: 1.2rem; }
     }
   `
 })

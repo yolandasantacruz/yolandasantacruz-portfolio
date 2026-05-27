@@ -89,7 +89,7 @@ import { ProjectAttributes } from '../project-attributes';
     }
 
     .label {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -97,7 +97,7 @@ import { ProjectAttributes } from '../project-attributes';
     }
 
     .value {
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 400;
     }
 
@@ -108,7 +108,7 @@ import { ProjectAttributes } from '../project-attributes';
     }
 
     .tech-tag {
-      font-size: 0.875rem;
+      font-size: 1.2rem;
       background: rgba(0,0,0,0.05);
       padding: 2px 10px;
       border-radius: 4px;

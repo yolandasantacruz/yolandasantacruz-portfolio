@@ -11,14 +11,12 @@ const MOCK_TIMELINE_DATA: TimelineData = {
       logo: '/images/logos/discover.png',
       period: 'Jan 2025 — Present',
       role: 'Lead Product Designer',
-      location: 'Chicago, IL (Remote)',
     },
     {
       company: 'Zelenia',
       logo: 'ZE',
       period: 'Dec 2019 — Feb 2021',
       role: 'Product Designer',
-      location: 'Miami, FL (Remote)',
     },
   ],
 };
@@ -98,5 +96,16 @@ describe('AboutTimelineComponent', () => {
     expect(resumeLink).toBeTruthy();
     expect(resumeLink.nativeElement.getAttribute('href')).toBe('/resume');
     expect(resumeLink.nativeElement.classList.contains('btn-blob')).toBe(true);
+  });
+
+  it('should render company name without location', () => {
+    const fixture = TestBed.createComponent(AboutTimelineComponent);
+    fixture.componentRef.setInput('data', MOCK_TIMELINE_DATA);
+    fixture.detectChanges();
+
+    const companyNames = fixture.debugElement.queryAll(By.css('.position-company'));
+    expect(companyNames.length).toBe(2);
+    expect(companyNames[0].nativeElement.textContent).toBe('Discover');
+    expect(companyNames[1].nativeElement.textContent).toBe('Zelenia');
   });
 });

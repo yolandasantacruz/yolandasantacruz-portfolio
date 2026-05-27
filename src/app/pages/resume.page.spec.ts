@@ -31,13 +31,9 @@ describe('ResumeComponent', () => {
     expect(titleElement.nativeElement.textContent.trim()).toBe('Resume');
   });
 
-  it('should render contact info and work experience sections', () => {
+  it('should render work experience section', () => {
     const fixture = TestBed.createComponent(ResumeComponent);
     fixture.detectChanges();
-
-    const contactInfo = fixture.debugElement.query(By.css('.contact-info'));
-    expect(contactInfo).toBeTruthy();
-    expect(contactInfo.nativeElement.textContent).toContain('Miami, FL');
 
     const workExperience = fixture.debugElement.query(By.css('.work-experience'));
     expect(workExperience).toBeTruthy();

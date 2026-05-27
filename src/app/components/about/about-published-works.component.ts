@@ -39,7 +39,7 @@ import { PublicationsService } from '../../services/publications.service';
     }
 
     .section-tag {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -101,7 +101,7 @@ import { PublicationsService } from '../../services/publications.service';
       background: rgba(255,255,255,0.9);
       padding: 0.4rem 0.8rem;
       border-radius: 100px;
-      font-size: 0.65rem;
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: 0.1em;
       color: #111;
@@ -123,14 +123,14 @@ import { PublicationsService } from '../../services/publications.service';
     }
 
     .work-desc {
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: #666;
       line-height: 1.6;
       margin: 0;
     }
 
     .work-arrow {
-      font-size: 0.85rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #3b9f98;
       margin-top: 0.5rem;

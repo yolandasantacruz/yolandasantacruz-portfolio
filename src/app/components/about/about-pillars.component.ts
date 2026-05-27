@@ -93,7 +93,7 @@ import { PillarsData } from '../../pages/about.types';
     }
 
     .pillar-badge {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -111,7 +111,7 @@ import { PillarsData } from '../../pages/about.types';
     }
 
     .pillar-desc {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       line-height: 1.8;
       color: #555;
       margin-bottom: 2.5rem;
@@ -130,7 +130,7 @@ import { PillarsData } from '../../pages/about.types';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
     }
 
     .comp-label {
@@ -144,7 +144,7 @@ import { PillarsData } from '../../pages/about.types';
       background: rgba(59, 159, 152, 0.1);
       padding: 0.25rem 0.75rem;
       border-radius: 100px;
-      font-size: 0.8rem;
+      font-size: 1.2rem;
     }
 
     .masked-image {
@@ -201,7 +201,7 @@ import { PillarsData } from '../../pages/about.types';
     }
 
     .metric-label {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -218,7 +218,7 @@ import { PillarsData } from '../../pages/about.types';
     }
 
     .video-label {
-      font-size: 0.8125rem;
+      font-size: 1.2rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       color: #666;
@@ -291,7 +291,7 @@ import { PillarsData } from '../../pages/about.types';
       color: #ffffff;
       padding: 0.9rem 2.25rem;
       border-radius: 100px;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-decoration: none;

@@ -76,6 +76,7 @@ html {
 
 body {
   font-family: var(--font-main);
+  font-size: 1.2rem;
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.8;
@@ -273,7 +274,7 @@ analog-markdown img {
   background: rgba(0, 200, 201, 0.1);
   color: #3b9f98;
   font-family: var(--font-main);
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;

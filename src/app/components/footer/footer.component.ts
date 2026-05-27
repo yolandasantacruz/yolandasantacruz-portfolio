@@ -38,7 +38,7 @@ import { FooterData, SocialsData } from '../../pages/shared.types';
     }
     .footer-social a { text-decoration: none; color: inherit; font-weight: 400; opacity: 0.7; }
     .footer-social a:hover { opacity: 1; }
-    .copyright { font-size: 0.875rem; opacity: 0.6; text-align: center; }
+    .copyright { font-size: 1.2rem; opacity: 0.6; text-align: center; }
     .heart { color: #55c5c7; }
   `
 })
