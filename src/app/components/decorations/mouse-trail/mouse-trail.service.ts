@@ -281,7 +281,7 @@ export class MouseTrailService {
         float glow = 0.0;
         vec3 totalColor = vec3(0.0);
         
-        float thickness = 1.0 + u_velocity * 4.0;
+        float thickness = 12.0 - u_velocity * 7.0;
 
         vec3 c1 = vec3(0.37, 0.84, 0.80);
         vec3 c2 = vec3(0.56, 0.87, 0.68);
