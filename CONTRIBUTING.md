@@ -1,62 +1,76 @@
-# Contributing to Yolanda Santa Cruz's Portfolio
+# Contributing Guidelines
 
-First off, thank you for considering contributing to Yolanda Santa Cruz's Portfolio! Your help is what makes this project possible.
+Thank you for considering contributing to this project! Adhering to these guidelines ensures a smooth review process and maintains code quality.
 
-## 1. Where do I go from here?
+## 1. Reporting Issues
 
-If you've noticed a bug or have a feature request, please [open an issue](https://github.com/zelenia-labs/yolanda-santacruz-portfolio/issues) on GitHub.
+* **Bug Reports**: If you find a bug, please search existing issues first. If it is new, open a new issue describing the bug, including steps to reproduce, expected behavior, and screenshots or log files if available.
+* **Feature Requests**: Open an issue describing the feature, why it is needed, and any proposed visual or architectural implementations.
 
-## 2. Fork & Create a Branch
+*Note: For security vulnerabilities, please refer to [SECURITY.md](SECURITY.md) and do not file a public issue.*
 
-If you'd like to contribute code:
-1. [Fork the repository](https://github.com/zelenia-labs/yolanda-santacruz-portfolio/fork).
-2. Create a branch with a descriptive name:
+## 2. Development Setup
 
-```bash
-# For a specific issue
-git checkout -b 123-fix-chart-overlap
+We recommend using the standard package manager defined in the repository.
 
-# For a general fix/feature
-git checkout -b feature/dynamic-viewport
-```
+1. Clone your fork of the repository:
+   ```bash
+   git clone https://github.com/[your-username]/[repository-name].git
+   cd [repository-name]
+   ```
 
-## 3. Development Setup
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-We use `pnpm` for package management. Please ensure you have it installed.
+3. Run the development server and test suite locally to verify your setup:
+   ```bash
+   pnpm run dev
+   pnpm run test
+   ```
 
-```bash
-# Install dependencies
-pnpm install
+## 3. Creating a Branch
 
-# Start the development server
-pnpm run start
-
-# Run unit tests
-pnpm run test
-
-# Run linting
-pnpm run lint
-```
-
-## 4. Coding & Design Standards
-
-To maintain high code and visual quality, please follow the protocols defined in [AGENTS.md](AGENTS.md) and strictly adhere to the specifications in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
-
-## 5. Make a Pull Request
-
-Before submitting your PR:
-1. Sync your local `main` branch with the upstream repository.
-2. Rebase your feature branch on `main`.
-3. Ensure all tests and linting pass.
+Before writing code, create a branch off the `main` branch with a descriptive prefix:
 
 ```bash
-git checkout main
-git pull origin main
-git checkout your-branch-name
-git rebase main
-git push origin your-branch-name --force-with-lease
+# For a new feature:
+git checkout -b feature/dynamic-header
+
+# For a bug fix:
+git checkout -b fix/issue-123-grid-overlap
+
+# For documentation or refactoring:
+git checkout -b chore/clean-unused-imports
 ```
 
-Finally, open a Pull Request on GitHub. Be sure to describe your changes and link to any relevant issues.
+## 4. Coding Standards
 
-Thank you for helping us make this portfolio better!
+* All contributions must follow the protocols in [AGENTS.md](AGENTS.md).
+* Verify UI updates against the visual guidelines in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
+* Write or update unit tests for any logic you implement or modify.
+* Run code formatting and linting scripts locally before pushing:
+  ```bash
+  pnpm run lint
+  pnpm run format
+  ```
+
+## 5. Submitting a Pull Request (PR)
+
+1. Sync your fork with the upstream repository:
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout your-branch-name
+   git rebase main
+   ```
+2. Push your changes:
+   ```bash
+   git push origin your-branch-name
+   ```
+3. Open a Pull Request on GitHub.
+4. Ensure your PR description clearly states:
+   * What changes are introduced.
+   * Which issues are resolved (e.g., `Closes #123`).
+   * Visual comparisons (before/after screenshots) for UI modifications.
