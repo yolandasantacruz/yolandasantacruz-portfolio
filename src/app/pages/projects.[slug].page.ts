@@ -1,6 +1,8 @@
 import { injectContent, MarkdownComponent } from '@analogjs/content';
 import { AsyncPipe, NgForOf } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
+import { tap } from 'rxjs';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
@@ -126,5 +128,19 @@ import { ProjectAttributes } from '../project-attributes';
   `,
 })
 export default class ProjectDetails {
-  readonly project$ = injectContent<ProjectAttributes>({ param: 'slug', subdirectory: 'projects' });
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+
+  readonly project$ = injectContent<ProjectAttributes>({ param: 'slug', subdirectory: 'projects' }).pipe(
+    tap(project => {
+      if (project) {
+        this.titleService.setTitle(`${project.attributes.title} | Yolanda Santa Cruz`);
+        this.metaService.updateTag({
+          name: 'description',
+          content: project.attributes.description || `Case study on ${project.attributes.title} by Yolanda Santa Cruz.`
+        });
+      }
+    })
+  );
 }
+

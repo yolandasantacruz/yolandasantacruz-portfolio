@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, input, afterNextRender, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface Project {
@@ -18,12 +18,12 @@ export interface Project {
 @Component({
   selector: 'portfolio-project-card',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="project-card" [class.reverse]="project().reverse">
       <div class="project-image-container">
-        <img [src]="project().imageUrl" [alt]="project().title" class="project-image" />
+        <img [ngSrc]="project().imageUrl" width="580" height="387" [alt]="project().title" class="project-image" />
       </div>
       
       <div class="project-details">
@@ -201,4 +201,5 @@ export class ProjectCardComponent {
     });
   }
 }
+
 

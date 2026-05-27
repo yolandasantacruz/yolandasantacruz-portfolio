@@ -2,7 +2,7 @@
 title: Pay with App
 slug: pay-with-app
 description: Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%
-imageUrl: /images/PayWithApp-HomeCover.png
+imageUrl: /images/PayWithApp-HomeCover.webp
 category: FINTECH
 role: Lead Product Designer
 timeline: Jan 2023 - May 2024

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { HeroData, SocialsData, SocialLink } from '../../pages/about.types';
 import { SocialIconService } from '../../services/social-icon.service';
-
-
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'portfolio-about-hero',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as hero) {
@@ -29,7 +29,7 @@ import { SocialIconService } from '../../services/social-icon.service';
         </div>
         <div class="hero-right">
           <div class="portrait-wrapper">
-            <img src="/images/AboutMe-Image.png" alt="Yolanda Santa Cruz's image" class="hero-portrait" />
+            <img [ngSrc]="heroPortrait()" width="380" height="380" priority alt="Yolanda Santa Cruz's image" class="hero-portrait" />
             <div class="portrait-glow"></div>
           </div>
         </div>
@@ -152,6 +152,7 @@ import { SocialIconService } from '../../services/social-icon.service';
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
       }
     }
 
@@ -178,9 +179,13 @@ export class AboutHeroComponent {
   data = input<HeroData | undefined>();
   socials = input<SocialsData | undefined>();
   private socialIconService = inject(SocialIconService);
+  private imageUrlService = inject(ImageUrlService);
+
+  readonly heroPortrait = computed(() => this.imageUrlService.resolve('/images/AboutMe-Image.webp'));
 
   /** Resolved list of social links from the socials input */
   socialLinks = computed<SocialLink[]>(() => this.socials()?.links ?? []);
+
 
   /** Parse greeting text to split greeting and name with optional smiley */
   readonly greetingParts = computed(() => {

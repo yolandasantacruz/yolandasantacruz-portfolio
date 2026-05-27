@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { TimelineData } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-timeline',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as timeline) {
@@ -25,7 +26,7 @@ import { TimelineData } from '../../pages/about.types';
               <div class="position-item">
                 <div class="position-logo-box" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
-                    <img [src]="item.logo" [alt]="item.company + ' logo'" class="logo-image" />
+                    <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image" />
                   } @else {
                     <span class="logo-text">{{ item.logo }}</span>
                   }
@@ -44,7 +45,7 @@ import { TimelineData } from '../../pages/about.types';
               <div class="position-item">
                 <div class="position-logo-box" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
-                    <img [src]="item.logo" [alt]="item.company + ' logo'" class="logo-image" />
+                    <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image" />
                   } @else {
                     <span class="logo-text">{{ item.logo }}</span>
                   }
@@ -198,6 +199,7 @@ export class AboutTimelineComponent {
   });
 
   isImagePath(logo: string): boolean {
-    return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg');
+    return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg') || logo.endsWith('.webp');
   }
 }
+

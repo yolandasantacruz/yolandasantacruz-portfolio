@@ -2,6 +2,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
+import { RouteMeta } from '@analogjs/router';
+
+export const routeMeta: RouteMeta = {
+  title: 'Resume | Yolanda Santa Cruz',
+  meta: [
+    {
+      name: 'description',
+      content: 'View Yolanda Santa Cruz\'s professional work history, skills, software tools, BFA education, and language proficiencies.'
+    }
+  ]
+};
+
 
 @Component({
   selector: 'portfolio-resume',

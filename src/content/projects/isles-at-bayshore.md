@@ -2,7 +2,7 @@
 title: Isles at Bayshore
 slug: Isles at Bayshore
 description: Boosting lead generation by 125% through UX/UI enhancements
-imageUrl: /images/IslesAtBayshore-HomeCover.png
+imageUrl: /images/IslesAtBayshore-HomeCover.webp
 category: WEB
 role: Product Designer
 timeline: Jun 2018 - Nov 2024

@@ -8,7 +8,21 @@ import { AboutPillarsComponent } from '../components/about/about-pillars.compone
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
 import { AboutPublishedWorksComponent } from '../components/about/about-published-works.component';
+import { RouteMeta } from '@analogjs/router';
+
+export const routeMeta: RouteMeta = {
+  title: 'About | Yolanda Santa Cruz',
+  meta: [
+    {
+      name: 'description',
+      content: 'Learn more about Yolanda Santa Cruz\'s design philosophy, work competencies, and community mentorship as a Product Designer.'
+    }
+  ]
+};
+
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
+
+
 import {
   HeroData,
   SocialsData,

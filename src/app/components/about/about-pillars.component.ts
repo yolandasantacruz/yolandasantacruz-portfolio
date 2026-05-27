@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { PillarsData } from '../../pages/about.types';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'portfolio-about-pillars',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as pillars) {
@@ -28,7 +30,7 @@ import { PillarsData } from '../../pages/about.types';
             }
           </div>
           <div class="pillar-visual">
-              <img src="public/images/AtWork.png" alt="Design Execution" />
+              <img [ngSrc]="atWorkUrl()" width="480" height="600" alt="Design Execution" />
           </div>
         </div>
 
@@ -40,7 +42,7 @@ import { PillarsData } from '../../pages/about.types';
                 <span class="video-label">VIEW: A Sample Mentorship Session</span>
               </div>
               <div class="player-wrapper">
-                <img src="https://placehold.co/1200x675/121212/ffffff?text=Sample+Mentorship+Session" alt="Sample Mentorship Session" class="video-thumbnail" />
+                <img ngSrc="https://placehold.co/1200x675/121212/ffffff?text=Sample+Mentorship+Session" width="1200" height="675" alt="Sample Mentorship Session" class="video-thumbnail" />
                 <div class="play-overlay">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -318,4 +320,8 @@ import { PillarsData } from '../../pages/about.types';
 })
 export class AboutPillarsComponent {
   data = input<PillarsData | undefined>();
+  private imageUrlService = inject(ImageUrlService);
+
+  readonly atWorkUrl = computed(() => this.imageUrlService.resolve('/images/AtWork.webp'));
 }
+

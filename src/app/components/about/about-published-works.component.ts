@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, input, linkedSignal, OnInit } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { PublicationsData, PublishedWork } from '../../pages/about.types';
 import { PublicationsService } from '../../services/publications.service';
 
 @Component({
   selector: 'portfolio-about-published-works',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as publications) {
@@ -19,7 +20,7 @@ import { PublicationsService } from '../../services/publications.service';
           @for (work of items(); track work.title) {
             <a [href]="work.url" target="_blank" rel="noopener noreferrer" class="work-card">
               <div class="work-thumb-box">
-                <img [src]="work.imageUrl" [alt]="work.title" class="work-thumb" />
+                <img [ngSrc]="work.imageUrl" width="400" height="300" [alt]="work.title" class="work-thumb" />
                 <span class="work-badge">{{ work.tag }}</span>
               </div>
               <div class="work-info">
@@ -165,3 +166,4 @@ export class AboutPublishedWorksComponent implements OnInit {
     });
   }
 }
+

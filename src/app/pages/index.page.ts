@@ -9,6 +9,18 @@ import { ProjectCardComponent, Project } from '../components/home/project-card/p
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
+import { RouteMeta } from '@analogjs/router';
+
+export const routeMeta: RouteMeta = {
+  title: 'Yolanda Santa Cruz - Web Designer & Developer Portfolio',
+  meta: [
+    {
+      name: 'description',
+      content: 'Professional portfolio of Yolanda Santa Cruz, Web Designer & Developer. Discover user-centric interfaces, design systems, and responsive prototypes.'
+    }
+  ]
+};
+
 
 @Component({
   selector: 'portfolio-home',
