@@ -21,31 +21,33 @@ function clientPwa(options: any) {
   return plugins.map((plugin) => {
     if (!plugin) return plugin;
     const wrapped: any = { ...plugin };
-    
-    if (plugin.configResolved) {
+
+    const configResolved = plugin.configResolved;
+    if (configResolved) {
       wrapped.configResolved = async function (config: any) {
         if (config.build?.ssr) {
           // Bypassing SSR to keep shared ctx.viteConfig pointed to the client config
           return;
         }
-        return await plugin.configResolved.call(this, config);
+        return await configResolved.call(this, config);
       };
     }
-    
-    if (plugin.generateBundle) {
+
+    const generateBundle = plugin.generateBundle;
+    if (generateBundle) {
       wrapped.generateBundle = async function (this: any, options: any, bundle: any, isWrite: any) {
         if (this.environment?.config?.build?.ssr) {
           return;
         }
-        return await plugin.generateBundle.call(this, options, bundle, isWrite);
+        return await generateBundle.call(this, options, bundle, isWrite);
       };
     }
-    
+
     if (plugin.closeBundle) {
       const handler = typeof plugin.closeBundle === 'function' ? plugin.closeBundle : (plugin.closeBundle as any).handler;
       const order = typeof plugin.closeBundle === 'object' ? (plugin.closeBundle as any).order : undefined;
       const sequential = typeof plugin.closeBundle === 'object' ? (plugin.closeBundle as any).sequential : undefined;
-      
+
       wrapped.closeBundle = {
         order,
         sequential,
@@ -90,14 +92,14 @@ function inlineCssPlugin() {
 
               const cssFilename = cssAsset.fileName.split('/').pop();
               const regex = new RegExp(`<link[^>]*href=["'][^"']*${cssFilename}["'][^>]*>`, 'g');
-              
+
               console.log(`[inline-css-plugin] Checking link tag for ${cssFilename} in ${htmlKey}`);
 
               if (regex.test(htmlSource)) {
                 htmlSource = htmlSource.replace(regex, `<style>${cssContent}</style>`);
                 htmlAsset.source = htmlSource;
                 console.log(`[inline-css-plugin] Successfully inlined ${cssKey} into ${htmlKey}`);
-                
+
                 // Remove the CSS asset from the bundle so it's not written to disk
                 delete bundle[cssKey];
               }
@@ -133,6 +135,13 @@ export default defineConfig(() => ({
           },
         ],
       },
+      nitro: {
+        routeRules: {
+          '/assets/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+          '/images/**': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
+          '/favicon.ico': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } }
+        }
+      }
     }),
     ...clientPwa({
       registerType: 'autoUpdate',
