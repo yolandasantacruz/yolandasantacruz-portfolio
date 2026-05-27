@@ -28,9 +28,7 @@ import { PillarsData } from '../../pages/about.types';
             }
           </div>
           <div class="pillar-visual">
-            <div class="masked-image arch-mask">
-              <img src="public/images/Whiteboard-Image.png" alt="Design Execution" />
-            </div>
+              <img src="public/images/AtWork.png" alt="Design Execution" />
           </div>
         </div>
 
