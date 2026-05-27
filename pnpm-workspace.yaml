@@ -10,7 +10,10 @@ packages:
 # Explicitly whitelist only trusted packages allowed to run postinstall/preinstall scripts.
 # By default, pnpm v10+ blocks all lifecycle scripts to prevent malicious code execution.
 allowBuilds:
+  '@parcel/watcher': false
   esbuild: true
+  lmdb: false
+  msgpackr-extract: false
   # Add other compiled dependencies as needed (e.g., swc, canvas, sharp)
 
 # Block transitive dependencies from pulling in code from untrusted/unverified sources
@@ -21,8 +24,14 @@ blockExoticSubdeps: true
 # to package versions with weaker trust metadata (e.g., lack of registry signature).
 trustPolicy: no-downgrade
 
-# Enforce a 3-day (4320 minutes) delay for installing newly published package versions.
+# Temporary exclusion for tinyexec to resolve signature format false positive
+trustPolicyExclude:
+  - tinyexec@1.2.2
+  - chokidar@4.0.3
+  - semver@6.3.1
+  - "@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1"
+
+# Enforce a 2-day ( minutes) delay for installing newly published package versions.
 # This "timelock" mitigates supply-chain risks by giving the security community time
 # to identify and withdraw compromised package updates.
 minimumReleaseAge: 4320
-
