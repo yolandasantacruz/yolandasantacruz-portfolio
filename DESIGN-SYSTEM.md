@@ -2,26 +2,12 @@
 
 > [!IMPORTANT]
 > This document inherits and extends the global design and accessibility standards defined in the central [Core Design Specification (DESIGN-SYSTEM.core.md)](DESIGN-SYSTEM.core.md).
-> It serves as the **single source of truth** for all visual tokens, custom components, and animation settings specific to this UI. **Strict adherence is mandatory.**
-
-# Design System Specification
-
-> [!IMPORTANT]
-> This document is the **single source of truth** for all visual styling, component patterns, and design decisions across the portfolio UI. It must be consulted before any UI change, new feature, or visual cleanup. **Strict adherence is mandatory.** Future refactoring and UI improvements must validate against these guidelines to prevent regression.
+> It serves as the **single source of truth** for all visual tokens, custom components, and animation settings specific to this portfolio UI. It must be consulted before any UI change, new feature, or visual cleanup. **Strict adherence is mandatory.** Future refactoring and UI improvements must validate against these guidelines to prevent regression.
 
 ## 1. Visual Direction and Core Philosophy
 The objective is to establish a scalable, highly performant architecture for a Product Design portfolio. The visual direction must prioritize content delivery, typography, and case study readability over superficial graphical effects.
 
-## 2. Animation Engine Guardrails
-Animations are restricted to the following parameters to ensure high performance and professional objectivity: 
-
-* Use strictly CSS-first, hardware-accelerated properties: "transform" and "opacity".
-* Avoid layout-triggering animations (e.g., animating "width", "height", "margin").
-* Implement standard easing curves (e.g., "cubic-bezier(0.4, 0.0, 0.2, 1)").
-* Maximum transition duration: 300ms.
-* Respect the "prefers-reduced-motion" media query.
-
-## 3. Scroll Snapping Guardrails
+## 2. Scroll Snapping Guardrails
 To ensure a premium and fluid navigation experience, we utilize a tiered snapping approach:
 
 * **Landing/Hero Experience**: Use `y mandatory` with `scroll-snap-stop: always`. This creates a focused, full-screen story-telling experience. Combine with long background transitions (e.g., `0.8s`) to ensure the visual shift feels "smooth" and intentional.
@@ -30,7 +16,7 @@ To ensure a premium and fluid navigation experience, we utilize a tiered snappin
 * **Breathing Room**: Implement `scroll-margin-top` (typically `4rem` to `6rem`) on snap targets.
 * **Easing**: Visual transitions accompanying snaps should use standard premium easing: `cubic-bezier(0.16, 1, 0.3, 1)`.
 
-## 4. Typography
+## 3. Typography
 * **Main Body Font**: 'Nunito', sans-serif (Weights: 400, 600, 700, 800).
 * **Header Font**: 'Libre Baskerville', system-ui, sans-serif (Weights: 400 Regular, 400 Italic, 700 Bold).
 * **Base Size**: 16px.
@@ -49,7 +35,7 @@ The design system uses a curated, light-first palette focused on clarity and pre
     * Secondary Accent: `#8edeae` (Mint)
     * Highlight: `#f5ea8c` (Light Yellow)
     * Contrast Accent: `#3b9f98` (Dark Teal)
-* **Section Pastel System**: See [Section 8](#8-homepage-section-pastel-color-system) for the mathematically normalized per-section backgrounds.
+* **Section Pastel System**: See [Section 9](#9-homepage-section-pastel-color-system) for the mathematically normalized per-section backgrounds.
 
 ## 5. Mouse Trail Background
 The `MouseTrailComponent` provides a high-performance WebGL2 shader background.
@@ -107,7 +93,7 @@ The testimonial section is framed within a sophisticated, organic SVG blob backg
 
 ---
 
-## 8. Homepage Section Pastel Color System
+## 9. Homepage Section Pastel Color System
 
 > [!IMPORTANT]
 > The `bridge-section` background color `hsl(169, 58%, 96%)` — hex `#f0fbf9` — is the **immutable anchor** of this system. Its hue (169°), saturation (58%), and lightness (96%) **must never be altered**. All other section pastels are derived by locking S and L to these exact values.
