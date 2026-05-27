@@ -33,6 +33,20 @@ describe('MouseTrailService', () => {
     }
   });
 
+  it('should limit the maximum distance between consecutive trail points to prevent tearing', () => {
+    service['trail'] = [
+      { x: 0, y: 0 },
+      { x: 100, y: 0 },
+      { x: 200, y: 0 }
+    ];
+    service['config'] = { ...service['config'], trailLength: 3 };
+    service['updatePhysics']();
+    const dx = service['trail'][1].x - service['trail'][0].x;
+    const dy = service['trail'][1].y - service['trail'][0].y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    expect(dist).toBeLessThanOrEqual(25.01);
+  });
+
   it('should allow destroying service and canceling animation frame', () => {
     service['rafId'] = 123;
     const cancelSpy = vi.spyOn(globalThis, 'cancelAnimationFrame');

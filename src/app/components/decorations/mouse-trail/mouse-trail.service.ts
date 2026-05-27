@@ -40,6 +40,7 @@ export class MouseTrailService {
   private uTime: WebGLUniformLocation | null = null;
   private uVelocity: WebGLUniformLocation | null = null;
   private uTrail: WebGLUniformLocation | null = null;
+  private uBounds: WebGLUniformLocation | null = null;
 
   public init(canvas: HTMLCanvasElement, config: MouseTrailConfig = DEFAULT_CONFIG) {
     this.canvas = canvas;
@@ -150,12 +151,25 @@ export class MouseTrailService {
     }
 
     // Follower segments
+    // Scale friction based on velocity: tighter follow when fast (0.54), 50% slower collapse when stopped (0.27).
+    const friction = 0.27 + this.velocity * 0.27;
     for (let i = 1; i < this.config.trailLength; i++) {
       const prev = this.trail.at(i - 1);
       const curr = this.trail.at(i);
       if (prev && curr) {
-        curr.x += (prev.x - curr.x) * this.config.physicsFriction;
-        curr.y += (prev.y - curr.y) * this.config.physicsFriction;
+        curr.x += (prev.x - curr.x) * friction;
+        curr.y += (prev.y - curr.y) * friction;
+
+        // Cap the distance between consecutive segments to prevent the trail from tearing
+        // into separate circles during high-speed movements.
+        const dx = curr.x - prev.x;
+        const dy = curr.y - prev.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 25.0; // Max distance in pixels
+        if (dist > maxDist) {
+          curr.x = prev.x + (dx / dist) * maxDist;
+          curr.y = prev.y + (dy / dist) * maxDist;
+        }
       }
     }
 
@@ -165,7 +179,11 @@ export class MouseTrailService {
       const dx = currentHead.x - this.lastX;
       const dy = currentHead.y - this.lastY;
       const currentSpeed = Math.sqrt(dx * dx + dy * dy) / 10.0;
-      this.velocity += (Math.min(currentSpeed, 1.0) - this.velocity) * 0.1;
+      
+      // Decelerate smoothly at a rate of 0.15 so the slow-collapse animation of the tail
+      // remains visible as it gathers at the cursor.
+      const rate = 0.15;
+      this.velocity += (Math.min(currentSpeed, 1.0) - this.velocity) * rate;
 
       this.lastX = currentHead.x;
       this.lastY = currentHead.y;
@@ -183,14 +201,36 @@ export class MouseTrailService {
 
     gl.useProgram(this.program);
 
-    // Update trail data for uniforms
+    let minX = 999.0;
+    let maxX = -999.0;
+    let minY = 999.0;
+    let maxY = -999.0;
+
+    // Update trail data for uniforms and compute bounding box
     for (let i = 0; i < this.config.trailLength; i++) {
       const point = this.trail.at(i);
       if (point) {
-        this.trailData[i * 2] = point.x / (this.canvas.width / this.pixelRatio);
-        this.trailData[i * 2 + 1] = 1.0 - (point.y / (this.canvas.height / this.pixelRatio));
+        const x = point.x / (this.canvas.width / this.pixelRatio);
+        const y = 1.0 - (point.y / (this.canvas.height / this.pixelRatio));
+        this.trailData[i * 2] = x;
+        this.trailData[i * 2 + 1] = y;
+
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
       }
     }
+
+    const aspect = this.canvas.height > 0 ? this.canvas.width / this.canvas.height : 1.0;
+    const padding = 0.08;
+    gl.uniform4f(
+      this.uBounds,
+      minX - padding / aspect,
+      minY - padding,
+      maxX + padding / aspect,
+      maxY + padding
+    );
 
     gl.uniform1f(this.uTime, currentTime);
     gl.uniform1f(this.uVelocity, this.velocity);
@@ -219,6 +259,7 @@ export class MouseTrailService {
     this.uTime = gl.getUniformLocation(this.program, 'u_time');
     this.uVelocity = gl.getUniformLocation(this.program, 'u_velocity');
     this.uTrail = gl.getUniformLocation(this.program, 'u_trail');
+    this.uBounds = gl.getUniformLocation(this.program, 'u_bounds');
   }
 
   private createShader(gl: WebGL2RenderingContext, type: number, source: string) {
@@ -251,6 +292,7 @@ export class MouseTrailService {
       uniform float u_time;
       uniform float u_velocity;
       uniform vec2 u_trail[40];
+      uniform vec4 u_bounds;
 
       out vec4 outColor;
 
@@ -275,6 +317,12 @@ export class MouseTrailService {
 
       void main() {
         vec2 st = gl_FragCoord.xy / u_resolution.xy;
+
+        if (st.x < u_bounds.x || st.x > u_bounds.z || st.y < u_bounds.y || st.y > u_bounds.w) {
+          outColor = vec4(0.0);
+          return;
+        }
+
         float aspect = u_resolution.x / u_resolution.y;
         st.x *= aspect;
 
@@ -289,6 +337,7 @@ export class MouseTrailService {
         vec3 c4 = vec3(0.97, 0.95, 0.80);
 
         vec2 baseOffset = vec2(noise(st * 3.0 + u_time * 1.5), noise(st * 3.0 - u_time * 1.5)) * 0.06 * u_velocity;
+        vec2 stNoise = st + baseOffset;
 
         for(int i = 0; i < 39; i++) {
             float t = float(i) / 38.0;
@@ -297,8 +346,6 @@ export class MouseTrailService {
             vec2 p2 = u_trail[i+1];
             p1.x *= aspect;
             p2.x *= aspect;
-            
-            vec2 stNoise = st + baseOffset * t;
             
             float d = sdSegment(stNoise, p1, p2);
             float sizeScale = mix(4.2, 8.5, t); 

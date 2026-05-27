@@ -45,6 +45,7 @@ describe('MouseTrailComponent', () => {
           uniform1f: noop,
           uniform2f: noop,
           uniform2fv: noop,
+          uniform4f: noop,
           drawArrays: noop,
         };
       }
