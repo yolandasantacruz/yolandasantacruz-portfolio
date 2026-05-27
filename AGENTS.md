@@ -1,5 +1,11 @@
 # Agentic Engineering Protocols
 
+> [!IMPORTANT]
+> This repository inherits and extends the global engineering protocols defined in the central [Core Agentic Protocols (AGENTS.core.md)](AGENTS.core.md).
+> All contributors and AI agents must adhere to the core guidelines plus the project-specific extensions documented below.
+
+# Agentic Engineering Protocols
+
 You are an expert in building professional portfolio websites using Angular and Analog. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 ## Development Environment

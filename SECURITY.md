@@ -1,26 +1,36 @@
 # Security Policy
 
 > [!IMPORTANT]
-> This document outlines the security posture and incident response procedures for this portfolio website. All contributors and maintainers must adhere strictly to these guidelines to protect sensitive information and ensure the integrity of the platform.
+> This document outlines the security posture, vulnerability reporting, and incident response procedures for this project. Maintainers and contributors must adhere to these practices to protect user data and ensure system integrity.
 
 ## Supported Versions
-Only the latest commit on the "main" branch is actively supported with security updates.
+
+Only the latest release on the primary development branch is actively supported with security updates. We do not maintain security patches for older major or minor versions.
 
 ## Dependency Management
-* Automated dependency scanning must be enabled via GitHub Dependabot.
-* No dependency with known high or critical Common Vulnerabilities and Exposures (CVE) may be merged into the "main" branch.
+
+To prevent supply-chain vulnerabilities:
+* Automated dependency scanning must be enabled (e.g., GitHub Dependabot or Snyk).
+* No pull request containing dependencies with known high or critical severity CVEs (Common Vulnerabilities and Exposures) should be merged.
+* Dependencies should be regularly updated to their latest stable patches.
 
 ## Vulnerability Reporting
-Do not file public issues for security vulnerabilities. If you discover a security vulnerability in this portfolio website, please DO NOT open a public issue.
 
-Instead, please report it privately to the maintainers to give us time to patch the issue before making it public.
+If you find a security vulnerability, **please do not open a public issue.** 
 
-- Email the core maintainers directly or use GitHub's private vulnerability reporting feature.
-- Provide a detailed summary of the vulnerability, including step-by-step instructions on how to reproduce it.
+Instead, report it privately to ensure we can resolve the issue before it is publicly disclosed.
+
+### Reporting Channels
+* Email the maintainers directly.
+* Or submit a report privately through GitHub's Private Vulnerability Reporting feature in the **Security** tab of the repository.
+
+### What to Include
+When reporting a vulnerability, please provide a detailed description including:
+* The affected version or component.
+* Step-by-step instructions to reproduce the issue (including proof-of-concept scripts or steps, if applicable).
+* The potential impact of the vulnerability.
 
 ### Our Process
-1. **Acknowledgment**: You should receive an acknowledgment of your report.
-2. **Investigation**: We will investigate the issue and keep you informed of our progress.
-3. **Patch**: We will develop, test, and release a fix.
-
-We appreciate your help in keeping our project secure.
+1. **Acknowledgment**: We will acknowledge receipt of your report within [X] business days.
+2. **Investigation**: We will investigate the issue and coordinate with you to gather details.
+3. **Remediation**: We will build and test a patch, then release it in a timely manner.
