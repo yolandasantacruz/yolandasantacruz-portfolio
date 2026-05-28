@@ -13,6 +13,7 @@ import {
   OnDestroy,
   ViewChildren,
   QueryList,
+  linkedSignal,
 } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { Testimonial } from '../../pages/about.types';
@@ -35,7 +36,13 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
             <div class="testimonial-container">
               <div class="testimonial-header">
                 <div class="active-author-info">
-                  <img [src]="activeTestimonial.avatar" [alt]="activeTestimonial.name" class="author-avatar" />
+                  @if (avatarError()) {
+                    <div class="author-avatar-fallback">
+                      {{ getInitials(activeTestimonial.name) }}
+                    </div>
+                  } @else {
+                    <img [src]="activeTestimonial.avatar" [alt]="activeTestimonial.name" class="author-avatar" (error)="avatarError.set(true)" />
+                  }
                   <div class="author-details">
                     @if (activeTestimonial.profileUrl) {
                       <a [href]="activeTestimonial.profileUrl" target="_blank" rel="noopener noreferrer" class="author-link" [attr.aria-label]="'Visit ' + activeTestimonial.name + ' on LinkedIn'">
@@ -132,6 +139,24 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       object-fit: cover;
       border: 2px solid #5ed6cc;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .author-avatar-fallback {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid #5ed6cc;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      background: linear-gradient(135deg, #5ed6cc, #3b9f98);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      user-select: none;
     }
 
     .author-details {
@@ -276,6 +301,11 @@ export class AboutTestimonialsComponent implements OnDestroy {
   items = input<Testimonial[] | undefined>();
   readonly currentIndex = signal(0);
 
+  readonly avatarError = linkedSignal({
+    source: () => this.currentIndex(),
+    computation: () => false
+  });
+
   readonly currentBlobColor = computed(() =>
     this.blobAnimationService.getBlobColor(this.currentIndex())
   );
@@ -335,6 +365,17 @@ export class AboutTestimonialsComponent implements OnDestroy {
     }
   }
 
+  getInitials(name: string): string {
+    if (!name) return '';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      const first = parts.at(0)?.charAt(0) ?? '';
+      const last = parts.at(-1)?.charAt(0) ?? '';
+      return (first + last).toUpperCase();
+    }
+    return name.charAt(0).toUpperCase();
+  }
+
   ngOnDestroy(): void {
     if (this.resizeListener && isPlatformBrowser(this.platformId)) {
       const win = this.document.defaultView;
@@ -346,3 +387,4 @@ export class AboutTestimonialsComponent implements OnDestroy {
     // as it is component-scoped and destroyed alongside this component.
   }
 }
+

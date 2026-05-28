@@ -148,4 +148,33 @@ describe('AboutTestimonialsComponent', () => {
     const colorAtIndex0 = component.blobAnimationService.getBlobColor(0);
     expect(component.currentBlobColor()).toBe(colorAtIndex0);
   });
+
+  it('should render initials fallback when image fails to load', async () => {
+    componentRef.setInput('items', mockTestimonials);
+    await fixture.whenStable();
+
+    // Verify avatar image is rendered initially
+    const avatarImg = fixture.debugElement.query(By.css('.author-avatar'));
+    expect(avatarImg).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('.author-avatar-fallback'))).toBeNull();
+
+    // Trigger image loading error
+    avatarImg.nativeElement.dispatchEvent(new Event('error'));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    // Verify avatar image is removed and fallback is rendered with initials
+    expect(fixture.debugElement.query(By.css('.author-avatar'))).toBeNull();
+    const fallback = fixture.debugElement.query(By.css('.author-avatar-fallback'));
+    expect(fallback).toBeTruthy();
+    expect(fallback.nativeElement.textContent.trim()).toBe('JD'); // John Doe -> JD
+  });
+
+  it('should generate correct initials for different name structures', () => {
+    expect(component.getInitials('John Doe')).toBe('JD');
+    expect(component.getInitials('  John    Doe  ')).toBe('JD');
+    expect(component.getInitials('SingleName')).toBe('S');
+    expect(component.getInitials('John Middle Doe')).toBe('JD');
+    expect(component.getInitials('')).toBe('');
+  });
 });

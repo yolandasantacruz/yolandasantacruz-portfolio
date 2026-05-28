@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 import { PillarsData } from '../../pages/about.types';
 import { ImageUrlService } from '../../services/image-url.service';
 
@@ -42,10 +43,24 @@ import { ImageUrlService } from '../../services/image-url.service';
                 <span class="video-label">VIEW: A Sample Mentorship Session</span>
               </div>
               <div class="player-wrapper">
-                <img ngSrc="https://placehold.co/1200x675/121212/ffffff?text=Sample+Mentorship+Session" width="1200" height="675" alt="Sample Mentorship Session" class="video-thumbnail" />
-                <div class="play-overlay">
-                  <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
-                </div>
+                @if (isPlaying()) {
+                  <iframe 
+                    [src]="safeVideoUrl()" 
+                    title="Sample Mentorship Session" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen 
+                    class="video-iframe">
+                  </iframe>
+                } @else {
+                  <button class="play-trigger" (click)="playVideo()" type="button" aria-label="Play sample mentorship session">
+                    <img src="https://img.youtube.com/vi/yL_yRyzp7oo/maxresdefault.jpg" alt="Sample Mentorship Session" class="video-thumbnail" />
+                    <div class="play-overlay">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </button>
+                }
               </div>
             </div>
           </div>
@@ -233,7 +248,22 @@ import { ImageUrlService } from '../../services/image-url.service';
       overflow: hidden;
       background: #121212;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .play-trigger {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 0;
+      background: transparent;
       cursor: pointer;
+      position: relative;
+    }
+
+    .play-trigger:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 3px #3b9f98;
     }
 
     .video-thumbnail {
@@ -244,7 +274,8 @@ import { ImageUrlService } from '../../services/image-url.service';
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s;
     }
 
-    .player-wrapper:hover .video-thumbnail {
+    .play-trigger:hover .video-thumbnail,
+    .play-trigger:focus-visible .video-thumbnail {
       transform: scale(1.03);
       opacity: 0.8;
     }
@@ -263,9 +294,11 @@ import { ImageUrlService } from '../../services/image-url.service';
       justify-content: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+      z-index: 2;
     }
 
-    .player-wrapper:hover .play-overlay {
+    .play-trigger:hover .play-overlay,
+    .play-trigger:focus-visible .play-overlay {
       transform: translate(-50%, -50%) scale(1.1);
       background: #ffffff;
     }
@@ -275,6 +308,15 @@ import { ImageUrlService } from '../../services/image-url.service';
       height: 28px;
       color: #111;
       margin-left: 4px;
+    }
+
+    .video-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     /* CTA Button Styles */
@@ -321,5 +363,20 @@ import { ImageUrlService } from '../../services/image-url.service';
 export class AboutPillarsComponent {
   data = input<PillarsData | undefined>();
   private imageUrlService = inject(ImageUrlService);
-  readonly atWorkUrl = computed(() => this.imageUrlService.resolve('/images/about/at-work.webp'));}
+  private sanitizer = inject(DomSanitizer);
+
+  readonly atWorkUrl = computed(() => this.imageUrlService.resolve('/images/about/at-work.webp'));
+
+  readonly isPlaying = signal(false);
+
+  readonly safeVideoUrl = computed(() => {
+    const url = this.data()?.philosophy?.videoUrl ?? '';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  });
+
+  playVideo(): void {
+    this.isPlaying.set(true);
+  }
+}
+
 

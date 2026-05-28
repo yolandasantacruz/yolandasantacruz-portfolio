@@ -25,6 +25,7 @@ export interface PillarData {
   metrics?: { num: string; label: string; }[];
   linkUrl?: string;
   linkLabel?: string;
+  videoUrl?: string;
 }
 
 export interface PillarsData {
