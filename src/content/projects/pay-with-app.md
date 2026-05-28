@@ -1,8 +1,8 @@
 ---
 title: Pay with App
 slug: pay-with-app
-description: Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%
-imageUrl: /images/PayWithApp-HomeCover.webp
+description: Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs
+imageUrl: /images/projects/pay-with-app/cover.webp
 category: FINTECH
 role: Lead Product Designer
 timeline: Jan 2023 - May 2024
@@ -10,45 +10,95 @@ techStack: ["React Native", "TypeScript", "Node.js"]
 order: 1
 ---
 
+## Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs.
 
-## Increase user sign ups by 20%, reducing activation costs by 32%, and boosting card activations by 35% through a redesigned onboarding flow.
+![Pay with App Interface Collage](/images/projects/pay-with-app/main.webp)
 
-![Main Interface Collage](https://placehold.co/1200x800/f4f4f4/1a1a1a?text=App+Screens+Collage)
+### Brief
+Sole designer in a cross-functional pod, working closely with a PM and user researcher to redesign the transaction experience for a key C2C feature. The feature faced high dispute rates that put our Stripe contract at risk and capped rollout at 25% of users. We set out to uncover friction points in the payment experience and deliver fixes that would enable a broader launch.
 
-### Overview
-This case study focuses on the redesign of the Pay with App onboarding experience. The project aimed to streamline the user journey, improve activation metrics, and create a more cohesive brand experience for a fintech startup.
+### Problems
 
-### Problem
-The previous onboarding flow was fragmented, leading to high drop-off rates and confusion. Users struggled with the card activation process, and the value proposition wasn't clearly communicated early in the experience.
+*   **Contract at Risk:** Dispute rates hit 0.69%, nearing Stripe’s 0.75% threshold. Crossing it could terminate our payment processing agreement, putting a key strategic initiative at risk.
+*   **Rollout Blocked:** The high dispute rate forced us to cap product rollout to just 25% of users, limiting growth and impact.
 
-### Goal
-Create a seamless, unified onboarding experience that builds trust and encourages users to activate their cards while reducing friction in the initial sign-up flow.
+### Goals
+
+1.  Identify root causes of the high dispute rate throughout the user journey.
+2.  Address dispute triggers to enable full rollout beyond the current 25% user cap, expanding reach and revenue.
 
 ### User Research
-We conducted user interviews and surveys to identify the main pain points. Key findings showed that users were overwhelmed by the number of steps and lacked clarity on how to start using the service after signing up.
 
-![Old vs New Flow Architecture](https://placehold.co/1000x600/f4f4f4/1a1a1a?text=Flow+Architecture+Diagrams)
+To identify friction points and improve user experience, the researcher and I conducted an iterative design cycle focused on simplifying the interface. We crafted and analyzed the ALPHA and BRAVO flows for new and existing users. Each flow offered a unique user journey, from selecting offers to completing payments, tailored to user familiarity.
 
-### Solution Highlights
-The new flow introduces a more intuitive step-by-step process. We simplified the verification steps and added progress indicators to keep users engaged. We also introduced a 'Getting Started' guide that appears immediately after sign-up.
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+  <img src="/images/projects/pay-with-app/research1.webp" alt="User Research Flow Alpha" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <img src="/images/projects/pay-with-app/research2.webp" alt="User Research Flow Bravo" style="margin: 0; border-radius: 12px; width: 100%;" />
+</div>
 
-![Onboarding Screens](https://placehold.co/1000x800/f4f4f4/1a1a1a?text=Redesigned+Onboarding+Screens)
+We also reviewed the Add Card and Card Added flows to understand how the timing and context of adding payment information impacted user motivation and retention.
 
-### Integrating a Personal Touch
-We added personalized onboarding messages and a dedicated support section to help users who encountered issues during the setup process. This human-centric approach helped build trust and improved user retention.
+Through this testing, we identified specific pain points where users experienced friction or confusion, particularly in the BRAVO flow for new users. These insights informed our design decisions, guiding us on how and where to minimize friction and optimize the overall user journey.
 
-![Personalized Feedback](https://placehold.co/1000x600/f4f4f4/1a1a1a?text=Personalized+UI+Feedback)
+### Merging of Key Screens
 
-### Testing and Iteration
-We conducted several rounds of usability testing to refine the new flow. User feedback was instrumental in identifying areas for improvement, such as the clarity of the verification emails and the ease of card activation.
+Through testing our previous flow, we discovered that many users misinterpreted the first screen as asking for the amount they had already paid, assuming the next screen was only for card selection rather than in-app payment. This misunderstanding was a major factor contributing to duplicate charges and higher dispute rates.
 
-### Final Solution
-The final design focuses on clarity, trust, and ease of use. By simplifying the onboarding flow and providing clear guidance, we were able to significantly improve user engagement and activation rates.
+![Merged Payment Screen](/images/projects/pay-with-app/merged-screens.webp)
+
+To address this, I designed a consolidated screen that combined both the amount entry and payment selection steps into a single, streamlined experience. I also asked the development team to add a dynamic display of the user’s earnings on each purchase, making rewards immediately visible and reinforcing overall product value.
+
+### Interface Exploration for Payment Flow
+
+To improve the user experience within the payment flow, we explored several design variations, focusing on usability and navigation. Three main designs were tested:
+
+*   **Baseline Design:** A straightforward, minimal interface that emphasizes simplicity. Users input the purchase amount directly and then select a payment method in the next screen.
+*   **Stepper with X for Navigation:** This design introduces a stepper at the top, guiding users through each stage of the transaction. The “X” icon provides a quick way to exit, offering users more control and flexibility during the payment flow.
+*   **Full-Screen Bottom Sheet with Chevron Navigation:** A full-screen bottom sheet uses chevron navigation to guide users step by step through the payment flow. It keeps the previous screen visible, making the steps feel like a lightweight side action rather than a full context switch.
+*   **Full-Screen Takeover with Chevron Navigation:** Similar to the bottom sheet, this variation uses a full-screen takeover, guiding users step by step with chevron navigation.
+
+Historic data showed that over 90% of new users and 20% of existing users claimed offers without being at the location, and based on user research a chevron gave them confidence that their progress would be saved even if they exited the flow. Based on these findings, I chose a **full-screen takeover** to create a more immersive experience.
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center; margin: 2rem 0;">
+  <img src="/images/projects/pay-with-app/exploration.webp" alt="Interface Design Exploration" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <div style="text-align: center; width: 100%;">
+    <iframe title="Video Player" src="https://www-ccv.adobe.io/v1/player/ccv/JQoTQTT3iiY/embed?bgcolor=%23191919&lazyLoading=true&api_key=BehancePro2View" frameborder="0" allowfullscreen style="width: 100%; aspect-ratio: 9/16; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Full-screen takeover with a chevron for the win</p>
+  </div>
+</div>
+
+### Branded Barcode Rendering
+
+To enhance the barcode’s distinctiveness and branding, we applied style changes by integrating brand logos into the card area and using brand colors for the background. We also included key information within the object, such as the offer’s expiration time.
+
+![Branded Barcode Exploration](/images/projects/pay-with-app/barcode.webp)
+
+### Label Update
+
+For clarity, we renamed the previous "Upside Pay" label to "Pay with app" and changed its color to improve contrast. To highlight the distinct experience, this label appeared throughout the app in other areas like the Home screen and transaction history.
+
+![Label and Contrast Updates](/images/projects/pay-with-app/label-update.webp)
 
 ### Results
-- **20% Increase** in user sign ups
-- **32% Reduction** in activation costs
-- **35% Boost** in card activations
+
+*   **50% reduction in dispute rates:** Dispute rates went from 0.69% to 0.33%, and kept the margin since.
+*   **92% reduction of dispute costs:** Dispute costs went from an all-time high in May of $8,800 to $700 per month.
+*   **251% surge in transaction volume:** With the reduction of disputes, we were able to roll out “Pay with app” from 25% to 100% of our user base, resulting in a 251% surge in transaction volume.
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
+  <div style="text-align: center;">
+    <img src="/images/projects/pay-with-app/dispute-rates.webp" alt="Dispute Rates Chart" style="margin: 0 auto; border-radius: 12px;" />
+    <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Dispute Rates</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="/images/projects/pay-with-app/dispute-costs.webp" alt="Dispute Costs Chart" style="margin: 0 auto; border-radius: 12px;" />
+    <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Dispute Costs</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="/images/projects/pay-with-app/transaction-volume.webp" alt="Transaction Volume Chart" style="margin: 0 auto; border-radius: 12px;" />
+    <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Transaction Volume</p>
+  </div>
+</div>
 
 ---
 

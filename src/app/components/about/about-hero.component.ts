@@ -180,9 +180,7 @@ export class AboutHeroComponent {
   socials = input<SocialsData | undefined>();
   private socialIconService = inject(SocialIconService);
   private imageUrlService = inject(ImageUrlService);
-
-  readonly heroPortrait = computed(() => this.imageUrlService.resolve('/images/AboutMe-Image.webp'));
-
+  readonly heroPortrait = computed(() => this.imageUrlService.resolve('/images/about/portrait.webp'));
   /** Resolved list of social links from the socials input */
   socialLinks = computed<SocialLink[]>(() => this.socials()?.links ?? []);
 

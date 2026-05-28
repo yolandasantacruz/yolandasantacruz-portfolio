@@ -321,7 +321,5 @@ import { ImageUrlService } from '../../services/image-url.service';
 export class AboutPillarsComponent {
   data = input<PillarsData | undefined>();
   private imageUrlService = inject(ImageUrlService);
-
-  readonly atWorkUrl = computed(() => this.imageUrlService.resolve('/images/AtWork.webp'));
-}
+  readonly atWorkUrl = computed(() => this.imageUrlService.resolve('/images/about/at-work.webp'));}
 

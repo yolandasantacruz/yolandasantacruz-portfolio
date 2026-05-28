@@ -2,7 +2,7 @@
 title: Fetch Pay
 slug: Fetch Pay
 description: Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%
-imageUrl: /images/FetchPay_HomeCover.webp
+imageUrl: /images/projects/fetch-pay/cover.webp
 category: MOBILE
 role: Senior Figma Developer -> Applied AI Product Engineer
 timeline: Dec 2024 - Present

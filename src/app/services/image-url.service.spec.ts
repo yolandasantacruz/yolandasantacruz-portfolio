@@ -28,13 +28,13 @@ describe('ImageUrlService', () => {
     });
 
     it('prepends the base href to a root-relative path', () => {
-      expect(service.resolve('/images/PayWithApp-HomeCover.png'))
-        .toBe('/yolandasantacruz-portfolio/images/PayWithApp-HomeCover.png');
+      expect(service.resolve('/images/projects/pay-with-app/cover.webp'))
+        .toBe('/yolandasantacruz-portfolio/images/projects/pay-with-app/cover.webp');
     });
 
     it('adds a leading slash when the path has none', () => {
-      expect(service.resolve('images/FetchPay_HomeCover.png'))
-        .toBe('/yolandasantacruz-portfolio/images/FetchPay_HomeCover.png');
+      expect(service.resolve('images/projects/fetch-pay/cover.webp'))
+        .toBe('/yolandasantacruz-portfolio/images/projects/fetch-pay/cover.webp');
     });
 
     it('handles a base href without a trailing slash', () => {
@@ -52,13 +52,13 @@ describe('ImageUrlService', () => {
     });
 
     it('returns the same root-relative path unchanged', () => {
-      expect(service.resolve('/images/PlantMe-HomeCover.png'))
-        .toBe('/images/PlantMe-HomeCover.png');
+      expect(service.resolve('/images/projects/plant-me/cover.webp'))
+        .toBe('/images/projects/plant-me/cover.webp');
     });
 
     it('adds a leading slash to a path without one', () => {
-      expect(service.resolve('images/PlantMe-HomeCover.png'))
-        .toBe('/images/PlantMe-HomeCover.png');
+      expect(service.resolve('images/projects/plant-me/cover.webp'))
+        .toBe('/images/projects/plant-me/cover.webp');
     });
   });
 
@@ -68,12 +68,10 @@ describe('ImageUrlService', () => {
     beforeEach(() => {
       service = createService('/yolandasantacruz-portfolio/');
     });
-
     it('does not modify an https:// URL', () => {
       const url = 'https://placehold.co/800x600/1a1a1a/5ed6cc?text=SaaS+Permissions';
       expect(service.resolve(url)).toBe(url);
     });
-
     it('does not modify an http:// URL', () => {
       const url = 'http://example.com/image.png';
       expect(service.resolve(url)).toBe(url);

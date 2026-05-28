@@ -2,7 +2,7 @@
 title: PlantMe
 slug: PlantMe
 description: Designed a 0 to 1 experience for a C2C app
-imageUrl: /images/PlantMe-HomeCover.webp
+imageUrl: /images/projects/plant-me/cover.webp
 category: PROPTECH
 role: Senior UX/UI Designer
 timeline: Mar 2022 - Dec 2022
