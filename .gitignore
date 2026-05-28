@@ -63,3 +63,7 @@ Library/
 !*.env.template
 !*.env.defaults
 !*.env.sample
+
+# Legacy website local snapshot
+archive/
+
