@@ -14,6 +14,29 @@ if (!base.endsWith('/')) {
   base = base + '/';
 }
 
+// Helper to wrap Rollup hooks to conditionally bypass execution during SSR builds (Vite 6/8 Environment API compatibility)
+function wrapClientOnlyHook(
+  hook: any,
+  checkSSR: (ctx: any, ...args: any[]) => boolean
+) {
+  if (!hook) return undefined;
+
+  const handler = typeof hook === 'function' ? hook : hook.handler;
+  const order = typeof hook === 'object' ? hook.order : undefined;
+  const sequential = typeof hook === 'object' ? hook.sequential : undefined;
+
+  return {
+    order,
+    sequential,
+    async handler(this: any, ...args: any[]) {
+      if (checkSSR(this, ...args)) {
+        return;
+      }
+      return await handler.call(this, ...args);
+    }
+  };
+}
+
 // Wrapper to ensure VitePWA only runs in the client environment (Vite 6/8 Environment API compatibility)
 function clientPwa(options: any) {
   const res = VitePWA(options);
@@ -22,43 +45,15 @@ function clientPwa(options: any) {
     if (!plugin) return plugin;
     const wrapped: any = { ...plugin };
 
-    const configResolved = plugin.configResolved;
-    if (configResolved) {
-      wrapped.configResolved = async function (config: any) {
-        if (config.build?.ssr) {
-          // Bypassing SSR to keep shared ctx.viteConfig pointed to the client config
-          return;
-        }
-        return await configResolved.call(this, config);
-      };
-    }
+    const configResolved = wrapClientOnlyHook(plugin.configResolved, (_, config) => !!config?.build?.ssr);
+    if (configResolved) wrapped.configResolved = configResolved;
 
-    const generateBundle = plugin.generateBundle;
-    if (generateBundle) {
-      wrapped.generateBundle = async function (this: any, options: any, bundle: any, isWrite: any) {
-        if (this.environment?.config?.build?.ssr) {
-          return;
-        }
-        return await generateBundle.call(this, options, bundle, isWrite);
-      };
-    }
+    const generateBundle = wrapClientOnlyHook(plugin.generateBundle, (ctx) => !!ctx?.environment?.config?.build?.ssr);
+    if (generateBundle) wrapped.generateBundle = generateBundle;
 
-    if (plugin.closeBundle) {
-      const handler = typeof plugin.closeBundle === 'function' ? plugin.closeBundle : (plugin.closeBundle as any).handler;
-      const order = typeof plugin.closeBundle === 'object' ? (plugin.closeBundle as any).order : undefined;
-      const sequential = typeof plugin.closeBundle === 'object' ? (plugin.closeBundle as any).sequential : undefined;
+    const closeBundle = wrapClientOnlyHook(plugin.closeBundle, (ctx) => !!ctx?.environment?.config?.build?.ssr);
+    if (closeBundle) wrapped.closeBundle = closeBundle;
 
-      wrapped.closeBundle = {
-        order,
-        sequential,
-        async handler(this: any, error: any) {
-          if (this.environment?.config?.build?.ssr) {
-            return;
-          }
-          return await handler.call(this, error);
-        }
-      };
-    }
     return wrapped;
   });
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, input, linkedSignal, OnInit
 import { NgOptimizedImage } from '@angular/common';
 import { PublicationsData, PublishedWork } from '../../pages/about.types';
 import { PublicationsService } from '../../services/publications.service';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'portfolio-about-published-works',
@@ -149,18 +150,25 @@ import { PublicationsService } from '../../services/publications.service';
 })
 export class AboutPublishedWorksComponent implements OnInit {
   private publicationsService = inject(PublicationsService);
+  private imageUrlService = inject(ImageUrlService);
 
   data = input<PublicationsData | undefined>();
 
   readonly items = linkedSignal<PublicationsData | undefined, PublishedWork[]>({
     source: () => this.data(),
-    computation: (data) => data?.items ?? []
+    computation: (data) => (data?.items ?? []).map(item => ({
+      ...item,
+      imageUrl: this.imageUrlService.resolve(item.imageUrl)
+    }))
   });
 
   ngOnInit() {
     this.publicationsService.load().subscribe((works) => {
       if (works.length > 0) {
-        this.items.set(works);
+        this.items.set(works.map(work => ({
+          ...work,
+          imageUrl: this.imageUrlService.resolve(work.imageUrl)
+        })));
       }
       // Empty result means API failed — linkedSignal fallback from markdown stays active
     });

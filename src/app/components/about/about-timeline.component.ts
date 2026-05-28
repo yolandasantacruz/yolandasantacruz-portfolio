@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TimelineData } from '../../pages/about.types';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'portfolio-about-timeline',
@@ -186,19 +187,31 @@ import { TimelineData } from '../../pages/about.types';
   `
 })
 export class AboutTimelineComponent {
+  private imageUrlService = inject(ImageUrlService);
   data = input<TimelineData | undefined>();
 
   leftTimelineItems = computed(() => {
     const items = this.data()?.items || [];
-    return items.slice(0, Math.ceil(items.length / 2));
+    return items.slice(0, Math.ceil(items.length / 2)).map(item => ({
+      ...item,
+      logo: this.isImageLogo(item.logo) ? this.imageUrlService.resolve(item.logo) : item.logo
+    }));
   });
 
   rightTimelineItems = computed(() => {
     const items = this.data()?.items || [];
-    return items.slice(Math.ceil(items.length / 2));
+    return items.slice(Math.ceil(items.length / 2)).map(item => ({
+      ...item,
+      logo: this.isImageLogo(item.logo) ? this.imageUrlService.resolve(item.logo) : item.logo
+    }));
   });
 
   isImagePath(logo: string): boolean {
+    return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg') || logo.endsWith('.webp');
+  }
+
+  private isImageLogo(logo: string): boolean {
+    if (!logo) return false;
     return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg') || logo.endsWith('.webp');
   }
 }
