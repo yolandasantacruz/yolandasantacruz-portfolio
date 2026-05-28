@@ -122,8 +122,6 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      padding-bottom: 2.5rem;
     }
 
     .active-author-info {
