@@ -53,7 +53,25 @@ import {
       <!-- Fluid background line winding down the page behind text -->
       <div class="fluid-line-bg" aria-hidden="true">
         <svg viewBox="0 0 1200 3200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 200,-100 C 250,200 1000,300 1000,800 C 1000,1300 150,1400 150,1900 C 150,2400 1050,2500 1050,2900 C 1050,3100 600,3150 400,3250 L 408,3250 C 605,3150 1042,3100 1042,2900 C 1042,2400 240,2400 240,1900 C 240,1400 994,1300 994,800 C 994,300 300,200 205,-100 Z" fill="#00C8C9" opacity="0.05" />
+          <defs>
+            <filter id="about-f-blur" x="-300" y="-300" width="1800" height="4200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="90"/>
+            </filter>
+            <linearGradient id="about-g-trace" x1="-150" y1="-50" x2="404" y2="3600" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#8AE7DA" stop-opacity="0.3"/>
+              <stop offset="30%" stop-color="#E2F6BC" stop-opacity="0.3"/>
+              <stop offset="45%" stop-color="#E2F6BC" stop-opacity="1.0"/>
+              <stop offset="100%" stop-color="#FCFBE9" stop-opacity="1.0"/>
+            </linearGradient>
+          </defs>
+          <!-- soft outer glow layer 1 -->
+          <path opacity="0.9" filter="url(#about-f-blur)" d="M -150,-50 C 100,50 997,300 997,800 C 997,1300 195,1400 195,1900 C 195,2400 1046,2500 1046,2900 C 1046,3100 602.5,3150 404,3600" stroke="url(#about-g-trace)" stroke-width="140"/>
+          <!-- soft outer glow layer 2 (doubles the glow intensity) -->
+          <path opacity="0.9" filter="url(#about-f-blur)" d="M -150,-50 C 100,50 997,300 997,800 C 997,1300 195,1400 195,1900 C 195,2400 1046,2500 1046,2900 C 1046,3100 602.5,3150 404,3600" stroke="url(#about-g-trace)" stroke-width="140"/>
+          <!-- mid diffuse band -->
+          <path opacity="0.55" d="M -150,-50 C 100,50 997,300 997,800 C 997,1300 195,1400 195,1900 C 195,2400 1046,2500 1046,2900 C 1046,3100 602.5,3150 404,3600" stroke="url(#about-g-trace)" stroke-width="120"/>
+          <!-- sharp bright core -->
+          <path d="M -150,-50 C 100,50 997,300 997,800 C 997,1300 195,1400 195,1900 C 195,2400 1046,2500 1046,2900 C 1046,3100 602.5,3150 404,3600" stroke="url(#about-g-trace)" stroke-width="50"/>
         </svg>
       </div>
 
@@ -74,6 +92,11 @@ import {
     </div>
   `,
   styles: `
+    @keyframes aboutTraceFloat {
+      0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-20px) scale(1.01) rotate(0.5deg); }
+    }
+
     .about-wrapper {
       position: relative;
       width: 100%;
@@ -88,11 +111,16 @@ import {
       height: 100%;
       z-index: 6; /* Sits above WebGL mouse trail (z-index 5) but below content */
       pointer-events: none;
+      opacity: 0.7;
     }
 
     .fluid-line-bg svg {
       width: 100%;
       height: 100%;
+      animation: aboutTraceFloat 12s ease-in-out infinite;
+      transform-origin: center;
+      will-change: transform;
+      overflow: visible;
     }
 
     .relative-container {
@@ -114,6 +142,13 @@ import {
       scroll-snap-stop: normal;
       scroll-margin-top: 6rem;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fluid-line-bg svg {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
   `
 })
 export default class AboutComponent {
@@ -122,7 +157,7 @@ export default class AboutComponent {
     file.filename.includes('about/hero.md')
   )[0]?.attributes;
 
-  readonly socialsData = injectContentFiles<SocialsData & Record<string, unknown>>(file => 
+  readonly socialsData = injectContentFiles<SocialsData & Record<string, unknown>>(file =>
     file.filename.includes('shared/socials.md')
   )[0]?.attributes;
 

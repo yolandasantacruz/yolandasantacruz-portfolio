@@ -13,23 +13,23 @@ import { HomeHeroData } from '../../../pages/home.types';
       <div class="hero-bg-trace">
         <svg width="1244" height="779" viewBox="0 0 1244 779" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <filter id="f-blur" x="-107.25" y="-188.066" width="1427.95" height="1009.19" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="f-blur" x="-250" y="-600" width="1800" height="1400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
               <feGaussianBlur stdDeviation="70"/>
             </filter>
-            <linearGradient id="g-trace" x1="1159" y1="-68.5" x2="0" y2="651.5" gradientUnits="userSpaceOnUse">
+            <linearGradient id="g-trace" x1="1400" y1="-505" x2="-150" y2="667" gradientUnits="userSpaceOnUse">
               <stop stop-color="#8AE7DA"/>
               <stop offset="0.5" stop-color="#E2F6BC"/>
               <stop offset="1" stop-color="#FCFBE9"/>
             </linearGradient>
           </defs>
           <!-- soft outer glow layer 1 -->
-          <path opacity="0.9" filter="url(#f-blur)" d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="140"/>
+          <path opacity="0.9" filter="url(#f-blur)" d="M -150,667 L 0,651.5 C 257.667 624.667 898 432 1159 -55 L 1400,-505" stroke="url(#g-trace)" stroke-width="140"/>
           <!-- soft outer glow layer 2 (doubles the glow intensity) -->
-          <path opacity="0.9" filter="url(#f-blur)" d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="140"/>
+          <path opacity="0.9" filter="url(#f-blur)" d="M -150,667 L 0,651.5 C 257.667 624.667 898 432 1159 -55 L 1400,-505" stroke="url(#g-trace)" stroke-width="140"/>
           <!-- mid diffuse band -->
-          <path opacity="0.55" d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="140"/>
+          <path opacity="0.55" d="M -150,667 L 0,651.5 C 257.667 624.667 898 432 1159 -55 L 1400,-505" stroke="url(#g-trace)" stroke-width="140"/>
           <!-- sharp bright core -->
-          <path d="M0 651.5C257.667 624.667 898 432 1159 -55" stroke="url(#g-trace)" stroke-width="80"/>
+          <path d="M -150,667 L 0,651.5 C 257.667 624.667 898 432 1159 -55 L 1400,-505" stroke="url(#g-trace)" stroke-width="80"/>
         </svg>
 
       </div>
