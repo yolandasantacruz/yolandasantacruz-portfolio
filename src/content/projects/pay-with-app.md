@@ -19,8 +19,9 @@ Sole designer in a cross-functional pod, working closely with a PM and user rese
 
 ### Problems
 
-*   **Contract at Risk:** Dispute rates hit 0.69%, nearing Stripe’s 0.75% threshold. Crossing it could terminate our payment processing agreement, putting a key strategic initiative at risk.
-*   **Rollout Blocked:** The high dispute rate forced us to cap product rollout to just 25% of users, limiting growth and impact.
+**Contract at Risk:** Dispute rates hit 0.69%, nearing Stripe’s 0.75% threshold. Crossing it could terminate our payment processing agreement, putting a key strategic initiative at risk.
+
+**Rollout Blocked:** The high dispute rate forced us to cap product rollout to just 25% of users, limiting growth and impact.
 
 ### Goals
 
@@ -62,7 +63,10 @@ Historic data showed that over 90% of new users and 20% of existing users claime
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center; margin: 2rem 0;">
   <img src="/images/projects/pay-with-app/exploration.webp" alt="Interface Design Exploration" style="margin: 0; border-radius: 12px; width: 100%;" />
   <div style="text-align: center; width: 100%;">
-    <iframe title="Video Player" src="https://www-ccv.adobe.io/v1/player/ccv/JQoTQTT3iiY/embed?bgcolor=%23191919&lazyLoading=true&api_key=BehancePro2View" frameborder="0" allowfullscreen style="width: 100%; aspect-ratio: 9/16; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <video autoplay loop muted playsinline style="width: 100%; aspect-ratio: 9/16;">
+      <source src="/images/projects/pay-with-app/payment-flow-takeover.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Full-screen takeover with a chevron for the win</p>
   </div>
 </div>
