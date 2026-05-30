@@ -156,6 +156,11 @@ export default defineConfig(() => ({
             src: 'favicon.ico',
             sizes: '32x32',
             type: 'image/x-icon'
+          },
+          {
+            src: 'images/Yolanda-Logo-86px.png',
+            sizes: '86x86',
+            type: 'image/png'
           }
         ]
       }

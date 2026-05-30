@@ -11,7 +11,7 @@ import { DOCUMENT } from '@angular/common';
     <header class="header">
       <div class="logo">
         <a routerLink="/" class="logo-link" (click)="scrollToTop($event)">
-          <div class="logo-circle">YSC</div>
+          <img src="images/Yolanda-Logo-86px.png" alt="Yolanda Santa Cruz" class="logo-img" />
         </a>
       </div>
       <nav class="nav-links">
@@ -43,13 +43,12 @@ import { DOCUMENT } from '@angular/common';
       transition: opacity 0.2s;
     }
     .nav-links a:hover, .nav-links a.active { opacity: 1; }
-    .logo-link { text-decoration: none; }
-    .logo-circle {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      border: 2px solid #55c5c7;
-      display: flex; align-items: center; justify-content: center;
-      color: #55c5c7; font-weight: bold;
+    .logo-link { display: flex; align-items: center; text-decoration: none; }
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
     }
   `
 })

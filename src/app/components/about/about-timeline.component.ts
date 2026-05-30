@@ -176,8 +176,14 @@ import { ImageUrlService } from '../../services/image-url.service';
       color: #888;
     }
 
+    .header-right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
     @media (max-width: 1024px) {
       .timeline-header-grid { grid-template-columns: 1fr; gap: 2rem;  }
+      .header-right { justify-content: flex-start; }
     }
 
     @media (max-width: 768px) {

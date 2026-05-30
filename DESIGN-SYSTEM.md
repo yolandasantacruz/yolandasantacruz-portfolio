@@ -55,32 +55,31 @@ The floating side rail navigation uses interactive pill/dot components to indica
 * **Drop Shadow**: Maintained as a premium white glow across all states (`rgba(255, 255, 255, 0.5)` to `0.8`) to contrast elegantly against the WebGL shader canvas and colorful project backgrounds.
 * **Active State**: The active section indicator removes its border (`border-width: 0`), transforming into a solid accent dot for strong visual distinction.
 
-## 7. Blob Button Token (`.btn-blob`)
+## 7. Interactive Text Button Token (`.btn-blob`)
 
-The `.btn-blob` global utility class is the **single source of truth** for the morphing teal CTA button pattern. It is used across:
+The `.btn-blob` global utility class is the **single source of truth** for the minimalist text-based teal CTA button with an interactive arrow. It is used across:
 
-| Usage | Location | Width Override |
-|---|---|---|
-| "ABOUT ME" hero CTA | `HeroComponent` → `.about-button` | `--btn-blob-width: 180px` |
-| "View My Resume" timeline link | `AboutTimelineComponent` → `.download-btn` | *(default 200px)* |
-| "DOWNLOAD RESUME" resume page | `ResumeComponent` → `.download-btn` | `--btn-blob-width: 220px` |
+| Usage | Location |
+|---|---|
+| "ABOUT ME" hero CTA | `HeroComponent` → `.about-button` |
+| "View My Resume" timeline link | `AboutTimelineComponent` → `.download-btn` |
+| "DOWNLOAD RESUME" resume page | `ResumeComponent` → `.download-btn` |
 
 ### Design Tokens
 
-* **Base width**: `--btn-blob-width: 200px` (override per-use via CSS custom property)
-* **Height**: `76px` (fixed — do not alter)
-* **Background**: `rgba(0, 200, 201, 0.1)` → `rgba(0, 200, 201, 0.2)` on hover
-* **Color**: `#3b9f98` (Dark Teal Contrast Accent)
-* **Animation**: `blob-morph` (6s, `ease-in-out`, `infinite alternate`) — defined globally in `src/styles.css`
-* **Hover**: `scale(1.05)`, `0.5s cubic-bezier(0.16, 1, 0.3, 1)` — aligns with animation guardrails
-* **Reduced Motion**: animation disabled, `border-radius: 30px` fallback
+* **Background**: `transparent` (no background fills)
+* **Border/Shadow**: `none`
+* **Color**: `#3b9f98` (Dark Teal Contrast Accent) -> `#246560` (Deep Teal) on hover
+* **Typography**: Nunito, `1.2rem`, bold (`700`), uppercase, letter-spacing `0.15em`
+* **Decoration**: Inline arrow `→` appended via CSS `::after` with a `0.5rem` left margin
+* **Hover Interaction**: Smooth translation of the arrow (`transform: translateX(6px)`) using a standard curve `cubic-bezier(0.16, 1, 0.3, 1)` to keep the visual response alive and premium
+* **Reduced Motion**: Translation disabled on hover
 
 ### Extension Protocol
 
-To add a new blob button anywhere in the codebase:
+To add a new action button anywhere in the codebase:
 1. Add `class="btn-blob"` to the element.
-2. If a non-default width is needed, set `--btn-blob-width: <value>` on the element or its scoped class.
-3. **Do not** copy-paste the visual rules — always reference the global class.
+2. **Do not** copy-paste the visual rules or manually append the arrow `→` in templates — always reference the global class and let the CSS append the arrow decoration automatically.
 
 ---
 
