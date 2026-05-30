@@ -8,6 +8,22 @@
   --color-bg: #ffffff;
 
   /* ==========================================================================
+     TYPOGRAPHY TOKENS
+     ========================================================================== */
+  --text-micro: 0.6rem;
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-base: 1.2rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.25rem;
+  --text-6xl: 4rem;
+
+  /* ==========================================================================
      SECTION PASTEL COLOR SYSTEM — Mathematical HSL Normalization
      Hue (H) extracted from each section's foreground case study image brand color.
      Saturation (S) and Lightness (L) locked to the bridge-section anchor #f0fbf9.
@@ -28,25 +44,38 @@
   */
 
   /* -- Shared normalization parameters (locked to anchor) -- */
-  --section-pastel-s: 58%;      /* Saturation lock — mirrors bridge anchor saturation     */
-  --section-pastel-l: 96%;      /* Lightness lock — mirrors bridge anchor lightness       */
+  --section-pastel-s: 58%;
+  /* Saturation lock — mirrors bridge anchor saturation     */
+  --section-pastel-l: 96%;
+  /* Lightness lock — mirrors bridge anchor lightness       */
 
   /* -- Per-section hue tokens -- */
-  --section-hue-pay-with-app:      221;   /* Electric Blue  (#2563EB brand CTA)             */
-  --section-hue-fetch-pay:         263;   /* Deep Purple    (#5B21B6 brand header)          */
-  --section-hue-isles-at-bayshore: 232;   /* Royal Indigo   (#3B4FD6 hero overlay)         */
-  --section-hue-plant-me:          132;   /* Sage Leaf Green (natural garden, 37° from bridge) */
-  --section-hue-bridge:            169;   /* Teal (ANCHOR)  (#f0fbf9 — must never change)  */
+  --section-hue-pay-with-app: 221;
+  /* Electric Blue  (#2563EB brand CTA)             */
+  --section-hue-fetch-pay: 263;
+  /* Deep Purple    (#5B21B6 brand header)          */
+  --section-hue-isles-at-bayshore: 232;
+  /* Royal Indigo   (#3B4FD6 hero overlay)         */
+  --section-hue-plant-me: 132;
+  /* Sage Leaf Green (natural garden, 37° from bridge) */
+  --section-hue-bridge: 169;
+  /* Teal (ANCHOR)  (#f0fbf9 — must never change)  */
 
   /* -- Computed pastel backgrounds (H + locked S/L) -- */
   /* To change any section: update the --section-bg-* value here.                  */
   /* The gradient in that section AND its neighbor update automatically.           */
-  --section-bg-hero:              #ffffff;               /* Hero — transparent white base */
-  --section-bg-pay-with-app:      hsl(221, 58%, 96%);   /* #f0f3fb — soft periwinkle   */
-  --section-bg-fetch-pay:         hsl(263, 58%, 96%);   /* #f4f0fb — soft lavender     */
-  --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);   /* #f0f1fb — soft indigo       */
-  --section-bg-plant-me:          hsl(132, 58%, 96%);   /* #effbf1 — soft sage-leaf    */
-  --section-bg-bridge:            hsl(169, 58%, 96%);   /* #effbf9 — ANCHOR (teal)     */
+  --section-bg-hero: #ffffff;
+  /* Hero — transparent white base */
+  --section-bg-pay-with-app: hsl(221, 58%, 96%);
+  /* #f0f3fb — soft periwinkle   */
+  --section-bg-fetch-pay: hsl(263, 58%, 96%);
+  /* #f4f0fb — soft lavender     */
+  --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);
+  /* #f0f1fb — soft indigo       */
+  --section-bg-plant-me: hsl(132, 58%, 96%);
+  /* #effbf1 — soft sage-leaf    */
+  --section-bg-bridge: hsl(169, 58%, 96%);
+  /* #effbf9 — ANCHOR (teal)     */
 
   /* -- Section pill (nav dot) colors: same hue, S=72%, L tuned per-hue -----------
      Target: ≥5.0:1 contrast against the corresponding pastel background (L≈96%).
@@ -54,12 +83,18 @@
      Blue/purple hues are intrinsically dark → pass at higher L values.
      Change only these tokens to retheme nav dots alongside section backgrounds.
      -----------------------------------------------------------------------  */
-  --section-pill-hero:              hsl(171, 72%, 27%);   /* #137668 — 5.16:1 vs hero bg    */
-  --section-pill-pay-with-app:      hsl(221, 72%, 50%);   /* #245edb — 5.10:1 vs section bg */
-  --section-pill-fetch-pay:         hsl(263, 72%, 55%);   /* #793adf — 5.34:1 vs section bg */
-  --section-pill-isles-at-bayshore: hsl(232, 72%, 55%);   /* #3a50df — 5.50:1 vs section bg */
-  --section-pill-plant-me:          hsl(132, 72%, 28%);   /* #147b29 — 5.07:1 vs section bg */
-  --section-pill-bridge:            hsl(169, 72%, 27%);   /* #137664 — 5.17:1 vs section bg */
+  --section-pill-hero: hsl(171, 72%, 27%);
+  /* #137668 — 5.16:1 vs hero bg    */
+  --section-pill-pay-with-app: hsl(221, 66%, 62%);
+  /* #7B91D1 — 5.10:1 vs section bg */
+  --section-pill-fetch-pay: oklab(52.625% 0.09569 -0.2112);
+  /* #B89CE0 — 5.34:1 vs section bg */
+  --section-pill-isles-at-bayshore: hsl(232, 72%, 55%);
+  /* #3a50df — 5.50:1 vs section bg */
+  --section-pill-plant-me: hsl(132, 72%, 28%);
+  /* #147b29 — 5.07:1 vs section bg */
+  --section-pill-bridge: hsl(169, 72%, 27%);
+  /* #137664 — 5.17:1 vs section bg */
 }
 
 * {
@@ -275,7 +310,8 @@ analog-markdown img {
 }
 
 .btn-blob:hover {
-  color: #246560; /* Darker teal on hover for crisp contrast and state change */
+  color: #246560;
+  /* Darker teal on hover for crisp contrast and state change */
 }
 
 .btn-blob:hover::after {
@@ -292,9 +328,190 @@ analog-markdown img {
   .btn-blob::after {
     transition: none !important;
   }
+
   .btn-blob:hover::after {
     transform: none !important;
   }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/* Typography Utilities */
+.text-micro {
+  font-size: var(--text-micro);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-base {
+  font-size: var(--text-base);
+}
+
+.text-md {
+  font-size: var(--text-md);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+}
+
+.text-2xl {
+  font-size: var(--text-2xl);
+}
+
+.text-3xl {
+  font-size: var(--text-3xl);
+}
+
+.text-4xl {
+  font-size: var(--text-4xl);
+}
+
+.text-5xl {
+  font-size: var(--text-5xl);
+}
+
+.text-6xl {
+  font-size: var(--text-6xl);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.color-text {
+  color: var(--color-text);
+}
+
+.color-text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Layout Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+/* Spacing Utilities */
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
+.gap-16 {
+  gap: 4rem;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+/* Sizing Utilities */
+.w-full {
+  width: 100%;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 /* ==========================================================================

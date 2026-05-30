@@ -33,47 +33,47 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
             <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" class="testimonial-wavy-bg">
               <path #wavyBlobPath class="wavy-card-path" [attr.d]="blobAnimationService.initialBlobPath" [style.fill]="currentBlobColor()" />
             </svg>
-            <div class="testimonial-container">
-              <div class="testimonial-header">
-                <div class="active-author-info">
+            <div class="testimonial-container flex flex-col">
+              <div class="testimonial-header flex items-center justify-between">
+                <div class="active-author-info flex items-center gap-6">
                   @if (avatarError()) {
-                    <div class="author-avatar-fallback">
+                    <div class="author-avatar-fallback flex items-center justify-center font-bold text-md">
                       {{ getInitials(activeTestimonial.name) }}
                     </div>
                   } @else {
                     <img [src]="activeTestimonial.avatar" [alt]="activeTestimonial.name" class="author-avatar" (error)="avatarError.set(true)" />
                   }
-                  <div class="author-details">
+                  <div class="author-details flex flex-col">
                     @if (activeTestimonial.profileUrl) {
                       <a [href]="activeTestimonial.profileUrl" target="_blank" rel="noopener noreferrer" class="author-link" [attr.aria-label]="'Visit ' + activeTestimonial.name + ' on LinkedIn'">
-                        <span class="author-name">{{ activeTestimonial.name }}</span>
+                        <span class="author-name text-md font-bold">{{ activeTestimonial.name }}</span>
                         <svg class="lnk-icon" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
                       </a>
                     } @else {
-                      <span class="author-name">{{ activeTestimonial.name }}</span>
+                      <span class="author-name text-md font-bold">{{ activeTestimonial.name }}</span>
                     }
-                    <span class="author-role">{{ activeTestimonial.role }}</span>
+                    <span class="author-role text-base color-text-muted">{{ activeTestimonial.role }}</span>
                   </div>
                 </div>
 
-                <div class="testimonial-nav">
-                  <button class="quote-nav-btn" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
+                <div class="testimonial-nav flex items-center">
+                  <button class="quote-nav-btn flex items-center justify-center" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
                   </button>
-                  <span class="testimonial-counter">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
-                  <button class="quote-nav-btn" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
+                  <span class="testimonial-counter text-base font-semibold color-text text-center">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
+                  <button class="quote-nav-btn flex items-center justify-center" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                   </button>
                 </div>
               </div>
 
               <div class="testimonial-viewport" [style.height.px]="currentHeight()">
-                <div class="testimonial-track" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
+                <div class="testimonial-track flex items-start" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
                   @for (item of testimonials; track item.name) {
                     <div #slideElement class="testimonial-slide">
-                      <p class="testimonial-quote">"{{ item.quote }}"</p>
+                      <p class="testimonial-quote text-base font-normal color-text m-0">"{{ item.quote }}"</p>
                     </div>
                   }
                 </div>
@@ -113,21 +113,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .testimonial-container {
-      display: flex;
-      flex-direction: column;
       gap: 3.5rem;
-    }
-
-    .testimonial-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .active-author-info {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
     }
 
     .author-avatar {
@@ -147,19 +133,12 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       background: linear-gradient(135deg, #5ed6cc, #3b9f98);
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-family: var(--font-header);
-      font-weight: 700;
-      font-size: 1.25rem;
       letter-spacing: -0.02em;
       user-select: none;
     }
 
     .author-details {
-      display: flex;
-      flex-direction: column;
       gap: 0.3rem;
     }
 
@@ -190,31 +169,18 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
 
     .author-name {
       font-family: var(--font-header);
-      font-size: 1.25rem;
-      font-weight: 700;
       color: inherit;
       letter-spacing: -0.02em;
       line-height: 1.15;
     }
 
-    .author-role {
-      font-size: 1.2rem;
-      color: #666;
-    }
-
     .testimonial-nav {
-      display: flex;
-      align-items: center;
       gap: 1.25rem;
     }
 
     .testimonial-counter {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #111;
       letter-spacing: 0.08em;
       min-width: 3rem;
-      text-align: center;
     }
 
     .quote-nav-btn {
@@ -223,9 +189,6 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       border-radius: 50%;
       border: 1px solid rgba(0,0,0,0.12);
       background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       cursor: pointer;
       color: #333;
       transition: all 0.25s ease;
@@ -250,8 +213,6 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .testimonial-track {
-      display: flex;
-      align-items: flex-start;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -262,13 +223,9 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
 
     .testimonial-quote {
       font-family: var(--font-main);
-      font-size: 1.2rem;
-      font-weight: 400;
       font-style: normal;
       line-height: 1.8;
       max-width: 65ch;
-      color: #111;
-      margin: 0;
       letter-spacing: -0.01em;
     }
 

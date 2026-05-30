@@ -11,6 +11,7 @@ out/
 .nuxt/
 .cache/
 .parcel-cache/
+Library/
 
 # Logs
 *.log

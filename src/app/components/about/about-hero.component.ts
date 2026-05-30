@@ -18,7 +18,7 @@ import { ImageUrlService } from '../../services/image-url.service';
           @if (socialLinks().length > 0) {
             <div class="social-links">
               @for (link of socialLinks(); track link.platform) {
-                <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="link.label" class="social-btn">
+                <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="link.label" class="social-btn flex items-center justify-center">
                   @if (iconPath(link.platform); as path) {
                     <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path [attr.d]="path"/></svg>
                   }
@@ -27,9 +27,9 @@ import { ImageUrlService } from '../../services/image-url.service';
             </div>
           }
         </div>
-        <div class="hero-right">
+        <div class="hero-right flex justify-center relative">
           <div class="portrait-wrapper">
-            <img [ngSrc]="heroPortrait()" width="380" height="380" priority alt="Yolanda Santa Cruz's image" class="hero-portrait" />
+            <img [ngSrc]="heroPortrait()" width="380" height="380" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
             <div class="portrait-glow"></div>
           </div>
         </div>
@@ -100,9 +100,6 @@ import { ImageUrlService } from '../../services/image-url.service';
       height: 48px;
       border-radius: 50%;
       border: 1px solid rgba(0, 0, 0, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: #333;
       transition: all 0.25s ease;
       background: transparent;
@@ -121,9 +118,7 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .hero-right {
-      display: flex;
-      justify-content: center;
-      position: relative;
+      /* applied via utility classes flex justify-center relative */
     }
 
     .portrait-wrapper {
@@ -157,7 +152,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .hero-portrait {
-      width: 100%;
       height: 100%;
       object-fit: cover;
     }

@@ -23,19 +23,19 @@ import { ProjectAttributes } from '../project-attributes';
             <p class="project-subtitle">{{ project.attributes.description }}</p>
             
             <div class="project-meta">
-              <div class="meta-item">
+              <div class="meta-item flex flex-col">
                 <span class="label">Role</span>
-                <span class="value">{{ project.attributes.role }}</span>
+                <span class="value text-base font-normal">{{ project.attributes.role }}</span>
               </div>
-              <div class="meta-item">
+              <div class="meta-item flex flex-col">
                 <span class="label">Timeline</span>
-                <span class="value">{{ project.attributes.timeline }}</span>
+                <span class="value text-base font-normal">{{ project.attributes.timeline }}</span>
               </div>
-              <div class="meta-item">
+              <div class="meta-item flex flex-col">
                 <span class="label">Tech Stack</span>
-                <div class="tech-tags">
+                <div class="tech-tags flex flex-wrap">
                   @for (tech of project.attributes.techStack; track tech) {
-                    <span class="tech-tag">{{ tech }}</span>
+                    <span class="tech-tag text-base">{{ tech }}</span>
                   }
                 </div>
               </div>
@@ -85,32 +85,21 @@ import { ProjectAttributes } from '../project-attributes';
     }
 
     .meta-item {
-      display: flex;
-      flex-direction: column;
       gap: 0.5rem;
     }
 
     .label {
-      font-size: 1.2rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--color-text-muted);
     }
 
-    .value {
-      font-size: 1.2rem;
-      font-weight: 400;
-    }
-
     .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
       gap: 0.5rem;
     }
 
     .tech-tag {
-      font-size: 1.2rem;
       background: rgba(0,0,0,0.05);
       padding: 2px 10px;
       border-radius: 4px;

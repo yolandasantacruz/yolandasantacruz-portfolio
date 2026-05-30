@@ -11,20 +11,20 @@ import { ImageUrlService } from '../../services/image-url.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as pillars) {
-      <section class="dual-pillars-section">
+      <section class="dual-pillars-section flex flex-col">
         <!-- Pillar 1: At Work -->
         <div class="pillar-row pillar-work">
           <div class="pillar-text">
-            <span class="pillar-badge">{{ pillars.work.badge }}</span>
-            <h3 class="pillar-title">{{ pillars.work.title }}</h3>
-            <p class="pillar-desc">{{ pillars.work.description }}</p>
+            <span class="pillar-badge text-base font-bold">{{ pillars.work.badge }}</span>
+            <h3 class="pillar-title text-3xl">{{ pillars.work.title }}</h3>
+            <p class="pillar-desc text-base">{{ pillars.work.description }}</p>
             
             @if (pillars.work.competencies) {
-              <div class="competencies">
+              <div class="competencies flex flex-col">
                 @for (comp of pillars.work.competencies; track comp.label) {
-                  <div class="competency-item">
-                    <span class="comp-label">{{ comp.label }}</span>
-                    <span class="comp-val">{{ comp.value }}</span>
+                  <div class="competency-item flex justify-between items-center text-base">
+                    <span class="comp-label font-semibold">{{ comp.label }}</span>
+                    <span class="comp-val text-base font-normal">{{ comp.value }}</span>
                   </div>
                 }
               </div>
@@ -40,7 +40,7 @@ import { ImageUrlService } from '../../services/image-url.service';
           <div class="pillar-visual">
             <div class="adplist-video">
               <div class="video-header">
-                <span class="video-label">VIEW: A Sample Mentorship Session</span>
+                <span class="video-label text-base font-semibold">VIEW: A Sample Mentorship Session</span>
               </div>
               <div class="player-wrapper">
                 @if (isPlaying()) {
@@ -56,7 +56,7 @@ import { ImageUrlService } from '../../services/image-url.service';
                 } @else {
                   <button class="play-trigger" (click)="playVideo()" type="button" aria-label="Play sample mentorship session">
                     <img src="https://img.youtube.com/vi/yL_yRyzp7oo/maxresdefault.jpg" alt="Sample Mentorship Session" class="video-thumbnail" />
-                    <div class="play-overlay">
+                    <div class="play-overlay flex items-center justify-center">
                       <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
                     </div>
                   </button>
@@ -65,13 +65,13 @@ import { ImageUrlService } from '../../services/image-url.service';
             </div>
           </div>
           <div class="pillar-text">
-            <span class="pillar-badge">{{ pillars.philosophy.badge }}</span>
-            <h3 class="pillar-title">{{ pillars.philosophy.title }}</h3>
-            <p class="pillar-desc">{{ pillars.philosophy.description }}</p>
+            <span class="pillar-badge text-base font-bold">{{ pillars.philosophy.badge }}</span>
+            <h3 class="pillar-title text-3xl">{{ pillars.philosophy.title }}</h3>
+            <p class="pillar-desc text-base">{{ pillars.philosophy.description }}</p>
 
             @if (pillars.philosophy.linkUrl && pillars.philosophy.linkLabel) {
               <div class="pillar-cta">
-                <a [href]="pillars.philosophy.linkUrl" target="_blank" rel="noopener noreferrer" class="pillar-btn">
+                <a [href]="pillars.philosophy.linkUrl" target="_blank" rel="noopener noreferrer" class="pillar-btn flex items-center font-semibold text-base">
                   {{ pillars.philosophy.linkLabel }} &rarr;
                 </a>
               </div>
@@ -80,9 +80,9 @@ import { ImageUrlService } from '../../services/image-url.service';
             @if (pillars.philosophy.metrics) {
               <div class="quiet-metrics-box">
                 @for (metric of pillars.philosophy.metrics; track metric.label) {
-                  <div class="quiet-metric">
-                    <span class="metric-num">{{ metric.num }}</span>
-                    <span class="metric-label">{{ metric.label }}</span>
+                  <div class="quiet-metric flex flex-col">
+                    <span class="metric-num text-2xl">{{ metric.num }}</span>
+                    <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
                   </div>
                 }
               </div>
@@ -94,8 +94,6 @@ import { ImageUrlService } from '../../services/image-url.service';
   `,
   styles: `
     .dual-pillars-section {
-      display: flex;
-      flex-direction: column;
       gap: 12rem;
       margin-bottom: 12rem;
     }
@@ -108,8 +106,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .pillar-badge {
-      font-size: 1.2rem;
-      font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #3b9f98;
@@ -118,7 +114,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .pillar-title {
-      font-size: 2.5rem;
       font-weight: 300;
       letter-spacing: -0.02em;
       color: #111;
@@ -126,7 +121,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .pillar-desc {
-      font-size: 1.2rem;
       line-height: 1.8;
       color: #555;
       margin-bottom: 2.5rem;
@@ -134,32 +128,20 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .competencies {
-      display: flex;
-      flex-direction: column;
       gap: 1.25rem;
       border-top: 1px solid rgba(0,0,0,0.08);
       padding-top: 2rem;
     }
 
-    .competency-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.2rem;
-    }
-
     .comp-label {
-      font-weight: 600;
       color: #222;
     }
 
     .comp-val {
       color: #3b9f98;
-      font-weight: 400;
       background: rgba(59, 159, 152, 0.1);
       padding: 0.25rem 0.75rem;
       border-radius: 100px;
-      font-size: 1.2rem;
     }
 
     .masked-image {
@@ -203,21 +185,16 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .quiet-metric {
-      display: flex;
-      flex-direction: column;
       gap: 0.5rem;
     }
 
     .metric-num {
-      font-size: 2rem;
       font-weight: 300;
       color: #111;
       letter-spacing: -0.03em;
     }
 
     .metric-label {
-      font-size: 1.2rem;
-      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #777;
@@ -233,8 +210,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .video-label {
-      font-size: 1.2rem;
-      font-weight: 600;
       letter-spacing: 0.1em;
       color: #666;
       text-transform: uppercase;
@@ -289,9 +264,6 @@ import { ImageUrlService } from '../../services/image-url.service';
       height: 72px;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
       z-index: 2;
@@ -326,15 +298,11 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .pillar-btn {
-      display: inline-flex;
-      align-items: center;
       gap: 0.5rem;
       background: #111a19;
       color: #ffffff;
       padding: 0.9rem 2.25rem;
       border-radius: 100px;
-      font-size: 1.2rem;
-      font-weight: 600;
       letter-spacing: 0.05em;
       text-decoration: none;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);

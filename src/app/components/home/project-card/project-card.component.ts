@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, input, afterNextRender, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface Project {
@@ -21,17 +21,17 @@ export interface Project {
   imports: [RouterLink, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="project-card" [class.reverse]="project().reverse">
-      <div class="project-image-container">
-        <img [ngSrc]="project().imageUrl" width="580" height="387" [alt]="project().title" class="project-image" />
+    <div class="project-card flex items-center gap-16 w-full" [class.reverse]="project().reverse">
+      <div class="project-image-container relative h-auto">
+        <img [ngSrc]="project().imageUrl" width="580" height="387" [alt]="project().title" class="project-image block w-full h-auto" />
       </div>
       
-      <div class="project-details">
-        <h2 class="project-title">{{ project().title }}</h2>
+      <div class="project-details flex flex-col items-start text-left gap-6">
+        <h2 class="project-title m-0 w-full text-left font-bold color-text text-4xl">{{ project().title }}</h2>
         
-        <p class="project-description">{{ project().description }}</p>
+        <p class="project-description m-0 text-left color-text-muted text-base">{{ project().description }}</p>
         
-        <a [routerLink]="project().link" class="view-project">
+        <a [routerLink]="project().link" class="view-project flex items-center color-text font-normal text-base">
           View Project
         </a>
       </div>
@@ -41,30 +41,6 @@ export interface Project {
     :host {
       display: block;
       margin-bottom: 13.5rem;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    :host(.in-view) {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      :host {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-
-
-    .project-card {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      width: 100%;
     }
 
     .project-card.reverse {
@@ -73,15 +49,9 @@ export interface Project {
 
     .project-image-container {
       flex: 1.2;
-      position: relative;
-      height: auto;
     }
 
-
     .project-image {
-      width: 100%;
-      height: auto;
-      display: block;
       border-radius: 12px;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -92,49 +62,28 @@ export interface Project {
 
     .project-details {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      gap: 1.5rem;
     }
 
     .project-title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin: 0;
       line-height: 1.2;
-      text-align: left;
-      width: 100%;
     }
 
     .project-description {
-      font-size: 1.2rem;
       line-height: 1.6;
-      color: #4a4a4a;
-      margin: 0;
       max-width: 90%;
-      text-align: left;
     }
 
     .view-project {
       display: inline-flex;
-      align-items: center;
       gap: 0.5rem;
-      font-weight: 400;
-      color: #1a1a1a;
       text-decoration: none;
       margin-top: 1rem;
-      font-size: 1.2rem;
       transition: color 0.2s ease;
     }
 
     .view-project:hover {
       color: #000;
     }
-
-
 
     @media (max-width: 1024px) {
       .project-card {
@@ -167,39 +116,6 @@ export interface Project {
 })
 export class ProjectCardComponent {
   project = input.required<Project>();
-  private el = inject(ElementRef);
-  private platformId = inject(PLATFORM_ID);
-  private document = inject(DOCUMENT);
-
-  constructor() {
-    afterNextRender(() => {
-      if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
-        const rect = this.el.nativeElement.getBoundingClientRect();
-        const win = this.document.defaultView;
-        const height = win ? win.innerHeight : 0;
-        const clientHeight = this.document.documentElement?.clientHeight || 0;
-        const isInViewport = rect.top < (height || clientHeight) && rect.bottom > 0;
-
-        if (isInViewport) {
-          this.el.nativeElement.classList.add('in-view');
-          return;
-        }
-
-        const observer = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            this.el.nativeElement.classList.add('in-view');
-            observer.disconnect();
-          }
-        }, { threshold: 0.15 });
-
-        if (this.el.nativeElement) {
-          observer.observe(this.el.nativeElement);
-        }
-      } else if (this.el.nativeElement) {
-        this.el.nativeElement.classList.add('in-view');
-      }
-    });
-  }
 }
 
 

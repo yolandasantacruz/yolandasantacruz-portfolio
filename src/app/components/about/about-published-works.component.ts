@@ -13,21 +13,21 @@ import { ImageUrlService } from '../../services/image-url.service';
     @if (data(); as publications) {
       <section class="published-section">
         <div class="published-header">
-          <span class="section-tag">PUBLICATIONS</span>
-          <h2 class="published-heading">{{ publications.heading }}</h2>
+          <span class="section-tag text-base font-bold">PUBLICATIONS</span>
+          <h2 class="published-heading text-4xl">{{ publications.heading }}</h2>
         </div>
 
         <div class="works-grid">
           @for (work of items(); track work.title) {
-            <a [href]="work.url" target="_blank" rel="noopener noreferrer" class="work-card">
+            <a [href]="work.url" target="_blank" rel="noopener noreferrer" class="work-card flex flex-col gap-6">
               <div class="work-thumb-box">
                 <img [ngSrc]="work.imageUrl" width="400" height="300" [alt]="work.title" class="work-thumb" />
                 <span class="work-badge">{{ work.tag }}</span>
               </div>
-              <div class="work-info">
-                <h3 class="work-title">{{ work.title }}</h3>
-                <p class="work-desc">{{ work.description }}</p>
-                <span class="work-arrow">Explore &rarr;</span>
+              <div class="work-info flex flex-col">
+                <h3 class="work-title text-lg font-semibold m-0">{{ work.title }}</h3>
+                <p class="work-desc text-base color-text-muted m-0">{{ work.description }}</p>
+                <span class="work-arrow text-base font-bold">Explore &rarr;</span>
               </div>
             </a>
           }
@@ -41,8 +41,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .section-tag {
-      font-size: 1.2rem;
-      font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #3b9f98;
@@ -51,7 +49,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .published-heading {
-      font-size: 2.75rem;
       font-weight: 300;
       letter-spacing: -0.02em;
       color: #111;
@@ -65,9 +62,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .work-card {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
       text-decoration: none;
       transition: transform 0.3s ease;
     }
@@ -111,29 +105,19 @@ import { ImageUrlService } from '../../services/image-url.service';
     }
 
     .work-info {
-      display: flex;
-      flex-direction: column;
       gap: 0.6rem;
     }
 
     .work-title {
-      font-size: 1.4rem;
-      font-weight: 600;
       color: #111;
       line-height: 1.3;
-      margin: 0;
     }
 
     .work-desc {
-      font-size: 1.2rem;
-      color: #666;
       line-height: 1.6;
-      margin: 0;
     }
 
     .work-arrow {
-      font-size: 1.2rem;
-      font-weight: 700;
       color: #3b9f98;
       margin-top: 0.5rem;
     }

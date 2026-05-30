@@ -6,6 +6,7 @@ import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
@@ -30,15 +31,16 @@ export const routeMeta: RouteMeta = {
     HeaderComponent,
     HeroComponent,
     ProjectCardComponent,
+    ScrollRevealDirective,
     FooterComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="snap-container">
       <!-- Fixed Side Rail Navigation -->
-      <div class="floating-side-rail" role="navigation" aria-label="Page sections">
+      <div class="floating-side-rail flex flex-col items-end" role="navigation" aria-label="Page sections">
         @for (sec of navSections(); track sec.id) {
-          <button class="nav-pill" 
+          <button class="nav-pill flex items-center justify-center" 
                   [class.active]="activeSection() === sec.id" 
                   (click)="scrollToSection(sec.id)" 
                   [attr.aria-label]="'Scroll to ' + sec.label"
@@ -50,8 +52,8 @@ export const routeMeta: RouteMeta = {
       </div>
 
       <!-- Hero Section (Snap 0) -->
-      <section id="hero" class="snap-section hero-section">
-        <div class="section-content hero-content-wrapper">
+      <section id="hero" class="snap-section hero-section flex items-center justify-center">
+        <div class="section-content hero-content-wrapper flex flex-col">
           <portfolio-header />
           <portfolio-hero [data]="heroData" />
         </div>
@@ -59,9 +61,9 @@ export const routeMeta: RouteMeta = {
 
       <!-- Project Sections (Snaps 1 to 4) -->
       @for (project of projects(); track project.title; let i = $index) {
-        <section [id]="'project-' + i" class="snap-section project-section">
+        <section [id]="'project-' + i" class="snap-section project-section flex items-center justify-center">
           <div class="section-content">
-            <portfolio-project-card [project]="{ ...project, reverse: i % 2 !== 0 }" />
+            <portfolio-project-card portfolioScrollReveal [project]="{ ...project, reverse: i % 2 !== 0 }" />
           </div>
         </section>
       }
@@ -69,13 +71,13 @@ export const routeMeta: RouteMeta = {
 
 
       <!-- About Me Bridge Section (Snap 7) -->
-      <section id="bridge" class="snap-section bridge-section">
-        <div class="section-content bridge-content">
+      <section id="bridge" class="snap-section bridge-section flex items-center justify-center">
+        <div class="section-content bridge-content flex flex-col">
           @if (bridgeData) {
-            <div class="bridge-card">
-              <span class="bridge-tag">{{ bridgeData.tag }}</span>
-              <h2 class="bridge-heading">{{ bridgeData.heading }}</h2>
-              <p class="bridge-copy">
+            <div class="bridge-card flex flex-col items-center gap-8">
+              <span class="bridge-tag text-base font-bold">{{ bridgeData.tag }}</span>
+              <h2 class="bridge-heading text-4xl m-0">{{ bridgeData.heading }}</h2>
+              <p class="bridge-copy m-0">
                 {{ bridgeData.description }}
               </p>
               <a routerLink="/about" class="bridge-cta">TRACE MY PATH</a>
@@ -107,9 +109,6 @@ export const routeMeta: RouteMeta = {
       scroll-snap-stop: always;
       min-height: 100vh;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       box-sizing: border-box;
       padding: 3rem 0;
     }
@@ -139,8 +138,6 @@ export const routeMeta: RouteMeta = {
     }
 
     .hero-content-wrapper {
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
       justify-content: flex-start;
     }
@@ -252,16 +249,10 @@ export const routeMeta: RouteMeta = {
       top: 50%;
       transform: translateY(-50%);
       z-index: 50;
-      display: flex;
-      flex-direction: column;
       gap: 1.25rem;
-      align-items: flex-end;
     }
 
     .nav-pill {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: var(--pill-color);
       border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
       background-clip: padding-box;
@@ -302,7 +293,7 @@ export const routeMeta: RouteMeta = {
 
       color: #4a4a4a;
       font-family: var(--font-main);
-      font-size: 1.2rem;
+      font-size: .6rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -361,8 +352,6 @@ export const routeMeta: RouteMeta = {
     }
 
     .bridge-content {
-      display: flex;
-      flex-direction: column;
       justify-content: space-between;
       min-height: 100vh;
       padding-top: 6rem;
@@ -373,34 +362,25 @@ export const routeMeta: RouteMeta = {
       max-width: 800px;
       margin: auto;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
     }
 
     .bridge-tag {
-      font-size: 1.2rem;
-      font-weight: 700;
       letter-spacing: 0.2em;
       color: #3b9f98;
       text-transform: uppercase;
     }
 
     .bridge-heading {
-      font-size: 3.25rem;
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
       color: #111;
-      margin: 0;
     }
 
     .bridge-copy {
       font-size: 1.25rem;
       line-height: 1.8;
       color: #555;
-      margin: 0;
       font-weight: 300;
     }
 
@@ -492,12 +472,12 @@ export default class PortfolioHomeComponent {
     // ALL color values live exclusively in styles.css :root — this file holds no hex codes.
     // Rule 16: Map used instead of bracket notation to avoid dynamic property access.
     const pillColors = new Map<string, string>([
-      ['hero',              'var(--section-pill-hero)'],
-      ['project-0',         'var(--section-pill-pay-with-app)'],
-      ['project-1',         'var(--section-pill-fetch-pay)'],
-      ['project-2',         'var(--section-pill-isles-at-bayshore)'],
-      ['project-3',         'var(--section-pill-plant-me)'],
-      ['bridge',            'var(--section-pill-bridge)'],
+      ['hero', 'var(--section-pill-hero)'],
+      ['project-0', 'var(--section-pill-pay-with-app)'],
+      ['project-1', 'var(--section-pill-fetch-pay)'],
+      ['project-2', 'var(--section-pill-isles-at-bayshore)'],
+      ['project-3', 'var(--section-pill-plant-me)'],
+      ['bridge', 'var(--section-pill-bridge)'],
     ]);
 
     const sections = [

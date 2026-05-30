@@ -30,7 +30,7 @@ export const routeMeta: RouteMeta = {
         <div class="resume-grid">
           <div class="main-column">
 
-            <section class="work-experience">
+            <section class="work-experience flex flex-col">
               <h3 class="section-heading" portfolioScrollReveal>Work Experience</h3>
               
               <div class="job-entry" portfolioScrollReveal>
@@ -96,9 +96,9 @@ export const routeMeta: RouteMeta = {
               </div>
 
               <div class="job-entry" portfolioScrollReveal>
-                <div class="job-header">
-                  <span class="job-title">Graphic Designer</span>
-                  <span class="job-meta">Pacific Service Center, Portland, OR · October 2016 - August 2018</span>
+                <div class="job-header flex flex-col">
+                  <span class="job-title">{{ 'Graphic Designer' }}</span>
+                  <span class="job-meta text-base color-text-muted">Pacific Service Center, Portland, OR · October 2016 - August 2018</span>
                 </div>
                 <ul class="job-bullets">
                   <li>Generated 110% of the week's target revenue in 24 hours by completing an emergency project for a top client, securing additional business.</li>
@@ -109,8 +109,8 @@ export const routeMeta: RouteMeta = {
             </section>
           </div>
 
-          <aside class="sidebar">
-            <div class="sidebar-section" portfolioScrollReveal>
+          <aside class="sidebar flex flex-col gap-16">
+            <div class="sidebar-section flex flex-col" portfolioScrollReveal>
               <h3 class="section-heading">Software</h3>
               <p>Figma · Illustrator · Photoshop · InDesign · Framer · Midjourney · Spline · AI Notion · Miro · Slack · Dovetail · UserTesting · Mixpanel · LogRocket · Tableau · Hotjar · JIRA</p>
             </div>
@@ -125,7 +125,7 @@ export const routeMeta: RouteMeta = {
               <p>English · Spanish</p>
             </div>
 
-            <div class="sidebar-section" portfolioScrollReveal>
+            <div class="sidebar-section flex flex-col" portfolioScrollReveal>
               <h3 class="section-heading">Additional</h3>
               <ul class="sidebar-list no-bullets">
                 <li>ADP Mentor</li>
@@ -135,17 +135,17 @@ export const routeMeta: RouteMeta = {
               </ul>
             </div>
 
-            <div class="sidebar-section" portfolioScrollReveal>
+            <div class="sidebar-section flex flex-col" portfolioScrollReveal>
               <h3 class="section-heading">Education</h3>
-              <div class="education-entry">
-                <span class="degree">Bachelor of Fine Arts, BFA</span>
-                <span class="school">San Alejandro Fine Arts Academy, Havana, Cuba</span>
+              <div class="education-entry flex flex-col">
+                <span class="degree font-bold text-base">Bachelor of Fine Arts, BFA</span>
+                <span class="school text-base color-text-muted">San Alejandro Fine Arts Academy, Havana, Cuba</span>
               </div>
             </div>
           </aside>
         </div>
 
-        <div class="download-section" portfolioScrollReveal>
+        <div class="download-section flex justify-center" portfolioScrollReveal>
           <button class="btn-blob download-btn">DOWNLOAD RESUME</button>
         </div>
       </main>
@@ -198,18 +198,11 @@ export const routeMeta: RouteMeta = {
       margin-bottom: 3rem;
     }
 
-    .work-experience {
-      display: flex;
-      flex-direction: column;
-    }
-
     .job-entry {
       margin-bottom: 3.5rem;
     }
 
     .job-header {
-      display: flex;
-      flex-direction: column;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
@@ -220,11 +213,6 @@ export const routeMeta: RouteMeta = {
       font-weight: 500;
       color: #111;
       line-height: 1.2;
-    }
-
-    .job-meta {
-      font-size: 1.2rem;
-      color: #666;
     }
 
     .job-bullets {
@@ -250,23 +238,12 @@ export const routeMeta: RouteMeta = {
       top: 0;
     }
 
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
-    }
-
     .contact-info {
       font-size: 0.9rem;
       color: #555;
       line-height: 1.6;
       opacity: 0;
       animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
-    }
-
-    .sidebar-section {
-      display: flex;
-      flex-direction: column;
     }
 
     .sidebar-section .section-heading {
@@ -309,24 +286,10 @@ export const routeMeta: RouteMeta = {
     }
 
     .education-entry {
-      display: flex;
-      flex-direction: column;
       gap: 0.25rem;
     }
 
-    .degree {
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .school {
-      font-size: 1.2rem;
-      color: var(--color-text-muted);
-    }
-
     .download-section {
-      display: flex;
-      justify-content: center;
       margin-top: 4rem;
     }
 
