@@ -51,31 +51,20 @@
 
   /* -- Per-section hue tokens -- */
   --section-hue-pay-with-app: 221;
-  /* Electric Blue  (#2563EB brand CTA)             */
   --section-hue-fetch-pay: 263;
-  /* Deep Purple    (#5B21B6 brand header)          */
   --section-hue-isles-at-bayshore: 232;
-  /* Royal Indigo   (#3B4FD6 hero overlay)         */
   --section-hue-plant-me: 132;
-  /* Sage Leaf Green (natural garden, 37° from bridge) */
   --section-hue-bridge: 169;
-  /* Teal (ANCHOR)  (#f0fbf9 — must never change)  */
 
   /* -- Computed pastel backgrounds (H + locked S/L) -- */
   /* To change any section: update the --section-bg-* value here.                  */
   /* The gradient in that section AND its neighbor update automatically.           */
   --section-bg-hero: #ffffff;
-  /* Hero — transparent white base */
   --section-bg-pay-with-app: hsl(221, 58%, 96%);
-  /* #f0f3fb — soft periwinkle   */
   --section-bg-fetch-pay: hsl(263, 58%, 96%);
-  /* #f4f0fb — soft lavender     */
   --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);
-  /* #f0f1fb — soft indigo       */
   --section-bg-plant-me: hsl(132, 58%, 96%);
-  /* #effbf1 — soft sage-leaf    */
   --section-bg-bridge: hsl(169, 58%, 96%);
-  /* #effbf9 — ANCHOR (teal)     */
 
   /* -- Section pill (nav dot) colors: same hue, S=72%, L tuned per-hue -----------
      Target: ≥5.0:1 contrast against the corresponding pastel background (L≈96%).
@@ -83,18 +72,12 @@
      Blue/purple hues are intrinsically dark → pass at higher L values.
      Change only these tokens to retheme nav dots alongside section backgrounds.
      -----------------------------------------------------------------------  */
-  --section-pill-hero: hsl(171, 72%, 27%);
-  /* #137668 — 5.16:1 vs hero bg    */
-  --section-pill-pay-with-app: hsl(221, 66%, 62%);
-  /* #7B91D1 — 5.10:1 vs section bg */
-  --section-pill-fetch-pay: oklab(52.625% 0.09569 -0.2112);
-  /* #B89CE0 — 5.34:1 vs section bg */
-  --section-pill-isles-at-bayshore: hsl(232, 72%, 55%);
-  /* #3a50df — 5.50:1 vs section bg */
-  --section-pill-plant-me: hsl(132, 72%, 28%);
-  /* #147b29 — 5.07:1 vs section bg */
-  --section-pill-bridge: hsl(169, 72%, 27%);
-  /* #137664 — 5.17:1 vs section bg */
+  --section-pill-hero: #80c7b7;
+  --section-pill-pay-with-app: #7B91D1;
+  --section-pill-fetch-pay: #B89CE0;
+  --section-pill-isles-at-bayshore: #6FA3DF;
+  --section-pill-plant-me: #72c4a2;
+  --section-pill-bridge: #66b9bf;
 }
 
 * {

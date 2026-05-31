@@ -24,14 +24,13 @@ blockExoticSubdeps: true
 # to package versions with weaker trust metadata (e.g., lack of registry signature).
 trustPolicy: no-downgrade
 
-# Exclude packages that fail the security check due to publishing workflow changes (like missing signatures)
-# but are verified as safe for our portfolio.
+# Temporary exclusion for tinyexec to resolve signature format false positive
 trustPolicyExclude:
-  - '@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1'
-  - 'chokidar@4.0.3'
-  - 'semver@6.3.1'
-  - 'tinyexec@1.2.2'
-  - 'tinyclip@0.1.13'
+  - tinyexec@1.2.2
+  - chokidar@4.0.3
+  - semver@6.3.1
+  - "@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1"
+
 
 # Enforce a 3-day (4320 minutes) delay for installing newly published package versions.
 # This "timelock" mitigates supply-chain risks by giving the security community time
