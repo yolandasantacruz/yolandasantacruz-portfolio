@@ -2,7 +2,7 @@
 
 ## Todo
 
-### User Experience & Theming
+- [ ] Add Google Analytics
 - [ ] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc
 - [ ] Determine the optimal level of compression/quality for "about me" images to find a balance between visual quality and page load performance.
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
