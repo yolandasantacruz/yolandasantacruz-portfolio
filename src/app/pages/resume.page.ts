@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { RouteMeta } from '@analogjs/router';
+import { ResumeData } from './resume.types';
 
 export const routeMeta: RouteMeta = {
   title: 'Resume | Yolanda Santa Cruz',
@@ -12,7 +14,6 @@ export const routeMeta: RouteMeta = {
     }
   ]
 };
-
 
 @Component({
   selector: 'portfolio-resume',
@@ -26,127 +27,84 @@ export const routeMeta: RouteMeta = {
       <main class="resume-content">
         <h1 class="page-title">Resume</h1>
 
-        <div class="resume-grid">
-          <div class="main-column">
+        @if (resumeData) {
+          <div class="resume-grid">
+            <div class="main-column">
 
-            <section class="work-experience flex flex-col">
-              <h3 class="section-heading scroll-reveal">Work Experience</h3>
-              
-              <div class="job-entry scroll-reveal">
-                <div class="job-header">
-                  <span class="job-title">Lead Product Designer</span>
-                  <span class="job-meta">Discover Financial Services, Chicago, IL (Remote) · January 2025 - Present</span>
-                </div>
-                <ul class="job-bullets">
-                  <li>Led end-to-end design for a $200M initiative, focused on increasing user engagement and visibility of card-related benefits.</li>
-                  <li>Drove cross-functional collaboration across legal, development, data, and program management teams. Presented in large meetings and design reviews to align stakeholders.</li>
-                  <li>Created accessible legal documentation and screen reader friendly annotations to support compliance and inclusive design.</li>
-                </ul>
-              </div>
+              <section class="work-experience flex flex-col">
+                <h3 class="section-heading scroll-reveal">Work Experience</h3>
+                
+                @for (job of resumeData.workExperience; track job.title + job.meta) {
+                  <div class="job-entry scroll-reveal">
+                    <div class="job-header">
+                      <span class="job-title">{{ job.title }}</span>
+                      <span class="job-meta">{{ job.meta }}</span>
+                    </div>
+                    <ul class="job-bullets">
+                      @for (bullet of job.bullets; track bullet) {
+                        <li>{{ bullet }}</li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </section>
+            </div>
 
-              <div class="job-entry scroll-reveal">
-                <div class="job-header">
-                  <span class="job-title">Senior Product Designer</span>
-                  <span class="job-meta">Upside, Washington, DC (Remote) · November 2022 - July 2024</span>
+            <aside class="sidebar flex flex-col gap-16">
+              @if (resumeData.software) {
+                <div class="sidebar-section flex flex-col scroll-reveal">
+                  <h3 class="section-heading">Software</h3>
+                  <p>{{ resumeData.software }}</p>
                 </div>
-                <ul class="job-bullets">
-                  <li>Drove a 251% increase in transaction volume by leading a full vertical rollout.</li>
-                  <li>Cut dispute rates by 50% and reduced monthly dispute costs by 92% by optimizing transaction workflows, leveraging data and research to inform design decisions.</li>
-                  <li>Unified in-app payment experience for 1 party and 3 party models.</li>
-                  <li>Partnered with engineering and product to execute a full app rewrite.</li>
-                </ul>
-              </div>
+              }
 
-              <div class="job-entry scroll-reveal">
-                <div class="job-header">
-                  <span class="job-title">Senior Product Designer</span>
-                  <span class="job-meta">Fetch Rewards, Chicago, IL (Remote) · February 2021 - October 2022</span>
+              @if (resumeData.skills) {
+                <div class="sidebar-section scroll-reveal">
+                  <h3 class="section-heading">Skills</h3>
+                  <p>{{ resumeData.skills }}</p>
                 </div>
-                <ul class="job-bullets">
-                  <li>Increased card activation rate by 25% and reduced customer acquisition costs by 70% by defining and implementing strategies with product.</li>
-                  <li>Ensured consistency across platforms by collaborating with the design systems designer and improving hand-offs between design and engineering.</li>
-                  <li>Conducted user interviews and iterated based on feedback.</li>
-                </ul>
-              </div>
+              }
 
-              <div class="job-entry scroll-reveal">
-                <div class="job-header">
-                  <span class="job-title">Product Designer</span>
-                  <span class="job-meta">Zelenia, Miami, FL (Remote) · December 2019 - February 2021</span>
+              @if (resumeData.languages) {
+                <div class="sidebar-section scroll-reveal">
+                  <h3 class="section-heading">Languages</h3>
+                  <p>{{ resumeData.languages }}</p>
                 </div>
-                <ul class="job-bullets">
-                  <li>Led product discussions and captured requirements across various industries.</li>
-                  <li>Developed UX/UI strategies and design systems.</li>
-                  <li>Created and maintained master assemblies, user flows, wireframes, and prototypes.</li>
-                  <li>Adapted to different product stages and methodologies by collaborating with multiple development teams.</li>
-                </ul>
-              </div>
+              }
 
-              <div class="job-entry scroll-reveal">
-                <div class="job-header">
-                  <span class="job-title">UX/UI Designer</span>
-                  <span class="job-meta">Home61, Miami, FL · September 2018 - December 2019</span>
+              @if (resumeData.additional && resumeData.additional.length > 0) {
+                <div class="sidebar-section flex flex-col scroll-reveal">
+                  <h3 class="section-heading">Additional</h3>
+                  <ul class="sidebar-list no-bullets">
+                    @for (item of resumeData.additional; track item) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
                 </div>
-                <ul class="job-bullets">
-                  <li>Reduced lead acquisition costs by 83%, saving $50,000 annually through a targeted web interface redesign.</li>
-                  <li>Collaborated with the CEO on investor pitch decks for clarity and impact.</li>
-                  <li>Responsible for the visual language and overall brand consistency of the company.</li>
-                </ul>
-              </div>
+              }
 
-              <div class="job-entry scroll-reveal">
-                <div class="job-header flex flex-col">
-                  <span class="job-title">{{ 'Graphic Designer' }}</span>
-                  <span class="job-meta text-base color-text-muted">Pacific Service Center, Portland, OR · October 2016 - August 2018</span>
+              @if (resumeData.education && resumeData.education.length > 0) {
+                <div class="sidebar-section flex flex-col scroll-reveal">
+                  <h3 class="section-heading">Education</h3>
+                  @for (edu of resumeData.education; track edu.degree + edu.school) {
+                    <div class="education-entry flex flex-col">
+                      <span class="degree font-bold text-base">{{ edu.degree }}</span>
+                      <span class="school text-base color-text-muted">{{ edu.school }}</span>
+                    </div>
+                  }
                 </div>
-                <ul class="job-bullets">
-                  <li>Generated 110% of the week's target revenue in 24 hours by completing an emergency project for a top client, securing additional business.</li>
-                  <li>Led multiple projects simultaneously in a fast-paced environment.</li>
-                  <li>Managed over 30 clients via on-site meetings, phone calls, and emails through cross-team collaboration with sales, production, and install teams.</li>
-                </ul>
-              </div>
-            </section>
+              }
+            </aside>
           </div>
 
-          <aside class="sidebar flex flex-col gap-16">
-            <div class="sidebar-section flex flex-col scroll-reveal" >
-              <h3 class="section-heading">Software</h3>
-              <p>Figma · Illustrator · Photoshop · InDesign · Framer · Midjourney · Spline · AI Notion · Miro · Slack · Dovetail · UserTesting · Mixpanel · LogRocket · Tableau · Hotjar · JIRA</p>
+          @if (resumeData.downloadUrl) {
+            <div class="download-section flex justify-center scroll-reveal">
+              <a [href]="resumeData.downloadUrl" download class="btn-blob download-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                DOWNLOAD RESUME
+              </a>
             </div>
-
-            <div class="sidebar-section scroll-reveal">
-              <h3 class="section-heading">Skills</h3>
-              <p>Cross-functional Collaboration · UX Strategy · Stakeholder Engagement · Mentorship & Team Leadership · User Research · Journey Mapping · Data Literacy · A/B Testing · Information Architecture · Wireframing · Rapid Prototyping · Interaction Design · Visual Design · Generative Design · Accessibility Design · Agile Methodologies · Product Engineering · Critical Thinking · Creative Problem Solving · Effective Communication · Presentation Skills</p>
-            </div>
-
-            <div class="sidebar-section scroll-reveal">
-              <h3 class="section-heading">Languages</h3>
-              <p>English · Spanish</p>
-            </div>
-
-            <div class="sidebar-section flex flex-col scroll-reveal">
-              <h3 class="section-heading">Additional</h3>
-              <ul class="sidebar-list no-bullets">
-                <li>ADP Mentor</li>
-                <li>Community involvement with non-profits</li>
-                <li>Volunteering and teaching experience in thesis consulting, drawing, photography, and clay modeling.</li>
-                <li>Published author of short stories and poems.</li>
-              </ul>
-            </div>
-
-            <div class="sidebar-section flex flex-col scroll-reveal">
-              <h3 class="section-heading">Education</h3>
-              <div class="education-entry flex flex-col">
-                <span class="degree font-bold text-base">Bachelor of Fine Arts, BFA</span>
-                <span class="school text-base color-text-muted">San Alejandro Fine Arts Academy, Havana, Cuba</span>
-              </div>
-            </div>
-          </aside>
-        </div>
-
-        <div class="download-section flex justify-center scroll-reveal">
-          <button class="btn-blob download-btn">DOWNLOAD RESUME</button>
-        </div>
+          }
+        }
       </main>
 
       <portfolio-footer />
@@ -315,4 +273,9 @@ export const routeMeta: RouteMeta = {
     }
   `,
 })
-export default class ResumeComponent { }
+export default class ResumeComponent {
+  readonly resumeData = injectContentFiles<ResumeData & Record<string, unknown>>(file =>
+    file.filename.includes('resume.md')
+  )[0]?.attributes;
+}
+

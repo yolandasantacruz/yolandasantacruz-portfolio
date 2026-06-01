@@ -53,9 +53,16 @@ describe('CatmullRomService', () => {
       const tangents2 = service.computeClosedTangents(points, k2);
 
       for (let i = 0; i < points.length; i++) {
-        expect(tangents2[i][0]).toBeCloseTo(tangents1[i][0] * 2, 5);
-        expect(tangents2[i][1]).toBeCloseTo(tangents1[i][1] * 2, 5);
+        const t1 = tangents1.at(i);
+        const t2 = tangents2.at(i);
+        expect(t1).toBeDefined();
+        expect(t2).toBeDefined();
+        if (t1 && t2) {
+          expect(t2.at(0)).toBeCloseTo(t1.at(0)! * 2, 5);
+          expect(t2.at(1)).toBeCloseTo(t1.at(1)! * 2, 5);
+        }
       }
+
     });
   });
 

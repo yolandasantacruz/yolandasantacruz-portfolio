@@ -123,7 +123,8 @@ export default defineConfig(() => ({
       prerender: {
         routes: [
           '/',
-          '/projects',
+          '/about',
+          '/resume',
           {
             contentDir: 'src/content/projects',
             transform: (file: { name: string }) => `/projects/${file.name.replace('.md', '')}`,

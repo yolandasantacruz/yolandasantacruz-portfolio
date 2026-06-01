@@ -20,11 +20,15 @@ export class CatmullRomService {
     for (let i = 0; i < n; i++) {
       const prevIdx = (i - 1 + n) % n;
       const nextIdx = (i + 1) % n;
-      const pPrev = points[prevIdx];
-      const pNext = points[nextIdx];
+      const pPrev = points.at(prevIdx);
+      const pNext = points.at(nextIdx);
+      if (!pPrev || !pNext) continue;
 
-      const tx = (pNext[0] - pPrev[0]) * tension;
-      const ty = (pNext[1] - pPrev[1]) * tension;
+      const [prevX, prevY] = pPrev;
+      const [nextX, nextY] = pNext;
+
+      const tx = (nextX - prevX) * tension;
+      const ty = (nextY - prevY) * tension;
       tangents.push([tx, ty]);
     }
     return tangents;
@@ -42,26 +46,36 @@ export class CatmullRomService {
     const n = points.length;
     if (n === 0) return '';
 
-    const startPt = points[0];
-    let d = `M ${startPt[0].toFixed(1)} ${startPt[1].toFixed(1)}`;
+    const startPt = points.at(0);
+    if (!startPt) return '';
+    const [startX, startY] = startPt;
+    let d = `M ${startX.toFixed(1)} ${startY.toFixed(1)}`;
 
     for (let i = 0; i < n; i++) {
       const nextIdx = (i + 1) % n;
-      const pCurrent = points[i];
-      const pNext = points[nextIdx];
-      const tCurrent = tangents[i];
-      const tNext = tangents[nextIdx];
+      const pCurrent = points.at(i);
+      const pNext = points.at(nextIdx);
+      const tCurrent = tangents.at(i);
+      const tNext = tangents.at(nextIdx);
 
-      const c1x = pCurrent[0] + tCurrent[0];
-      const c1y = pCurrent[1] + tCurrent[1];
-      const c2x = pNext[0] - tNext[0];
-      const c2y = pNext[1] - tNext[1];
+      if (!pCurrent || !pNext || !tCurrent || !tNext) continue;
 
-      d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${pNext[0].toFixed(1)} ${pNext[1].toFixed(1)}`;
+      const [currX, currY] = pCurrent;
+      const [nextX, nextY] = pNext;
+      const [tCurrX, tCurrY] = tCurrent;
+      const [tNextX, tNextY] = tNext;
+
+      const c1x = currX + tCurrX;
+      const c1y = currY + tCurrY;
+      const c2x = nextX - tNextX;
+      const c2y = nextY - tNextY;
+
+      d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${nextX.toFixed(1)} ${nextY.toFixed(1)}`;
     }
     d += ' Z';
     return d;
   }
+
 
   /**
    * Computes tangents and generates the closed SVG path string in a single operation.

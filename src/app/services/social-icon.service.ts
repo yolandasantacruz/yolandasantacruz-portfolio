@@ -21,14 +21,15 @@ const SOCIAL_ICON_PATHS: Readonly<Record<string, string>> = {
 
 @Injectable({ providedIn: 'root' })
 export class SocialIconService {
+  private readonly iconPaths = new Map<string, string>(Object.entries(SOCIAL_ICON_PATHS));
+
   /**
    * Returns the SVG `<path d="...">` data for a known social platform.
    * Returns `undefined` for unrecognised platform names so callers can
    * conditionally render the icon element without crashing.
    */
   getPath(platform: string): string | undefined {
-    return Object.prototype.hasOwnProperty.call(SOCIAL_ICON_PATHS, platform)
-      ? SOCIAL_ICON_PATHS[platform]
-      : undefined;
+    return this.iconPaths.get(platform);
   }
 }
+
