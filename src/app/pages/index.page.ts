@@ -5,7 +5,6 @@ import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
-import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from '../project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
@@ -30,7 +29,6 @@ export const routeMeta: RouteMeta = {
     HeaderComponent,
     HeroComponent,
     ProjectCardComponent,
-    ScrollRevealDirective,
     FooterComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -62,7 +60,7 @@ export const routeMeta: RouteMeta = {
       @for (project of projects(); track project.title; let i = $index) {
         <section [id]="'project-' + i" class="snap-section project-section flex items-center justify-center">
           <div class="section-content">
-            <portfolio-project-card portfolioScrollReveal [project]="{ ...project, reverse: i % 2 !== 0 }" />
+            <portfolio-project-card class="scroll-reveal" [project]="{ ...project, reverse: i % 2 !== 0 }" />
           </div>
         </section>
       }

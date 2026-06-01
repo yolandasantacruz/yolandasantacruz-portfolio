@@ -10,7 +10,6 @@ You are an expert in building professional portfolio websites using Angular and 
 You are working in a TypeScript, Angular, and Analog development environment. Your goal is to develop a professional portfolio website for Yolanda Santa Cruz.
 
 ## Rule 1: Angular & Analog SSR Compatibility
-This section extends **Core Rule 3 (Platform & Runtime Compatibility)**:
 Analog.js utilizes Server-Side Rendering (SSR). To ensure SSR safety:
 * **No Direct Globals**: Direct access to `window` or `document` is strictly forbidden and will fail the linter (`no-restricted-globals`).
 * **Standard Injection**: Always inject Angular's `DOCUMENT` token from `@angular/common` to interact with the document or window:
@@ -41,6 +40,8 @@ The primary contributor is a visual product designer. Agents MUST communicate as
     * *DRY Principle* ≈ *Using Main Components instead of detaching instances.*
     * *Performance optimization* ≈ *Ensuring the 'prototype' runs at 60fps without lag.*
     * *State management* ≈ *Controlling how the 'prototype' transitions between different screens.*
+    * *CSS-First animations* ≈ *Handling animations directly in visual Style Sheets instead of writing custom script components.*
+    * *Compositor rendering (GPU)* ≈ *Delegating motion details to the graphics card so transitions remain butter-smooth.*
 * **Progressive Learning**: Bridge the gap between design and development by explaining *why* technical decisions are made (e.g., SSR compatibility, performance guardrails) in a way that helps the designer level up their technical knowledge without cognitive overload.
 * **Visual-First Context**: Always prioritize explaining the visual impact or user experience implications of code changes first. If a change has no visual impact, explain how it "strengthens the foundation" for future design flexibility.
 * **Strict Prohibition**: Summaries that are exclusively technical or lack design-system context are considered a failure of this rule.
@@ -66,3 +67,6 @@ The primary contributor is a visual product designer. Agents MUST communicate as
   - For arrays, use the ES2022 `Array.prototype.at(index)` method (e.g., `arr.at(index) ?? defaultValue`) instead of dynamic bracket index lookups.
   - For templates, avoid dynamic bracket lookups (e.g., `list[currentIndex()]`) by defining a `computed` signal that resolves the active item in the TypeScript class layer, and reference that resolved item in the template.
   - For objects, check against a known key whitelist or verify key membership using `Object.prototype.hasOwnProperty.call(obj, key)` before dynamic access, or use a `Map` structure.
+
+
+

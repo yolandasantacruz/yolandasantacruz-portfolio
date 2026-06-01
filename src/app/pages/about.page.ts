@@ -20,8 +20,6 @@ export const routeMeta: RouteMeta = {
   ]
 };
 
-import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
-
 
 import {
   HeroData,
@@ -45,7 +43,6 @@ import {
     AboutTestimonialsComponent,
     AboutTimelineComponent,
     AboutPublishedWorksComponent,
-    ScrollRevealDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -80,11 +77,11 @@ import {
 
         <main class="about-main">
           <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
-          <portfolio-about-belief [data]="beliefData" portfolioScrollReveal />
-          <portfolio-about-pillars [data]="pillarsData" portfolioScrollReveal />
-          <portfolio-about-testimonials [items]="testimonialItems" portfolioScrollReveal />
-          <portfolio-about-timeline [data]="timelineData" portfolioScrollReveal />
-          <portfolio-about-published-works [data]="publicationsData" portfolioScrollReveal />
+          <portfolio-about-belief [data]="beliefData" class="scroll-reveal" />
+          <portfolio-about-pillars [data]="pillarsData" class="scroll-reveal" />
+          <portfolio-about-testimonials [items]="testimonialItems" class="scroll-reveal" />
+          <portfolio-about-timeline [data]="timelineData" class="scroll-reveal" />
+          <portfolio-about-published-works [data]="publicationsData" class="scroll-reveal" />
         </main>
 
         <portfolio-footer />

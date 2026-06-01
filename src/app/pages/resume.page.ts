@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
@@ -18,7 +17,7 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'portfolio-resume',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, ScrollRevealDirective],
+  imports: [HeaderComponent, FooterComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
@@ -31,9 +30,9 @@ export const routeMeta: RouteMeta = {
           <div class="main-column">
 
             <section class="work-experience flex flex-col">
-              <h3 class="section-heading" portfolioScrollReveal>Work Experience</h3>
+              <h3 class="section-heading scroll-reveal">Work Experience</h3>
               
-              <div class="job-entry" portfolioScrollReveal>
+              <div class="job-entry scroll-reveal">
                 <div class="job-header">
                   <span class="job-title">Lead Product Designer</span>
                   <span class="job-meta">Discover Financial Services, Chicago, IL (Remote) · January 2025 - Present</span>
@@ -45,7 +44,7 @@ export const routeMeta: RouteMeta = {
                 </ul>
               </div>
 
-              <div class="job-entry" portfolioScrollReveal>
+              <div class="job-entry scroll-reveal">
                 <div class="job-header">
                   <span class="job-title">Senior Product Designer</span>
                   <span class="job-meta">Upside, Washington, DC (Remote) · November 2022 - July 2024</span>
@@ -58,7 +57,7 @@ export const routeMeta: RouteMeta = {
                 </ul>
               </div>
 
-              <div class="job-entry" portfolioScrollReveal>
+              <div class="job-entry scroll-reveal">
                 <div class="job-header">
                   <span class="job-title">Senior Product Designer</span>
                   <span class="job-meta">Fetch Rewards, Chicago, IL (Remote) · February 2021 - October 2022</span>
@@ -70,7 +69,7 @@ export const routeMeta: RouteMeta = {
                 </ul>
               </div>
 
-              <div class="job-entry" portfolioScrollReveal>
+              <div class="job-entry scroll-reveal">
                 <div class="job-header">
                   <span class="job-title">Product Designer</span>
                   <span class="job-meta">Zelenia, Miami, FL (Remote) · December 2019 - February 2021</span>
@@ -83,7 +82,7 @@ export const routeMeta: RouteMeta = {
                 </ul>
               </div>
 
-              <div class="job-entry" portfolioScrollReveal>
+              <div class="job-entry scroll-reveal">
                 <div class="job-header">
                   <span class="job-title">UX/UI Designer</span>
                   <span class="job-meta">Home61, Miami, FL · September 2018 - December 2019</span>
@@ -95,7 +94,7 @@ export const routeMeta: RouteMeta = {
                 </ul>
               </div>
 
-              <div class="job-entry" portfolioScrollReveal>
+              <div class="job-entry scroll-reveal">
                 <div class="job-header flex flex-col">
                   <span class="job-title">{{ 'Graphic Designer' }}</span>
                   <span class="job-meta text-base color-text-muted">Pacific Service Center, Portland, OR · October 2016 - August 2018</span>
@@ -110,22 +109,22 @@ export const routeMeta: RouteMeta = {
           </div>
 
           <aside class="sidebar flex flex-col gap-16">
-            <div class="sidebar-section flex flex-col" portfolioScrollReveal>
+            <div class="sidebar-section flex flex-col scroll-reveal" >
               <h3 class="section-heading">Software</h3>
               <p>Figma · Illustrator · Photoshop · InDesign · Framer · Midjourney · Spline · AI Notion · Miro · Slack · Dovetail · UserTesting · Mixpanel · LogRocket · Tableau · Hotjar · JIRA</p>
             </div>
 
-            <div class="sidebar-section" portfolioScrollReveal>
+            <div class="sidebar-section scroll-reveal">
               <h3 class="section-heading">Skills</h3>
               <p>Cross-functional Collaboration · UX Strategy · Stakeholder Engagement · Mentorship & Team Leadership · User Research · Journey Mapping · Data Literacy · A/B Testing · Information Architecture · Wireframing · Rapid Prototyping · Interaction Design · Visual Design · Generative Design · Accessibility Design · Agile Methodologies · Product Engineering · Critical Thinking · Creative Problem Solving · Effective Communication · Presentation Skills</p>
             </div>
 
-            <div class="sidebar-section" portfolioScrollReveal>
+            <div class="sidebar-section scroll-reveal">
               <h3 class="section-heading">Languages</h3>
               <p>English · Spanish</p>
             </div>
 
-            <div class="sidebar-section flex flex-col" portfolioScrollReveal>
+            <div class="sidebar-section flex flex-col scroll-reveal">
               <h3 class="section-heading">Additional</h3>
               <ul class="sidebar-list no-bullets">
                 <li>ADP Mentor</li>
@@ -135,7 +134,7 @@ export const routeMeta: RouteMeta = {
               </ul>
             </div>
 
-            <div class="sidebar-section flex flex-col" portfolioScrollReveal>
+            <div class="sidebar-section flex flex-col scroll-reveal">
               <h3 class="section-heading">Education</h3>
               <div class="education-entry flex flex-col">
                 <span class="degree font-bold text-base">Bachelor of Fine Arts, BFA</span>
@@ -145,7 +144,7 @@ export const routeMeta: RouteMeta = {
           </aside>
         </div>
 
-        <div class="download-section flex justify-center" portfolioScrollReveal>
+        <div class="download-section flex justify-center scroll-reveal">
           <button class="btn-blob download-btn">DOWNLOAD RESUME</button>
         </div>
       </main>
