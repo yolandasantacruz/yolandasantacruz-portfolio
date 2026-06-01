@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, signal } f
 import { NgOptimizedImage } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PillarsData } from '../../pages/about.types';
-import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'portfolio-about-pillars',
@@ -330,10 +329,9 @@ import { ImageUrlService } from '../../services/image-url.service';
 })
 export class AboutPillarsComponent {
   data = input<PillarsData | undefined>();
-  private imageUrlService = inject(ImageUrlService);
   private sanitizer = inject(DomSanitizer);
 
-  readonly atWorkUrl = computed(() => this.imageUrlService.resolve('/images/about/at-work.webp'));
+  readonly atWorkUrl = computed(() => '/images/about/at-work.webp');
 
   readonly isPlaying = signal(false);
 

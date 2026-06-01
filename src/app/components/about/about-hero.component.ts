@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { NgOptimizedImage } from '@angular/common';
 import { HeroData, SocialsData, SocialLink } from '../../pages/about.types';
 import { SocialIconService } from '../../services/social-icon.service';
-import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'portfolio-about-hero',
@@ -169,8 +168,7 @@ export class AboutHeroComponent {
   data = input<HeroData | undefined>();
   socials = input<SocialsData | undefined>();
   private socialIconService = inject(SocialIconService);
-  private imageUrlService = inject(ImageUrlService);
-  readonly heroPortrait = computed(() => this.imageUrlService.resolve('/images/about/portrait-1.png'));
+  readonly heroPortrait = computed(() => '/images/about/portrait-1.png');
   /** Resolved list of social links from the socials input */
   socialLinks = computed<SocialLink[]>(() => this.socials()?.links ?? []);
 

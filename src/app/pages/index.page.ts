@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal, afterNextRender, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { ImageUrlService } from '../services/image-url.service';
 import { RouterLink } from '@angular/router';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
@@ -441,7 +440,6 @@ export const routeMeta: RouteMeta = {
 export default class PortfolioHomeComponent {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
-  private imageUrlService = inject(ImageUrlService);
 
   readonly projects = signal<Project[]>(
     injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'))
@@ -449,7 +447,7 @@ export default class PortfolioHomeComponent {
       .map(project => ({
         title: project.attributes.title,
         description: project.attributes.description,
-        imageUrl: this.imageUrlService.resolve(project.attributes.imageUrl),
+        imageUrl: project.attributes.imageUrl,
         link: `/projects/${project.attributes.slug}`,
         category: project.attributes.category,
         role: project.attributes.role,

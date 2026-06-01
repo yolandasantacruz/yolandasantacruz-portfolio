@@ -11,7 +11,7 @@ import { DOCUMENT } from '@angular/common';
     <header class="header">
       <div class="logo">
         <a routerLink="/" class="logo-link" (click)="scrollToTop($event)">
-          <img src="images/logo.png" alt="Yolanda Santa Cruz" class="logo-img" />
+          <img [src]="logoSrc" alt="Yolanda Santa Cruz" class="logo-img" />
         </a>
       </div>
       <nav class="nav-links">
@@ -55,6 +55,8 @@ import { DOCUMENT } from '@angular/common';
 export class HeaderComponent {
   private router = inject(Router);
   private document = inject(DOCUMENT);
+
+  readonly logoSrc = '/images/logo.png';
 
   scrollToTop(event: Event) {
     if (this.router.url === '/' || this.router.url === '/#hero') {
