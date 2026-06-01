@@ -31,7 +31,9 @@ export interface Project {
         
         <p class="project-description m-0 text-left color-text-muted text-base">{{ project().description }}</p>
         
-        <a [routerLink]="project().link" class="view-project flex items-center color-text font-normal text-base">
+        <a [routerLink]="project().link" 
+           class="view-project flex items-center color-text font-normal text-base"
+           [attr.aria-label]="'View project: ' + project().title">
           View Project
         </a>
       </div>

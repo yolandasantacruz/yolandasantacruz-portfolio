@@ -16,37 +16,39 @@ import { ProjectAttributes } from '../project-attributes';
     <div class="container">
       <portfolio-header />
 
-      @if (project$ | async; as project) {
-        <article class="project-article">
-          <header class="project-header fade-in-on-load">
-            <h1 class="project-title">{{ project.attributes.title }}</h1>
-            <p class="project-subtitle">{{ project.attributes.description }}</p>
-            
-            <div class="project-meta">
-              <div class="meta-item flex flex-col">
-                <span class="label">Role</span>
-                <span class="value text-base font-normal">{{ project.attributes.role }}</span>
-              </div>
-              <div class="meta-item flex flex-col">
-                <span class="label">Timeline</span>
-                <span class="value text-base font-normal">{{ project.attributes.timeline }}</span>
-              </div>
-              <div class="meta-item flex flex-col">
-                <span class="label">Tech Stack</span>
-                <div class="tech-tags flex flex-wrap">
-                  @for (tech of project.attributes.techStack; track tech) {
-                    <span class="tech-tag text-base">{{ tech }}</span>
-                  }
+      <main class="project-main">
+        @if (project$ | async; as project) {
+          <article class="project-article">
+            <header class="project-header fade-in-on-load">
+              <h1 class="project-title">{{ project.attributes.title }}</h1>
+              <p class="project-subtitle">{{ project.attributes.description }}</p>
+              
+              <div class="project-meta">
+                <div class="meta-item flex flex-col">
+                  <span class="label">Role</span>
+                  <span class="value text-base font-normal">{{ project.attributes.role }}</span>
+                </div>
+                <div class="meta-item flex flex-col">
+                  <span class="label">Timeline</span>
+                  <span class="value text-base font-normal">{{ project.attributes.timeline }}</span>
+                </div>
+                <div class="meta-item flex flex-col">
+                  <span class="label">Tech Stack</span>
+                  <div class="tech-tags flex flex-wrap">
+                    @for (tech of project.attributes.techStack; track tech) {
+                      <span class="tech-tag text-base">{{ tech }}</span>
+                    }
+                  </div>
                 </div>
               </div>
-            </div>
-          </header>
+            </header>
 
-          <div class="project-content">
-            <analog-markdown [content]="project.content" />
-          </div>
-        </article>
-      }
+            <div class="project-content">
+              <analog-markdown [content]="project.content" />
+            </div>
+          </article>
+        }
+      </main>
 
       <portfolio-footer />
     </div>

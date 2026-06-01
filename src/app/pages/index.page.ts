@@ -33,9 +33,9 @@ export const routeMeta: RouteMeta = {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="snap-container">
+    <main class="snap-container">
       <!-- Fixed Side Rail Navigation -->
-      <div class="floating-side-rail flex flex-col items-end" role="navigation" aria-label="Page sections">
+      <nav class="floating-side-rail flex flex-col items-end" role="navigation" aria-label="Page sections">
         @for (sec of navSections(); track sec.id) {
           <button class="nav-pill flex items-center justify-center" 
                   [class.active]="activeSection() === sec.id" 
@@ -46,7 +46,7 @@ export const routeMeta: RouteMeta = {
             <span class="pill-label">{{ sec.label }}</span>
           </button>
         }
-      </div>
+      </nav>
 
       <!-- Hero Section (Snap 0) -->
       <section id="hero" class="snap-section hero-section flex items-center justify-center">
@@ -83,7 +83,7 @@ export const routeMeta: RouteMeta = {
           <portfolio-footer />
         </div>
       </section>
-    </div>
+    </main>
   `,
   styles: `
     .snap-container {
