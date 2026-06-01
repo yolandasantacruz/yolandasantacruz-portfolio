@@ -158,7 +158,7 @@ export default defineConfig(() => ({
             type: 'image/x-icon'
           },
           {
-            src: 'images/Yolanda-Logo-86px.png',
+            src: 'images/logo.png',
             sizes: '86x86',
             type: 'image/png'
           }

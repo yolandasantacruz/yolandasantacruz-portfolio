@@ -11,7 +11,7 @@ import { DOCUMENT } from '@angular/common';
     <header class="header">
       <div class="logo">
         <a routerLink="/" class="logo-link" (click)="scrollToTop($event)">
-          <img src="images/Yolanda-Logo-86px.png" alt="Yolanda Santa Cruz" class="logo-img" />
+          <img src="images/logo.png" alt="Yolanda Santa Cruz" class="logo-img" />
         </a>
       </div>
       <nav class="nav-links">
