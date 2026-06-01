@@ -11,7 +11,9 @@ packages:
 # By default, pnpm v10+ blocks all lifecycle scripts to prevent malicious code execution.
 allowBuilds:
   esbuild: true
-  # Add other compiled dependencies as needed (e.g., swc, canvas, sharp)
+  "@parcel/watcher": true
+  lmdb: true
+  msgpackr-extract: true
 
 # Block transitive dependencies from pulling in code from untrusted/unverified sources
 # (e.g., raw git URLs, direct tarball downloads). This prevents dependency hijacking.
