@@ -54,7 +54,7 @@ import { PillarsData } from '../../pages/about.types';
                   </iframe>
                 } @else {
                   <button class="play-trigger" (click)="playVideo()" type="button" aria-label="Play sample mentorship session">
-                    <img src="https://img.youtube.com/vi/yL_yRyzp7oo/maxresdefault.jpg" alt="Sample Mentorship Session" class="video-thumbnail" />
+                    <img [ngSrc]="'https://img.youtube.com/vi/yL_yRyzp7oo/maxresdefault.jpg'" width="1280" height="720" alt="Sample Mentorship Session" class="video-thumbnail" />
                     <div class="play-overlay flex items-center justify-center">
                       <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
                     </div>

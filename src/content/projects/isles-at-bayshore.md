@@ -12,7 +12,7 @@ order: 3
 
 ## Boosting lead generation by 125% through UX/UI enhancements
 
-![Isles at Bayshore Hero Mockup](images/projects/isles-at-bayshore/main.webp)
+<img src="images/projects/isles-at-bayshore/main.webp" alt="Isles at Bayshore Hero Mockup" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
 
 ### Brief
 Sole UX/UI designer collaborating with the CEO and two engineers at a real estate startup to revamp the lead generation experience. The focus was on improving clarity and usability in the application flow to make the process more efficient and attract qualified leads, all within the constraints of a small team and limited resources.
@@ -31,12 +31,12 @@ To show my vision for the redesign of the content to the rest of the team, I cre
 
 While going over the proposed layout we talked about incorporating a sign-up form on each page. We worked under the assumption that this could help us with our lead capture. During the implementation process, we tested the two versions (with and without the sign-up form) and decided to keep the form given that it was indeed increasing our lead capture.
 
-![Lo-fi Wireframe Sketches](images/projects/isles-at-bayshore/lofi-sketches.webp)
+<img src="images/projects/isles-at-bayshore/lofi-sketches.webp" alt="Lo-fi Wireframe Sketches" style="border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 
 ### Wireframes
 Taking into consideration the content and structure found in the previous design, I created wireframes to propose how the information could be displayed in the redesign.
 
-![Proposed Wireframes](images/projects/isles-at-bayshore/wireframes.webp)
+<img src="images/projects/isles-at-bayshore/wireframes.webp" alt="Proposed Wireframes" style="border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 
 ### Overview of Solutions
 
@@ -48,17 +48,17 @@ Taking into consideration the content and structure found in the previous design
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/popup-details.webp" alt="Lead Capture Pop-up Form" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/popup-details.webp" alt="Lead Capture Pop-up Form" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Pop-up to capture leads and trigger automated email</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/marketing-emails.webp" alt="Mailchimp Automated Emails" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/marketing-emails.webp" alt="Mailchimp Automated Emails" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Marketing emails programmed in MailChimp</p>
   </div>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0;">
-  <img src="images/projects/isles-at-bayshore/marketing-materials.webp" alt="Automated Print Marketing" style="border-radius: 12px; max-width: 600px; width: 100%;" />
+  <img src="images/projects/isles-at-bayshore/marketing-materials.webp" alt="Automated Print Marketing" style="border-radius: 12px; max-width: 600px; width: 100%;" loading="lazy" decoding="async" />
   <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Marketing materials and print layouts</p>
 </div>
 
@@ -69,27 +69,27 @@ Given that the scope of this project was very large, I had to design several scr
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/landing-page.webp" alt="Landing Page" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/landing-page.webp" alt="Landing Page" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Landing Page</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/search-screen.webp" alt="Search Screen" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/search-screen.webp" alt="Search Screen" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Search Screen</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/property-details.webp" alt="Property Details" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/property-details.webp" alt="Property Details" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Property Details</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/floor-plans.webp" alt="Floor Plans" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/floor-plans.webp" alt="Floor Plans" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Floor Plans</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/agent-screen.webp" alt="Agent Screen" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/agent-screen.webp" alt="Agent Screen" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Agent Screen</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/contact-screen.webp" alt="Contact Screen" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/contact-screen.webp" alt="Contact Screen" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Contact Screen</p>
   </div>
 </div>
@@ -101,15 +101,15 @@ The final results reduced the lead capture cost from **$65 to only $11**, and th
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/results-1.webp" alt="Lead Capture Cost Reduction Chart" style="margin: 0 auto; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/results-1.webp" alt="Lead Capture Cost Reduction Chart" style="margin: 0 auto; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Lead Capture Cost</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/results-2.webp" alt="Monthly Lead Generation Chart" style="margin: 0 auto; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/results-2.webp" alt="Monthly Lead Generation Chart" style="margin: 0 auto; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Monthly Lead Conversion</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/results-3.webp" alt="Overall Site Engagement Chart" style="margin: 0 auto; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/isles-at-bayshore/results-3.webp" alt="Overall Site Engagement Chart" style="margin: 0 auto; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Site Engagement</p>
   </div>
 </div>

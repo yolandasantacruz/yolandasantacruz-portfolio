@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'portfolio-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="header">
       <div class="logo">
         <a routerLink="/" class="logo-link" (click)="scrollToTop($event)">
-          <img [src]="logoSrc" alt="Yolanda Santa Cruz" class="logo-img" />
+          <img [ngSrc]="logoSrc" width="40" height="40" priority alt="Yolanda Santa Cruz" class="logo-img" />
         </a>
       </div>
       <nav class="nav-links">

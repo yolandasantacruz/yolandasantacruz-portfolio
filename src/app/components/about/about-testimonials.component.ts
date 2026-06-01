@@ -15,14 +15,14 @@ import {
   QueryList,
   linkedSignal,
 } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Testimonial } from '../../pages/about.types';
 import { BlobAnimationService } from '../../services/blob-animation.service';
 
 @Component({
   selector: 'portfolio-about-testimonials',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [BlobAnimationService],
   template: `
@@ -41,7 +41,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
                       {{ getInitials(activeTestimonial.name) }}
                     </div>
                   } @else {
-                    <img [src]="activeTestimonial.avatar" [alt]="activeTestimonial.name" class="author-avatar" (error)="avatarError.set(true)" />
+                    <img [ngSrc]="activeTestimonial.avatar" width="64" height="64" [alt]="activeTestimonial.name" class="author-avatar" (error)="avatarError.set(true)" />
                   }
                   <div class="author-details flex flex-col">
                     @if (activeTestimonial.profileUrl) {
