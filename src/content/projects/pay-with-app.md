@@ -2,7 +2,7 @@
 title: Pay with App
 slug: pay-with-app
 description: Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs
-imageUrl: /images/projects/pay-with-app/cover.webp
+imageUrl: images/projects/pay-with-app/cover.webp
 category: FINTECH
 role: Lead Product Designer
 timeline: Jan 2023 - May 2024
@@ -12,7 +12,7 @@ order: 1
 
 ## Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs.
 
-![Pay with App Interface Collage](/images/projects/pay-with-app/main.webp)
+![Pay with App Interface Collage](images/projects/pay-with-app/main.webp)
 
 ### Brief
 Sole designer in a cross-functional pod, working closely with a PM and user researcher to redesign the transaction experience for a key C2C feature. The feature faced high dispute rates that put our Stripe contract at risk and capped rollout at 25% of users. We set out to uncover friction points in the payment experience and deliver fixes that would enable a broader launch.
@@ -33,8 +33,8 @@ Sole designer in a cross-functional pod, working closely with a PM and user rese
 To identify friction points and improve user experience, the researcher and I conducted an iterative design cycle focused on simplifying the interface. We crafted and analyzed the ALPHA and BRAVO flows for new and existing users. Each flow offered a unique user journey, from selecting offers to completing payments, tailored to user familiarity.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-  <img src="/images/projects/pay-with-app/research1.webp" alt="User Research Flow Alpha" style="margin: 0; border-radius: 12px; width: 100%;" />
-  <img src="/images/projects/pay-with-app/research2.webp" alt="User Research Flow Bravo" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <img src="images/projects/pay-with-app/research1.webp" alt="User Research Flow Alpha" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <img src="images/projects/pay-with-app/research2.webp" alt="User Research Flow Bravo" style="margin: 0; border-radius: 12px; width: 100%;" />
 </div>
 
 We also reviewed the Add Card and Card Added flows to understand how the timing and context of adding payment information impacted user motivation and retention.
@@ -45,7 +45,7 @@ Through this testing, we identified specific pain points where users experienced
 
 Through testing our previous flow, we discovered that many users misinterpreted the first screen as asking for the amount they had already paid, assuming the next screen was only for card selection rather than in-app payment. This misunderstanding was a major factor contributing to duplicate charges and higher dispute rates.
 
-![Merged Payment Screen](/images/projects/pay-with-app/merged-screens.webp)
+![Merged Payment Screen](images/projects/pay-with-app/merged-screens.webp)
 
 To address this, I designed a consolidated screen that combined both the amount entry and payment selection steps into a single, streamlined experience. I also asked the development team to add a dynamic display of the user’s earnings on each purchase, making rewards immediately visible and reinforcing overall product value.
 
@@ -61,10 +61,10 @@ To improve the user experience within the payment flow, we explored several desi
 Historic data showed that over 90% of new users and 20% of existing users claimed offers without being at the location, and based on user research a chevron gave them confidence that their progress would be saved even if they exited the flow. Based on these findings, I chose a **full-screen takeover** to create a more immersive experience.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center; margin: 2rem 0;">
-  <img src="/images/projects/pay-with-app/exploration.webp" alt="Interface Design Exploration" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <img src="images/projects/pay-with-app/exploration.webp" alt="Interface Design Exploration" style="margin: 0; border-radius: 12px; width: 100%;" />
   <div style="text-align: center; width: 100%;">
     <video autoplay loop muted playsinline style="width: 100%; aspect-ratio: 9/16;">
-      <source src="/images/projects/pay-with-app/payment-flow-takeover.mp4" type="video/mp4">
+      <source src="images/projects/pay-with-app/payment-flow-takeover.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Full-screen takeover with a chevron for the win</p>
@@ -75,13 +75,13 @@ Historic data showed that over 90% of new users and 20% of existing users claime
 
 To enhance the barcode’s distinctiveness and branding, we applied style changes by integrating brand logos into the card area and using brand colors for the background. We also included key information within the object, such as the offer’s expiration time.
 
-![Branded Barcode Exploration](/images/projects/pay-with-app/barcode.webp)
+![Branded Barcode Exploration](images/projects/pay-with-app/barcode.webp)
 
 ### Label Update
 
 For clarity, we renamed the previous "Upside Pay" label to "Pay with app" and changed its color to improve contrast. To highlight the distinct experience, this label appeared throughout the app in other areas like the Home screen and transaction history.
 
-![Label and Contrast Updates](/images/projects/pay-with-app/label-update.webp)
+![Label and Contrast Updates](images/projects/pay-with-app/label-update.webp)
 
 ### Results
 
@@ -91,15 +91,15 @@ For clarity, we renamed the previous "Upside Pay" label to "Pay with app" and ch
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
   <div style="text-align: center;">
-    <img src="/images/projects/pay-with-app/dispute-rates.webp" alt="Dispute Rates Chart" style="margin: 0 auto; border-radius: 12px;" />
+    <img src="images/projects/pay-with-app/dispute-rates.webp" alt="Dispute Rates Chart" style="margin: 0 auto; border-radius: 12px;" />
     <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Dispute Rates</p>
   </div>
   <div style="text-align: center;">
-    <img src="/images/projects/pay-with-app/dispute-costs.webp" alt="Dispute Costs Chart" style="margin: 0 auto; border-radius: 12px;" />
+    <img src="images/projects/pay-with-app/dispute-costs.webp" alt="Dispute Costs Chart" style="margin: 0 auto; border-radius: 12px;" />
     <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Dispute Costs</p>
   </div>
   <div style="text-align: center;">
-    <img src="/images/projects/pay-with-app/transaction-volume.webp" alt="Transaction Volume Chart" style="margin: 0 auto; border-radius: 12px;" />
+    <img src="images/projects/pay-with-app/transaction-volume.webp" alt="Transaction Volume Chart" style="margin: 0 auto; border-radius: 12px;" />
     <p style="font-size: 0.9rem; color: #666; margin-top: 0.75rem; font-weight: 600;">Transaction Volume</p>
   </div>
 </div>

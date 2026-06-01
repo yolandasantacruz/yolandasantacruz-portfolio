@@ -2,7 +2,7 @@
 title: PlantMe
 slug: plant-me
 description: Designed a 0 to 1 experience for a C2C app
-imageUrl: /images/projects/plant-me/cover.webp
+imageUrl: images/projects/plant-me/cover.webp
 category: PROPTECH
 role: Senior UX/UI Designer
 timeline: Mar 2022 - Dec 2022
@@ -12,7 +12,7 @@ order: 4
 
 ## Designed a 0 to 1 experience for a C2C app
 
-![PlantMe Hero Mockup](/images/projects/plant-me/main.webp)
+![PlantMe Hero Mockup](images/projects/plant-me/main.webp)
 
 ### Brief
 Designing the end-to-end experience for a C2C platform connecting gardening specialists with clients for services like landscaping, with PlantMe earning commission on bookings.
@@ -34,7 +34,7 @@ Beginning with market research, I spent some time familiarizing myself with the 
 ### Competitive Analysis
 To get a better understanding of the competitors, I performed a competitive analysis by downloading 3 landscaping apps that offered similar functionalities to identify their strengths and weaknesses. This allowed me to learn how other apps approached connecting customers with contractors, and what opportunities were available for PlantMe to distinguish itself.
 
-![Competitive Analysis Matrix](/images/projects/plant-me/competitive-analysis.webp)
+![Competitive Analysis Matrix](images/projects/plant-me/competitive-analysis.webp)
 
 ### User Interviews & Persona Creation
 To better understand the members of the community, I conducted my research by creating an interview guide to use during 1-on-1 interviews, focusing on user needs. I conducted 3 interviews with participants of different backgrounds ranging in age from 28-36. Two of the participants had experience as contractors in the landscaping industry and one of them was a potential customer for the end product.
@@ -43,11 +43,11 @@ Based on their feedback, I created personas to represent our users' needs, exper
 
 The app targeted users looking to offer professional services, as well as individuals looking to fulfill tasks that they couldn't perform.
 
-![User Persona 1](/images/projects/plant-me/persona.webp)
+![User Persona 1](images/projects/plant-me/persona.webp)
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-  <img src="/images/projects/plant-me/persona-1.webp" alt="User Persona 2" style="margin: 0; border-radius: 12px; width: 100%;" />
-  <img src="/images/projects/plant-me/persona-2.webp" alt="User Persona 3" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <img src="images/projects/plant-me/persona-1.webp" alt="User Persona 2" style="margin: 0; border-radius: 12px; width: 100%;" />
+  <img src="images/projects/plant-me/persona-2.webp" alt="User Persona 3" style="margin: 0; border-radius: 12px; width: 100%;" />
 </div>
 
 #### MVP Core Features
@@ -64,7 +64,7 @@ I wanted to keep the sections of the app organized neatly and easy to navigate f
 
 I also created a secondary navigation with user details and a contact feature.
 
-![PlantMe Sitemap Architecture](/images/projects/plant-me/sitemap.webp)
+![PlantMe Sitemap Architecture](images/projects/plant-me/sitemap.webp)
 
 ### Wireframe Sketches & Task Flows
 I created two flows:
@@ -77,11 +77,11 @@ In order to focus on what I wanted the users to accomplish in my MVP, I created 
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div style="text-align: center;">
-    <img src="/images/projects/plant-me/lofi-sketches.webp" alt="Lo-fi Wireframe Sketches" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/plant-me/lofi-sketches.webp" alt="Lo-fi Wireframe Sketches" style="margin: 0; border-radius: 12px; width: 100%;" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Paper wireframe sketches</p>
   </div>
   <div style="text-align: center;">
-    <img src="/images/projects/plant-me/task-flow.webp" alt="UX Task Flows" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/plant-me/task-flow.webp" alt="UX Task Flows" style="margin: 0; border-radius: 12px; width: 100%;" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">User journey task flows</p>
   </div>
 </div>
@@ -89,12 +89,12 @@ In order to focus on what I wanted the users to accomplish in my MVP, I created 
 ### Mid-Fidelity Prototype
 After logging in, users navigated to the homepage where they could view recent projects or search for specific ones by using the filtering tool. While gathering feedback from the prototypes, we realized that it would be more convenient for the user to directly access the message feature and the account details from the primary navigation bar.
 
-![Mid Fidelity Prototype](/images/projects/plant-me/mid-fi-prototype.webp)
+![Mid Fidelity Prototype](images/projects/plant-me/mid-fi-prototype.webp)
 
 ### Style Tile Development
 Once I had the product direction defined, a cardinal step was coming up with a design system that allowed scalability. This was necessary to make sure the product ran straight on the line and had a good foundation. That way, when the time to add new features, screens, or modals came to be, there wouldn't be any major alterations or questions about how to proceed.
 
-![Design System Style Tile](/images/projects/plant-me/style-tile.webp)
+![Design System Style Tile](images/projects/plant-me/style-tile.webp)
 
 ### High-Fidelity Prototype & Usability Testing
 I created a high-fidelity prototype for users to interact with the MVP during usability testing. I presented my high-fidelity prototype to four testers using Figma Mirror and asked them to perform the actions I was focusing on for the MVP. Everyone was able to navigate them successfully.
@@ -105,11 +105,11 @@ The page that needed the most revision was the **Contractor Details** screen, wh
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div style="text-align: center;">
-    <img src="/images/projects/plant-me/high-fi-prototype.webp" alt="High-fidelity Prototype" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/plant-me/high-fi-prototype.webp" alt="High-fidelity Prototype" style="margin: 0; border-radius: 12px; width: 100%;" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">High-fidelity mockup screens</p>
   </div>
   <div style="text-align: center;">
-    <img src="/images/projects/plant-me/usability-testing.webp" alt="Usability Testing Iterations" style="margin: 0; border-radius: 12px; width: 100%;" />
+    <img src="images/projects/plant-me/usability-testing.webp" alt="Usability Testing Iterations" style="margin: 0; border-radius: 12px; width: 100%;" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Usability testing revisions</p>
   </div>
 </div>
@@ -125,16 +125,16 @@ Try out the live interactive prototype from the Figma canvas below:
 As the project moved forward I worked on the onboarding screens and the checkout flow. A grid of some of these developed screens is shown below:
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0;">
-  <img src="/images/projects/plant-me/screen-1.webp" alt="Onboarding Screen 1" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-2.webp" alt="Onboarding Screen 2" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-3.webp" alt="Onboarding Screen 3" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-4.webp" alt="Onboarding Screen 4" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-5.webp" alt="Service Screen 5" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-6.webp" alt="Service Details Screen 6" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-7.webp" alt="Booking Screen 7" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-8.webp" alt="Checkout Screen 8" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-9.webp" alt="Payment Confirmation Screen 9" style="margin: 0; border-radius: 8px; width: 100%;" />
-  <img src="/images/projects/plant-me/screen-10.webp" alt="Settings Screen 10" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-1.webp" alt="Onboarding Screen 1" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-2.webp" alt="Onboarding Screen 2" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-3.webp" alt="Onboarding Screen 3" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-4.webp" alt="Onboarding Screen 4" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-5.webp" alt="Service Screen 5" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-6.webp" alt="Service Details Screen 6" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-7.webp" alt="Booking Screen 7" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-8.webp" alt="Checkout Screen 8" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-9.webp" alt="Payment Confirmation Screen 9" style="margin: 0; border-radius: 8px; width: 100%;" />
+  <img src="images/projects/plant-me/screen-10.webp" alt="Settings Screen 10" style="margin: 0; border-radius: 8px; width: 100%;" />
 </div>
 
 ### Takeaways

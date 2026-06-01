@@ -56,7 +56,7 @@ export class HeaderComponent {
   private router = inject(Router);
   private document = inject(DOCUMENT);
 
-  readonly logoSrc = '/images/logo.png';
+  readonly logoSrc = 'images/logo.png';
 
   scrollToTop(event: Event) {
     if (this.router.url === '/' || this.router.url === '/#hero') {
