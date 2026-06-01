@@ -1,8 +1,9 @@
 // @ts-check
+import { defineConfig } from "eslint/config";
 import angular from "angular-eslint";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: [
       "dist/",
