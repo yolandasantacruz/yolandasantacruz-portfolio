@@ -7,7 +7,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="scroll-to-top">
-      <button (click)="scrollToTop()">&uarr;</button>
+      <button type="button" (click)="scrollToTop()" aria-label="Scroll to top">&uarr;</button>
     </div>
   `,
   styles: `

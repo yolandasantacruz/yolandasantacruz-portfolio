@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, afterNextRender, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { RouterOutlet, Router, NavigationStart } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-trail.component';
 
@@ -41,9 +41,19 @@ export class App {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
         router.events
-          .pipe(filter((e): e is NavigationStart => e instanceof NavigationStart))
+          .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
           .subscribe(() => {
             this.document.defaultView?.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+            const mainEl = this.document.querySelector('main');
+            if (mainEl) {
+              mainEl.setAttribute('tabindex', '-1');
+              mainEl.focus({ preventScroll: true });
+            } else {
+              const body = this.document.body;
+              body.setAttribute('tabindex', '-1');
+              body.focus({ preventScroll: true });
+            }
           });
       }
     });

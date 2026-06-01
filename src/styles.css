@@ -349,6 +349,14 @@ analog-markdown img {
   border: 0;
 }
 
+/* Global Focus-Visible States */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #3b9f98;
+  outline-offset: 4px;
+}
+
 /* Typography Utilities */
 .text-micro {
   font-size: var(--text-micro);

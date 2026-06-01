@@ -71,8 +71,8 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
 
               <div class="testimonial-viewport" [style.height.px]="currentHeight()">
                 <div class="testimonial-track flex items-start" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
-                  @for (item of testimonials; track item.name) {
-                    <div #slideElement class="testimonial-slide">
+                  @for (item of testimonials; track item.name; let i = $index) {
+                    <div #slideElement class="testimonial-slide" [attr.aria-hidden]="i !== currentIndex() ? 'true' : null">
                       <p class="testimonial-quote text-base font-normal color-text m-0">"{{ item.quote }}"</p>
                     </div>
                   }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, DOCUMENT } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PillarsData } from '../../pages/about.types';
 
@@ -330,6 +330,7 @@ import { PillarsData } from '../../pages/about.types';
 export class AboutPillarsComponent {
   data = input<PillarsData | undefined>();
   private sanitizer = inject(DomSanitizer);
+  private document = inject(DOCUMENT);
 
   readonly atWorkUrl = computed(() => '/images/about/at-work.webp');
 
@@ -342,6 +343,10 @@ export class AboutPillarsComponent {
 
   playVideo(): void {
     this.isPlaying.set(true);
+    setTimeout(() => {
+      const iframe = this.document.querySelector('.video-iframe') as HTMLIFrameElement;
+      iframe?.focus();
+    }, 150);
   }
 }
 
