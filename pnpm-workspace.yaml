@@ -20,9 +20,14 @@ blockExoticSubdeps: true
 # Enforce package provenance and trust verification, preventing version downgrades
 # to package versions with weaker trust metadata (e.g., lack of registry signature).
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - '@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1'
+  - 'chokidar@4.0.3'
+  - 'semver@6.3.1'
+  - 'tinyclip@0.1.13'
+  - 'tinyexec@1.2.2'
 
 # Enforce a 3-day (4320 minutes) delay for installing newly published package versions.
 # This "timelock" mitigates supply-chain risks by giving the security community time
 # to identify and withdraw compromised package updates.
 minimumReleaseAge: 4320
-
