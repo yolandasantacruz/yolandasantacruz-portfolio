@@ -8,7 +8,7 @@ const MOCK_TIMELINE_DATA: TimelineData = {
   items: [
     {
       company: 'Discover',
-      logo: '/images/logos/discover.png',
+      logo: '/images/logos/discover.webp',
       period: 'Jan 2025 — Present',
       role: 'Lead Product Designer',
     },
@@ -64,7 +64,7 @@ describe('AboutTimelineComponent', () => {
 
     const img = discoverBox.query(By.css('img.logo-image'));
     expect(img).toBeTruthy();
-    expect(img.nativeElement.getAttribute('src')).toBe('/images/logos/discover.png');
+    expect(img.nativeElement.getAttribute('src')).toBe('/images/logos/discover.webp');
     expect(img.nativeElement.getAttribute('alt')).toBe('Discover logo');
   });
 
