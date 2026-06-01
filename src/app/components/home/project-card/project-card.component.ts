@@ -23,7 +23,7 @@ export interface Project {
   template: `
     <div class="project-card flex items-center gap-16 w-full" [class.reverse]="project().reverse">
       <div class="project-image-container relative h-auto">
-        <img [ngSrc]="project().imageUrl" width="580" height="387" [alt]="project().title" class="project-image block w-full h-auto" />
+        <img [ngSrc]="project().imageUrl" width="580" height="580" [alt]="project().title" class="project-image block w-full h-auto" />
       </div>
       
       <div class="project-details flex flex-col items-start text-left gap-6">

@@ -28,7 +28,7 @@ import { SocialIconService } from '../../services/social-icon.service';
         </div>
         <div class="hero-right flex justify-center relative">
           <div class="portrait-wrapper">
-            <img [ngSrc]="heroPortrait()" width="380" height="380" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
+            <img [ngSrc]="heroPortrait()" width="380" height="442" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
             <div class="portrait-glow"></div>
           </div>
         </div>
@@ -123,6 +123,7 @@ import { SocialIconService } from '../../services/social-icon.service';
     .portrait-wrapper {
       position: relative;
       width: 380px;
+      aspect-ratio: 1;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
