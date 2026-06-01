@@ -163,6 +163,9 @@ export default defineConfig(() => ({
           {
             src: 'images/logo.png',
             sizes: '86x86',
+            type: 'image/png'
+          },
+          {
             src: 'favicon-16x16.png',
             sizes: '16x16',
             type: 'image/png'

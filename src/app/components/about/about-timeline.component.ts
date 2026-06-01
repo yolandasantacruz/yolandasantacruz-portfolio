@@ -179,6 +179,7 @@ export class AboutTimelineComponent {
   });
  
   isImagePath(logo: string): boolean {
+    if (!logo) return false;
     return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg') || logo.endsWith('.webp');
   }
 }
