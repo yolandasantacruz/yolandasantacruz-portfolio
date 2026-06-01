@@ -124,10 +124,6 @@ import { ImageUrlService } from '../../services/image-url.service';
     .portrait-wrapper {
       position: relative;
       width: 380px;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(94, 214, 204, 0.3);
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
