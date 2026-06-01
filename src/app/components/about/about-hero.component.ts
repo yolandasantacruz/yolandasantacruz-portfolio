@@ -122,8 +122,7 @@ import { SocialIconService } from '../../services/social-icon.service';
 
     .portrait-wrapper {
       position: relative;
-      width: 380px;
-      aspect-ratio: 1;
+      width: 500px;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
