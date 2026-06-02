@@ -37,7 +37,7 @@ export class PublicationsService {
    */
   load(): Observable<PublishedWork[]> {
     return this.http
-      .get<PublicationsApiResponse>('/api/v1/publications')
+      .get<PublicationsApiResponse>('api/v1/publications')
       .pipe(
         map((res) => {
           if (!res.success || !res.items?.length) {

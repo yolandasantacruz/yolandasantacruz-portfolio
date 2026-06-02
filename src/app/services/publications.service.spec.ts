@@ -66,7 +66,7 @@ describe('PublicationsService', () => {
 
     service.load().subscribe((items) => (result = items));
 
-    const req = httpMock.expectOne('/api/v1/publications');
+    const req = httpMock.expectOne('api/v1/publications');
     expect(req.request.method).toBe('GET');
     req.flush({ success: true, items: MOCK_API_ITEMS });
 
@@ -82,7 +82,7 @@ describe('PublicationsService', () => {
 
     service.load().subscribe((items) => (result = items));
 
-    const req = httpMock.expectOne('/api/v1/publications');
+    const req = httpMock.expectOne('api/v1/publications');
     req.flush({
       success: true,
       items: [{ ...MOCK_API_ITEMS[0], category: '' }],
@@ -96,7 +96,7 @@ describe('PublicationsService', () => {
 
     service.load().subscribe((items) => (result = items));
 
-    const req = httpMock.expectOne('/api/v1/publications');
+    const req = httpMock.expectOne('api/v1/publications');
     req.flush({ success: false });
 
     expect(result).toEqual([]);
@@ -107,7 +107,7 @@ describe('PublicationsService', () => {
 
     service.load().subscribe((items) => (result = items));
 
-    const req = httpMock.expectOne('/api/v1/publications');
+    const req = httpMock.expectOne('api/v1/publications');
     req.flush({ success: true, items: [] });
 
     expect(result).toEqual([]);
@@ -118,7 +118,7 @@ describe('PublicationsService', () => {
 
     service.load().subscribe((items) => (result = items));
 
-    const req = httpMock.expectOne('/api/v1/publications');
+    const req = httpMock.expectOne('api/v1/publications');
     req.error(new ProgressEvent('NetworkError'));
 
     expect(result).toEqual([]);

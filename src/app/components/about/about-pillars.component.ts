@@ -332,7 +332,7 @@ export class AboutPillarsComponent {
   private sanitizer = inject(DomSanitizer);
   private document = inject(DOCUMENT);
 
-  readonly atWorkUrl = computed(() => '/images/about/at-work.webp');
+  readonly atWorkUrl = computed(() => 'images/about/at-work.webp');
 
   readonly isPlaying = signal(false);
 

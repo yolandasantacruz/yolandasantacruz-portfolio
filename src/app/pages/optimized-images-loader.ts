@@ -2,13 +2,18 @@ import { ImageLoaderConfig } from '@angular/common';
 import { OPTIMIZED_IMAGES } from './optimized-images';
 
 export function optimizedImagesLoader(config: ImageLoaderConfig): string {
-  const src = config.src;
+  let src = config.src;
   if (src.startsWith('http://') || src.startsWith('https://')) {
     return src;
   }
+  
+  // Normalize leading slash to support subpath base href routing
+  if (src.startsWith('/')) {
+    src = src.slice(1);
+  }
+
   if (src.endsWith('.webp') && config.width) {
-    const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
-    const availableWidths = OPTIMIZED_IMAGES[cleanSrc];
+    const availableWidths = OPTIMIZED_IMAGES[src];
     
     if (availableWidths && availableWidths.length > 0) {
       const lastDot = src.lastIndexOf('.');
@@ -28,3 +33,4 @@ export function optimizedImagesLoader(config: ImageLoaderConfig): string {
   }
   return src;
 }
+
