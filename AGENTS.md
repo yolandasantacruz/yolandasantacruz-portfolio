@@ -68,5 +68,8 @@ The primary contributor is a visual product designer. Agents MUST communicate as
   - For templates, avoid dynamic bracket lookups (e.g., `list[currentIndex()]`) by defining a `computed` signal that resolves the active item in the TypeScript class layer, and reference that resolved item in the template.
   - For objects, check against a known key whitelist or verify key membership using `Object.prototype.hasOwnProperty.call(obj, key)` before dynamic access, or use a `Map` structure.
 
-
-
+## Rule 8: Image Handling and Optimization Protocol
+* **Pre-Scaling & Compression**: All heavy layout images added to `public/images/` must be optimized prior to commit. Add the paths of the raw WebP files to `scripts/optimize-images.js` and run `node scripts/optimize-images.js`. This creates `400w`, `800w`, and `1200w` scaled variants at `quality: 95`, preserving the backup original.
+* **NgOptimizedImage Directive Usage**: In Angular component templates, ALWAYS use `NgOptimizedImage` from `@angular/common` rather than standard `<img>` tags for images in `public/images/`. Bind the source dynamically using `[ngSrc]` (instead of `src`) and specify `ngSrcset="400w, 800w, 1200w"` along with appropriate `sizes`.
+* **IMAGE_LOADER Mapping**: A global custom image loader is provided in `src/app/app.config.ts`. It maps `ngSrcset` widths directly to our local pre-scaled WebP files. Ensure any additions to this loader respect external HTTP requests (YouTube thumbnails) and SSR hydration.
+* **Markdown Static Images fallback**: For static case studies inside `src/content/projects/`, `NgOptimizedImage` cannot run at the template level. Use standard HTML `<img>` tags with explicit `srcset` and `sizes` attributes pointing to the local generated WebP paths.

@@ -16,7 +16,12 @@ export const routeMeta: RouteMeta = {
     {
       name: 'description',
       content: 'Learn more about Yolanda Santa Cruz\'s design philosophy, work competencies, and community mentorship as a Product Designer.'
-    }
+    },
+    { property: 'og:title', content: 'About | Yolanda Santa Cruz' },
+    { property: 'og:description', content: 'Learn more about Yolanda Santa Cruz\'s design philosophy, work competencies, and community mentorship as a Product Designer.' },
+    { property: 'og:image', content: '/images/og-card.webp' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' }
   ]
 };
 

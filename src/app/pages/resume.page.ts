@@ -11,7 +11,12 @@ export const routeMeta: RouteMeta = {
     {
       name: 'description',
       content: 'View Yolanda Santa Cruz\'s professional work history, skills, software tools, BFA education, and language proficiencies.'
-    }
+    },
+    { property: 'og:title', content: 'Resume | Yolanda Santa Cruz' },
+    { property: 'og:description', content: 'View Yolanda Santa Cruz\'s professional work history, skills, software tools, BFA education, and language proficiencies.' },
+    { property: 'og:image', content: '/images/og-card.webp' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' }
   ]
 };
 

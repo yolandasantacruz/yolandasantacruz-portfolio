@@ -12,7 +12,7 @@ order: 2
 
 ## Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%
 
-<img src="images/projects/fetch-pay/main.webp" alt="Fetch Pay Hero Mockup" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
+<img src="images/projects/fetch-pay/main.webp" srcset="images/projects/fetch-pay/main-400w.webp 400w, images/projects/fetch-pay/main-800w.webp 800w, images/projects/fetch-pay/main-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="Fetch Pay Hero Mockup" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
 
 ### Brief
 Sole designer in a cross-functional team working with a PM and engineers to improve the "Apply for Fetch Pay" flow. Fetch Pay is a debit card under Fetch Rewards created to expand into the financial space. The product faced high drop-off during sign-up and low card activation after approval. I focused on identifying blockers and redesigning the experience to drive conversion, activation, and usage.
@@ -35,7 +35,7 @@ I partnered with one of our user researchers to conduct interviews with users wh
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <img src="images/projects/fetch-pay/dropoffs.webp" alt="Application Drop-offs Analysis" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/fetch-pay/research.webp" alt="User Research Themes and Blockers" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/fetch-pay/research.webp" srcset="images/projects/fetch-pay/research-400w.webp 400w, images/projects/fetch-pay/research-800w.webp 800w, images/projects/fetch-pay/research-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" alt="User Research Themes and Blockers" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 </div>
 
 **Themes uncovered:**
@@ -50,14 +50,16 @@ To compare the visual transitions and see how the layout evolved, the previous l
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div style="text-align: center;">
-    <video autoplay loop muted playsinline style="width: 100%; border-radius: 12px; aspect-ratio: 9/16; object-fit: cover;">
+    <video autoplay loop muted playsinline preload="none" poster="images/projects/fetch-pay/previous-design-poster.jpg" style="width: 100%; border-radius: 12px; aspect-ratio: 9/16; object-fit: cover;">
+      <source src="images/projects/fetch-pay/previous-design.webm" type="video/webm">
       <source src="images/projects/fetch-pay/previous-design.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Previous design flow (high drop-offs)</p>
   </div>
   <div style="text-align: center;">
-    <video autoplay loop muted playsinline style="width: 100%; border-radius: 12px; aspect-ratio: 9/16; object-fit: cover;">
+    <video autoplay loop muted playsinline preload="none" poster="images/projects/fetch-pay/final-design-poster.jpg" style="width: 100%; border-radius: 12px; aspect-ratio: 9/16; object-fit: cover;">
+      <source src="images/projects/fetch-pay/final-design.webm" type="video/webm">
       <source src="images/projects/fetch-pay/final-design.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -70,9 +72,9 @@ To compare the visual transitions and see how the layout evolved, the previous l
 I dived into industry standards, mainly looking into less-known online banking companies, which had systems more visually appealing than established institutions. I also studied others that weren’t banks but were part of the financial sector, such as Credit Karma and Mint. A recurring theme emerged: key information was served up front.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2rem 0;">
-  <img src="images/projects/fetch-pay/industry-standards-1.webp" alt="Credit Karma Onboarding Details" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/fetch-pay/industry-standards-2.webp" alt="Mint Sign-up UX Details" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/fetch-pay/industry-standards-3.webp" alt="Online Banking Front-loaded Copy" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/fetch-pay/industry-standards-1.webp" srcset="images/projects/fetch-pay/industry-standards-1-400w.webp 400w, images/projects/fetch-pay/industry-standards-1-800w.webp 800w" sizes="(max-width: 768px) 100vw, 400px" alt="Credit Karma Onboarding Details" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/fetch-pay/industry-standards-2.webp" srcset="images/projects/fetch-pay/industry-standards-2-400w.webp 400w, images/projects/fetch-pay/industry-standards-2-800w.webp 800w" sizes="(max-width: 768px) 100vw, 400px" alt="Mint Sign-up UX Details" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/fetch-pay/industry-standards-3.webp" srcset="images/projects/fetch-pay/industry-standards-3-400w.webp 400w, images/projects/fetch-pay/industry-standards-3-800w.webp 800w" sizes="(max-width: 768px) 100vw, 400px" alt="Online Banking Front-loaded Copy" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 </div>
 
 ### Solution
@@ -95,9 +97,9 @@ We made it easier for users to quickly grasp what the product is and why it’s 
 
 The copy was one of the areas that took the most time, as I worked closely with our copywriter to condense it, and negotiated with our banking partner to ensure legal compliance. I also highlighted other benefits that weren’t included initially but were important for our partner, such as overdraft protection.
 
-<img src="images/projects/fetch-pay/wireframes.webp" alt="Onboarding Wireframes & Mockups" style="border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+<img src="images/projects/fetch-pay/wireframes.webp" srcset="images/projects/fetch-pay/wireframes-400w.webp 400w, images/projects/fetch-pay/wireframes-800w.webp 800w, images/projects/fetch-pay/wireframes-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="Onboarding Wireframes & Mockups" style="border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 
-<img src="images/projects/fetch-pay/solutions.webp" alt="High Fidelity Onboarding Solutions" style="border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+<img src="images/projects/fetch-pay/solutions.webp" srcset="images/projects/fetch-pay/solutions-400w.webp 400w, images/projects/fetch-pay/solutions-800w.webp 800w, images/projects/fetch-pay/solutions-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="High Fidelity Onboarding Solutions" style="border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 
 ### Increasing Card Activation
 

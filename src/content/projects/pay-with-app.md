@@ -12,7 +12,7 @@ order: 1
 
 ## Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs.
 
-<img src="images/projects/pay-with-app/main.webp" alt="Pay with App Interface Collage" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
+<img src="images/projects/pay-with-app/main.webp" srcset="images/projects/pay-with-app/main-400w.webp 400w, images/projects/pay-with-app/main-800w.webp 800w, images/projects/pay-with-app/main-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="Pay with App Interface Collage" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
 
 ### Brief
 Sole designer in a cross-functional pod, working closely with a PM and user researcher to redesign the transaction experience for a key C2C feature. The feature faced high dispute rates that put our Stripe contract at risk and capped rollout at 25% of users. We set out to uncover friction points in the payment experience and deliver fixes that would enable a broader launch.
@@ -33,8 +33,8 @@ Sole designer in a cross-functional pod, working closely with a PM and user rese
 To identify friction points and improve user experience, the researcher and I conducted an iterative design cycle focused on simplifying the interface. We crafted and analyzed the ALPHA and BRAVO flows for new and existing users. Each flow offered a unique user journey, from selecting offers to completing payments, tailored to user familiarity.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-  <img src="images/projects/pay-with-app/research1.webp" alt="User Research Flow Alpha" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/pay-with-app/research2.webp" alt="User Research Flow Bravo" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/pay-with-app/research1.webp" srcset="images/projects/pay-with-app/research1-400w.webp 400w, images/projects/pay-with-app/research1-800w.webp 800w, images/projects/pay-with-app/research1-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" alt="User Research Flow Alpha" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/pay-with-app/research2.webp" srcset="images/projects/pay-with-app/research2-400w.webp 400w, images/projects/pay-with-app/research2-800w.webp 800w, images/projects/pay-with-app/research2-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" alt="User Research Flow Bravo" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
 </div>
 
 We also reviewed the Add Card and Card Added flows to understand how the timing and context of adding payment information impacted user motivation and retention.
@@ -63,7 +63,8 @@ Historic data showed that over 90% of new users and 20% of existing users claime
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center; margin: 2rem 0;">
   <img src="images/projects/pay-with-app/exploration.webp" alt="Interface Design Exploration" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
   <div style="text-align: center; width: 100%;">
-    <video autoplay loop muted playsinline style="width: 100%; aspect-ratio: 9/16;">
+    <video autoplay loop muted playsinline preload="none" poster="images/projects/pay-with-app/payment-flow-takeover-poster.jpg" style="width: 100%; aspect-ratio: 9/16;">
+      <source src="images/projects/pay-with-app/payment-flow-takeover.webm" type="video/webm">
       <source src="images/projects/pay-with-app/payment-flow-takeover.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>

@@ -8,6 +8,7 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 - [ ] Navigation Pills (Side Rail): Refine the active dot color when in the Hero section (top snap) to a more sophisticated, premium tone (such as a refined charcoal or deep warm gray) to replace the current dark teal.
 - [ ] Navigation Pills (Side Rail): Scale down the font size of the hover labels (case study titles) and explore a cleaner, more sophisticated typeface (e.g., a geometric sans-serif or system-ui with wider tracking/letter-spacing) to improve elegance and readability.
+- [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
 - [x] Optimize the CSS used in the project so classes and style declarations are reused instead of being declared multiple times. Don't cause any visual regressions. Update the design system accordingly.

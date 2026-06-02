@@ -251,7 +251,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
   private document = inject(DOCUMENT);
   readonly blobAnimationService = inject(BlobAnimationService);
 
-  private resizeListener?: () => void;
+  private resizeObserver?: ResizeObserver;
 
   items = input<Testimonial[] | undefined>();
   readonly currentIndex = signal(0);
@@ -279,15 +279,27 @@ export class AboutTestimonialsComponent implements OnDestroy {
           this.blobAnimationService.startLoop(this.blobPathElement.nativeElement);
         }
 
-        this.ngZone.run(() => {
-          this.resizeListener = () => this.updateHeight();
-          const win = this.document.defaultView;
-          if (win) {
-            win.addEventListener('resize', this.resizeListener);
-          }
-          this.updateHeight();
-          setTimeout(() => this.updateHeight(), 0);
+        this.ngZone.runOutsideAngular(() => {
+          this.resizeObserver = new ResizeObserver(() => {
+            this.ngZone.run(() => this.updateHeight());
+          });
+
+          this.slideElements?.forEach(slide => {
+            this.resizeObserver?.observe(slide.nativeElement);
+          });
+
+          // Re-observe if the list changes
+          this.slideElements?.changes.subscribe(() => {
+            this.resizeObserver?.disconnect();
+            this.slideElements?.forEach(slide => {
+              this.resizeObserver?.observe(slide.nativeElement);
+            });
+            this.ngZone.run(() => this.updateHeight());
+          });
         });
+
+        // Trigger initial height calculation
+        this.updateHeight();
       }
     });
   }
@@ -332,11 +344,8 @@ export class AboutTestimonialsComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.resizeListener && isPlatformBrowser(this.platformId)) {
-      const win = this.document.defaultView;
-      if (win) {
-        win.removeEventListener('resize', this.resizeListener);
-      }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
     // BlobAnimationService.ngOnDestroy() handles RAF cancellation automatically
     // as it is component-scoped and destroyed alongside this component.

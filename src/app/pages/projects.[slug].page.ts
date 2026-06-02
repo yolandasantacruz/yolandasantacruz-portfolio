@@ -1,5 +1,5 @@
 import { injectContent, MarkdownComponent } from '@analogjs/content';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { tap } from 'rxjs';
@@ -10,7 +10,7 @@ import { ProjectAttributes } from '../project-attributes';
 @Component({
   selector: 'portfolio-project-details',
   standalone: true,
-  imports: [AsyncPipe, MarkdownComponent, HeaderComponent, FooterComponent, NgForOf],
+  imports: [AsyncPipe, MarkdownComponent, HeaderComponent, FooterComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">

@@ -1,0 +1,32 @@
+# Yolanda Santa Cruz — Product Design Portfolio
+
+> Professional portfolio of Yolanda Santa Cruz, a Product Designer specializing in user-centric interfaces, design systems, and responsive prototypes.
+
+## About This Site
+
+This is a personal portfolio website showcasing product design case studies and professional experience.
+
+## Pages
+
+- Home: https://yolandasantacruz.com/
+- About: https://yolandasantacruz.com/about
+- Resume: https://yolandasantacruz.com/resume
+
+## Case Studies
+
+- Pay with App: https://yolandasantacruz.com/projects/pay-with-app
+  Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs.
+
+- Fetch Pay: https://yolandasantacruz.com/projects/fetch-pay
+  Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%.
+
+- Isles at Bayshore: https://yolandasantacruz.com/projects/isles-at-bayshore
+  Digital transformation for a premier real estate development.
+
+- PlantMe: https://yolandasantacruz.com/projects/plant-me
+  A plant care companion app designed to help users nurture and track their plants.
+
+## Contact
+
+- LinkedIn: https://linkedin.com/in/yolandasantacruz
+- Behance: https://www.behance.net/yolisantacruz

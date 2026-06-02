@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, input, linkedSignal, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, linkedSignal, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
 import { PublicationsData, PublishedWork } from '../../pages/about.types';
 import { PublicationsService } from '../../services/publications.service';
@@ -133,6 +134,7 @@ import { PublicationsService } from '../../services/publications.service';
 })
 export class AboutPublishedWorksComponent implements OnInit {
   private publicationsService = inject(PublicationsService);
+  private destroyRef = inject(DestroyRef);
 
   data = input<PublicationsData | undefined>();
 
@@ -145,7 +147,9 @@ export class AboutPublishedWorksComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.publicationsService.load().subscribe((works) => {
+    this.publicationsService.load().pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((works) => {
       if (works.length > 0) {
         this.items.set(works.map(work => ({
           ...work,
@@ -156,4 +160,5 @@ export class AboutPublishedWorksComponent implements OnInit {
     });
   }
 }
+
 

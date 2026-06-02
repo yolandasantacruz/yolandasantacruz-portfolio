@@ -69,7 +69,7 @@ Given that the scope of this project was very large, I had to design several scr
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div style="text-align: center;">
-    <img src="images/projects/isles-at-bayshore/landing-page.webp" alt="Landing Page" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+    <img src="images/projects/isles-at-bayshore/landing-page.webp" srcset="images/projects/isles-at-bayshore/landing-page-400w.webp 400w, images/projects/isles-at-bayshore/landing-page-800w.webp 800w, images/projects/isles-at-bayshore/landing-page-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 400px" alt="Landing Page" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.5rem; font-weight: 600;">Landing Page</p>
   </div>
   <div style="text-align: center;">

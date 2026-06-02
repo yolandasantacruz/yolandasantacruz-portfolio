@@ -30,7 +30,7 @@ import { PillarsData } from '../../pages/about.types';
             }
           </div>
           <div class="pillar-visual">
-              <img [ngSrc]="atWorkUrl()" width="480" height="595" alt="Design Execution" />
+              <img [ngSrc]="atWorkUrl()" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 480px" width="480" height="595" alt="Design Execution" />
           </div>
         </div>
 

@@ -11,12 +11,17 @@ import { HomeHeroData, HomeBridgeData } from './home.types';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
-  title: 'Yolanda Santa Cruz - Web Designer & Developer Portfolio',
+  title: 'Yolanda Santa Cruz - Product Design Portfolio',
   meta: [
     {
       name: 'description',
-      content: 'Professional portfolio of Yolanda Santa Cruz, Web Designer & Developer. Discover user-centric interfaces, design systems, and responsive prototypes.'
-    }
+      content: 'Professional portfolio of Yolanda Santa Cruz, Product Designer. Discover user-centric interfaces, design systems, and responsive prototypes.'
+    },
+    { property: 'og:title', content: 'Yolanda Santa Cruz - Product Design Portfolio' },
+    { property: 'og:description', content: 'Professional portfolio of Yolanda Santa Cruz, Product Designer. Discover user-centric interfaces, design systems, and responsive prototypes.' },
+    { property: 'og:image', content: '/images/og-card.webp' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' }
   ]
 };
 

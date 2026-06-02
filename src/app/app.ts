@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, afterNextRender, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, afterNextRender, PLATFORM_ID } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
@@ -34,6 +35,7 @@ import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-
 export class App {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
+  private destroyRef = inject(DestroyRef);
 
   constructor() {
     const router = inject(Router);
@@ -41,7 +43,10 @@ export class App {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
         router.events
-          .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+          .pipe(
+            filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+            takeUntilDestroyed(this.destroyRef)
+          )
           .subscribe(() => {
             this.document.defaultView?.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 

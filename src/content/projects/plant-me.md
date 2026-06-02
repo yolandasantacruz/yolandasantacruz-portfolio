@@ -12,7 +12,7 @@ order: 4
 
 ## Designed a 0 to 1 experience for a C2C app
 
-<img src="images/projects/plant-me/main.webp" alt="PlantMe Hero Mockup" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
+<img src="images/projects/plant-me/main.webp" srcset="images/projects/plant-me/main-400w.webp 400w, images/projects/plant-me/main-800w.webp 800w, images/projects/plant-me/main-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="PlantMe Hero Mockup" style="border-radius: 12px; width: 100%;" fetchpriority="high" />
 
 ### Brief
 Designing the end-to-end experience for a C2C platform connecting gardening specialists with clients for services like landscaping, with PlantMe earning commission on bookings.
@@ -109,7 +109,7 @@ The page that needed the most revision was the **Contractor Details** screen, wh
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">High-fidelity mockup screens</p>
   </div>
   <div style="text-align: center;">
-    <img src="images/projects/plant-me/usability-testing.webp" alt="Usability Testing Iterations" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
+    <img src="images/projects/plant-me/usability-testing.webp" srcset="images/projects/plant-me/usability-testing-400w.webp 400w, images/projects/plant-me/usability-testing-800w.webp 800w, images/projects/plant-me/usability-testing-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" alt="Usability Testing Iterations" style="margin: 0; border-radius: 12px; width: 100%;" loading="lazy" decoding="async" />
     <p style="font-size: 0.85rem; color: #717178; margin-top: 0.75rem; font-weight: 600;">Usability testing revisions</p>
   </div>
 </div>
@@ -125,16 +125,16 @@ Try out the live interactive prototype from the Figma canvas below:
 As the project moved forward I worked on the onboarding screens and the checkout flow. A grid of some of these developed screens is shown below:
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0;">
-  <img src="images/projects/plant-me/screen-1.webp" alt="Onboarding Screen 1" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-2.webp" alt="Onboarding Screen 2" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-3.webp" alt="Onboarding Screen 3" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-4.webp" alt="Onboarding Screen 4" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-5.webp" alt="Service Screen 5" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-6.webp" alt="Service Details Screen 6" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-7.webp" alt="Booking Screen 7" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-8.webp" alt="Checkout Screen 8" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-9.webp" alt="Payment Confirmation Screen 9" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
-  <img src="images/projects/plant-me/screen-10.webp" alt="Settings Screen 10" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-1.webp" srcset="images/projects/plant-me/screen-1-400w.webp 400w, images/projects/plant-me/screen-1-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Onboarding Screen 1" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-2.webp" srcset="images/projects/plant-me/screen-2-400w.webp 400w, images/projects/plant-me/screen-2-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Onboarding Screen 2" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-3.webp" srcset="images/projects/plant-me/screen-3-400w.webp 400w, images/projects/plant-me/screen-3-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Onboarding Screen 3" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-4.webp" srcset="images/projects/plant-me/screen-4-400w.webp 400w, images/projects/plant-me/screen-4-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Onboarding Screen 4" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-5.webp" srcset="images/projects/plant-me/screen-5-400w.webp 400w, images/projects/plant-me/screen-5-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Service Screen 5" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-6.webp" srcset="images/projects/plant-me/screen-6-400w.webp 400w, images/projects/plant-me/screen-6-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Service Details Screen 6" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-7.webp" srcset="images/projects/plant-me/screen-7-400w.webp 400w, images/projects/plant-me/screen-7-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Booking Screen 7" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-8.webp" srcset="images/projects/plant-me/screen-8-400w.webp 400w, images/projects/plant-me/screen-8-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Checkout Screen 8" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-9.webp" srcset="images/projects/plant-me/screen-9-400w.webp 400w, images/projects/plant-me/screen-9-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Payment Confirmation Screen 9" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
+  <img src="images/projects/plant-me/screen-10.webp" srcset="images/projects/plant-me/screen-10-400w.webp 400w, images/projects/plant-me/screen-10-800w.webp 800w" sizes="(max-width: 768px) 50vw, 200px" alt="Settings Screen 10" style="margin: 0; border-radius: 8px; width: 100%;" loading="lazy" decoding="async" />
 </div>
 
 ### Takeaways

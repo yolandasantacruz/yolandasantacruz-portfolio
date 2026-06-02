@@ -67,6 +67,40 @@ pnpm run test    # Run unit tests with Vitest
 pnpm run lint    # Run ESLint
 ```
 
+## 🖼️ Image Optimization & Responsive Delivery
+
+To maintain fast page speeds and minimize payload delivery on mobile devices, this project uses a build-time pre-scaling workflow:
+
+1. **Compress & Resize Assets**:
+   When you add new images to `public/images/`, include their paths in the `IMAGES` array in `scripts/optimize-images.js` and run:
+   ```bash
+   node scripts/optimize-images.js
+   ```
+   This script generates `400w`, `800w`, and `1200w` variants of the raw WebP files at `quality: 95`, while backing up the originals.
+
+2. **Usage in Angular Components**:
+   Always use the `NgOptimizedImage` directive from `@angular/common` in component templates. Specify `ngSrcset` and `sizes`:
+   ```html
+   <img [ngSrc]="myImageUrl" 
+        ngSrcset="400w, 800w, 1200w" 
+        sizes="(max-width: 768px) 100vw, 480px" 
+        width="480" height="595" 
+        alt="Visual description" />
+   ```
+   *Note: A global `IMAGE_LOADER` configured in `src/app/app.config.ts` automatically maps these widths to our local pre-scaled WebP files (e.g., `/images/myImage-400w.webp`).*
+
+3. **Usage in Static Markdown Files**:
+   Since static markdown is parsed into raw HTML, use standard HTML `<img>` elements with `srcset` and `sizes` attributes pointing to the local generated WebP paths:
+   ```html
+   <img src="images/projects/my-project/main.webp" 
+        srcset="images/projects/my-project/main-400w.webp 400w, 
+                images/projects/my-project/main-800w.webp 800w, 
+                images/projects/my-project/main-1200w.webp 1200w" 
+        sizes="(max-width: 768px) 100vw, 1200px" 
+        alt="Visual description" 
+        loading="lazy" decoding="async" />
+   ```
+
 ## ♿ Accessibility & Performance
 
 - **A11y**: Committed to WCAG AA compliance, focus management, and semantic HTML.
@@ -77,3 +111,4 @@ pnpm run lint    # Run ESLint
 
 ---
 Built with ❤️ by Yolanda Santa Cruz & Alejandro Cuba Ruiz
+
