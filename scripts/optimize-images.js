@@ -1,15 +1,19 @@
 /**
- * optimize-images.js — Generate responsive srcset variants for heavy images.
+ * optimize-images.js — Auto-scan and generate responsive srcset variants for heavy images.
  *
- * For each source image, produces 400w, 800w, and 1200w variants at quality 80.
- * Originals are preserved with an .original.webp suffix.
+ * Scans directories recursively for WebP images.
+ * Files are optimized incrementally: if the original backup file is newer than the source,
+ * it is skipped. New source files (> 150KB) are backed up and variants (400w, 800w, 1200w)
+ * are generated at quality 95.
  *
- * Usage: node scripts/optimize-images.js
+ * Usage:
+ *   node scripts/optimize-images.js             # Scan all images
+ *   node scripts/optimize-images.js public/images/about  # Scan specific folder
  */
 
 import sharp from 'sharp';
-import { copyFileSync, existsSync } from 'node:fs';
-import { join, dirname, basename, extname } from 'node:path';
+import { copyFileSync, existsSync, readdirSync, statSync, utimesSync } from 'node:fs';
+import { join, dirname, basename, extname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -20,100 +24,125 @@ const WIDTHS = [400, 800, 1200];
 const QUALITY = 95;
 
 /**
- * Images to process — paths relative to public/images/
- * Only images > 150KB that benefit from responsive variants.
+ * Recursively find all source .webp images.
+ * Excludes generated variants (-400w, -800w, -1200w) and backup files (.original.webp).
  */
-const IMAGES = [
-  'about/at-work.webp',
-  'projects/fetch-pay/research.webp',
-  'projects/fetch-pay/wireframes.webp',
-  'projects/fetch-pay/main.webp',
-  'projects/fetch-pay/solutions.webp',
-  'projects/isles-at-bayshore/landing-page.webp',
-  'about/portrait-1.webp',
-  'projects/fetch-pay/industry-standards-1.webp',
-  'projects/fetch-pay/industry-standards-2.webp',
-  'projects/fetch-pay/industry-standards-3.webp',
-  'projects/plant-me/screen-1.webp',
-  'projects/plant-me/screen-2.webp',
-  'projects/plant-me/screen-3.webp',
-  'projects/plant-me/screen-4.webp',
-  'projects/plant-me/screen-5.webp',
-  'projects/plant-me/screen-6.webp',
-  'projects/plant-me/screen-7.webp',
-  'projects/plant-me/screen-8.webp',
-  'projects/plant-me/screen-9.webp',
-  'projects/plant-me/screen-10.webp',
-  'projects/plant-me/usability-testing.webp',
-  'projects/plant-me/main.webp',
-  'projects/pay-with-app/main.webp',
-  'projects/pay-with-app/research1.webp',
-  'projects/pay-with-app/research2.webp',
-];
+function findImages(dir, results = []) {
+  if (!existsSync(dir)) return results;
 
-async function processImage(relativePath) {
-  const srcPath = join(IMAGES_DIR, relativePath);
-  if (!existsSync(srcPath)) {
-    console.log(`  [SKIP] ${relativePath} — file not found`);
-    return;
+  for (const entry of readdirSync(dir)) {
+    const fullPath = join(dir, entry);
+    const stat = statSync(fullPath);
+
+    if (stat.isDirectory()) {
+      findImages(fullPath, results);
+    } else if (entry.endsWith('.webp')) {
+      const isVariant = entry.includes('-400w.webp') ||
+                        entry.includes('-800w.webp') ||
+                        entry.includes('-1200w.webp') ||
+                        entry.endsWith('.original.webp');
+
+      if (!isVariant) {
+        results.push(fullPath);
+      }
+    }
   }
+  return results;
+}
 
+async function processImage(srcPath) {
+  const relPath = relative(IMAGES_DIR, srcPath);
   const dir = dirname(srcPath);
-  const name = basename(relativePath, extname(relativePath));
+  const name = basename(srcPath, extname(srcPath));
   const originalBackup = join(dir, `${name}.original.webp`);
 
-  // Back up original if not already backed up
-  if (!existsSync(originalBackup)) {
-    copyFileSync(srcPath, originalBackup);
-    console.log(`  [BACKUP] ${name}.original.webp`);
+  const stat = statSync(srcPath);
+  const sizeKB = stat.size / 1024;
+
+  // Incremental Build Check:
+  // If we already have a backup, compare modification times.
+  if (existsSync(originalBackup)) {
+    const backupStat = statSync(originalBackup);
+    // Use a 10ms tolerance to bypass sub-millisecond APFS filesystem timestamp truncation in Node.js
+    if (backupStat.mtimeMs >= stat.mtimeMs - 10) {
+      console.log(`  [SKIP] ${relPath} — already optimized`);
+      return;
+    }
+    console.log(`  [RE-OPTIMIZING] ${relPath} — source image was updated`);
+  } else {
+    // If no backup exists, check size threshold (> 150KB)
+    if (sizeKB < 150) {
+      console.log(`  [SKIP] ${relPath} — size (${sizeKB.toFixed(1)} KB) is under 150KB threshold`);
+      return;
+    }
+    console.log(`  [OPTIMIZING] ${relPath} — size: ${sizeKB.toFixed(1)} KB`);
   }
 
-  const metadata = await sharp(srcPath).metadata();
+  // Backup raw original
+  copyFileSync(srcPath, originalBackup);
+  console.log(`  [BACKUP] Created ${name}.original.webp`);
+
+  const metadata = await sharp(originalBackup).metadata();
   const srcWidth = metadata.width || 1200;
 
   for (const width of WIDTHS) {
-    // Skip variant if source is narrower than target
     if (width > srcWidth) {
-      console.log(`  [SKIP] ${name}-${width}w.webp — source only ${srcWidth}px wide`);
+      console.log(`  [SKIP] ${name}-${width}w.webp — source is only ${srcWidth}px wide`);
       continue;
     }
 
     const outPath = join(dir, `${name}-${width}w.webp`);
-    await sharp(srcPath)
+    await sharp(originalBackup)
       .resize({ width, withoutEnlargement: true })
       .webp({ quality: QUALITY })
       .toFile(outPath);
-
-    const { size } = await sharp(outPath).metadata().catch(() => ({ size: 0 }));
     console.log(`  [GENERATED] ${name}-${width}w.webp`);
   }
 
-  // Also re-compress the original at the same quality as a 1200w "default"
-  // (this becomes the new default src for non-srcset browsers)
-  const recompressedPath = join(dir, `${name}.webp`);
+  // Re-compress the default image at max width (1200px)
+  const tmpPath = join(dir, `${name}.tmp.webp`);
   await sharp(originalBackup)
     .resize({ width: Math.min(srcWidth, 1200), withoutEnlargement: true })
     .webp({ quality: QUALITY })
-    .toFile(recompressedPath + '.tmp');
+    .toFile(tmpPath);
 
-  // Replace original with recompressed version
-  copyFileSync(recompressedPath + '.tmp', recompressedPath);
+  // Replace default WebP with compressed one
+  copyFileSync(tmpPath, srcPath);
   const { unlink } = await import('node:fs/promises');
-  await unlink(recompressedPath + '.tmp');
+  await unlink(tmpPath);
+  
+  // Synchronize backup file's modification time exactly with the optimized file's modification time
+  const finalStat = statSync(srcPath);
+  utimesSync(originalBackup, finalStat.atime, finalStat.mtime);
   console.log(`  [RECOMPRESSED] ${name}.webp at q${QUALITY}`);
 }
 
 async function main() {
-  console.log(`[optimize-images] Processing ${IMAGES.length} images...`);
+  const args = process.argv.slice(2);
+  let targetDir = IMAGES_DIR;
+
+  if (args.length > 0) {
+    targetDir = join(ROOT, args[0]);
+    console.log(`[optimize-images] Targeting custom path: ${targetDir}`);
+  } else {
+    console.log(`[optimize-images] Auto-scanning: ${IMAGES_DIR}`);
+  }
+
+  const images = findImages(targetDir);
+  console.log(`[optimize-images] Found ${images.length} candidate(s) for optimization.`);
   console.log(`[optimize-images] Widths: ${WIDTHS.join(', ')}px | Quality: ${QUALITY}\n`);
 
-  for (const img of IMAGES) {
-    console.log(`Processing: ${img}`);
-    await processImage(img);
+  for (const img of images) {
+    console.log(`Processing: ${relative(IMAGES_DIR, img)}`);
+    try {
+      await processImage(img);
+    } catch (err) {
+      console.error(`  [ERROR] Failed to process ${relative(IMAGES_DIR, img)}:`, err.message);
+    }
     console.log('');
   }
 
-  console.log('[optimize-images] Done! Originals preserved as *.original.webp');
+  console.log('[optimize-images] Run complete.');
 }
 
 main().catch(console.error);
