@@ -164,7 +164,7 @@ describe('AboutHeroComponent', () => {
 
   it('should parse greeting and render cohesive-phrase spans, layout break and normal smiley when greeting contains a comma and smiley', async () => {
     componentRef.setInput('data', {
-      greeting: "Welcome, I'm Yolanda :)",
+      greeting: "Hola, I'm Yolanda :)",
       mission: "Mission copy text"
     });
     await fixture.whenStable();
@@ -176,7 +176,7 @@ describe('AboutHeroComponent', () => {
     const smileyEl = greeting.query(By.css('.greeting-smiley'));
 
     expect(phrases.length).toBe(2);
-    expect(phrases[0].nativeElement.textContent).toBe('Welcome,');
+    expect(phrases[0].nativeElement.textContent).toBe('Hola,');
     expect(phrases[1].nativeElement.textContent).toBe("I'm Yolanda");
     expect(phrases[1].nativeElement.classList.contains('italic-text')).toBe(true);
     expect(smileyEl).toBeTruthy();

@@ -1,3 +1,3 @@
 ---
-statement: "I believe in crafting simple, human-centered designs that solve problems and forge deep emotional connections."
+statement: "I help teams solve tough problems by designing systems that are scalable, maintainable, and a delight to use."
 ---
