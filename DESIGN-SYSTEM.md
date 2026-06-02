@@ -1,8 +1,8 @@
 # Design System Specification
 
 > [!IMPORTANT]
-> This document inherits and extends the global design and accessibility standards defined in the central [Core Design Specification (DESIGN-SYSTEM.core.md)](DESIGN-SYSTEM.core.md).
-> It serves as the **single source of truth** for all visual tokens, custom components, and animation settings specific to this portfolio UI. It must be consulted before any UI change, new feature, or visual cleanup. **Strict adherence is mandatory.** Future refactoring and UI improvements must validate against these guidelines to prevent regression.
+> This document extends [Core Design Specification (DESIGN-SYSTEM.core.md)](DESIGN-SYSTEM.core.md).
+> All contributors and AI agents must adhere to the core design rules plus the project-specific rules defined below.
 
 ## 1. Visual Direction and Core Philosophy
 The objective is to establish a scalable, highly performant architecture for a Product Design portfolio. The visual direction must prioritize content delivery, typography, and case study readability over superficial graphical effects.
