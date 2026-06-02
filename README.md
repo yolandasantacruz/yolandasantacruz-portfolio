@@ -60,6 +60,7 @@ pnpm run build
 # Client: dist/analog/public
 # Server: dist/analog/server
 ```
+*Note: The production build automatically executes the image optimizer script (`scripts/optimize-images.js`) to scale high-resolution assets, keeping mobile load times fast and transitions smooth, followed by the sitemap generator (`scripts/postbuild.js`).*
 
 ### Testing & Quality
 ```bash
@@ -72,11 +73,16 @@ pnpm run lint    # Run ESLint
 To maintain fast page speeds and minimize payload delivery on mobile devices, this project uses a build-time pre-scaling workflow:
 
 1. **Compress & Resize Assets**:
-   When you add new images to `public/images/`, include their paths in the `IMAGES` array in `scripts/optimize-images.js` and run:
+   This process is **automatically triggered during the build pipeline** (`pnpm build`). This automation guarantees that all high-resolution design assets are resized and compressed for butter-smooth mobile execution without requiring manual command execution. If you need to run the optimization manually in your workspace before a build, run:
    ```bash
    node scripts/optimize-images.js
    ```
-   This script generates `400w`, `800w`, and `1200w` variants of the raw WebP files at `quality: 95`, while backing up the originals.
+   The script recursively scans your image folders, automatically identifies assets exceeding the 150KB threshold, and skips already optimized images (using modification timestamps with a 10ms filesystem tolerance). It creates `400w`, `800w`, and `1200w` variants at `quality: 95` and preserves raw backups as `[name].original.webp`.
+
+   To optimize a specific folder only, pass it as a CLI argument:
+   ```bash
+   node scripts/optimize-images.js public/images/projects/new-project
+   ```
 
 2. **Usage in Angular Components**:
    Always use the `NgOptimizedImage` directive from `@angular/common` in component templates. Specify `ngSrcset` and `sizes`:
