@@ -357,6 +357,11 @@ button:focus-visible,
   outline-offset: 4px;
 }
 
+/* Remove default focus outline from elements focused programmatically via script */
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
 /* Typography Utilities */
 .text-micro {
   font-size: var(--text-micro);
