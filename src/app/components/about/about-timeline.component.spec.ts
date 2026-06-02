@@ -3,6 +3,8 @@ import { AboutTimelineComponent } from './about-timeline.component';
 import { TimelineData } from '../../pages/about.types';
 import { By } from '@angular/platform-browser';
 
+import { provideRouter } from '@angular/router';
+
 const MOCK_TIMELINE_DATA: TimelineData = {
   heading: '10+ years of experience in crafting digital experiences',
   items: [
@@ -25,6 +27,7 @@ describe('AboutTimelineComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AboutTimelineComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 

@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TimelineData } from '../../pages/about.types';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'portfolio-about-timeline',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as timeline) {
@@ -16,7 +17,7 @@ import { TimelineData } from '../../pages/about.types';
             <h2 class="timeline-heading text-4xl m-0">{{ timeline.heading }}</h2>
           </div>
           <div class="header-right flex justify-end">
-            <a href="/resume" class="btn-blob download-btn">View My Resume</a>
+            <a routerLink="/resume" class="btn-blob download-btn">View My Resume</a>
           </div>
         </div>
 
