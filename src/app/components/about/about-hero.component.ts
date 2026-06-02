@@ -28,7 +28,7 @@ import { SocialIconService } from '../../services/social-icon.service';
         </div>
         <div class="hero-right flex justify-center relative">
           <div class="portrait-wrapper">
-            <img [ngSrc]="heroPortrait()" ngSrcset="400w, 800w" sizes="(max-width: 768px) 280px, 380px" width="380" height="442" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
+            <img [ngSrc]="heroPortrait()" ngSrcset="400w, 800w" sizes="(max-width: 768px) 280px, 380px" width="380" height="700" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
             <div class="portrait-glow"></div>
           </div>
         </div>
