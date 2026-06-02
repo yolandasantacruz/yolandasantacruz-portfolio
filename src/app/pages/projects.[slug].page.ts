@@ -5,7 +5,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { tap } from 'rxjs';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { ProjectAttributes } from '../project-attributes';
+import { ProjectAttributes } from './project-attributes';
 
 @Component({
   selector: 'portfolio-project-details',

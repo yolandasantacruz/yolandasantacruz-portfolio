@@ -6,7 +6,7 @@ import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { ProjectAttributes } from '../project-attributes';
+import { ProjectAttributes } from './project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
 import { RouteMeta } from '@analogjs/router';
 
