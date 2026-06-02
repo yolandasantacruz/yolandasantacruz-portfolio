@@ -130,6 +130,9 @@ export default defineConfig(() => ({
             transform: (file: { name: string }) => `/projects/${file.name.replace('.md', '')}`,
           },
         ],
+        sitemap: {
+          host: 'https://yolandasantacruz.com',
+        },
       },
       nitro: {
         routeRules: {

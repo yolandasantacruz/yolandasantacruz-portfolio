@@ -9,7 +9,7 @@
     "ng": "ng",
     "dev": "vite",
     "start": "npm run dev",
-    "build": "node scripts/optimize-images.js && vite build && node scripts/postbuild.js",
+    "build": "node scripts/optimize-images.js && vite build",
     "watch": "vite build --watch",
     "test": "vitest",
     "lint": "ng lint",

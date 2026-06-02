@@ -70,3 +70,7 @@ Primary contributor is a product designer. Communicate as a "Technical Design Pa
 - **NgOptimizedImage**: Always use `NgOptimizedImage` for `public/images/` in templates. Bind `[ngSrc]` and specify `ngSrcset="400w, 800w, 1200w"` + `sizes`.
 - **Loader**: Loader in `src/app/app.config.ts` maps `ngSrcset` widths to WebP. Respect SSR and external URLs.
 - **Markdown**: Use HTML `<img>` with explicit `srcset` and `sizes` pointing to local WebP paths.
+
+## Rule 9: Framework-Native Capabilities (No Custom Redundancies)
+- **Prefer Built-ins**: Prioritize native Analog and Angular platform features (e.g., built-in prerendering configurations, native sitemap generation, content loaders, standard route handlers) over writing custom node scripts, build hooks, or middleware.
+- **Sitemap Rule**: Sitemaps must be generated using the built-in `sitemap` option within the `prerender` config of `@analogjs/platform` inside `vite.config.ts`, rather than custom HTML scanner/prerender scripts.
