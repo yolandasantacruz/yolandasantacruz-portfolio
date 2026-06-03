@@ -1,7 +1,26 @@
 # Project Backlog
 
 ## Todo
-
+- [ ] Standarize global nav bar positioning
+- [ ] Increase "About Me" hero image dimensions and enhance visual quality
+- [ ] Add Linkedin and Behance links
+- [ ] Fix ADPList stats and add visual badge 
+- [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
+- [ ] Add line to Resume page
+- [ ] Improve animation of Resume page
+- [ ] Fix font sizes globally
+- [ ] Update new logo's color
+- [ ] Update fav icon with new logo
+- [ ] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
+- [ ] In the About me page, remove social links except for LinkedIn and GitHub
+- [ ] Review information in the case studies
+- [ ] Change "Philosophy" pill to About me
+- [ ] Improve formating of About me section in the home page
+- [ ] Consider changing color of the first testimonial blob to yellow
+- [ ] Fiz spacing of copy in the career overview section so it aligns with the image height
+- [ ] Remove animation with the images in the articles when hovered
+- [ ] Allow users to enter the case studies by tapping on the images
+- [ ] Create suble animation that shows when an image is hovered by increasing the saturation of the image
 - [ ] Add Google Analytics
 - [ ] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc
 - [ ] Determine the optimal level of compression/quality for "about me" images to find a balance between visual quality and page load performance.
