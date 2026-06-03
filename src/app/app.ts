@@ -42,6 +42,22 @@ export class App {
 
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
+        // Measure scrollbar width and set CSS custom property
+        const win = this.document.defaultView;
+        if (win) {
+          const div = this.document.createElement('div');
+          div.style.width = '100px';
+          div.style.height = '100px';
+          div.style.overflow = 'scroll';
+          div.style.position = 'absolute';
+          div.style.top = '-9999px';
+          div.style.scrollbarWidth = 'thin'; // Match Firefox thin scrollbar styling
+          this.document.body.appendChild(div);
+          const scrollbarWidth = div.offsetWidth - div.clientWidth;
+          this.document.body.removeChild(div);
+          this.document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+        }
+
         router.events
           .pipe(
             filter((e): e is NavigationEnd => e instanceof NavigationEnd),

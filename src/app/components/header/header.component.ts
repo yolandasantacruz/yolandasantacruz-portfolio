@@ -25,6 +25,7 @@ import { DOCUMENT, NgOptimizedImage } from '@angular/common';
     </header>
   `,
   styles: `
+    :host { display: block; }
     .header {
       display: flex;
       justify-content: space-between;

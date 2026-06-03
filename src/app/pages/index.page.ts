@@ -113,6 +113,7 @@ export const routeMeta: RouteMeta = {
       width: 100%;
       box-sizing: border-box;
       padding: 3rem 0;
+      padding-right: var(--scrollbar-width, 0px);
     }
 
     .section-content {
