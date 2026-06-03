@@ -116,9 +116,7 @@ import { AboutMeSection } from '../../pages/about.types';
     </ng-template>
 
     <ng-template #imageVisual let-section>
-      <div class="masked-image arch-mask">
-        <img [ngSrc]="section.image || 'images/about/at-work.webp'" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 480px" width="480" height="595" alt="Design Execution" />
-      </div>
+      <img [ngSrc]="section.image || 'images/about/at-work.webp'" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 480px" width="480" height="595" alt="Design Execution" />
     </ng-template>
   `,
   styles: `

@@ -12,7 +12,7 @@ import { SocialIconService } from '../../services/social-icon.service';
     @if (data(); as hero) {
       <section class="about-hero">
         <div class="hero-left">
-          <h1 class="hero-greeting">@if (greetingParts().name) {<span class="cohesive-phrase">{{ greetingParts().welcome }}</span><br class="hero-break" /><span class="cohesive-phrase italic-text">{{ greetingParts().name }}</span>@if (greetingParts().smiley) {<span class="greeting-smiley"> {{ greetingParts().smiley }}</span>}} @else {{{ hero.greeting }}}</h1>
+          <h1 class="hero-greeting">@if (greetingParts().name) {<span class="cohesive-phrase">{{ greetingParts().welcome }}</span> <br class="hero-break" /> <span class="cohesive-phrase italic-text">{{ greetingParts().name }}</span>@if (greetingParts().smiley) {<span class="greeting-smiley"> {{ greetingParts().smiley }}</span>}} @else {{{ hero.greeting }}}</h1>
           <p class="hero-mission">{{ hero.mission }}</p>
           @if (socialLinks().length > 0) {
             <div class="social-links">
@@ -158,7 +158,6 @@ import { SocialIconService } from '../../services/social-icon.service';
         margin-bottom: 6rem;
       }
       .hero-greeting { font-size: 2.5rem; }
-      .hero-break { display: none; }
       .cohesive-phrase { white-space: normal; display: inline; }
       .portrait-wrapper { width: 280px; }
     }

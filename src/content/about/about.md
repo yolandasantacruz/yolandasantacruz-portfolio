@@ -1,6 +1,6 @@
 ---
 sections:
-  - badge: "01 // LIFE PHILOSOPHY"
+  - badge: "Life Philosophy"
     title: "At Work"
     image: "images/about/at-work.webp"
     description: |
@@ -10,7 +10,7 @@ sections:
         value: "Interaction Design, Prototyping"
       - label: "Collaboration"
         value: "Product & Engineering alignment"
-  - badge: "02 // DIRECT IMPACT"
+  - badge: "Direct Impact"
     title: "Outside of Work"
     description: |
       Much of what I am today has been made possible thanks to the help of others. I am using my experience to help others navigate their goals in any way I can, and even push them to think bigger and brighter about what to achieve and how to get there.
