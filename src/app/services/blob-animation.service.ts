@@ -50,9 +50,9 @@ const BLOB_DEFINITIONS: BlobDefinition[] = [
 ];
 
 const BLOB_COLORS: readonly string[] = [
-  '#EDFBF9', // Soft mint green
-  '#FFFCEB', // Soft pale yellow
-  '#F4F0FC', // Soft pale lavender
+  '#F3FCFB', // Soft mint green (paler)
+  '#FFFDF2', // Soft pale yellow (paler)
+  '#F9F7FD', // Soft pale lavender (paler)
 ] as const;
 
 export const INITIAL_BLOB_PATH =
@@ -92,7 +92,7 @@ export class BlobAnimationService implements OnDestroy {
    * the color palette so it is always in bounds.
    */
   getBlobColor(index: number): string {
-    return BLOB_COLORS.at(index % BLOB_COLORS.length) ?? (BLOB_COLORS.at(0) ?? '#EDFBF9');
+    return BLOB_COLORS.at(index % BLOB_COLORS.length) ?? (BLOB_COLORS.at(0) ?? '#F3FCFB');
   }
 
   /**
@@ -137,7 +137,7 @@ export class BlobAnimationService implements OnDestroy {
     const loop = () => {
       if (this.pathElement) {
         const now = performance.now();
-        const time = now * 0.0015;
+        const time = now * 0.0006;
 
         let currentEndpoints: [number, number][];
 

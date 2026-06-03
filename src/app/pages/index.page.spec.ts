@@ -72,5 +72,19 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
     expect(component.activeSection()).toBe('project-0');
   });
 
+  it('should render the bridge section nav label matching its heading content', () => {
+    const fixture = TestBed.createComponent(PortfolioHomeComponent);
+    fixture.detectChanges();
 
+    const component = fixture.componentInstance;
+    const navPills = fixture.debugElement.queryAll(By.css('.nav-pill'));
+    
+    // Find the bridge section pill (usually the last one)
+    const bridgePill = navPills.find(pill => {
+      const labelSpan = pill.query(By.css('.pill-label'));
+      return labelSpan && labelSpan.nativeElement.textContent.trim() === (component.bridgeData?.heading ?? 'About me');
+    });
+
+    expect(bridgePill).toBeDefined();
+  });
 });

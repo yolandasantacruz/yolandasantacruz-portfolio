@@ -5,7 +5,7 @@
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
 - [ ] Fix ADPList stats and add visual badge 
 - [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
-- [ ] Add line to Resume page
+- [x] Add line to Resume page
 - [ ] Improve animation of Resume page
 - [ ] Fix font sizes globally
 - [ ] Update new logo's color
@@ -14,7 +14,7 @@
 - [ ] In the About me page, remove social links except for LinkedIn and GitHub
 - [ ] Remove social links that renders above the footer
 - [ ] Review information in the case studies
-- [ ] Change "Philosophy" pill to About me
+- [x] Change "Philosophy" pill to About me
 - [ ] Improve formating of About me section in the home page
 - [ ] Consider changing color of the first testimonial blob to yellow
 - [ ] Fiz spacing of copy in the career overview section so it aligns with the image height

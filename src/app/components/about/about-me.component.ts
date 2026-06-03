@@ -78,25 +78,30 @@ import { AboutMeSection } from '../../pages/about.types';
     <!-- Shared Visual Templates -->
     <ng-template #videoPlayer let-section>
       <div class="adplist-video">
-        <div class="player-wrapper">
-          @if (activePlayingSection() === section.title) {
-            <iframe 
-              [src]="getSafeVideoUrl(section.videoUrl)" 
-              title="Sample Mentorship Session" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen 
-              class="video-iframe">
-            </iframe>
-          } @else {
-            <button class="play-trigger" (click)="playVideo(section.title)" type="button" aria-label="Play sample mentorship session">
-              <img [ngSrc]="getYoutubeThumbnail(section.videoUrl)" width="1280" height="720" alt="Sample Mentorship Session" class="video-thumbnail" />
-              <div class="play-overlay flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </button>
-          }
+        <div class="filmstrip-card">
+          <div class="video-container">
+            <div class="player-wrapper">
+              @if (activePlayingSection() === section.title) {
+                <iframe 
+                  [src]="getSafeVideoUrl(section.videoUrl)" 
+                  title="Sample Mentorship Session" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin" 
+                  allowfullscreen 
+                  class="video-iframe">
+                </iframe>
+              } @else {
+                <button class="play-trigger" (click)="playVideo(section.title)" type="button" aria-label="Play sample mentorship session">
+                  <img [ngSrc]="getYoutubeThumbnail(section.videoUrl)" width="1280" height="720" alt="Sample Mentorship Session" class="video-thumbnail" />
+                  <div class="play-overlay flex items-center justify-center">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </button>
+              }
+            </div>
+          </div>
+          <div class="filmstrip-overlay" aria-hidden="true"></div>
         </div>
       </div>
     </ng-template>
@@ -120,6 +125,16 @@ import { AboutMeSection } from '../../pages/about.types';
       grid-template-columns: 1fr 1fr;
       gap: 8rem;
       align-items: center;
+    }
+
+    .section-text {
+      position: relative;
+      z-index: 10;
+    }
+
+    .section-visual {
+      position: relative;
+      z-index: 1;
     }
 
     .section-badge {
@@ -158,12 +173,12 @@ import { AboutMeSection } from '../../pages/about.types';
     .section-visual img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1);
+      filter: drop-shadow(200px 100px 250px #FFF8E0) drop-shadow(-200px -100px 250px #FFF0E0) brightness(1);
       transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .section-visual img:hover {
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1.05);
+      filter: drop-shadow(200px 100px 250px #FFF8E0) drop-shadow(-200px -100px 250px #FFF0E0) brightness(1.05);
     }
 
     .quiet-metrics-box {
@@ -205,14 +220,44 @@ import { AboutMeSection } from '../../pages/about.types';
       text-transform: uppercase;
     }
 
+    .filmstrip-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.48; /* Aspect ratio of the user's filmstrip image (900x608 is ~1.48) */
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .filmstrip-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('images/about/filmstrip-frame.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      pointer-events: none; /* Let click events pass through transparent cutout to the play button and iframe */
+      z-index: 10;
+    }
+
+    .video-container {
+      position: absolute;
+      top: 11.5%;
+      bottom: 11.5%;
+      left: 2%;
+      right: 2%;
+      z-index: 1;
+    }
+
     .player-wrapper {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 14px;
+      height: 100%;
+      border-radius: 8px; /* Slight rounding matching inner frame boundaries */
       overflow: hidden;
       background: #121212;
-      box-shadow: 200px 100px 250px rgba(0, 162, 154, 0.2), -200px -100px 250px rgba(0, 162, 154, 0.2);
     }
 
     .play-trigger {

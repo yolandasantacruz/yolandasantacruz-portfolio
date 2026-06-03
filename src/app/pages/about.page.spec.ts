@@ -40,7 +40,7 @@ describe('AboutTestimonialsComponent - Premium Testimonial & Blob Motion', () =>
     const blobPath = fixture.debugElement.query(By.css('.wavy-card-path'));
     expect(blobPath).toBeTruthy();
     const fillValue = (blobPath.styles['fill'] || blobPath.nativeElement.style.fill || '').toUpperCase();
-    expect(fillValue.includes('#EDFBF9') || fillValue.includes('237, 251, 249')).toBe(true);
+    expect(fillValue.includes('#F3FCFB') || fillValue.includes('243, 252, 251')).toBe(true);
   });
 
   it('should navigate to next testimonial and update blob background color', () => {
@@ -59,7 +59,7 @@ describe('AboutTestimonialsComponent - Premium Testimonial & Blob Motion', () =>
 
     const blobPath = fixture.debugElement.query(By.css('.wavy-card-path'));
     const fillValue = (blobPath.styles['fill'] || blobPath.nativeElement.style.fill || '').toUpperCase();
-    expect(fillValue.includes('#FFFCEB') || fillValue.includes('255, 252, 235')).toBe(true);
+    expect(fillValue.includes('#FFFDF2') || fillValue.includes('255, 253, 242')).toBe(true);
   });
 
   it('should not navigate past the last testimonial', () => {

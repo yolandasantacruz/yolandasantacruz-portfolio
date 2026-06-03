@@ -142,8 +142,14 @@ import { SocialIconService } from '../../services/social-icon.service';
       height: 18px;
     }
 
+    .hero-left {
+      position: relative;
+      z-index: 10;
+    }
+
     .hero-right {
-      /* applied via utility classes flex justify-center relative */
+      position: relative;
+      z-index: 1;
     }
 
     .portrait-wrapper {
@@ -175,12 +181,12 @@ import { SocialIconService } from '../../services/social-icon.service';
     .hero-portrait {
       height: 100%;
       object-fit: cover;
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1);
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px #EBFFC6) brightness(1);
       transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .hero-portrait:hover {
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1.05);
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px #EBFFC6) brightness(1.05);
     }
 
     @media (max-width: 768px) {

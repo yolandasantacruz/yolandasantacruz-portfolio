@@ -85,10 +85,10 @@ To add a new action button anywhere in the codebase:
 
 ## 8. Testimonial Background Blob (Motion & Color Shifting)
 The testimonial section is framed within a sophisticated, organic SVG blob background that reacts dynamically to user interaction while maintaining continuous ambient life.
-* **Ambient State**: Vertices drift continuously in a rhythmic sine/cosine wave pattern (speed 0.0015, amplitude 12px), resembling calm lagoon water ripples without inducing motion sickness.
+* **Ambient State**: Vertices drift continuously in a rhythmic sine/cosine wave pattern (speed 0.0006, amplitude 12px), resembling calm lagoon water ripples without inducing motion sickness.
 * **Dynamic Tangents**: To prevent kinks or vector path creases when moving or morphing, tangent handles are computed dynamically at runtime based on the positions of adjacent anchor points using Catmull-Rom spline logic with a tension factor of `k = 0.22` (relative to neighbor chord lengths). This ensures the curves remain perfectly smooth ($C^1$ continuity) and eliminates flat angles or sharp creases. Vector handles must never be animated independently from their endpoints.
 * **Morphing Interaction**: Navigating between testimonials triggers a satisfying quartic transformation (800ms duration) where the anchor points dramatically realign to form completely distinct organic cloud/lagoon shapes.
-* **Color-Shifting Palette**: Synchronized with the shape transformation, the blob fill smoothly transitions between curated soft pastel backgrounds (`#EDFBF9` mint, `#FFFCEB` yellow, `#F4F0FC` lavender).
+* **Color-Shifting Palette**: Synchronized with the shape transformation, the blob fill smoothly transitions between curated soft pastel backgrounds (`#F3FCFB` mint, `#FFFDF2` yellow, `#F9F7FD` lavender).
 
 ---
 

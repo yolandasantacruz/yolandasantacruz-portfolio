@@ -498,7 +498,7 @@ export default class PortfolioHomeComponent {
 
     sections.push({
       id: 'bridge',
-      label: 'Philosophy',
+      label: this.bridgeData?.heading ?? 'About me',
       color: pillColors.get('bridge') ?? 'var(--section-pill-bridge)'
     });
 

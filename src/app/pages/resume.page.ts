@@ -161,10 +161,46 @@ export const routeMeta: RouteMeta = {
     }
 
     .job-entry {
+      position: relative;
+      padding-left: 2rem;
       margin-bottom: 3.5rem;
     }
 
+    .job-entry::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 0;
+      bottom: -3.5rem;
+      width: 1px;
+      background: #EBEBEB;
+      z-index: 1;
+    }
+
+    .job-entry:first-child::before {
+      top: 14px;
+    }
+
+    .job-entry:last-child::before {
+      bottom: auto;
+      height: 14px;
+    }
+
+    .job-entry::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #00A29A;
+      z-index: 2;
+    }
+
     .job-header {
+      display: flex;
+      flex-direction: column;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
@@ -175,6 +211,12 @@ export const routeMeta: RouteMeta = {
       font-weight: 500;
       color: #111;
       line-height: 1.2;
+    }
+
+    .job-meta {
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
     }
 
     .job-bullets {

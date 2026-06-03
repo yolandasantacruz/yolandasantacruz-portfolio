@@ -39,17 +39,17 @@ describe('BlobAnimationService', () => {
   describe('getBlobColor', () => {
     it('returns the first color for index 0', () => {
       const color = service.getBlobColor(0);
-      expect(color).toBe('#EDFBF9');
+      expect(color).toBe('#F3FCFB');
     });
 
     it('returns the second color for index 1', () => {
       const color = service.getBlobColor(1);
-      expect(color).toBe('#FFFCEB');
+      expect(color).toBe('#FFFDF2');
     });
 
     it('returns the third color for index 2', () => {
       const color = service.getBlobColor(2);
-      expect(color).toBe('#F4F0FC');
+      expect(color).toBe('#F9F7FD');
     });
 
     it('wraps around — index 3 maps back to the first color', () => {

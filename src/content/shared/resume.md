@@ -42,10 +42,10 @@ software: "Figma · Illustrator · Photoshop · InDesign · Framer · Midjourney
 skills: "Cross-functional Collaboration · UX Strategy · Stakeholder Engagement · Mentorship & Team Leadership · User Research · Journey Mapping · Data Literacy · A/B Testing · Information Architecture · Wireframing · Rapid Prototyping · Interaction Design · Visual Design · Generative Design · Accessibility Design · Agile Methodologies · Product Engineering · Critical Thinking · Creative Problem Solving · Effective Communication · Presentation Skills"
 languages: "English · Spanish"
 additional:
-  - "ADP Mentor"
-  - "Community involvement with non-profits"
-  - "Volunteering and teaching experience in thesis consulting, drawing, photography, and clay modeling."
-  - "Published author of short stories and poems."
+  - "Global Product Design Mentor (ADPList)"
+  - "Non-Profit Community Volunteer"
+  - "Thesis Consultant and Fine Arts Instructor"
+  - "Published Author (Fiction and Poetry)"
 education:
   - degree: "Bachelor of Fine Arts, BFA"
     school: "San Alejandro Fine Arts Academy, Havana, Cuba"

@@ -50,6 +50,11 @@ import { DOCUMENT, NgOptimizedImage } from '@angular/common';
       height: 40px;
       object-fit: contain;
       display: block;
+      filter: drop-shadow(2px 2px 4px rgba(0, 162, 154, 0.12)) drop-shadow(-2px -2px 4px rgba(184, 156, 224, 0.12));
+      transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-img:hover {
+      filter: drop-shadow(3px 3px 6px rgba(0, 162, 154, 0.25)) drop-shadow(-3px -3px 6px rgba(184, 156, 224, 0.25));
     }
   `
 })
