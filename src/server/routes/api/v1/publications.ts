@@ -98,6 +98,7 @@ export default defineEventHandler(async () => {
     return { success: true, items };
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('[API publications] Failed to fetch or parse Medium RSS feed:', error);
     return { success: false, error: errorMessage };
   }
 });

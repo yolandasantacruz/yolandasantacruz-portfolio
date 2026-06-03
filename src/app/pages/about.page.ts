@@ -130,8 +130,8 @@ import {
     }
 
     .about-main {
-      padding-top: 6rem;
-      padding-bottom: 8rem;
+      padding-top: 8rem;
+      padding-bottom: 12rem;
     }
 
     .about-main > * {

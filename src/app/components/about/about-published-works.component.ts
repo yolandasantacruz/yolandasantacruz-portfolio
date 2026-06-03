@@ -37,7 +37,7 @@ import { PublicationsService } from '../../services/publications.service';
   `,
   styles: `
     .published-section {
-      margin-bottom: 8rem;
+      margin-bottom: 16rem;
     }
 
     .section-tag {
@@ -52,7 +52,7 @@ import { PublicationsService } from '../../services/publications.service';
       font-weight: 300;
       letter-spacing: -0.02em;
       color: #111;
-      margin-bottom: 4rem;
+      margin-bottom: 6rem;
     }
 
     .works-grid {
@@ -63,11 +63,6 @@ import { PublicationsService } from '../../services/publications.service';
 
     .work-card {
       text-decoration: none;
-      transition: transform 0.3s ease;
-    }
-
-    .work-card:hover {
-      transform: translateY(-8px);
     }
 
     .work-thumb-box {
@@ -83,11 +78,12 @@ import { PublicationsService } from '../../services/publications.service';
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      filter: brightness(1);
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .work-card:hover .work-thumb {
-      transform: scale(1.05);
+      filter: brightness(1.05);
     }
 
     .work-badge {
@@ -127,6 +123,7 @@ import { PublicationsService } from '../../services/publications.service';
     }
 
     @media (max-width: 768px) {
+      .published-section { margin-bottom: 10rem; }
       .works-grid { grid-template-columns: 1fr; }
       .published-heading { font-size: 2rem; }
     }

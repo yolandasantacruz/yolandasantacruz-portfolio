@@ -65,14 +65,14 @@ import { RouterLink } from '@angular/router';
   `,
   styles: `
     .timeline-section {
-      margin-bottom: 12rem;
+      margin-bottom: 18rem;
     }
 
     .timeline-header-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 4rem;
-      margin-bottom: 6rem;
+      margin-bottom: 8rem;
       align-items: end;
     }
 
@@ -155,7 +155,8 @@ import { RouterLink } from '@angular/router';
     }
 
     @media (max-width: 768px) {
-      .timeline-positions-container { flex-direction: column; gap: 3rem; }
+      .timeline-section { margin-bottom: 12rem; }
+      .timeline-positions-container { flex-direction: column; gap: 4rem; }
       .timeline-heading { font-size: 2rem; }
     }
   `

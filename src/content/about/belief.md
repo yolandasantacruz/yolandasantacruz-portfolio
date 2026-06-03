@@ -1,3 +1,3 @@
 ---
-statement: "I help teams solve tough problems by designing systems that are scalable, maintainable, and a delight to use."
+statement: "Our lives are shaped by our experiences. I aim to improve their quality."
 ---

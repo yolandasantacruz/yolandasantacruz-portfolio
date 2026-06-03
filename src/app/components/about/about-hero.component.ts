@@ -28,7 +28,7 @@ import { SocialIconService } from '../../services/social-icon.service';
         </div>
         <div class="hero-right flex justify-center relative">
           <div class="portrait-wrapper">
-            <img [ngSrc]="heroPortrait()" ngSrcset="400w, 800w" sizes="(max-width: 768px) 280px, 380px" width="380" height="700" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
+            <img [ngSrc]="heroPortrait()" ngSrcset="400w, 800w" sizes="(max-width: 768px) 280px, 500px" width="795" height="963" priority alt="Yolanda Santa Cruz's image" class="hero-portrait w-full" />
             <div class="portrait-glow"></div>
           </div>
         </div>
@@ -39,9 +39,9 @@ import { SocialIconService } from '../../services/social-icon.service';
     .about-hero {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
-      gap: 6rem;
+      gap: 8rem;
       align-items: center;
-      margin-bottom: 10rem;
+      margin-bottom: 16rem;
     }
 
     .hero-greeting {
@@ -51,7 +51,7 @@ import { SocialIconService } from '../../services/social-icon.service';
       letter-spacing: -0.02em;
       line-height: 1.15;
       color: #111;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
@@ -78,7 +78,7 @@ import { SocialIconService } from '../../services/social-icon.service';
       font-weight: 300;
       line-height: 1.7;
       color: #555;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
@@ -175,13 +175,19 @@ import { SocialIconService } from '../../services/social-icon.service';
     .hero-portrait {
       height: 100%;
       object-fit: cover;
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1);
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-portrait:hover {
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1.05);
     }
 
     @media (max-width: 768px) {
       .about-hero {
         grid-template-columns: 1fr;
-        gap: 3rem;
-        margin-bottom: 6rem;
+        gap: 4rem;
+        margin-bottom: 10rem;
       }
       .hero-greeting { font-size: 2.5rem; }
       .cohesive-phrase { white-space: normal; display: inline; }

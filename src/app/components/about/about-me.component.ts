@@ -78,9 +78,6 @@ import { AboutMeSection } from '../../pages/about.types';
     <!-- Shared Visual Templates -->
     <ng-template #videoPlayer let-section>
       <div class="adplist-video">
-        <div class="video-header">
-          <span class="video-label text-base font-semibold">VIEW: A Sample Mentorship Session</span>
-        </div>
         <div class="player-wrapper">
           @if (activePlayingSection() === section.title) {
             <iframe 
@@ -105,19 +102,23 @@ import { AboutMeSection } from '../../pages/about.types';
     </ng-template>
 
     <ng-template #imageVisual let-section>
-      <img [ngSrc]="section.image || 'images/about/at-work.webp'" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 480px" width="480" height="595" alt="Design Execution" />
+      @if (section.image === 'images/about/origins.webp') {
+        <img [ngSrc]="section.image" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1386" alt="Design Execution" />
+      } @else {
+        <img [ngSrc]="section.image || 'images/about/at-work.webp'" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1487" alt="Design Execution" />
+      }
     </ng-template>
   `,
   styles: `
     .about-me-section {
-      gap: 12rem;
-      margin-bottom: 12rem;
+      gap: 18rem;
+      margin-bottom: 18rem;
     }
 
     .section-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      gap: 8rem;
       align-items: center;
     }
 
@@ -125,7 +126,7 @@ import { AboutMeSection } from '../../pages/about.types';
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #3b9f98;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       display: inline-block;
     }
 
@@ -133,13 +134,13 @@ import { AboutMeSection } from '../../pages/about.types';
       font-weight: 300;
       letter-spacing: -0.02em;
       color: #111;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .section-desc {
       line-height: 1.8;
       color: #555;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
       font-weight: 300;
     }
 
@@ -154,31 +155,15 @@ import { AboutMeSection } from '../../pages/about.types';
       border-radius: 100px;
     }
 
-    .masked-image {
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      background: #f0f0f0;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .masked-image:hover {
-      transform: translateY(-8px);
-    }
-
-    .arch-mask {
-      aspect-ratio: 4 / 5;
-      border-radius: 200px 200px 16px 16px;
-    }
-
-    .masked-image img {
+    .section-visual img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
+      height: auto;
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1);
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .masked-image:hover img {
-      transform: scale(1.05);
+    .section-visual img:hover {
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px rgba(0, 162, 154, 0.2)) brightness(1.05);
     }
 
     .quiet-metrics-box {
@@ -227,7 +212,7 @@ import { AboutMeSection } from '../../pages/about.types';
       border-radius: 14px;
       overflow: hidden;
       background: #121212;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 200px 100px 250px rgba(0, 162, 154, 0.2), -200px -100px 250px rgba(0, 162, 154, 0.2);
     }
 
     .play-trigger {
@@ -251,13 +236,14 @@ import { AboutMeSection } from '../../pages/about.types';
       height: 100%;
       object-fit: cover;
       opacity: 0.9;
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s;
+      transform: scale(1.02); /* Scale up slightly to crop the thumbnail's thin black borders */
+      filter: brightness(1);
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .play-trigger:hover .video-thumbnail,
     .play-trigger:focus-visible .video-thumbnail {
-      transform: scale(1.03);
-      opacity: 0.8;
+      filter: brightness(1.05);
     }
 
     .play-overlay {
@@ -294,6 +280,7 @@ import { AboutMeSection } from '../../pages/about.types';
       position: absolute;
       top: 0;
       left: 0;
+      transform: scale(1.15); /* Scale up to crop black borders on the sides */
     }
 
     /* CTA Button Styles */
@@ -326,7 +313,7 @@ import { AboutMeSection } from '../../pages/about.types';
     }
 
     @media (max-width: 768px) {
-      .about-me-section { gap: 6rem; }
+      .about-me-section { gap: 10rem; }
       .section-row { grid-template-columns: 1fr; }
       .section-visual { order: -1; }
       .quiet-metrics-box { grid-template-columns: 1fr; }

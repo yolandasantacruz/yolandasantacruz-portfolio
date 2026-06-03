@@ -19,8 +19,8 @@ import { BeliefData } from '../../pages/about.types';
   styles: `
     .belief-section {
       max-width: 900px;
-      margin: 0 auto 12rem auto;
-      padding: 4rem 2rem;
+      margin: 0 auto 16rem auto;
+      padding: 6rem 2rem;
     }
 
     .belief-statement {
@@ -39,7 +39,7 @@ import { BeliefData } from '../../pages/about.types';
     }
 
     @media (max-width: 768px) {
-      .belief-section { margin-bottom: 8rem; }
+      .belief-section { margin-bottom: 12rem; }
       .belief-statement { font-size: 2rem; }
     }
   `

@@ -30,7 +30,13 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       @if (currentTestimonial(); as activeTestimonial) {
         <section class="premium-testimonial-section">
           <div class="testimonial-card-wrapper">
-            <svg viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" class="testimonial-wavy-bg">
+            <svg 
+              viewBox="0 0 1200 600" 
+              preserveAspectRatio="none" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg" 
+              class="testimonial-wavy-bg"
+              [style.--testimonial-shadow-color]="currentBlobColor()">
               <path #wavyBlobPath class="wavy-card-path" [attr.d]="blobAnimationService.initialBlobPath" [style.fill]="currentBlobColor()" />
             </svg>
             <div class="testimonial-container flex flex-col">
@@ -86,7 +92,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
   `,
   styles: `
     .premium-testimonial-section {
-      margin-bottom: 12rem;
+      margin-bottom: 18rem;
       max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
@@ -106,6 +112,8 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       height: 100%;
       z-index: -1;
       pointer-events: none;
+      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px var(--testimonial-shadow-color, rgba(0, 162, 154, 0.2)));
+      transition: filter 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .wavy-card-path {
@@ -234,7 +242,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     @media (max-width: 768px) {
-      .premium-testimonial-section { margin-bottom: 8rem; }
+      .premium-testimonial-section { margin-bottom: 12rem; }
       .testimonial-card-wrapper { padding: 80px 40px; }
       .testimonial-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
       .testimonial-nav { align-self: flex-end; }

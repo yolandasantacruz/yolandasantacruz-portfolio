@@ -16,6 +16,7 @@ interface ApiMediaItem {
 interface PublicationsApiResponse {
   success: boolean;
   items?: ApiMediaItem[];
+  error?: string;
 }
 
 /**
@@ -41,6 +42,7 @@ export class PublicationsService {
       .pipe(
         map((res) => {
           if (!res.success || !res.items?.length) {
+            console.warn('[PublicationsService] Failed to load Medium articles:', res.error || 'Empty items list');
             return [];
           }
           return res.items.slice(0, 3).map(
@@ -53,7 +55,10 @@ export class PublicationsService {
             }),
           );
         }),
-        catchError(() => of([])),
+        catchError((err) => {
+          console.error('[PublicationsService] HTTP Error loading Medium articles:', err);
+          return of([]);
+        }),
       );
   }
 }

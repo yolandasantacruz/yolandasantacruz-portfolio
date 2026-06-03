@@ -70,9 +70,10 @@ async function processImage(srcPath) {
     }
     console.log(`  [RE-OPTIMIZING] ${relPath} — source image was updated`);
   } else {
-    // If no backup exists, check size threshold (> 150KB)
-    if (sizeKB < 150) {
-      console.log(`  [SKIP] ${relPath} — size (${sizeKB.toFixed(1)} KB) is under 150KB threshold`);
+    // If no backup exists, check size threshold (> 100KB) unless it's in the about folder
+    const isAboutImage = srcPath.includes('/about/') || srcPath.includes('\\about\\');
+    if (sizeKB < 100 && !isAboutImage) {
+      console.log(`  [SKIP] ${relPath} — size (${sizeKB.toFixed(1)} KB) is under threshold`);
       return;
     }
     console.log(`  [OPTIMIZING] ${relPath} — size: ${sizeKB.toFixed(1)} KB`);
@@ -86,14 +87,14 @@ async function processImage(srcPath) {
   const srcWidth = metadata.width || 1200;
 
   for (const width of WIDTHS) {
-    if (width > srcWidth) {
+    if (width > srcWidth * 1.1) {
       console.log(`  [SKIP] ${name}-${width}w.webp — source is only ${srcWidth}px wide`);
       continue;
     }
 
     const outPath = join(dir, `${name}-${width}w.webp`);
     await sharp(originalBackup)
-      .resize({ width, withoutEnlargement: true })
+      .resize({ width, withoutEnlargement: false })
       .webp({ quality: QUALITY })
       .toFile(outPath);
     console.log(`  [GENERATED] ${name}-${width}w.webp`);

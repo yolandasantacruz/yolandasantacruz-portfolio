@@ -18,8 +18,8 @@ const MOCK_ABOUT_DATA: AboutMeSection[] = [
     description: 'I believe in trust and empathetic leadership.'
   },
   {
-    badge: '02 // DIRECT IMPACT',
-    title: 'Outside of Work',
+    badge: 'Giving Back',
+    title: 'Mentorship',
     description: 'Mentorship on ADPList is a priority for me.',
     videoUrl: 'https://www.youtube.com/embed/yL_yRyzp7oo?autoplay=1',
     linkUrl: 'https://adplist.org/mentors/yolanda-santa-cruz',
@@ -114,7 +114,7 @@ describe('AboutMeComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(component.activePlayingSection()).toBe('Outside of Work');
+    expect(component.activePlayingSection()).toBe('Mentorship');
     const iframe = fixture.debugElement.query(By.css('.video-iframe'));
     expect(iframe).toBeTruthy();
     expect(iframe.nativeElement.getAttribute('src')).toBeTruthy();
