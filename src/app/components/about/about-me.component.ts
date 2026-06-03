@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { NgOptimizedImage, DOCUMENT, NgTemplateOutlet } from '@angular/common';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { MarkdownComponent } from '@analogjs/content';
+import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
+
 import { AboutMeSection } from '../../pages/about.types';
 
 @Component({
   selector: 'portfolio-about-me',
   standalone: true,
-  imports: [NgOptimizedImage, NgTemplateOutlet, MarkdownComponent],
+  imports: [NgOptimizedImage, NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as sections) {
@@ -20,9 +20,7 @@ import { AboutMeSection } from '../../pages/about.types';
               <div class="section-text">
                 <span class="section-badge text-base font-bold">{{ section.badge }}</span>
                 <h3 class="section-title text-3xl">{{ section.title }}</h3>
-                <div class="section-desc text-base">
-                  <analog-markdown [content]="section.description || ''" />
-                </div>
+                <div class="section-desc text-base" [innerHTML]="getRenderedHtml(section.description)"></div>
               </div>
 
               <div class="section-visual">
@@ -45,9 +43,7 @@ import { AboutMeSection } from '../../pages/about.types';
               <div class="section-text">
                 <span class="section-badge text-base font-bold">{{ section.badge }}</span>
                 <h3 class="section-title text-3xl">{{ section.title }}</h3>
-                <div class="section-desc text-base">
-                  <analog-markdown [content]="section.description || ''" />
-                </div>
+                <div class="section-desc text-base" [innerHTML]="getRenderedHtml(section.description)"></div>
 
                 @if (section.linkUrl && section.linkLabel) {
                   <div class="section-cta">
@@ -157,6 +153,14 @@ import { AboutMeSection } from '../../pages/about.types';
       color: #555;
       margin-bottom: 3rem;
       font-weight: 300;
+    }
+
+    :host ::ng-deep .section-desc p {
+      margin: 0 0 1em 0;
+    }
+
+    :host ::ng-deep .section-desc p:last-child {
+      margin-bottom: 0;
     }
 
     .comp-label {
@@ -369,6 +373,19 @@ export class AboutMeComponent {
   data = input<AboutMeSection[] | undefined>();
   private sanitizer = inject(DomSanitizer);
   private document = inject(DOCUMENT);
+
+  /** Cache of trusted HTML per description string */
+  private readonly renderedCache = new Map<string, SafeHtml>();
+
+  /** injectContent returns pre-rendered HTML from Analog's Vite plugin — just trust and pass through */
+  getRenderedHtml(html: string | undefined): SafeHtml {
+    if (!html) return this.sanitizer.bypassSecurityTrustHtml('');
+    const cached = this.renderedCache.get(html);
+    if (cached) return cached;
+    const safe = this.sanitizer.bypassSecurityTrustHtml(html);
+    this.renderedCache.set(html, safe);
+    return safe;
+  }
 
   readonly activePlayingSection = signal<string | null>(null);
   private safeUrls = new Map<string, SafeResourceUrl>();

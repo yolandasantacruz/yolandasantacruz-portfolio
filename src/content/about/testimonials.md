@@ -1,5 +1,5 @@
 ---
-items:
+testimonials:
   - name: "Jon Belsky"
     role: "Product Design Leader - Turning Ambiguity into Revenue-Driving Outcomes"
     avatar: "images/about/testimonials/Jon-Belsky.jpg"

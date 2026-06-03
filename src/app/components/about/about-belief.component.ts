@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { BeliefData } from '../../pages/about.types';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'portfolio-about-belief',
@@ -7,11 +6,9 @@ import { BeliefData } from '../../pages/about.types';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @if (data(); as belief) {
+    @if (quoteText()) {
       <section class="belief-section text-center">
-        <h2 class="belief-statement text-4xl">
-          "{{ belief.statement }}"
-        </h2>
+        <blockquote class="belief-statement text-4xl">"{{ quoteText() }}"</blockquote>
         <div class="belief-dash"></div>
       </section>
     }
@@ -28,7 +25,9 @@ import { BeliefData } from '../../pages/about.types';
       line-height: 1.35;
       letter-spacing: -0.02em;
       color: #111;
-      margin-bottom: 3rem;
+      margin: 0 0 3rem 0;
+      padding: 0;
+      border: none;
     }
 
     .belief-dash {
@@ -45,5 +44,11 @@ import { BeliefData } from '../../pages/about.types';
   `
 })
 export class AboutBeliefComponent {
-  data = input<BeliefData | undefined>();
+  /** Raw markdown body from injectContent — starts with "> " blockquote marker */
+  content = input<string>('');
+
+  /** Extracts plain text from the pre-rendered HTML that injectContent returns */
+  readonly quoteText = computed(() =>
+    this.content().trim().replace(/<[^>]+>/g, '').trim()
+  );
 }
