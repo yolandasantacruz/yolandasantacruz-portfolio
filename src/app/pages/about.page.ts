@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, inject, PLATFORM_ID, computed, afterNextRender, OnInit, OnDestroy } from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
@@ -51,6 +52,20 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="about-wrapper">
+      <!-- Fixed Side Rail Navigation -->
+      <nav class="floating-side-rail flex flex-col items-end" role="navigation" aria-label="Page sections">
+        @for (sec of navSections(); track sec.id) {
+          <button class="nav-pill flex items-center justify-center" 
+                  [class.active]="activeSection() === sec.id" 
+                  (click)="scrollToSection(sec.id)" 
+                  [attr.aria-label]="'Scroll to ' + sec.label"
+                  [attr.aria-current]="activeSection() === sec.id ? 'step' : null"
+                  [style.--pill-color]="sec.color">
+            <span class="pill-label">{{ sec.label }}</span>
+          </button>
+        }
+      </nav>
+
       <!-- Fluid background line winding down the page behind text -->
       <div class="fluid-line-bg" aria-hidden="true">
         <svg viewBox="0 0 1200 3200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,12 +95,12 @@ import {
         <portfolio-header />
 
         <main class="about-main">
-          <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
+          <portfolio-about-hero id="hero" [data]="heroData" [socials]="socialsData" />
           <portfolio-about-belief [data]="beliefData" class="scroll-reveal" />
           <portfolio-about-me [data]="aboutMeData()" class="scroll-reveal" />
-          <portfolio-about-testimonials [items]="testimonialItems" class="scroll-reveal" />
-          <portfolio-about-timeline [data]="timelineData" class="scroll-reveal" />
-          <portfolio-about-published-works [data]="publicationsData" class="scroll-reveal" />
+          <portfolio-about-testimonials id="testimonials" [items]="testimonialItems" class="scroll-reveal" />
+          <portfolio-about-timeline id="timeline" [data]="timelineData" class="scroll-reveal" />
+          <portfolio-about-published-works id="publications" [data]="publicationsData" class="scroll-reveal" />
         </main>
 
         <portfolio-footer />
@@ -152,7 +167,78 @@ import {
     }
   `
 })
-export default class AboutComponent {
+export default class AboutComponent implements OnInit, OnDestroy {
+  private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.document.documentElement.classList.add('no-scrollbar');
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.document.documentElement.classList.remove('no-scrollbar');
+    }
+  }
+
+  readonly activeSection = signal<string>('hero');
+
+  readonly navSections = computed(() => {
+    const pillColors = new Map<string, string>([
+      ['hero', 'var(--section-pill-hero)'],
+      ['origins', 'var(--section-pill-plant-me)'],
+      ['at-work', 'var(--section-pill-bridge)'],
+      ['mentorship', 'var(--section-pill-fetch-pay)'],
+      ['testimonials', 'var(--section-pill-isles-at-bayshore)'],
+      ['timeline', 'var(--section-pill-pay-with-app)'],
+      ['publications', 'var(--section-pill-hero)'],
+    ]);
+
+    return [
+      { id: 'hero', label: 'Top', color: pillColors.get('hero') ?? 'var(--section-pill-hero)' },
+      { id: 'origins', label: 'Origins', color: pillColors.get('origins') ?? 'var(--section-pill-plant-me)' },
+      { id: 'at-work', label: 'At Work', color: pillColors.get('at-work') ?? 'var(--section-pill-bridge)' },
+      { id: 'mentorship', label: 'Mentorship', color: pillColors.get('mentorship') ?? 'var(--section-pill-fetch-pay)' },
+      { id: 'testimonials', label: 'Testimonials', color: pillColors.get('testimonials') ?? 'var(--section-pill-isles-at-bayshore)' },
+      { id: 'timeline', label: 'Timeline', color: pillColors.get('timeline') ?? 'var(--section-pill-pay-with-app)' },
+      { id: 'publications', label: 'Publications', color: pillColors.get('publications') ?? 'var(--section-pill-hero)' },
+    ];
+  });
+
+  constructor() {
+    afterNextRender(() => {
+      if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this.activeSection.set(entry.target.id);
+            }
+          });
+        }, {
+          rootMargin: '-20% 0px -50% 0px',
+          threshold: 0
+        });
+
+        const targets = this.document.querySelectorAll('#hero, .section-row, #testimonials, #timeline, #publications');
+        targets.forEach(target => {
+          observer.observe(target);
+        });
+      }
+    });
+  }
+
+  scrollToSection(id: string) {
+    this.activeSection.set(id);
+    if (isPlatformBrowser(this.platformId)) {
+      const element = this.document.getElementById(id);
+      if (element && typeof element.scrollIntoView === 'function') {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }
+
   /** Content loaded from src/content/about/*.md via Analog's content API */
   readonly heroData = injectContentFiles<HeroData & Record<string, unknown>>(file =>
     file.filename.includes('about/hero.md')

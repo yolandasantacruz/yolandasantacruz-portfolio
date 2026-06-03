@@ -13,7 +13,7 @@ import { AboutMeSection } from '../../pages/about.types';
     @if (data(); as sections) {
       <section class="about-me-section flex flex-col">
         @for (section of sections; track section.title; let i = $index) {
-          <div class="section-row">
+          <div class="section-row" [id]="getSectionId(section.title)">
             
             @if (i % 2 === 0) {
               <!-- Text on Left, Visual on Right -->
@@ -395,6 +395,13 @@ export class AboutMeComponent {
       const iframe = this.document.querySelector('.video-iframe') as HTMLIFrameElement;
       iframe?.focus();
     }, 150);
+  }
+
+  getSectionId(title: string): string {
+    if (title.toLowerCase().includes('origins')) return 'origins';
+    if (title.toLowerCase().includes('work')) return 'at-work';
+    if (title.toLowerCase().includes('mentorship')) return 'mentorship';
+    return title.toLowerCase().replace(/\s+/g, '-');
   }
 }
 

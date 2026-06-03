@@ -245,104 +245,6 @@ export const routeMeta: RouteMeta = {
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Floating Side Rail Navigation */
-    .floating-side-rail {
-      position: fixed;
-      right: 2.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 50;
-      gap: 1.25rem;
-    }
-
-    .nav-pill {
-      background: var(--pill-color);
-      border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
-      background-clip: padding-box;
-      height: 24px;
-      width: 24px;
-      min-width: 24px;
-      max-width: 24px;
-      padding: 0;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
-      transition: box-shadow 0.4s ease, opacity 0.4s ease, border-color 0.3s ease, transform 0.3s ease;
-      box-sizing: border-box;
-      outline: none;
-      opacity: 0.65;
-      position: relative;
-    }
-
-    .pill-label {
-      position: absolute;
-      right: calc(100% + 12px);
-      top: 50%;
-      transform: translate(24px, -50%) scale(0);
-      transform-origin: right center;
-      opacity: 0;
-      pointer-events: none;
-      
-      background: #ffffff;
-      border: 1.5px solid color-mix(in srgb, var(--pill-color) 20%, white);
-      border-radius: 100px;
-      padding: 6px 14px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
-      color: #4a4a4a;
-      font-family: var(--font-main);
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      
-      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .pill-label::after {
-      content: "";
-      position: absolute;
-      left: 100%;
-      top: 50%;
-      width: 12px;
-      height: 1.5px;
-      background: color-mix(in srgb, var(--pill-color) 20%, white);
-      transform: translateY(-50%);
-    }
-
-    .nav-pill:hover {
-      opacity: 1;
-      transform: scale(1.1);
-      border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
-      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.6);
-    }
-
-    .nav-pill:hover .pill-label {
-      opacity: 1;
-      transform: translate(0, -50%) scale(1);
-    }
-
-    .nav-pill.active {
-      border-width: 0;
-      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.7);
-      opacity: 1;
-    }
-
-    .nav-pill.active:hover {
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.8);
-    }
-
-    .nav-pill:focus-visible {
-      outline: 3px solid #111;
-      outline-offset: 2px;
-    }
-
     /* About Me Bridge Section — ANCHOR: hsl(169,58%,96%) must remain immutable */
     /* PlantMe's sage fades in at top for 6% only — bridge teal dominates 94%   */
     .bridge-section {
@@ -385,6 +287,9 @@ export const routeMeta: RouteMeta = {
       line-height: 1.8;
       color: #555;
       font-weight: 300;
+      text-align: center;
+      max-width: 620px;
+      padding: 60px 0;
     }
 
     @keyframes blob-morph {
@@ -426,7 +331,6 @@ export const routeMeta: RouteMeta = {
     }
 
     @media (max-width: 1024px) {
-      .floating-side-rail { right: 1rem; }
       .bridge-heading { font-size: 2.75rem; }
     }
 
@@ -434,7 +338,6 @@ export const routeMeta: RouteMeta = {
       .snap-container { scroll-snap-type: none; overflow-y: visible; height: auto; }
       .snap-section { min-height: auto; padding: 4rem 0; scroll-snap-align: none; }
       .hero-section { padding-top: 0; }
-      .floating-side-rail { display: none; }
       .hero-content-wrapper { min-height: auto; }
       .bridge-content { min-height: auto; padding-top: 4rem; }
       .bridge-heading { font-size: 2.25rem; }
