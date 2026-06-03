@@ -4,7 +4,7 @@ sections:
     title: "Origins"
     image: "images/about/origins.webp"
     description: |
-      I come from a visual arts background, and ever since, I have been hyper-focused on how what we create impacts the lived experience of others when it is perceived. When it is well done, it simplifies the path to understanding and navigation to the point where you want to take them. That creative problem-solving exercise is something I am delighted to find at the core of the product design space; it allows me to expand on a skill I have been fomenting for over 20 years of my life, which I find crucial to creating a more clear and easy-to-understand world for everyone.
+     <p>The list on the image marks a key turning point in my life: I was one of the 32 lucky ones selected for the coveted tuition-free National Fine Arts Academy back in my home country.</p> <p>This was the beginning of a lifelong focus on how what we present shapes the thoughts, emotions, and navigation paths of others. It got me to think deeply about the problem-solving exercise of creating something that communicates its intended purpose.</p><p>This mindset guides how I interact with the world, constantly observing everything from how to arrange a physical space to alter how it makes you feel, to how to design a difficult conversation to make it feel a bit lighter. Ultimately, it is all experiences. I am incredibly lucky to spend my days refining them in the tight, often messy, digital world.</p>
   - badge: "Life Philosophy"
     title: "At Work"
     image: "images/about/at-work.webp"

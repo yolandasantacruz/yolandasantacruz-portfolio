@@ -106,6 +106,23 @@ function inlineCssPlugin() {
   };
 }
 
+// Custom plugin to prevent Analog's content plugin from crashing on Vite virtual modules (e.g. HMR or CSS proxies with null bytes)
+function safeAnalogVirtualModulesPlugin() {
+  return {
+    name: 'safe-analog-virtual-modules',
+    enforce: 'pre' as const,
+    resolveId(id: string) {
+      if (id.startsWith('\x00') && (id.includes('analog-content-list=true') || id.includes('analog-content-file=true'))) {
+        const safeId = id
+          .replace('analog-content-list=true', 'analog-content-list-stale=true')
+          .replace('analog-content-file=true', 'analog-content-file-stale=true');
+        return safeId;
+      }
+      return null;
+    }
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
   base,
@@ -116,6 +133,7 @@ export default defineConfig(() => ({
     mainFields: ['module'],
   },
   plugins: [
+    safeAnalogVirtualModulesPlugin(),
     analog({
       content: {
         highlighter: 'prism',
