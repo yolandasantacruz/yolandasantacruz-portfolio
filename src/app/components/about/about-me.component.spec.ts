@@ -15,10 +15,7 @@ const MOCK_ABOUT_DATA: AboutMeSection[] = [
     badge: '01 // LIFE PHILOSOPHY',
     title: 'At Work',
     image: 'images/about/at-work.webp',
-    description: 'I believe in trust and empathetic leadership.',
-    competencies: [
-      { label: 'Design execution', value: 'Interaction Design' }
-    ]
+    description: 'I believe in trust and empathetic leadership.'
   },
   {
     badge: '02 // DIRECT IMPACT',

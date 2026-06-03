@@ -2,7 +2,6 @@
 
 ## Todo
 - [ ] Comprehensive review of mobile viewport
-- [x] Standarize global nav bar positioning
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
 - [ ] Fix ADPList stats and add visual badge 
 - [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
@@ -31,6 +30,7 @@
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
+- [x] Standarize global nav bar positioning
 - [x] Optimize the CSS used in the project so classes and style declarations are reused instead of being declared multiple times. Don't cause any visual regressions. Update the design system accordingly.
 - [x] Bug: when the user moves the mouse for the first time, the mouse trail effect appears in the top-left corner of the screen. It should appear where the mouse is.
 - [x] Add view transitions for page navigation.

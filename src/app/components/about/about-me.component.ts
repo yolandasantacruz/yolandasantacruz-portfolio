@@ -23,17 +23,6 @@ import { AboutMeSection } from '../../pages/about.types';
                 <div class="section-desc text-base">
                   <analog-markdown [content]="section.description || ''" />
                 </div>
-                
-                @if (section.competencies) {
-                  <div class="competencies flex flex-col">
-                    @for (comp of section.competencies; track comp.label) {
-                      <div class="competency-item flex justify-between items-center text-base">
-                        <span class="comp-label font-semibold">{{ comp.label }}</span>
-                        <span class="comp-val text-base font-normal">{{ comp.value }}</span>
-                      </div>
-                    }
-                  </div>
-                }
               </div>
 
               <div class="section-visual">
@@ -152,12 +141,6 @@ import { AboutMeSection } from '../../pages/about.types';
       color: #555;
       margin-bottom: 2.5rem;
       font-weight: 300;
-    }
-
-    .competencies {
-      gap: 1.25rem;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      padding-top: 2rem;
     }
 
     .comp-label {

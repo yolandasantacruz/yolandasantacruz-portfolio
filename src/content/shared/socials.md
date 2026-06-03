@@ -1,19 +1,11 @@
 ---
 links:
   - platform: linkedin
-    url: https://linkedin.com
+    url: https://linkedin.com/in/yolandasantacruz
     label: LinkedIn
     shortLabel: in
-  - platform: behance
-    url: https://behance.net
-    label: Behance
-    shortLabel: Be
-  - platform: twitter
-    url: https://twitter.com
-    label: Twitter
-    shortLabel: Tw
-  - platform: dribbble
-    url: https://dribbble.com
-    label: Dribbble
-    shortLabel: Dr
+  - platform: github
+    url: https://github.com/yolandasantacruz
+    label: GitHub
+    shortLabel: gh
 ---

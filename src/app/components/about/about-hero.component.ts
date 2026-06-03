@@ -17,7 +17,7 @@ import { SocialIconService } from '../../services/social-icon.service';
           @if (socialLinks().length > 0) {
             <div class="social-links">
               @for (link of socialLinks(); track link.platform) {
-                <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="link.label" class="social-btn flex items-center justify-center">
+                <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="link.label" [class]="'social-btn flex items-center justify-center ' + link.platform">
                   @if (iconPath(link.platform); as path) {
                     <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path [attr.d]="path"/></svg>
                   }
@@ -95,25 +95,51 @@ import { SocialIconService } from '../../services/social-icon.service';
     }
 
     .social-btn {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1px solid rgba(0, 0, 0, 0.12);
-      color: #333;
+      color: #666; /* Gray color for icon until hover */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.25s ease;
       background: transparent;
     }
 
-    .social-btn:hover {
-      border-color: #5ed6cc;
-      background: #5ed6cc;
-      color: #111;
-      transform: translateY(-2px);
+    .social-btn.linkedin:hover {
+      border-color: #0077b5;
+      background: #0077b5;
+      color: #ffffff;
+    }
+
+    .social-btn.github:hover {
+      border-color: #181717;
+      background: #181717;
+      color: #ffffff;
+    }
+
+    .social-btn.twitter:hover {
+      border-color: #000000;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .social-btn.behance:hover {
+      border-color: #1769ff;
+      background: #1769ff;
+      color: #ffffff;
+    }
+
+    .social-btn.dribbble:hover {
+      border-color: #ea4c89;
+      background: #ea4c89;
+      color: #ffffff;
     }
 
     .social-icon {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
     }
 
     .hero-right {

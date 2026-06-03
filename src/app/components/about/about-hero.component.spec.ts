@@ -75,7 +75,7 @@ describe('AboutHeroComponent', () => {
     componentRef.setInput('socials', {
       links: [
         { platform: 'linkedin', url: 'https://linkedin.com/in/test', label: 'LinkedIn' },
-        { platform: 'twitter', url: 'https://twitter.com/test', label: 'Twitter' },
+        { platform: 'github', url: 'https://github.com/test', label: 'GitHub' },
       ],
     });
     await fixture.whenStable();
@@ -91,14 +91,14 @@ describe('AboutHeroComponent', () => {
     });
     componentRef.setInput('socials', {
       links: [
-        { platform: 'dribbble', url: 'https://dribbble.com/yolanda', label: 'Dribbble' },
+        { platform: 'github', url: 'https://github.com/yolanda', label: 'GitHub' },
       ],
     });
     await fixture.whenStable();
 
     const anchor = fixture.debugElement.query(By.css('.social-btn'));
-    expect(anchor.nativeElement.getAttribute('href')).toBe('https://dribbble.com/yolanda');
-    expect(anchor.nativeElement.getAttribute('aria-label')).toBe('Dribbble');
+    expect(anchor.nativeElement.getAttribute('href')).toBe('https://github.com/yolanda');
+    expect(anchor.nativeElement.getAttribute('aria-label')).toBe('GitHub');
     expect(anchor.nativeElement.getAttribute('target')).toBe('_blank');
     expect(anchor.nativeElement.getAttribute('rel')).toBe('noopener noreferrer');
   });
