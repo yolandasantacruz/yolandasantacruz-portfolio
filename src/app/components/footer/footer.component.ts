@@ -8,17 +8,6 @@ import { FooterData, SocialsData } from '../../pages/shared.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <footer class="footer">
-      <div class="footer-social">
-        @if (socials) {
-          @for (social of socials.links; track social.platform) {
-            @if (social.platform === 'linkedin' || social.platform === 'behance') {
-              <a [href]="social.url" target="_blank" rel="noopener noreferrer">
-                {{ social.shortLabel }}
-              </a>
-            }
-          }
-        }
-      </div>
       @if (footer) {
         <p class="copyright" [innerHTML]="footer.copyright"></p>
       }
@@ -30,14 +19,6 @@ import { FooterData, SocialsData } from '../../pages/shared.types';
       padding: 6rem 0 4rem; 
       border-top: none;
     }
-    .footer-social { 
-      display: flex; 
-      justify-content: center; 
-      gap: 2rem; 
-      margin-bottom: 2rem; 
-    }
-    .footer-social a { text-decoration: none; color: inherit; font-weight: 400; opacity: 0.7; }
-    .footer-social a:hover { opacity: 1; }
     .copyright { font-size: 1.2rem; opacity: 0.6; text-align: center; }
     .heart { color: #55c5c7; }
   `

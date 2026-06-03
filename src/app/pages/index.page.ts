@@ -432,6 +432,7 @@ export const routeMeta: RouteMeta = {
     @media (max-width: 768px) {
       .snap-container { scroll-snap-type: none; overflow-y: visible; height: auto; }
       .snap-section { min-height: auto; padding: 4rem 0; scroll-snap-align: none; }
+      .hero-section { padding-top: 0; }
       .floating-side-rail { display: none; }
       .hero-content-wrapper { min-height: auto; }
       .bridge-content { min-height: auto; padding-top: 4rem; }

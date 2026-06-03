@@ -1,9 +1,9 @@
 # Project Backlog
 
 ## Todo
-- [ ] Standarize global nav bar positioning
+- [ ] Comprehensive review of mobile viewport
+- [x] Standarize global nav bar positioning
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
-- [ ] Add Linkedin and Behance links
 - [ ] Fix ADPList stats and add visual badge 
 - [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
 - [ ] Add line to Resume page
@@ -13,6 +13,7 @@
 - [ ] Update fav icon with new logo
 - [ ] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
 - [ ] In the About me page, remove social links except for LinkedIn and GitHub
+- [ ] Remove social links that renders above the footer
 - [ ] Review information in the case studies
 - [ ] Change "Philosophy" pill to About me
 - [ ] Improve formating of About me section in the home page
