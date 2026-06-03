@@ -14,7 +14,7 @@
         "background": {
           "activeOnStart": true,
           "beginsPattern": "VITE v.*",
-          "endsPattern": "Local:.*http://localhost:5173"
+          "endsPattern": "Local:.*http://.*:[0-9]+"
         }
       }
     }

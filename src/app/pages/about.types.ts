@@ -17,7 +17,7 @@ export interface BeliefData {
   statement: string;
 }
 
-export interface PillarData {
+export interface AboutMeSection {
   badge: string;
   title: string;
   description: string;
@@ -26,12 +26,10 @@ export interface PillarData {
   linkUrl?: string;
   linkLabel?: string;
   videoUrl?: string;
+  image?: string;
 }
 
-export interface PillarsData {
-  work: PillarData;
-  philosophy: PillarData;
-}
+export type AboutMeData = AboutMeSection[];
 
 export interface ActionItem {
   type: string;

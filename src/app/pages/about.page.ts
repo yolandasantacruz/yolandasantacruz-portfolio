@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AboutHeroComponent } from '../components/about/about-hero.component';
 import { AboutBeliefComponent } from '../components/about/about-belief.component';
-import { AboutPillarsComponent } from '../components/about/about-pillars.component';
+import { AboutMeComponent } from '../components/about/about-me.component';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
 import { AboutPublishedWorksComponent } from '../components/about/about-published-works.component';
@@ -25,12 +25,11 @@ export const routeMeta: RouteMeta = {
   ]
 };
 
-
 import {
   HeroData,
   SocialsData,
   BeliefData,
-  PillarsData,
+  AboutMeSection,
   Testimonial,
   TimelineData,
   PublicationsData,
@@ -44,7 +43,7 @@ import {
     FooterComponent,
     AboutHeroComponent,
     AboutBeliefComponent,
-    AboutPillarsComponent,
+    AboutMeComponent,
     AboutTestimonialsComponent,
     AboutTimelineComponent,
     AboutPublishedWorksComponent,
@@ -83,7 +82,7 @@ import {
         <main class="about-main">
           <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
           <portfolio-about-belief [data]="beliefData" class="scroll-reveal" />
-          <portfolio-about-pillars [data]="pillarsData" class="scroll-reveal" />
+          <portfolio-about-me [data]="aboutMeData()" class="scroll-reveal" />
           <portfolio-about-testimonials [items]="testimonialItems" class="scroll-reveal" />
           <portfolio-about-timeline [data]="timelineData" class="scroll-reveal" />
           <portfolio-about-published-works [data]="publicationsData" class="scroll-reveal" />
@@ -167,9 +166,11 @@ export default class AboutComponent {
     file.filename.includes('about/belief.md')
   )[0]?.attributes;
 
-  readonly pillarsData = injectContentFiles<PillarsData & Record<string, unknown>>(file =>
-    file.filename.includes('about/pillars.md')
-  )[0]?.attributes;
+  readonly aboutMeData = signal<AboutMeSection[]>(
+    injectContentFiles<{ sections: AboutMeSection[] }>(file =>
+      file.filename.includes('about/about.md')
+    )[0]?.attributes?.sections ?? []
+  );
 
 
 

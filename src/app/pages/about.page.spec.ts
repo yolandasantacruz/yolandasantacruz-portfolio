@@ -4,6 +4,10 @@ import { provideLocationMocks } from '@angular/common/testing';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { By } from '@angular/platform-browser';
 import { Testimonial } from './about.types';
+import { provideContent, withMarkdownRenderer } from '@analogjs/content';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import AboutComponent from './about.page';
 
 const MOCK_TESTIMONIALS: Testimonial[] = [
   {
@@ -85,3 +89,30 @@ describe('AboutTestimonialsComponent - Premium Testimonial & Blob Motion', () =>
 });
 
 
+
+describe('AboutComponent content loading', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AboutComponent],
+      providers: [
+        provideRouter([]),
+        provideLocationMocks(),
+        provideContent(withMarkdownRenderer()),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ]
+    }).compileComponents();
+  });
+
+  it('should load and parse about me sections correctly', async () => {
+    const fixture = TestBed.createComponent(AboutComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    // Wait for the asynchronous content load using a timeout promise
+    await new Promise(resolve => setTimeout(resolve, 200));
+    fixture.detectChanges();
+
+    expect(component.aboutMeData().length).toBeGreaterThan(0);
+  });
+});
