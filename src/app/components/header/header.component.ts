@@ -83,17 +83,28 @@ import { filter } from 'rxjs/operators';
       padding: 0.25rem 0;
     }
     .nav-links a:hover, .nav-links a.active { opacity: 1; }
-    .logo-link { display: flex; align-items: center; text-decoration: none; }
-    .logo-img {
+    .logo-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
       width: 40px;
       height: 40px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 2px 2px 4px rgba(0, 162, 154, 0.12), -2px -2px 4px rgba(184, 156, 224, 0.12);
+    }
+    .logo-link:hover, .logo-link.active {
+      box-shadow: 5px 5px 10px rgba(143, 189, 185, 0.25), -5px -5px 10px rgba(184, 156, 224, 0.25);
+    }
+    .logo-img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
-      filter: drop-shadow(2px 2px 4px rgba(0, 162, 154, 0.12)) drop-shadow(-2px -2px 4px rgba(184, 156, 224, 0.12));
+      border-radius: 50%;
       transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .logo-img:hover {
-      filter: drop-shadow(3px 3px 6px rgba(0, 162, 154, 0.25)) drop-shadow(-3px -3px 6px rgba(184, 156, 224, 0.25));
     }
 
     .nav-indicator {

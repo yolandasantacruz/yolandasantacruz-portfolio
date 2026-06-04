@@ -1,6 +1,7 @@
 # Project Backlog
 
 ## Todo
+- [ ] Bring the logo to SVG format
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
 - [ ] Link Medium articles properly and automatically

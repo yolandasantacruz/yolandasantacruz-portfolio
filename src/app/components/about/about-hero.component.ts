@@ -98,41 +98,41 @@ import { SocialIconService } from '../../services/social-icon.service';
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      color: #666; /* Gray color for icon until hover */
+      border: none;
+      color: #666;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.25s ease;
-      background: transparent;
+      transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #ffffff;
+      filter: drop-shadow(2px 2px 4px rgba(0, 162, 154, 0.12)) drop-shadow(-2px -2px 4px rgba(184, 156, 224, 0.12));
+    }
+
+    .social-btn:hover {
+      filter: drop-shadow(3px 3px 6px rgba(0, 162, 154, 0.25)) drop-shadow(-3px -3px 6px rgba(184, 156, 224, 0.25));
     }
 
     .social-btn.linkedin:hover {
-      border-color: #0077b5;
       background: #0077b5;
       color: #ffffff;
     }
 
     .social-btn.github:hover {
-      border-color: #181717;
       background: #181717;
       color: #ffffff;
     }
 
     .social-btn.twitter:hover {
-      border-color: #000000;
       background: #000000;
       color: #ffffff;
     }
 
     .social-btn.behance:hover {
-      border-color: #1769ff;
       background: #1769ff;
       color: #ffffff;
     }
 
     .social-btn.dribbble:hover {
-      border-color: #ea4c89;
       background: #ea4c89;
       color: #ffffff;
     }
@@ -140,6 +140,7 @@ import { SocialIconService } from '../../services/social-icon.service';
     .social-icon {
       width: 18px;
       height: 18px;
+      display: block;
     }
 
     .hero-left {
