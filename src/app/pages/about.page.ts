@@ -148,10 +148,24 @@ import {
     .about-main {
       padding-top: 8rem;
       padding-bottom: 12rem;
+      padding-right: 5rem;
+      box-sizing: border-box;
     }
 
     .about-main > * {
       display: block;
+    }
+
+    @media (max-width: 1024px) {
+      .about-main {
+        padding-right: 3.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-main {
+        padding-right: 0;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
