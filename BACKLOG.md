@@ -2,6 +2,8 @@
 
 ## Todo
 - [ ] Bring the logo to SVG format
+- [ ] Refactor CSS filter to use more performant properties
+- [ ] Remove usage of RxJS and use modern Angular APIs
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
 - [ ] Link Medium articles properly and automatically
