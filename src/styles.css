@@ -1,7 +1,6 @@
 :root {
   --max-width: 1200px;
   --container-padding: 0 2rem;
-  --scrollbar-width: 8px; /* Default scrollbar compensation width for SSR and initial render */
   --font-main: 'Nunito', sans-serif;
   --font-header: 'Libre Baskerville', system-ui, sans-serif;
   --color-text: #1a1a1a;

@@ -160,7 +160,9 @@ export default defineConfig(() => ({
           '/favicon.ico': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
           '/favicon-*.png': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
           '/apple-touch-icon.png': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
-          '/android-chrome-*.png': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } }
+          '/android-chrome-*.png': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
+          '/sw.js': { headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' } },
+          '/**': { headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' } }
         }
       }
     }),
