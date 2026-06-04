@@ -3,18 +3,18 @@
 ## Todo
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
-- [ ] Fix ADPList stats and add visual badge 
+- [ ] Link Medium articles properly and automatically
+- [ ] Fix ADPList stats and add visual badge  (automatically)
+- [ ] Review copy and narrative arc with AI
 - [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
-- [x] Add line to Resume page
+- [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
 - [ ] Improve animation of Resume page
 - [ ] Fix font sizes globally
 - [ ] Update new logo's color
 - [ ] Update fav icon with new logo
 - [ ] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
-- [ ] In the About me page, remove social links except for LinkedIn and GitHub
 - [ ] Remove social links that renders above the footer
 - [ ] Review information in the case studies
-- [x] Change "Philosophy" pill to About me
 - [ ] Improve formating of About me section in the home page
 - [ ] Consider changing color of the first testimonial blob to yellow
 - [ ] Fiz spacing of copy in the career overview section so it aligns with the image height
@@ -30,6 +30,9 @@
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
+- [x] Add line to Resume page
+- [x] In the About me page, remove social links except for LinkedIn and GitHub
+- [x] Change "Philosophy" pill to About me
 - [x] Standarize global nav bar positioning
 - [x] Optimize the CSS used in the project so classes and style declarations are reused instead of being declared multiple times. Don't cause any visual regressions. Update the design system accordingly.
 - [x] Bug: when the user moves the mouse for the first time, the mouse trail effect appears in the top-left corner of the screen. It should appear where the mouse is.

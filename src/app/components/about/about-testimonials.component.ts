@@ -29,14 +29,13 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     @if (items(); as testimonials) {
       @if (currentTestimonial(); as activeTestimonial) {
         <section class="premium-testimonial-section">
-          <div class="testimonial-card-wrapper">
+          <div class="testimonial-card-wrapper" [style.--testimonial-shadow-color]="currentBlobColor()">
             <svg 
               viewBox="0 0 1200 600" 
               preserveAspectRatio="none" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg" 
-              class="testimonial-wavy-bg"
-              [style.--testimonial-shadow-color]="currentBlobColor()">
+              class="testimonial-wavy-bg">
               <path #wavyBlobPath class="wavy-card-path" [attr.d]="blobAnimationService.initialBlobPath" [style.fill]="currentBlobColor()" />
             </svg>
             <div class="testimonial-container flex flex-col">
@@ -104,6 +103,33 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       margin: 0 auto;
     }
 
+    .testimonial-card-wrapper::before,
+    .testimonial-card-wrapper::after {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(50px);
+      will-change: transform;
+      opacity: 0.8;
+      z-index: -2;
+    }
+
+    .testimonial-card-wrapper::before {
+      background: rgba(0, 162, 154, 0.3);
+      bottom: -20px;
+      right: -20px;
+    }
+
+    .testimonial-card-wrapper::after {
+      background: var(--testimonial-shadow-color, rgba(0, 162, 154, 0.3));
+      top: -20px;
+      left: -20px;
+      transition: --testimonial-shadow-color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
     .testimonial-wavy-bg {
       position: absolute;
       top: 0;
@@ -112,8 +138,6 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px var(--testimonial-shadow-color, rgba(0, 162, 154, 0.2)));
-      transition: filter 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .wavy-card-path {
@@ -288,22 +312,24 @@ export class AboutTestimonialsComponent implements OnDestroy {
         }
 
         this.ngZone.runOutsideAngular(() => {
-          this.resizeObserver = new ResizeObserver(() => {
-            this.ngZone.run(() => this.updateHeight());
-          });
+          if (typeof globalThis.ResizeObserver !== 'undefined') {
+            this.resizeObserver = new ResizeObserver(() => {
+              this.ngZone.run(() => this.updateHeight());
+            });
 
-          this.slideElements?.forEach(slide => {
-            this.resizeObserver?.observe(slide.nativeElement);
-          });
-
-          // Re-observe if the list changes
-          this.slideElements?.changes.subscribe(() => {
-            this.resizeObserver?.disconnect();
             this.slideElements?.forEach(slide => {
               this.resizeObserver?.observe(slide.nativeElement);
             });
-            this.ngZone.run(() => this.updateHeight());
-          });
+
+            // Re-observe if the list changes
+            this.slideElements?.changes.subscribe(() => {
+              this.resizeObserver?.disconnect();
+              this.slideElements?.forEach(slide => {
+                this.resizeObserver?.observe(slide.nativeElement);
+              });
+              this.ngZone.run(() => this.updateHeight());
+            });
+          }
         });
 
         // Trigger initial height calculation

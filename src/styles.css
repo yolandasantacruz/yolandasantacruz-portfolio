@@ -80,6 +80,12 @@
   --section-pill-bridge: #66b9bf;
 }
 
+@property --testimonial-shadow-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(0, 162, 154, 0.2);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -87,7 +93,6 @@
 }
 
 html {
-  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
 }
 

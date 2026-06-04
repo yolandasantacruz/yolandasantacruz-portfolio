@@ -174,15 +174,48 @@ import { AboutMeSection } from '../../pages/about.types';
       border-radius: 100px;
     }
 
+    .section-visual::before,
+    .section-visual::after {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(50px);
+      will-change: transform;
+      opacity: 0.9;
+      z-index: -1;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .section-visual::before {
+      background: #FFE59E;
+      bottom: -20px;
+      right: -20px;
+    }
+
+    .section-visual::after {
+      background: #FFD5BA;
+      top: -20px;
+      left: -20px;
+    }
+
+    .section-visual:hover::before,
+    .section-visual:hover::after {
+      opacity: 1.05;
+    }
+
     .section-visual img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(200px 100px 250px #FFF8E0) drop-shadow(-200px -100px 250px #FFF0E0) brightness(1);
-      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: brightness(1);
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .section-visual img:hover {
-      filter: drop-shadow(200px 100px 250px #FFF8E0) drop-shadow(-200px -100px 250px #FFF0E0) brightness(1.05);
+      filter: brightness(1.05);
+      transform: scale(1.01);
     }
 
     .quiet-metrics-box {

@@ -75,8 +75,8 @@ import {
               <feGaussianBlur stdDeviation="90"/>
             </filter>
             <linearGradient id="about-g-trace" x1="-150" y1="-50" x2="404" y2="3600" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#8AE7DA" stop-opacity="0.3"/>
-              <stop offset="30%" stop-color="#E2F6BC" stop-opacity="0.3"/>
+              <stop offset="0%" stop-color="#8AE7DA" stop-opacity="0.8"/>
+              <stop offset="30%" stop-color="#E2F6BC" stop-opacity="0.8"/>
               <stop offset="45%" stop-color="#E2F6BC" stop-opacity="1.0"/>
               <stop offset="100%" stop-color="#FCFBE9" stop-opacity="1.0"/>
             </linearGradient>
@@ -134,7 +134,7 @@ import {
     .fluid-line-bg svg {
       width: 100%;
       height: 100%;
-      animation: aboutTraceFloat 12s ease-in-out infinite;
+      /* Static placement allows browser to rasterize the blur filter once and cache on GPU */
       transform-origin: center;
       will-change: transform;
       overflow: visible;
@@ -152,12 +152,6 @@ import {
 
     .about-main > * {
       display: block;
-    }
-
-    .about-main > *:not(:first-child) {
-      scroll-snap-align: start;
-      scroll-snap-stop: normal;
-      scroll-margin-top: 6rem;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -218,7 +212,8 @@ export default class AboutComponent implements OnInit, OnDestroy {
             }
           });
         }, {
-          rootMargin: '-20% 0px -50% 0px',
+          // Narrow scanner band in the upper-middle viewport for stable scroll tracking of dynamic sections
+          rootMargin: '-25% 0px -70% 0px',
           threshold: 0
         });
 
@@ -235,7 +230,7 @@ export default class AboutComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       const element = this.document.getElementById(id);
       if (element && typeof element.scrollIntoView === 'function') {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   }

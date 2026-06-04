@@ -181,12 +181,45 @@ import { SocialIconService } from '../../services/social-icon.service';
     .hero-portrait {
       height: 100%;
       object-fit: cover;
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px #EBFFC6) brightness(1);
-      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: brightness(1);
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .hero-portrait:hover {
-      filter: drop-shadow(200px 100px 250px rgba(0, 162, 154, 0.2)) drop-shadow(-200px -100px 250px #EBFFC6) brightness(1.05);
+      filter: brightness(1.05);
+      transform: scale(1.01);
+    }
+
+    .portrait-glow {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .portrait-glow::before,
+    .portrait-glow::after {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(50px);
+      will-change: transform;
+      opacity: 0.85;
+    }
+
+    .portrait-glow::before {
+      background: rgba(0, 162, 154, 0.35);
+      bottom: -20px;
+      right: -20px;
+    }
+
+    .portrait-glow::after {
+      background: #D2FCA3;
+      top: -20px;
+      left: -20px;
     }
 
     @media (max-width: 768px) {

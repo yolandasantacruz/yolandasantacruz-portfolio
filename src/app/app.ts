@@ -72,7 +72,9 @@ export class App {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => {
-        win.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        if (typeof win.scrollTo === 'function') {
+          win.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }
 
         const mainEl = this.document.querySelector('main');
         if (mainEl) {
