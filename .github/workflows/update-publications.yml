@@ -1,4 +1,4 @@
-name: Discover Publications
+name: Update Publications
 
 on:
   schedule:

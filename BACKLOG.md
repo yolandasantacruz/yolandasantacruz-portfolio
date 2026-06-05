@@ -6,7 +6,6 @@
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
 - [ ] Link Medium articles properly and automatically
-- [ ] Fix ADPList stats and add visual badge  (automatically)
 - [ ] Review copy and narrative arc with AI
 - [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
 - [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
@@ -45,3 +44,4 @@
 - [x] Bring the mouse trail over images, to have the maximum z-index to overlap any content.
 - [x] Replace hero-bg-trace with the SVG I will provide as an attachment
 - [x] Refactor CSS filter to use more performant properties (radial gradients instead of CSS blur filters; SVG filters preserved)
+- [x] Fix ADPList stats and add visual badge (automatically)
