@@ -41,10 +41,10 @@ export const routeMeta: RouteMeta = {
                 
                 @for (job of resumeData.workExperience; track job.title + job.meta) {
                   <div class="job-entry">
-                    <div class="job-header">
-                      <span class="job-title">{{ job.title }}</span>
-                      <span class="job-meta">{{ job.meta }}</span>
-                    </div>
+                    <header class="job-header">
+                      <h1 class="job-title">{{ job.title }}</h1>
+                      <p class="job-meta">{{ job.meta }}</p>
+                    </header>
                     <ul class="job-bullets">
                       @for (bullet of job.bullets; track bullet) {
                         <li>{{ bullet }}</li>
@@ -153,9 +153,6 @@ export const routeMeta: RouteMeta = {
       color: var(--color-primary);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      padding-bottom: 1rem;
-      margin-bottom: 3rem;
     }
 
     .job-entry {
@@ -168,8 +165,8 @@ export const routeMeta: RouteMeta = {
       content: "";
       position: absolute;
       left: 5px;
-      top: 0;
-      bottom: -3.5rem;
+      top: 15px;
+      bottom: -4.5rem;
       width: 1px;
       background: #EBEBEB;
       z-index: 1;
@@ -180,15 +177,14 @@ export const routeMeta: RouteMeta = {
     }
 
     .job-entry:last-child::before {
-      bottom: auto;
-      height: 14px;
+      height: 0;
     }
 
     .job-entry::after {
       content: "";
       position: absolute;
       left: 0;
-      top: 9px;
+      top: 15px;
       width: 11px;
       height: 11px;
       border-radius: 50%;
@@ -208,13 +204,14 @@ export const routeMeta: RouteMeta = {
       font-size: 1.5rem;
       font-weight: 500;
       color: #111;
-      line-height: 1.2;
+      line-height: 1.8;
+      margin-bottom: 0;
     }
 
     .job-meta {
       font-size: 1.1rem;
-      color: var(--color-text-muted);
       line-height: 1.4;
+      margin-bottom: 0;
     }
 
     .job-bullets {
