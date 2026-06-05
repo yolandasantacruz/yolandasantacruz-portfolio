@@ -21,6 +21,25 @@ import { AboutMeSection } from '../../pages/about.types';
                 <span class="section-badge text-base font-bold">{{ section.badge }}</span>
                 <h3 class="section-title text-3xl">{{ section.title }}</h3>
                 <div class="section-desc text-base" [innerHTML]="getRenderedHtml(section.description)"></div>
+
+                @if (section.linkUrl && section.linkLabel) {
+                  <div class="section-cta">
+                    <a [href]="section.linkUrl" target="_blank" rel="noopener noreferrer" class="section-btn flex items-center font-semibold text-base">
+                      {{ section.linkLabel }} &rarr;
+                    </a>
+                  </div>
+                }
+                
+                @if (section.metrics) {
+                  <div class="quiet-metrics-box">
+                    @for (metric of section.metrics; track metric.label) {
+                      <div class="quiet-metric flex flex-col">
+                        <span class="metric-num text-2xl">{{ metric.num }}</span>
+                        <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
+                      </div>
+                    }
+                  </div>
+                }
               </div>
 
               <div class="section-visual">
