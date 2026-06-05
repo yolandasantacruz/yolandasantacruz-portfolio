@@ -2,7 +2,6 @@
 
 ## Todo
 - [ ] Bring the logo to SVG format
-- [ ] Refactor CSS filter to use more performant properties
 - [ ] Remove usage of RxJS and use modern Angular APIs
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
@@ -45,3 +44,4 @@
 - [x] Install Husky.
 - [x] Bring the mouse trail over images, to have the maximum z-index to overlap any content.
 - [x] Replace hero-bg-trace with the SVG I will provide as an attachment
+- [x] Refactor CSS filter to use more performant properties (radial gradients instead of CSS blur filters; SVG filters preserved)

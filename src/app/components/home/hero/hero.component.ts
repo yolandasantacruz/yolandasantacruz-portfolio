@@ -31,8 +31,8 @@ import { HomeHeroData } from '../../../pages/home.types';
           <!-- sharp bright core -->
           <path d="M -150,667 L 0,651.5 C 257.667 624.667 898 432 1159 -55 L 1400,-505" stroke="url(#g-trace)" stroke-width="80"/>
         </svg>
-
       </div>
+
 
       <div class="hero-content">
         <span class="hero-tag">{{ data().tag }}</span>

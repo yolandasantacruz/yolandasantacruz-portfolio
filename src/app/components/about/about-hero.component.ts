@@ -206,19 +206,17 @@ import { SocialIconService } from '../../services/social-icon.service';
       height: 320px;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(50px);
-      will-change: transform;
       opacity: 0.85;
     }
 
     .portrait-glow::before {
-      background: rgba(0, 162, 154, 0.35);
+      background: radial-gradient(circle, rgba(0, 162, 154, 0.35) 0%, rgba(0, 162, 154, 0) 70%);
       bottom: -20px;
       right: -20px;
     }
 
     .portrait-glow::after {
-      background: #D2FCA3;
+      background: radial-gradient(circle, #D2FCA3 0%, rgba(210, 252, 163, 0) 70%);
       top: -20px;
       left: -20px;
     }

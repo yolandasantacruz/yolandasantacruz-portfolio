@@ -74,3 +74,7 @@ Primary contributor is a product designer. Communicate as a "Technical Design Pa
 ## Rule 9: Framework-Native Capabilities (No Custom Redundancies)
 - **Prefer Built-ins**: Prioritize native Analog and Angular platform features (e.g., built-in prerendering configurations, native sitemap generation, content loaders, standard route handlers) over writing custom node scripts, build hooks, or middleware.
 - **Sitemap Rule**: Sitemaps must be generated using the built-in `sitemap` option within the `prerender` config of `@analogjs/platform` inside `vite.config.ts`, rather than custom HTML scanner/prerender scripts.
+
+## Rule 10: Hands-Off Version Control (Git Commits & Pushes)
+- **No Git Commits or Pushes**: AI agents are strictly prohibited from executing `git commit`, `git push`, or any commands that alter/sync the repository history.
+- **Human-Driven Version Control**: AI agents must only edit, create, or delete the necessary workspace files, leaving all staging, committing, and pushing to be manually reviewed and executed by the user.
