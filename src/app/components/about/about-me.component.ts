@@ -44,18 +44,18 @@ import { AboutMeSection } from '../../pages/about.types';
 
               <div class="section-visual">
                 @if (section.videoUrl) {
-                  <ng-container *ngTemplateOutlet="videoPlayer; context: { $implicit: section }"></ng-container>
+                  <ng-container *ngTemplateOutlet="videoPlayer; context: { $implicit: section }" />
                 } @else {
-                  <ng-container *ngTemplateOutlet="imageVisual; context: { $implicit: section }"></ng-container>
+                  <ng-container *ngTemplateOutlet="imageVisual; context: { $implicit: section }" />
                 }
               </div>
             } @else {
               <!-- Visual on Left, Text on Right -->
               <div class="section-visual">
                 @if (section.videoUrl) {
-                  <ng-container *ngTemplateOutlet="videoPlayer; context: { $implicit: section }"></ng-container>
+                  <ng-container *ngTemplateOutlet="videoPlayer; context: { $implicit: section }" />
                 } @else {
-                  <ng-container *ngTemplateOutlet="imageVisual; context: { $implicit: section }"></ng-container>
+                  <ng-container *ngTemplateOutlet="imageVisual; context: { $implicit: section }" />
                 }
               </div>
 
