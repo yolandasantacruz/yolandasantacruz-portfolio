@@ -253,13 +253,14 @@ export const routeMeta: RouteMeta = {
         var(--section-bg-bridge)    6%,
         var(--section-bg-bridge)    100%
       );
+      padding-bottom: 0 !important;
     }
 
     .bridge-content {
       justify-content: space-between;
       min-height: 100vh;
       padding-top: 6rem;
-      padding-bottom: 2rem;
+      padding-bottom: 0;
     }
 
     .bridge-card {

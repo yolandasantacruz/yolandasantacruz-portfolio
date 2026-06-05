@@ -37,7 +37,7 @@ describe('ResumeComponent', () => {
 
     const workExperience = fixture.debugElement.query(By.css('.work-experience'));
     expect(workExperience).toBeTruthy();
-    
+
     const jobEntries = fixture.debugElement.queryAll(By.css('.job-entry'));
     expect(jobEntries.length).toBe(6); // 6 companies: Discover, Upside, Fetch, Zelenia, Home61, PSC
   });
@@ -49,7 +49,7 @@ describe('ResumeComponent', () => {
     const sidebarSections = fixture.debugElement.queryAll(By.css('.sidebar-section'));
     expect(sidebarSections.length).toBe(5); // Software, Skills, Languages, Additional, Education
 
-    const educationSection = sidebarSections.find(sec => 
+    const educationSection = sidebarSections.find(sec =>
       sec.nativeElement.innerHTML.includes('Education')
     );
     expect(educationSection).toBeTruthy();
@@ -59,8 +59,8 @@ describe('ResumeComponent', () => {
     const fixture = TestBed.createComponent(ResumeComponent);
     fixture.detectChanges();
 
-    const downloadBtn = fixture.debugElement.query(By.css('.download-btn'));
+    const downloadBtn = fixture.debugElement.query(By.css('.btn-link'));
     expect(downloadBtn).toBeTruthy();
-    expect(downloadBtn.nativeElement.textContent.trim()).toBe('DOWNLOAD RESUME');
+    expect(downloadBtn.nativeElement.textContent.trim()).toBe('Download PDF');
   });
 });

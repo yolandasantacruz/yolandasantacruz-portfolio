@@ -141,7 +141,7 @@ export class HeaderComponent {
   private platformId = inject(PLATFORM_ID);
   private ngZone = inject(NgZone);
 
-  readonly logoSrc = 'images/logo.png';
+  readonly logoSrc = 'images/logo.svg';
 
   readonly activeIndex = signal(0);
   readonly indicatorLeft = signal(0);

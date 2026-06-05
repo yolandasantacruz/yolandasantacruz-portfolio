@@ -315,12 +315,16 @@ analog-markdown blockquote p {
    ("DOWNLOAD RESUME"), and the about timeline ("View My Resume").
    ========================================================================== */
 @keyframes blob-morph {
-  0%, 100% {
+
+  0%,
+  100% {
     border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
   }
+
   33% {
     border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
   }
+
   66% {
     border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
   }
@@ -344,6 +348,7 @@ analog-markdown blockquote p {
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   animation: blob-morph 6s ease-in-out infinite alternate;
+  white-space: nowrap;
 }
 
 .btn-blob:hover {
@@ -374,6 +379,7 @@ analog-markdown blockquote p {
   padding: 0;
   cursor: pointer;
   transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .btn-link::after {
@@ -664,7 +670,7 @@ button:focus-visible,
   transform-origin: right center;
   opacity: 0;
   pointer-events: none;
-  
+
   background: #ffffff;
   border: 1.5px solid color-mix(in srgb, var(--pill-color) 20%, white);
   border-radius: 100px;
@@ -683,7 +689,7 @@ button:focus-visible,
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  
+
   transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -734,11 +740,15 @@ button:focus-visible,
 }
 
 @media (max-width: 1024px) {
-  .floating-side-rail { right: 1rem; }
+  .floating-side-rail {
+    right: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .floating-side-rail { display: none; }
+  .floating-side-rail {
+    display: none;
+  }
 }
 
 /* Utility to hide scrollbars globally or on specific elements */
@@ -746,6 +756,7 @@ button:focus-visible,
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
 }
+
 .no-scrollbar::-webkit-scrollbar {
   display: none !important;
 }

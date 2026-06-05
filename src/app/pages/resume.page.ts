@@ -104,8 +104,8 @@ export const routeMeta: RouteMeta = {
 
           @if (resumeData.downloadUrl) {
             <div class="download-section flex justify-center">
-              <a [href]="resumeData.downloadUrl" download class="btn-blob download-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
-                DOWNLOAD RESUME
+              <a [href]="resumeData.downloadUrl" download class="btn-link" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                Download PDF
               </a>
             </div>
           }
@@ -129,7 +129,6 @@ export const routeMeta: RouteMeta = {
 
     .resume-content {
       padding-top: 4rem;
-      padding-bottom: 8rem;
     }
 
     .page-title {
@@ -145,7 +144,6 @@ export const routeMeta: RouteMeta = {
       display: grid;
       grid-template-columns: 1fr 300px;
       gap: 6rem;
-      margin-bottom: 6rem;
     }
 
     .section-heading {
@@ -291,15 +289,6 @@ export const routeMeta: RouteMeta = {
 
     .education-entry {
       gap: 0.25rem;
-    }
-
-    .download-section {
-      margin-top: 4rem;
-    }
-
-    /* Width override for the resume CTA — global .btn-blob defaults to 200px */
-    .download-btn {
-      --btn-blob-width: 220px;
     }
 
     @media (max-width: 900px) {
