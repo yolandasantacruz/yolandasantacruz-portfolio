@@ -65,7 +65,7 @@ export const routeMeta: RouteMeta = {
       @for (project of projects(); track project.title; let i = $index) {
         <section [id]="'project-' + i" class="snap-section project-section flex items-center justify-center">
           <div class="section-content">
-            <portfolio-project-card class="scroll-reveal" [project]="{ ...project, reverse: i % 2 !== 0 }" />
+            <portfolio-project-card [project]="{ ...project, reverse: i % 2 !== 0 }" />
           </div>
         </section>
       }
@@ -270,7 +270,7 @@ export const routeMeta: RouteMeta = {
 
     .bridge-tag {
       letter-spacing: 0.2em;
-      color: #3b9f98;
+      color: var(--color-primary);
       text-transform: uppercase;
     }
 
@@ -384,6 +384,8 @@ export default class PortfolioHomeComponent {
         this.document.querySelectorAll('.snap-section').forEach(section => {
           observer.observe(section);
         });
+
+
       }
     });
   }

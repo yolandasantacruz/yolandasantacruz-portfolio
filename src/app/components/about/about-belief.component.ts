@@ -33,7 +33,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
     .belief-dash {
       width: 60px;
       height: 2px;
-      background: #5ed6cc;
+      background: var(--color-accent);
       margin: 0 auto;
     }
 

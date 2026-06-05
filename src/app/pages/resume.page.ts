@@ -37,10 +37,10 @@ export const routeMeta: RouteMeta = {
             <div class="main-column">
 
               <section class="work-experience flex flex-col">
-                <h3 class="section-heading scroll-reveal">Work Experience</h3>
+                <h3 class="section-heading">Work Experience</h3>
                 
                 @for (job of resumeData.workExperience; track job.title + job.meta) {
-                  <div class="job-entry scroll-reveal">
+                  <div class="job-entry">
                     <div class="job-header">
                       <span class="job-title">{{ job.title }}</span>
                       <span class="job-meta">{{ job.meta }}</span>
@@ -57,28 +57,28 @@ export const routeMeta: RouteMeta = {
 
             <aside class="sidebar flex flex-col gap-16">
               @if (resumeData.software) {
-                <div class="sidebar-section flex flex-col scroll-reveal">
+                <div class="sidebar-section flex flex-col">
                   <h3 class="section-heading">Software</h3>
                   <p>{{ resumeData.software }}</p>
                 </div>
               }
 
               @if (resumeData.skills) {
-                <div class="sidebar-section scroll-reveal">
+                <div class="sidebar-section">
                   <h3 class="section-heading">Skills</h3>
                   <p>{{ resumeData.skills }}</p>
                 </div>
               }
 
               @if (resumeData.languages) {
-                <div class="sidebar-section scroll-reveal">
+                <div class="sidebar-section">
                   <h3 class="section-heading">Languages</h3>
                   <p>{{ resumeData.languages }}</p>
                 </div>
               }
 
               @if (resumeData.additional && resumeData.additional.length > 0) {
-                <div class="sidebar-section flex flex-col scroll-reveal">
+                <div class="sidebar-section flex flex-col">
                   <h3 class="section-heading">Additional</h3>
                   <ul class="sidebar-list no-bullets">
                     @for (item of resumeData.additional; track item) {
@@ -89,7 +89,7 @@ export const routeMeta: RouteMeta = {
               }
 
               @if (resumeData.education && resumeData.education.length > 0) {
-                <div class="sidebar-section flex flex-col scroll-reveal">
+                <div class="sidebar-section flex flex-col">
                   <h3 class="section-heading">Education</h3>
                   @for (edu of resumeData.education; track edu.degree + edu.school) {
                     <div class="education-entry flex flex-col">
@@ -103,7 +103,7 @@ export const routeMeta: RouteMeta = {
           </div>
 
           @if (resumeData.downloadUrl) {
-            <div class="download-section flex justify-center scroll-reveal">
+            <div class="download-section flex justify-center">
               <a [href]="resumeData.downloadUrl" download class="btn-blob download-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
                 DOWNLOAD RESUME
               </a>
@@ -152,7 +152,7 @@ export const routeMeta: RouteMeta = {
       font-family: var(--font-main);
       font-size: 1.2rem;
       font-weight: 700;
-      color: #3b9f98;
+      color: var(--color-primary);
       letter-spacing: 0.2em;
       text-transform: uppercase;
       border-bottom: 1px solid rgba(0,0,0,0.08);
@@ -194,7 +194,7 @@ export const routeMeta: RouteMeta = {
       width: 11px;
       height: 11px;
       border-radius: 50%;
-      background: #00A29A;
+      background: var(--color-primary);
       z-index: 2;
     }
 
@@ -236,7 +236,7 @@ export const routeMeta: RouteMeta = {
 
     .job-bullets li::before {
       content: "•";
-      color: #3b9f98;
+      color: var(--color-primary);
       position: absolute;
       left: 0.25rem;
       top: 0;
@@ -276,7 +276,7 @@ export const routeMeta: RouteMeta = {
 
     .sidebar-list li::before {
       content: "•";
-      color: #3b9f98;
+      color: var(--color-primary);
       position: absolute;
       left: -1rem;
     }

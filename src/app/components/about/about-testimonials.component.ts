@@ -118,7 +118,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .testimonial-card-wrapper::before {
-      background: rgba(0, 162, 154, 0.3);
+      background: color-mix(in srgb, var(--color-primary) 30%, transparent);
       bottom: -20px;
       right: -20px;
     }
@@ -153,7 +153,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       height: 64px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #5ed6cc;
+      border: 2px solid var(--color-accent);
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
@@ -161,9 +161,9 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      border: 2px solid #5ed6cc;
+      border: 2px solid var(--color-accent);
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      background: linear-gradient(135deg, #5ed6cc, #3b9f98);
+      background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
       color: #fff;
       font-family: var(--font-header);
       letter-spacing: -0.02em;
@@ -184,7 +184,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .author-link:hover {
-      color: #3b9f98; /* Contrast Accent from design system */
+      color: var(--color-primary); /* Contrast Accent from design system */
     }
 
     .lnk-icon {
@@ -227,8 +227,8 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
     }
 
     .quote-nav-btn:hover:not(:disabled) {
-      border-color: #5ed6cc;
-      background: #5ed6cc;
+      border-color: var(--color-accent);
+      background: var(--color-accent);
       color: #111;
       transform: scale(1.05);
     }

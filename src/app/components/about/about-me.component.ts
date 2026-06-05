@@ -155,7 +155,7 @@ import { AboutMeSection } from '../../pages/about.types';
     .section-badge {
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #3b9f98;
+      color: var(--color-primary);
       margin-bottom: 1.5rem;
       display: inline-block;
     }
@@ -187,8 +187,8 @@ import { AboutMeSection } from '../../pages/about.types';
     }
 
     .comp-val {
-      color: #3b9f98;
-      background: rgba(59, 159, 152, 0.1);
+      color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
       padding: 0.25rem 0.75rem;
       border-radius: 100px;
     }
@@ -329,7 +329,7 @@ import { AboutMeSection } from '../../pages/about.types';
 
     .play-trigger:focus-visible {
       outline: none;
-      box-shadow: inset 0 0 0 3px #3b9f98;
+      box-shadow: inset 0 0 0 3px var(--color-primary);
     }
 
     .video-thumbnail {

@@ -6,6 +6,8 @@
   --color-text: #1a1a1a;
   --color-text-muted: #666;
   --color-bg: #ffffff;
+  --color-primary: #3b9f98;
+  --color-accent: #5ed6cc;
 
   /* ==========================================================================
      TYPOGRAPHY TOKENS
@@ -265,41 +267,11 @@ analog-markdown blockquote p {
   animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Scroll Reveal CSS Utility (Progressive Enhancement) */
-.scroll-reveal {
-  opacity: 1;
-  transform: none;
-}
-
-@supports (animation-timeline: view()) {
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(60px);
-    will-change: transform, opacity;
-    animation: reveal both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 30%;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
 
   .fade-in-on-load,
   .fade-in-stagger-1,
-  .fade-in-stagger-2,
-  .scroll-reveal {
+  .fade-in-stagger-2 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -358,8 +330,8 @@ analog-markdown blockquote p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 200, 201, 0.1);
-  color: #3b9f98;
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  color: var(--color-primary);
   width: var(--btn-blob-width, 200px);
   height: 76px;
   font-family: var(--font-main);
@@ -375,13 +347,13 @@ analog-markdown blockquote p {
 }
 
 .btn-blob:hover {
-  background: rgba(0, 200, 201, 0.2);
-  color: #3b9f98;
+  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  color: var(--color-primary);
   transform: scale(1.05);
 }
 
 .btn-blob:focus-visible {
-  outline: 2px solid #3b9f98;
+  outline: 2px solid var(--color-primary);
   outline-offset: 4px;
   border-radius: 4px;
 }
@@ -391,7 +363,7 @@ analog-markdown blockquote p {
   display: inline-flex;
   align-items: center;
   background: transparent;
-  color: #3b9f98;
+  color: var(--color-primary);
   font-family: var(--font-main);
   font-size: 1.2rem;
   font-weight: 700;
@@ -413,7 +385,7 @@ analog-markdown blockquote p {
 }
 
 .btn-link:hover {
-  color: #246560;
+  color: color-mix(in srgb, var(--color-primary) 65%, #000000);
   /* Darker teal on hover for contrast */
 }
 
@@ -422,7 +394,7 @@ analog-markdown blockquote p {
 }
 
 .btn-link:focus-visible {
-  outline: 2px solid #3b9f98;
+  outline: 2px solid var(--color-primary);
   outline-offset: 4px;
   border-radius: 4px;
 }
@@ -458,7 +430,7 @@ analog-markdown blockquote p {
 a:focus-visible,
 button:focus-visible,
 [role="button"]:focus-visible {
-  outline: 2px solid #3b9f98;
+  outline: 2px solid var(--color-primary);
   outline-offset: 4px;
 }
 

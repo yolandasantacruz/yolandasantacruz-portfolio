@@ -79,7 +79,7 @@ import { RouterLink } from '@angular/router';
     .section-tag {
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #3b9f98;
+      color: var(--color-primary);
       margin-bottom: 1rem;
       display: inline-block;
     }
@@ -103,7 +103,7 @@ import { RouterLink } from '@angular/router';
       width: 72px;
       height: 72px;
       background: #ffffff;
-      border: 1px solid rgba(59, 159, 152, 0.2);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
       border-radius: 16px;
       flex-shrink: 0;
       overflow: hidden;
@@ -134,7 +134,7 @@ import { RouterLink } from '@angular/router';
     }
 
     .position-period {
-      color: #3b9f98;
+      color: var(--color-primary);
       letter-spacing: 0.05em;
     }
 

@@ -43,13 +43,13 @@ import { PublicationsData } from '../../pages/about.types';
   `,
   styles: `
     .published-section {
-      margin-bottom: 16rem;
+      margin-bottom: 0;
     }
 
     .section-tag {
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #3b9f98;
+      color: var(--color-primary);
       margin-bottom: 1rem;
       display: inline-block;
     }
@@ -131,7 +131,7 @@ import { PublicationsData } from '../../pages/about.types';
     }
 
     @media (max-width: 768px) {
-      .published-section { margin-bottom: 10rem; }
+      .published-section { margin-bottom: 0; }
       .works-grid { grid-template-columns: 1fr; }
       .published-heading { font-size: 2rem; }
     }

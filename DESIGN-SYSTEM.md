@@ -31,10 +31,10 @@ The design system uses a curated, light-first palette focused on clarity and pre
 * **Text (Primary)**: `--color-text: #1a1a1a`
 * **Text (Muted)**: `--color-text-muted: #666666`
 * **Accents (Teal/Mint/Yellow)**:
-    * Primary Accent: `#5ed6cc` (Teal)
+    * Primary Accent (`--color-accent`): `#5ed6cc` (Teal, used for decoration highlights, borders, separators)
     * Secondary Accent: `#8edeae` (Mint)
     * Highlight: `#f5ea8c` (Light Yellow)
-    * Contrast Accent: `#3b9f98` (Dark Teal)
+    * Contrast Accent (`--color-primary`): `#3b9f98` (Dark Teal, used for readable text tags, links, headings, and buttons)
 * **Section Pastel System**: See [Section 9](#9-homepage-section-pastel-color-system) for the mathematically normalized per-section backgrounds.
 
 ## 5. Mouse Trail Background
@@ -67,9 +67,9 @@ The `.btn-blob` global utility class is the **single source of truth** for the m
 
 ### Design Tokens
 
-* **Background**: `transparent` (no background fills)
+* **Background**: `color-mix(in srgb, var(--color-accent) 15%, transparent)`
 * **Border/Shadow**: `none`
-* **Color**: `#3b9f98` (Dark Teal Contrast Accent) -> `#246560` (Deep Teal) on hover
+* **Color**: `var(--color-primary)` (Dark Teal Contrast Accent) -> `color-mix(in srgb, var(--color-primary) 65%, #000000)` on hover
 * **Typography**: Nunito, `1.2rem`, bold (`700`), uppercase, letter-spacing `0.15em`
 * **Decoration**: Inline arrow `→` appended via CSS `::after` with a `0.5rem` left margin
 * **Hover Interaction**: Smooth translation of the arrow (`transform: translateX(6px)`) using a standard curve `cubic-bezier(0.16, 1, 0.3, 1)` to keep the visual response alive and premium

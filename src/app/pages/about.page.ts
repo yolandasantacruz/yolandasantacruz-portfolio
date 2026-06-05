@@ -97,11 +97,11 @@ import {
 
         <main class="about-main">
           <portfolio-about-hero id="hero" [data]="heroData" [socials]="socialsData" />
-          <portfolio-about-belief [content]="beliefContent()" class="scroll-reveal" />
-          <portfolio-about-me [data]="aboutMeData()" class="scroll-reveal" />
-          <portfolio-about-testimonials id="testimonials" [items]="testimonialItems" class="scroll-reveal" />
-          <portfolio-about-timeline id="timeline" [data]="timelineData" class="scroll-reveal" />
-          <portfolio-about-publications id="publications" [data]="publicationsData" class="scroll-reveal" />
+          <portfolio-about-belief [content]="beliefContent()" />
+          <portfolio-about-me [data]="aboutMeData()" />
+          <portfolio-about-testimonials id="testimonials" [items]="testimonialItems" />
+          <portfolio-about-timeline id="timeline" [data]="timelineData" />
+          <portfolio-about-publications id="publications" [data]="publicationsData" />
         </main>
 
         <portfolio-footer />
@@ -147,7 +147,7 @@ import {
 
     .about-main {
       padding-top: 8rem;
-      padding-bottom: 12rem;
+      padding-bottom: 4rem;
       padding-right: 5rem;
       box-sizing: border-box;
     }
@@ -235,6 +235,8 @@ export default class AboutComponent implements OnInit, OnDestroy {
         targets.forEach(target => {
           observer.observe(target);
         });
+
+
       }
     });
   }
