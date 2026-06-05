@@ -5,7 +5,6 @@
 - [ ] Remove usage of RxJS and use modern Angular APIs
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
-- [ ] Link Medium articles properly and automatically
 - [ ] Review copy and narrative arc with AI
 - [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
 - [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
@@ -31,6 +30,7 @@
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
+- [x] Link Medium articles properly and automatically
 - [x] Add line to Resume page
 - [x] In the About me page, remove social links except for LinkedIn and GitHub
 - [x] Change "Philosophy" pill to About me
