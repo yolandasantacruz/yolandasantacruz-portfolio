@@ -201,19 +201,21 @@ import { AboutMeSection } from '../../pages/about.types';
       height: 320px;
       border-radius: 50%;
       pointer-events: none;
+      filter: blur(50px);
+      will-change: transform;
       opacity: 0.9;
       z-index: -1;
       transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .section-visual::before {
-      background: radial-gradient(circle, #FFE59E 0%, rgba(255, 229, 158, 0) 70%);
+      background: #FFE59E;
       bottom: -20px;
       right: -20px;
     }
 
     .section-visual::after {
-      background: radial-gradient(circle, #FFD5BA 0%, rgba(255, 213, 186, 0) 70%);
+      background: #FFD5BA;
       top: -20px;
       left: -20px;
     }

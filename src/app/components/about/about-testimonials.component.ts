@@ -111,18 +111,20 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
       height: 320px;
       border-radius: 50%;
       pointer-events: none;
+      filter: blur(50px);
+      will-change: transform;
       opacity: 0.8;
       z-index: -2;
     }
 
     .testimonial-card-wrapper::before {
-      background: radial-gradient(circle, rgba(0, 162, 154, 0.3) 0%, rgba(0, 162, 154, 0) 70%);
+      background: rgba(0, 162, 154, 0.3);
       bottom: -20px;
       right: -20px;
     }
 
     .testimonial-card-wrapper::after {
-      background: radial-gradient(circle, var(--testimonial-shadow-color, rgba(0, 162, 154, 0.3)) 0%, rgba(0, 162, 154, 0) 70%);
+      background: var(--testimonial-shadow-color, rgba(0, 162, 154, 0.3));
       top: -20px;
       left: -20px;
       transition: --testimonial-shadow-color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
