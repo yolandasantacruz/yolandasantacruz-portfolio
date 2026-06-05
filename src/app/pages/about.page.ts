@@ -10,7 +10,7 @@ import { AboutBeliefComponent } from '../components/about/about-belief.component
 import { AboutMeComponent } from '../components/about/about-me.component';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
-import { AboutPublishedWorksComponent } from '../components/about/about-published-works.component';
+import { AboutPublicationsComponent } from '../components/about/about-publications.component';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
@@ -48,7 +48,7 @@ import {
     AboutMeComponent,
     AboutTestimonialsComponent,
     AboutTimelineComponent,
-    AboutPublishedWorksComponent,
+    AboutPublicationsComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -101,7 +101,7 @@ import {
           <portfolio-about-me [data]="aboutMeData()" class="scroll-reveal" />
           <portfolio-about-testimonials id="testimonials" [items]="testimonialItems" class="scroll-reveal" />
           <portfolio-about-timeline id="timeline" [data]="timelineData" class="scroll-reveal" />
-          <portfolio-about-published-works id="publications" [data]="publicationsData" class="scroll-reveal" />
+          <portfolio-about-publications id="publications" [data]="publicationsData" class="scroll-reveal" />
         </main>
 
         <portfolio-footer />

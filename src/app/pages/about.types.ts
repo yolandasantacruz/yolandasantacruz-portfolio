@@ -72,5 +72,7 @@ export interface PublishedWork {
 
 export interface PublicationsData {
   heading: string;
+  moreArticlesUrl?: string;
+  moreArticlesLabel?: string;
   items: PublishedWork[];
 }

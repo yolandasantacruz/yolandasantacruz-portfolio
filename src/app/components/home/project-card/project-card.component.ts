@@ -32,7 +32,7 @@ export interface Project {
         <p class="project-description m-0 text-left color-text-muted text-base">{{ project().description }}</p>
         
         <a [routerLink]="project().link" 
-           class="view-project flex items-center color-text font-normal text-base"
+           class="btn-link view-project"
            [attr.aria-label]="'View project: ' + project().title">
           View Project
         </a>
@@ -76,15 +76,7 @@ export interface Project {
     }
 
     .view-project {
-      display: inline-flex;
-      gap: 0.5rem;
-      text-decoration: none;
-      margin-top: 1rem;
-      transition: color 0.2s ease;
-    }
-
-    .view-project:hover {
-      color: #000;
+      margin-top: 2rem;
     }
 
     @media (max-width: 1024px) {

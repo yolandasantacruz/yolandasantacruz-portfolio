@@ -82,7 +82,7 @@ export const routeMeta: RouteMeta = {
               <p class="bridge-copy m-0">
                 {{ bridgeData.description }}
               </p>
-              <a routerLink="/about" class="bridge-cta">TRACE MY PATH</a>
+              <a routerLink="/about" class="btn-blob">TRACE MY PATH</a>
             </div>
           }
           <portfolio-footer />
@@ -289,44 +289,6 @@ export const routeMeta: RouteMeta = {
       text-align: center;
       max-width: 620px;
       padding: 60px 0;
-    }
-
-    @keyframes blob-morph {
-      0%, 100% {
-        border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
-      }
-      33% {
-        border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
-      }
-      66% {
-        border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
-      }
-    }
-
-    .bridge-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 200, 201, 0.1);
-      color: #3b9f98;
-      width: 180px;
-      height: 76px;
-      font-family: var(--font-main);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid transparent;
-      animation: blob-morph 6s ease-in-out infinite alternate;
-      margin-top: 1rem;
-    }
-
-    .bridge-cta:hover {
-      background: rgba(0, 200, 201, 0.2);
-      color: #3b9f98;
-      transform: scale(1.05);
     }
 
     @media (max-width: 1024px) {

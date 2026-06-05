@@ -24,8 +24,8 @@ import { AboutMeSection } from '../../pages/about.types';
 
                 @if (section.linkUrl && section.linkLabel) {
                   <div class="section-cta">
-                    <a [href]="section.linkUrl" target="_blank" rel="noopener noreferrer" class="section-btn flex items-center font-semibold text-base">
-                      {{ section.linkLabel }} &rarr;
+                    <a [href]="section.linkUrl" target="_blank" rel="noopener noreferrer" class="btn-link">
+                      {{ section.linkLabel }}
                     </a>
                   </div>
                 }
@@ -66,8 +66,8 @@ import { AboutMeSection } from '../../pages/about.types';
 
                 @if (section.linkUrl && section.linkLabel) {
                   <div class="section-cta">
-                    <a [href]="section.linkUrl" target="_blank" rel="noopener noreferrer" class="section-btn flex items-center font-semibold text-base">
-                      {{ section.linkLabel }} &rarr;
+                    <a [href]="section.linkUrl" target="_blank" rel="noopener noreferrer" class="btn-link">
+                      {{ section.linkLabel }}
                     </a>
                   </div>
                 }
@@ -386,25 +386,6 @@ import { AboutMeSection } from '../../pages/about.types';
     .section-cta {
       margin-top: 1rem;
       margin-bottom: 2.5rem;
-    }
-
-    .section-btn {
-      gap: 0.5rem;
-      background: #111a19;
-      color: #ffffff;
-      padding: 0.9rem 2.25rem;
-      border-radius: 100px;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .section-btn:hover {
-      background: #5ed6cc;
-      color: #111;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(94, 214, 204, 0.25);
     }
 
     @media (max-width: 1024px) {

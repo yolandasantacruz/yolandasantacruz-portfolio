@@ -143,7 +143,6 @@ export default defineConfig(() => ({
           '/',
           '/about',
           '/resume',
-          '/api/v1/publications',
           {
             contentDir: 'src/content/projects',
             transform: (file: { name: string }) => `/projects/${file.name.replace('.md', '')}`,
