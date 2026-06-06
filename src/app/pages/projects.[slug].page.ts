@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, effect, signal, DestroyRef 
 import { Title, Meta } from '@angular/platform-browser';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { ProjectAttributes } from './project-attributes';
+import { ProjectAttributes } from '../models/project-attributes';
 
 @Component({
   selector: 'portfolio-project-details',

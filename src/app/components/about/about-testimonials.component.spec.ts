@@ -18,7 +18,7 @@ describe('AboutTestimonialsComponent', () => {
   ];
 
   beforeEach(async () => {
-    // Prevent real RAF scheduling in jsdom — BlobAnimationService uses it
+    // Prevent real RAF scheduling in jsdom — TestimonialBackgroundAnimationService uses it
     rafSpy = vi.spyOn(globalThis, 'requestAnimationFrame').mockReturnValue(99);
     cafSpy = vi.spyOn(globalThis, 'cancelAnimationFrame').mockImplementation(() => undefined);
 
@@ -135,17 +135,17 @@ describe('AboutTestimonialsComponent', () => {
     expect(icon).toBeNull();
   });
 
-  it('should inject BlobAnimationService via component providers', () => {
-    // BlobAnimationService is component-scoped — not available from the root injector.
+  it('should inject TestimonialBackgroundAnimationService via component providers', () => {
+    // TestimonialBackgroundAnimationService is component-scoped — not available from the root injector.
     // Verify injection via the component's public accessor instead.
-    expect(component.blobAnimationService).toBeTruthy();
+    expect(component.testimonialBackgroundAnimationService).toBeTruthy();
   });
 
-  it('should derive currentBlobColor from BlobAnimationService for the active index', async () => {
+  it('should derive currentBlobColor from TestimonialBackgroundAnimationService for the active index', async () => {
     componentRef.setInput('items', mockTestimonials);
     await fixture.whenStable();
 
-    const colorAtIndex0 = component.blobAnimationService.getBlobColor(0);
+    const colorAtIndex0 = component.testimonialBackgroundAnimationService.getShapeColor(0);
     expect(component.currentBlobColor()).toBe(colorAtIndex0);
   });
 

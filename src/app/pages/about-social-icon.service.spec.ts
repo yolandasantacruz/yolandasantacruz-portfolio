@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { SocialIconService } from './social-icon.service';
+import { AboutSocialIconService } from './about-social-icon.service';
 import { describe, it, expect, beforeEach } from 'vitest';
 
-describe('SocialIconService', () => {
-  let service: SocialIconService;
+describe('AboutSocialIconService', () => {
+  let service: AboutSocialIconService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SocialIconService);
+    service = TestBed.inject(AboutSocialIconService);
   });
 
   it('should be created', () => {

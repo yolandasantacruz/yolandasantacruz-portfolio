@@ -1,5 +1,5 @@
 import { Injectable, NgZone, OnDestroy, inject } from '@angular/core';
-import { CatmullRomService } from '../components/about/catmull-rom.service';
+import { CatmullRomService } from './catmull-rom.service';
 
 // ---------------------------------------------------------------------------
 // Blob shape data — the "motion design tokens" for the testimonial background.
@@ -43,19 +43,19 @@ interface BlobDefinition {
   tangents: [number, number][];
 }
 
-const BLOB_DEFINITIONS: BlobDefinition[] = [
+const SHAPE_DEFINITIONS: BlobDefinition[] = [
   { endpoints: SHAPE_0_ENDPOINTS, tangents: SHAPE_0_TANGENTS },
   { endpoints: SHAPE_1_ENDPOINTS, tangents: SHAPE_1_TANGENTS },
   { endpoints: SHAPE_2_ENDPOINTS, tangents: SHAPE_2_TANGENTS },
 ];
 
-const BLOB_COLORS: readonly string[] = [
+const SHAPE_COLORS: readonly string[] = [
   '#F3FCFB', // Soft mint green (paler)
   '#FFFDF2', // Soft pale yellow (paler)
   '#F9F7FD', // Soft pale lavender (paler)
 ] as const;
 
-export const INITIAL_BLOB_PATH =
+export const INITIAL_SHAPE_PATH =
   'M 100 80 C 150 20, 250 10, 350 25 C 450 40, 550 60, 650 55 C 750 50, 900 10, 1000 20 C 1100 30, 1160 80, 1180 180 C 1200 280, 1190 400, 1150 480 C 1110 560, 1000 590, 850 585 C 700 580, 600 520, 500 520 C 400 520, 250 570, 150 550 C 50 530, 10 400, 20 280 C 30 160, 50 140, 100 80 Z';
 
 /**
@@ -66,12 +66,12 @@ export const INITIAL_BLOB_PATH =
  * testimonial card component links to it the same way a Figma frame links
  * to a Main Component for its motion behaviour.
  *
- * **Scope**: Component-level (`providers: [BlobAnimationService]` in the
+ * **Scope**: Component-level (`providers: [TestimonialBackgroundAnimationService]` in the
  * consumer). This ensures a fresh instance — and RAF lifecycle — is created
  * and destroyed with each testimonials component instance.
  */
 @Injectable()
-export class BlobAnimationService implements OnDestroy {
+export class TestimonialBackgroundAnimationService implements OnDestroy {
   private readonly ngZone = inject(NgZone);
   private readonly catmullRom = inject(CatmullRomService);
 
@@ -85,14 +85,14 @@ export class BlobAnimationService implements OnDestroy {
   private readonly morphDuration = 800; // ms — satisfying organic transformation
 
   /** The static starting path used before the first animation frame fires. */
-  readonly initialBlobPath = INITIAL_BLOB_PATH;
+  readonly initialShapePath = INITIAL_SHAPE_PATH;
 
   /**
    * Returns the fill color for a given testimonial index, wrapping around
    * the color palette so it is always in bounds.
    */
-  getBlobColor(index: number): string {
-    return BLOB_COLORS.at(index % BLOB_COLORS.length) ?? (BLOB_COLORS.at(0) ?? '#F3FCFB');
+  getShapeColor(index: number): string {
+    return SHAPE_COLORS.at(index % SHAPE_COLORS.length) ?? (SHAPE_COLORS.at(0) ?? '#F3FCFB');
   }
 
   /**
@@ -120,7 +120,7 @@ export class BlobAnimationService implements OnDestroy {
    * No-ops if the target shape is already the current one.
    */
   triggerMorph(newIndex: number): void {
-    const nextShapeIndex = newIndex % BLOB_DEFINITIONS.length;
+    const nextShapeIndex = newIndex % SHAPE_DEFINITIONS.length;
     if (this.targetShapeIndex !== nextShapeIndex) {
       this.currentShapeIndex = this.targetShapeIndex;
       this.targetShapeIndex = nextShapeIndex;
@@ -146,8 +146,8 @@ export class BlobAnimationService implements OnDestroy {
           const progress = Math.min(elapsed / this.morphDuration, 1);
           const easeProgress = 1 - Math.pow(1 - progress, 4); // Quartic ease-out
 
-          const startDef = BLOB_DEFINITIONS.at(this.currentShapeIndex) ?? BLOB_DEFINITIONS.at(0);
-          const endDef = BLOB_DEFINITIONS.at(this.targetShapeIndex) ?? BLOB_DEFINITIONS.at(0);
+          const startDef = SHAPE_DEFINITIONS.at(this.currentShapeIndex) ?? SHAPE_DEFINITIONS.at(0);
+          const endDef = SHAPE_DEFINITIONS.at(this.targetShapeIndex) ?? SHAPE_DEFINITIONS.at(0);
 
           currentEndpoints = [];
           if (startDef && endDef) {
@@ -167,7 +167,7 @@ export class BlobAnimationService implements OnDestroy {
           }
         } else {
           currentEndpoints =
-            (BLOB_DEFINITIONS.at(this.targetShapeIndex) ?? BLOB_DEFINITIONS.at(0))?.endpoints ?? [];
+            (SHAPE_DEFINITIONS.at(this.targetShapeIndex) ?? SHAPE_DEFINITIONS.at(0))?.endpoints ?? [];
         }
 
         // Gentle drift animation — 12px amplitude to prevent extreme stretching

@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { By } from '@angular/platform-browser';
-import { Testimonial } from './about.types';
+import { Testimonial } from '../models/about.types';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';

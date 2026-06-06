@@ -16,15 +16,15 @@ import {
   linkedSignal,
 } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
-import { Testimonial } from '../../pages/about.types';
-import { BlobAnimationService } from '../../services/blob-animation.service';
+import { Testimonial } from '../../models/about.types';
+import { TestimonialBackgroundAnimationService } from './about-testimonial-background-animation.service';
 
 @Component({
   selector: 'portfolio-about-testimonials',
   standalone: true,
   imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [BlobAnimationService],
+  providers: [TestimonialBackgroundAnimationService],
   template: `
     @if (items(); as testimonials) {
       @if (currentTestimonial(); as activeTestimonial) {
@@ -36,7 +36,7 @@ import { BlobAnimationService } from '../../services/blob-animation.service';
               fill="none" 
               xmlns="http://www.w3.org/2000/svg" 
               class="testimonial-wavy-bg">
-              <path #wavyBlobPath class="wavy-card-path" [attr.d]="blobAnimationService.initialBlobPath" [style.fill]="currentBlobColor()" />
+              <path #wavyBlobPath class="wavy-card-path" [attr.d]="testimonialBackgroundAnimationService.initialShapePath" [style.fill]="currentBlobColor()" />
             </svg>
             <div class="testimonial-container flex flex-col">
               <div class="testimonial-header flex items-center justify-between">
@@ -281,7 +281,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
   private ngZone = inject(NgZone);
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
-  readonly blobAnimationService = inject(BlobAnimationService);
+  readonly testimonialBackgroundAnimationService = inject(TestimonialBackgroundAnimationService);
 
   private resizeObserver?: ResizeObserver;
 
@@ -294,7 +294,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
   });
 
   readonly currentBlobColor = computed(() =>
-    this.blobAnimationService.getBlobColor(this.currentIndex())
+    this.testimonialBackgroundAnimationService.getShapeColor(this.currentIndex())
   );
 
   readonly currentTestimonial = computed(() => {
@@ -308,7 +308,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
         if (this.blobPathElement?.nativeElement) {
-          this.blobAnimationService.startLoop(this.blobPathElement.nativeElement);
+          this.testimonialBackgroundAnimationService.startLoop(this.blobPathElement.nativeElement);
         }
 
         this.ngZone.runOutsideAngular(() => {
@@ -353,7 +353,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
     const list = this.items();
     if (list && this.currentIndex() < list.length - 1) {
       this.currentIndex.update(v => v + 1);
-      this.blobAnimationService.triggerMorph(this.currentIndex());
+      this.testimonialBackgroundAnimationService.triggerMorph(this.currentIndex());
       this.updateHeight();
     }
   }
@@ -361,7 +361,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
   prevSlide(): void {
     if (this.currentIndex() > 0) {
       this.currentIndex.update(v => v - 1);
-      this.blobAnimationService.triggerMorph(this.currentIndex());
+      this.testimonialBackgroundAnimationService.triggerMorph(this.currentIndex());
       this.updateHeight();
     }
   }
@@ -381,7 +381,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
-    // BlobAnimationService.ngOnDestroy() handles RAF cancellation automatically
+    // TestimonialBackgroundAnimationService.ngOnDestroy() handles RAF cancellation automatically
     // as it is component-scoped and destroyed alongside this component.
   }
 }

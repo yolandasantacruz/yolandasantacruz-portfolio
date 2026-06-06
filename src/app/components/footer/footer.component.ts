@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { injectContentFiles } from '@analogjs/content';
-import { SocialsData } from '../../pages/shared.types';
+import { SocialsData } from '../../models/shared.types';
 
 @Component({
   selector: 'portfolio-footer',

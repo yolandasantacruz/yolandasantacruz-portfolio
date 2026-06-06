@@ -14,7 +14,7 @@ import { withViewTransitions } from '@angular/router';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { withPrismHighlighter } from '@analogjs/content/prism-highlighter';
 import { APP_BASE_HREF, IMAGE_LOADER } from '@angular/common';
-import { optimizedImagesLoader } from './pages/optimized-images-loader';
+import { optimizedImagesLoader } from './utils/optimized-images-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [

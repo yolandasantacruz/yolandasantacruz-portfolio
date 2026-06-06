@@ -9,7 +9,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import PortfolioHomeComponent from './index.page';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { By } from '@angular/platform-browser';
-import { HomeHeroData } from './home.types';
+import { HomeHeroData } from '../models/home.types';
 
 /** Lightweight stub that satisfies the `data` input without needing full HeroComponent rendering */
 @Component({

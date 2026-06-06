@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HomeHeroData } from '../../../pages/home.types';
+import { HomeHeroData } from '../../../models/home.types';
 
 @Component({
   selector: 'portfolio-hero',

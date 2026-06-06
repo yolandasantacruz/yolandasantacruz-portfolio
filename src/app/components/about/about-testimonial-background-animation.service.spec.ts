@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { NgZone } from '@angular/core';
-import { BlobAnimationService, INITIAL_BLOB_PATH } from './blob-animation.service';
-import { CatmullRomService } from '../components/about/catmull-rom.service';
+import { TestimonialBackgroundAnimationService, INITIAL_SHAPE_PATH } from './about-testimonial-background-animation.service';
+import { CatmullRomService } from './catmull-rom.service';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
-describe('BlobAnimationService', () => {
-  let service: BlobAnimationService;
+describe('TestimonialBackgroundAnimationService', () => {
+  let service: TestimonialBackgroundAnimationService;
   let rafSpy: ReturnType<typeof vi.spyOn>;
   let cafSpy: ReturnType<typeof vi.spyOn>;
 
@@ -15,9 +15,9 @@ describe('BlobAnimationService', () => {
     cafSpy = vi.spyOn(globalThis, 'cancelAnimationFrame').mockImplementation(() => undefined);
 
     TestBed.configureTestingModule({
-      providers: [BlobAnimationService, CatmullRomService],
+      providers: [TestimonialBackgroundAnimationService, CatmullRomService],
     });
-    service = TestBed.inject(BlobAnimationService);
+    service = TestBed.inject(TestimonialBackgroundAnimationService);
   });
 
   afterEach(() => {
@@ -29,35 +29,35 @@ describe('BlobAnimationService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('initialBlobPath', () => {
+  describe('initialShapePath', () => {
     it('exposes the static initial path string', () => {
-      expect(service.initialBlobPath).toBe(INITIAL_BLOB_PATH);
-      expect(service.initialBlobPath.startsWith('M')).toBe(true);
+      expect(service.initialShapePath).toBe(INITIAL_SHAPE_PATH);
+      expect(service.initialShapePath.startsWith('M')).toBe(true);
     });
   });
 
-  describe('getBlobColor', () => {
+  describe('getShapeColor', () => {
     it('returns the first color for index 0', () => {
-      const color = service.getBlobColor(0);
+      const color = service.getShapeColor(0);
       expect(color).toBe('#F3FCFB');
     });
 
     it('returns the second color for index 1', () => {
-      const color = service.getBlobColor(1);
+      const color = service.getShapeColor(1);
       expect(color).toBe('#FFFDF2');
     });
 
     it('returns the third color for index 2', () => {
-      const color = service.getBlobColor(2);
+      const color = service.getShapeColor(2);
       expect(color).toBe('#F9F7FD');
     });
 
     it('wraps around — index 3 maps back to the first color', () => {
-      expect(service.getBlobColor(3)).toBe(service.getBlobColor(0));
+      expect(service.getShapeColor(3)).toBe(service.getShapeColor(0));
     });
 
     it('wraps around — index 5 maps to the third color (5 % 3 = 2)', () => {
-      expect(service.getBlobColor(5)).toBe(service.getBlobColor(2));
+      expect(service.getShapeColor(5)).toBe(service.getShapeColor(2));
     });
   });
 

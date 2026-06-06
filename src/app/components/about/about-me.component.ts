@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angu
 import { NgOptimizedImage, DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
 
-import { AboutMeSection } from '../../pages/about.types';
+import { AboutMeSection } from '../../models/about.types';
 
 @Component({
   selector: 'portfolio-about-me',
@@ -407,6 +407,9 @@ export class AboutMeComponent {
   private sanitizer = inject(DomSanitizer);
   private document = inject(DOCUMENT);
 
+  readonly activePlayingSection = signal<string | null>(null);
+  private safeUrls = new Map<string, SafeResourceUrl>();
+
   /** Cache of trusted HTML per description string */
   private readonly renderedCache = new Map<string, SafeHtml>();
 
@@ -419,9 +422,6 @@ export class AboutMeComponent {
     this.renderedCache.set(html, safe);
     return safe;
   }
-
-  readonly activePlayingSection = signal<string | null>(null);
-  private safeUrls = new Map<string, SafeResourceUrl>();
 
   getSafeVideoUrl(url: string): SafeResourceUrl {
     let safe = this.safeUrls.get(url);

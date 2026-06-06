@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { PublicationsData } from '../../pages/about.types';
+import { PublicationsData } from '../../models/about.types';
 
 @Component({
   selector: 'portfolio-about-publications',
@@ -109,6 +109,11 @@ import { PublicationsData } from '../../pages/about.types';
     .work-title {
       color: #111;
       line-height: 1.3;
+      transition: color 0.2s ease;
+    }
+
+    .work-card:hover .work-title {
+      color: var(--color-primary);
     }
 
     .work-desc {

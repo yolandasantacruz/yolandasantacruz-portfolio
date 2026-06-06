@@ -7,7 +7,7 @@ import {
   Testimonial,
   TimelineData,
   PublicationsData,
-} from './about.types';
+} from '../models/about.types';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class AboutDataService {
 
   readonly beliefContent = computed(() => {
     const f = this.beliefFiles[0];
-    return f && typeof f.content === 'string' ? f.content : '';
+    return (f?.attributes['statement'] as string) ?? '';
   });
 
   readonly aboutMeData = computed<AboutMeSection[]>(() => {
@@ -53,7 +53,7 @@ export class AboutDataService {
       .map(file => ({
         badge: file.attributes['badge'] as string,
         title: file.attributes['title'] as string,
-        description: typeof file.content === 'string' ? file.content : '',
+        description: (file.attributes['description'] as string) ?? '',
         image: file.attributes['image'] as string | undefined,
         videoUrl: file.attributes['videoUrl'] as string | undefined,
         linkUrl: file.attributes['linkUrl'] as string | undefined,

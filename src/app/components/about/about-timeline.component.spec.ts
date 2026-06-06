@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AboutTimelineComponent } from './about-timeline.component';
-import { TimelineData } from '../../pages/about.types';
+import { TimelineData } from '../../models/about.types';
 import { By } from '@angular/platform-browser';
 
 import { provideRouter } from '@angular/router';

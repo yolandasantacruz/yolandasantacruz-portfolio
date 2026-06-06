@@ -1,7 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { injectContentFiles } from '@analogjs/content';
-import { ProjectAttributes } from './project-attributes';
-import { HomeHeroData, HomeBridgeData } from './home.types';
+import { ProjectAttributes } from '../models/project-attributes';
+import { HomeHeroData, HomeBridgeData } from '../models/home.types';
 import { Project } from '../components/home/project-card/project-card.component';
 
 @Injectable({

@@ -24,7 +24,7 @@ const SOCIAL_ICON_PATHS: Readonly<Record<string, string>> = {
 } as const;
 
 @Injectable({ providedIn: 'root' })
-export class SocialIconService {
+export class AboutSocialIconService {
   private readonly iconPaths = new Map<string, string>(Object.entries(SOCIAL_ICON_PATHS));
 
   /**

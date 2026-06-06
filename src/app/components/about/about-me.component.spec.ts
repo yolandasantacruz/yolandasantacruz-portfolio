@@ -7,7 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
-import { AboutMeSection } from '../../pages/about.types';
+import { AboutMeSection } from '../../models/about.types';
 import { AboutMeComponent } from './about-me.component';
 
 const MOCK_ABOUT_DATA: AboutMeSection[] = [

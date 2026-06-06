@@ -3,7 +3,7 @@ import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { RouteMeta } from '@analogjs/router';
-import { ResumeData } from './resume.types';
+import { ResumeData } from '../models/resume.types';
 
 export const routeMeta: RouteMeta = {
   title: 'Resume | Yolanda Santa Cruz',

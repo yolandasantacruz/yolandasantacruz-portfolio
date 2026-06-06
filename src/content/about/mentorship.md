@@ -11,5 +11,5 @@ metrics:
     label: "Reviews (4.5★)"
   - num: "Super Mentor"
     label: "ADPList Badge"
+description: "Much of what I am today has been made possible thanks to the help of others. I am using my experience to help others navigate their goals in any way I can, and even push them to think bigger and brighter about what to achieve and how to get there."
 ---
-Much of what I am today has been made possible thanks to the help of others. I am using my experience to help others navigate their goals in any way I can, and even push them to think bigger and brighter about what to achieve and how to get there.

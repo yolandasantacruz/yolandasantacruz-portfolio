@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { TimelineData } from '../../pages/about.types';
+import { TimelineData } from '../../models/about.types';
 import { RouterLink } from '@angular/router';
 
 @Component({
