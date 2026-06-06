@@ -56,7 +56,7 @@ export const routeMeta: RouteMeta = {
         <svg viewBox="0 0 1200 3200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <filter id="about-f-blur" x="-300" y="-300" width="1800" height="4200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feGaussianBlur stdDeviation="90"/>
+              <feGaussianBlur stdDeviation="50"/>
             </filter>
             <linearGradient id="about-g-trace" x1="-150" y1="-50" x2="404" y2="3600" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#8AE7DA" stop-opacity="0.8"/>
