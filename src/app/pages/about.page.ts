@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal, inject, PLATFORM_ID, computed, afterNextRender, OnInit, OnDestroy, DestroyRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, inject, PLATFORM_ID, computed, OnInit, OnDestroy, DestroyRef } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { injectContentFiles, injectContent, ContentFile } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
@@ -9,6 +9,7 @@ import { AboutMeComponent } from '../components/about/about-me.component';
 import { AboutTestimonialsComponent } from '../components/about/about-testimonials.component';
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
 import { AboutPublicationsComponent } from '../components/about/about-publications.component';
+import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
@@ -47,23 +48,18 @@ import {
     AboutTestimonialsComponent,
     AboutTimelineComponent,
     AboutPublicationsComponent,
+    SideNavComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="about-wrapper">
       <!-- Fixed Side Rail Navigation -->
-      <nav class="floating-side-rail flex flex-col items-end" role="navigation" aria-label="Page sections">
-        @for (sec of navSections(); track sec.id) {
-          <button class="nav-pill flex items-center justify-center" 
-                  [class.active]="activeSection() === sec.id" 
-                  (click)="scrollToSection(sec.id)" 
-                  [attr.aria-label]="'Scroll to ' + sec.label"
-                  [attr.aria-current]="activeSection() === sec.id ? 'step' : null"
-                  [style.--pill-color]="sec.color">
-            <span class="pill-label">{{ sec.label }}</span>
-          </button>
-        }
-      </nav>
+      <portfolio-side-nav 
+        [sections]="navSections()" 
+        intersectionSelector="#hero, .section-row, #testimonials, #timeline, #publications" 
+        [intersectionOptions]="{ rootMargin: '-25% 0px -70% 0px', threshold: 0 }" 
+        mutationTargetSelector=".about-main" 
+      />
 
       <!-- Fluid background line winding down the page behind text -->
       <div class="fluid-line-bg" aria-hidden="true">
@@ -191,8 +187,6 @@ export default class AboutComponent implements OnInit, OnDestroy {
     }
   }
 
-  readonly activeSection = signal<string>('hero');
-
   readonly navSections = computed(() => {
     const pillColors = new Map<string, string>([
       ['hero', 'var(--section-pill-hero)'],
@@ -216,30 +210,6 @@ export default class AboutComponent implements OnInit, OnDestroy {
   });
 
   constructor() {
-    afterNextRender(() => {
-      if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              this.activeSection.set(entry.target.id);
-            }
-          });
-        }, {
-          // Narrow scanner band in the upper-middle viewport for stable scroll tracking of dynamic sections
-          rootMargin: '-25% 0px -70% 0px',
-          threshold: 0
-        });
-
-        const targets = this.document.querySelectorAll('#hero, .section-row, #testimonials, #timeline, #publications');
-        targets.forEach(target => {
-          observer.observe(target);
-        });
-
-
-
-      }
-    });
-
     const beliefSub = injectContent<Record<string, unknown>>({ customFilename: 'about/belief' }).subscribe(d => this.beliefFile.set(d));
     const originsSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/origins' }).subscribe(d => this.originsFile.set(d));
     const atWorkSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/at-work' }).subscribe(d => this.atWorkFile.set(d));
@@ -251,16 +221,6 @@ export default class AboutComponent implements OnInit, OnDestroy {
       atWorkSub.unsubscribe();
       mentorshipSub.unsubscribe();
     });
-  }
-
-  scrollToSection(id: string) {
-    this.activeSection.set(id);
-    if (isPlatformBrowser(this.platformId)) {
-      const element = this.document.getElementById(id);
-      if (element && typeof element.scrollIntoView === 'function') {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
   }
 
   /** Content loaded from src/content/about/*.md via Analog's content API */

@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, signal, afterNextRender, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { ProjectAttributes } from './project-attributes';
 import { HomeHeroData, HomeBridgeData } from './home.types';
 import { RouteMeta } from '@analogjs/router';
@@ -34,24 +34,18 @@ export const routeMeta: RouteMeta = {
     HeaderComponent,
     HeroComponent,
     ProjectCardComponent,
-    FooterComponent
+    FooterComponent,
+    SideNavComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <main class="snap-container">
       <!-- Fixed Side Rail Navigation -->
-      <nav class="floating-side-rail flex flex-col items-end" role="navigation" aria-label="Page sections">
-        @for (sec of navSections(); track sec.id) {
-          <button class="nav-pill flex items-center justify-center" 
-                  [class.active]="activeSection() === sec.id" 
-                  (click)="scrollToSection(sec.id)" 
-                  [attr.aria-label]="'Scroll to ' + sec.label"
-                  [attr.aria-current]="activeSection() === sec.id ? 'step' : null"
-                  [style.--pill-color]="sec.color">
-            <span class="pill-label">{{ sec.label }}</span>
-          </button>
-        }
-      </nav>
+      <portfolio-side-nav 
+        [sections]="navSections()" 
+        intersectionSelector=".snap-section" 
+        [intersectionOptions]="{ threshold: 0.5 }" 
+      />
 
       <!-- Hero Section (Snap 0) -->
       <section id="hero" class="snap-section hero-section flex items-center justify-center">
@@ -308,9 +302,6 @@ export const routeMeta: RouteMeta = {
   `
 })
 export default class PortfolioHomeComponent {
-  private platformId = inject(PLATFORM_ID);
-  private document = inject(DOCUMENT);
-
   readonly projects = signal<Project[]>(
     injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'))
       .sort((a, b) => a.attributes.order - b.attributes.order)
@@ -332,8 +323,6 @@ export default class PortfolioHomeComponent {
   readonly bridgeData = injectContentFiles<HomeBridgeData & Record<string, unknown>>(file =>
     file.filename.includes('home/bridge.md')
   )[0]?.attributes;
-
-  readonly activeSection = signal<string>('hero');
 
   readonly navSections = computed(() => {
     // Maps each section ID to its CSS custom property reference.
@@ -371,34 +360,5 @@ export default class PortfolioHomeComponent {
   });
 
 
-  constructor() {
-    afterNextRender(() => {
-      if (isPlatformBrowser(this.platformId) && typeof globalThis.IntersectionObserver !== 'undefined') {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              this.activeSection.set(entry.target.id);
-            }
-          });
-        }, { threshold: 0.5 });
-
-        this.document.querySelectorAll('.snap-section').forEach(section => {
-          observer.observe(section);
-        });
-
-
-      }
-    });
-  }
-
-  scrollToSection(id: string) {
-    this.activeSection.set(id);
-    if (isPlatformBrowser(this.platformId)) {
-      const element = this.document.getElementById(id);
-      if (element && typeof element.scrollIntoView === 'function') {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }
 }
 
