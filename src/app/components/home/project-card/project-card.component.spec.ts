@@ -1,14 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectCardComponent, Project } from './project-card.component';
 import { By } from '@angular/platform-browser';
-import { ComponentRef } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ComponentRef, Component, ChangeDetectionStrategy } from '@angular/core';
+import { provideRouter, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { describe, it, expect, beforeEach } from 'vitest';
+
+@Component({ template: '', changeDetection: ChangeDetectionStrategy.OnPush })
+class DummyComponent {}
 
 describe('ProjectCardComponent', () => {
   let component: ProjectCardComponent;
   let componentRef: ComponentRef<ProjectCardComponent>;
   let fixture: ComponentFixture<ProjectCardComponent>;
+  let location: Location;
+  let router: Router;
 
   const mockProject: Project = {
     title: 'Test Project',
@@ -26,13 +32,17 @@ describe('ProjectCardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ProjectCardComponent],
       providers: [
-        provideRouter([])
+        provideRouter([
+          { path: 'projects/test-project', component: DummyComponent }
+        ])
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProjectCardComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
   });
 
   it('should create the component', () => {
@@ -73,5 +83,31 @@ describe('ProjectCardComponent', () => {
 
     const card = fixture.debugElement.query(By.css('.project-card'));
     expect(card.nativeElement.classList.contains('reverse')).toBe(false);
+  });
+
+  it('should navigate to case study when clicking the project image', async () => {
+    componentRef.setInput('project', mockProject);
+    fixture.detectChanges();
+
+    const imageLink = fixture.debugElement.query(By.css('.project-image-container')).nativeElement;
+    imageLink.click();
+    
+    await fixture.whenStable();
+    expect(location.path()).toBe('/projects/test-project');
+  });
+
+  it('should navigate to case study when clicking the View Project link', async () => {
+    componentRef.setInput('project', mockProject);
+    // Reset location
+    router.navigateByUrl('/');
+    await fixture.whenStable();
+
+    fixture.detectChanges();
+
+    const viewProjectLink = fixture.debugElement.query(By.css('.view-project')).nativeElement;
+    viewProjectLink.click();
+    
+    await fixture.whenStable();
+    expect(location.path()).toBe('/projects/test-project');
   });
 });

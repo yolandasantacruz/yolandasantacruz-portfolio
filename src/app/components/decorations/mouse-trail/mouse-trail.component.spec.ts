@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MouseTrailComponent } from './mouse-trail.component';
 import { By } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
+import { MouseTrailService } from './mouse-trail.service';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('MouseTrailComponent', () => {
   let component: MouseTrailComponent;
@@ -82,5 +85,26 @@ describe('MouseTrailComponent', () => {
   it('should have an aria-hidden container for accessibility', () => {
     const container = fixture.debugElement.query(By.css('.mouse-trail'));
     expect(container.nativeElement.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('should not initialize engine on the server (SSR safety)', async () => {
+    TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({
+      imports: [MouseTrailComponent],
+      providers: [
+        { provide: PLATFORM_ID, useValue: 'server' },
+        {
+          provide: MouseTrailService,
+          useValue: { init: vi.fn(), destroy: vi.fn(), setMousePosition: vi.fn(), resize: vi.fn() }
+        }
+      ]
+    }).compileComponents();
+
+    const serverFixture = TestBed.createComponent(MouseTrailComponent);
+    serverFixture.detectChanges();
+    await serverFixture.whenStable();
+
+    const service = TestBed.inject(MouseTrailService);
+    expect(service.init).not.toHaveBeenCalled();
   });
 });

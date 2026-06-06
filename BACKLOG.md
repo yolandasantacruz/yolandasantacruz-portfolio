@@ -14,7 +14,6 @@
 - [ ] Deploy to yolandasantacruz.com
 
 ## Todo
-- [ ] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 - [ ] Add Discover's use case
 - [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
@@ -24,6 +23,7 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+- [x] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc. Bring only unit tests for now, keeping the protection against regressions of important features
 - [x] Fix "jumpy" carousel of the testimonials section in the about page when navigating using the carousel arrows
 - [x] Allow users to enter the case studies by tapping on the images
 - [x] Fix btn-blob size so the background grows with the button text
