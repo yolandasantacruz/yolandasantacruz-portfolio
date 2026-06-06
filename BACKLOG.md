@@ -11,25 +11,24 @@
 - [ ] Improve animation of Resume page
 - [ ] Fix font sizes globally
 - [ ] Update new logo's color
-- [ ] Update fav icon with new logo
 - [ ] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
-- [ ] Remove social links that renders above the footer
 - [ ] Review information in the case studies
 - [ ] Improve formating of About me section in the home page
 - [ ] Consider changing color of the first testimonial blob to yellow
-- [ ] Fiz spacing of copy in the career overview section so it aligns with the image height
-- [ ] Remove animation with the images in the articles when hovered
+- [ ] Fix spacing of copy in the career overview section so it aligns with the image height
 - [ ] Allow users to enter the case studies by tapping on the images
 - [ ] Create suble animation that shows when an image is hovered by increasing the saturation of the image
 - [ ] Add Google Analytics
 - [ ] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc
 - [ ] Determine the optimal level of compression/quality for "about me" images to find a balance between visual quality and page load performance.
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
-- [ ] Navigation Pills (Side Rail): Refine the active dot color when in the Hero section (top snap) to a more sophisticated, premium tone (such as a refined charcoal or deep warm gray) to replace the current dark teal.
-- [ ] Navigation Pills (Side Rail): Scale down the font size of the hover labels (case study titles) and explore a cleaner, more sophisticated typeface (e.g., a geometric sans-serif or system-ui with wider tracking/letter-spacing) to improve elegance and readability.
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
+- [x] Update fav icon with new logo
+- [x] Navigation Pills: Refine the active dot color when in the Hero section (top snap) to a more sophisticated, premium tone (such as a refined charcoal or deep warm gray) to replace the current dark teal.
+- [x] Navigation Pills: Scale down the font size of the hover labels (case study titles) and explore a cleaner, more sophisticated typeface (e.g., a geometric sans-serif or system-ui with wider tracking/letter-spacing) to improve elegance and readability.
+- [x] Remove social links that renders above the footer
 - [x] Link Medium articles properly and automatically
 - [x] Add line to Resume page
 - [x] In the About me page, remove social links except for LinkedIn and GitHub
