@@ -1,29 +1,34 @@
 # Project Backlog
 
-## Todo
-- [ ] Bring the logo to SVG format
-- [ ] Comprehensive review of mobile viewport
-- [ ] Increase "About Me" hero image dimensions and enhance visual quality
-- [ ] Review copy and narrative arc with AI
-- [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
-- [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
-- [ ] Improve animation of Resume page
-- [ ] Fix font sizes globally
-- [ ] Update new logo's color
+## MVP
 - [ ] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
-- [ ] Review information in the case studies
-- [ ] Improve formating of About me section in the home page
-- [ ] Consider changing color of the first testimonial blob to yellow
-- [ ] Fix spacing of copy in the career overview section so it aligns with the image height
+- [ ] (Yolanda) Review copy and narrative arc with AI
+- [ ] Fix btn-blob size
+- [ ] Fix font sizes globally
+- [ ] (Yolanda) Review information in the case studies
 - [ ] Allow users to enter the case studies by tapping on the images
-- [ ] Create suble animation that shows when an image is hovered by increasing the saturation of the image
+- [ ] Fix spacing of copy in the career overview section so it aligns with the image height
+- [ ] Consider changing color of the first testimonial blob to yellow
+- [ ] Improve and restore animations of sections across pages
+- [ ] Fix mentorship section with ADPList badge and YouTube video rendering
+- [ ] Comprehensive review of mobile viewport
 - [ ] Add Google Analytics
+- [ ] Deploy to yolandasantacruz.com
+
+## Todo
 - [ ] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc
+- [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
+- [ ] Add Discover's use case
+- [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
+- [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
+- [ ] Update new logo's color
 - [ ] Determine the optimal level of compression/quality for "about me" images to find a balance between visual quality and page load performance.
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
-- [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
+- [x] Create suble animation that shows when an image is hovered by increasing the saturation of the image
+- [x] Increase "About Me" hero image dimensions and enhance visual quality
+- [x] Bring the logo to SVG format
 - [x] Remove usage of RxJS and use modern Angular APIs
 - [x] Update fav icon with new logo
 - [x] Navigation Pills: Refine the active dot color when in the Hero section (top snap) to a more sophisticated, premium tone (such as a refined charcoal or deep warm gray) to replace the current dark teal.
