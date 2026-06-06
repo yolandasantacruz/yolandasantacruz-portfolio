@@ -6,7 +6,6 @@
 - [ ] (Yolanda) Review information in the case studies
 - [ ] Fix spacing of copy in the career overview section so it aligns with the image height
 - [ ] Bring the social icons look and feel to the icons in the career overview section of the about page
-- [ ] Consider changing color of the first testimonial blob to yellow
 - [ ] Improve and restore animations of sections across pages
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
