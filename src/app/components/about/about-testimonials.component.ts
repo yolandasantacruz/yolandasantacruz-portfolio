@@ -39,8 +39,8 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
               <path #wavyBlobPath class="wavy-card-path" [attr.d]="testimonialBackgroundAnimationService.initialShapePath" [style.fill]="currentBlobColor()" />
             </svg>
             <div class="testimonial-container flex flex-col">
-              <div class="testimonial-header flex items-center justify-between">
-                <div class="active-author-info flex items-center gap-6">
+              <div class="testimonial-header flex items-start justify-between">
+                <div class="active-author-info flex items-start gap-6">
                   @if (avatarError()) {
                     <div class="author-avatar-fallback flex items-center justify-center font-bold text-md">
                       {{ getInitials(activeTestimonial.name) }}
@@ -172,6 +172,7 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
 
     .author-details {
       gap: 0.3rem;
+      min-height: 90px;
     }
 
     .author-link {
@@ -271,6 +272,9 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       .testimonial-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
       .testimonial-nav { align-self: flex-end; }
       .testimonial-quote { font-size: 1.2rem; }
+      .author-details {
+        min-height: 150px;
+      }
     }
   `
 })
