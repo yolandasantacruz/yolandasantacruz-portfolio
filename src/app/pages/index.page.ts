@@ -62,8 +62,6 @@ export const routeMeta: RouteMeta = {
         </section>
       }
 
-
-
       <!-- About Me Bridge Section (Snap 7) -->
       <section id="bridge" class="snap-section bridge-section flex items-center justify-center">
         <div class="section-content bridge-content flex flex-col">
@@ -120,9 +118,6 @@ export const routeMeta: RouteMeta = {
       padding-top: 0;
       position: relative;
       overflow: hidden;
-      /* Bottom edge bleeds into project-0's periwinkle so the first snap section
-         feels like a continuation rather than an abrupt cut. The gradient occupies
-         only the last 15% of the section height — invisible while reading. */
       background: linear-gradient(
         to bottom,
         transparent                      0%,
@@ -180,18 +175,6 @@ export const routeMeta: RouteMeta = {
       width: 100%;
     }
 
-    /* -------------------------------------------------------------------------
-     * SECTION GRADIENT SYSTEM
-     * Strategy: each section holds its pure pastel for the top 78% of its height,
-     * then fades into the next section's color in the bottom 22% only.
-     * This keeps sections visually distinct while the bottom "hem" provides the
-     * seamless bleed — nothing bleeds into the section's readable content area.
-     *
-     * To retheme: change a single --section-bg-* in styles.css — the token
-     * updates in BOTH the owning section AND its neighbor automatically.
-     * -------------------------------------------------------------------------
-     */
-
     #project-0 {
       /* Holds periwinkle, bleeds to Fetch Pay purple */
       background: linear-gradient(
@@ -236,8 +219,6 @@ export const routeMeta: RouteMeta = {
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* About Me Bridge Section — ANCHOR: hsl(169,58%,96%) must remain immutable */
-    /* PlantMe's sage fades in at top for 6% only — bridge teal dominates 94%   */
     .bridge-section {
       background: linear-gradient(
         to bottom,
@@ -305,9 +286,6 @@ export default class PortfolioHomeComponent {
   readonly projects = this.homeDataService.projects;
   readonly heroData = this.homeDataService.heroData;
   readonly bridgeData = this.homeDataService.bridgeData;
-
   readonly navSections = this.homeDataService.navSections;
-
-
 }
 
