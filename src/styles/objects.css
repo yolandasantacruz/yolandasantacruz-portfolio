@@ -1,0 +1,238 @@
+/* ==========================================================================
+   DESIGN SYSTEM COMPONENT: Interactive Text Button (.btn-blob)
+   Single source of truth for the minimalist text-based teal CTA button with
+   an interactive arrow, used across hero ("ABOUT ME"), resume page
+   ("DOWNLOAD RESUME"), and the about timeline ("View My Resume").
+   ========================================================================== */
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  }
+  14% {
+    border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+  }
+  28% {
+    border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
+  }
+  42% {
+    border-radius: 30% 70% 70% 30% / 50% 30% 70% 50%;
+  }
+  56% {
+    border-radius: 60% 40% 60% 40% / 40% 50% 50% 60%;
+  }
+  70% {
+    border-radius: 45% 55% 35% 65% / 65% 35% 65% 35%;
+  }
+  84% {
+    border-radius: 55% 45% 70% 30% / 35% 65% 35% 65%;
+  }
+}
+
+.btn-blob {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  color: var(--color-primary);
+  width: auto;
+  min-width: var(--btn-blob-width, 200px);
+  height: 76px;
+  padding: 0 2.5rem;
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: blob-morph 14s ease-in-out infinite alternate;
+  white-space: nowrap;
+}
+
+.btn-blob:hover {
+  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.btn-blob:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Minimalist Text Link (.btn-link) */
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-link::after {
+  content: '\2192';
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.btn-link:hover {
+  color: color-mix(in srgb, var(--color-primary) 65%, #000000);
+  /* Darker teal on hover for contrast */
+}
+
+.btn-link:hover::after {
+  transform: translateX(6px);
+}
+
+.btn-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-blob::after {
+    transition: none !important;
+  }
+
+  .btn-blob:hover::after {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM SPECIFICATION: Mouse Trail Background Token
+   ==========================================================================
+   The WebGL2 mouse trail background (<portfolio-mouse-trail>) operates as an
+   isolated architectural token. It is locked at fixed position with inset: 0 and z-index: 5.
+   CRITICAL SYSTEM RULE: Do not apply SVG Gaussian blur filters or heavy GPU rasterization
+   effects on sibling containers. Sibling layout containers must maintain z-index >= 10
+   and position: relative to float seamlessly above the shader canvas.
+   ========================================================================== */
+
+/* ==========================================================================
+   DESIGN SYSTEM COMPONENT: Floating Side Rail Navigation
+   ========================================================================== */
+.floating-side-rail {
+  position: fixed;
+  right: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  gap: 1.25rem;
+}
+
+.nav-pill {
+  background: var(--pill-color);
+  border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
+  background-clip: padding-box;
+  height: 24px;
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.4s ease, opacity 0.4s ease, border-color 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box;
+  outline: none;
+  opacity: 0.65;
+  position: relative;
+}
+
+.pill-label {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translate(24px, -50%) scale(0);
+  transform-origin: right center;
+  opacity: 0;
+  pointer-events: none;
+
+  background: #ffffff;
+  border: 1.5px solid color-mix(in srgb, var(--pill-color) 20%, white);
+  border-radius: 100px;
+  padding: 6px 14px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  color: #4a4a4a;
+  font-family: var(--font-main);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-label::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: color-mix(in srgb, var(--pill-color) 20%, white);
+  transform: translateY(-50%);
+}
+
+.nav-pill:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  border: 4px solid color-mix(in srgb, var(--pill-color) 20%, white);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.6);
+}
+
+.nav-pill:hover .pill-label {
+  opacity: 1;
+  transform: translate(0, -50%) scale(1);
+}
+
+.nav-pill.active {
+  border-width: 0;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+.nav-pill.active:hover {
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.8);
+}
+
+.nav-pill:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+  .floating-side-rail {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-side-rail {
+    display: none;
+  }
+}

@@ -33,7 +33,7 @@ export class HomeDataService {
 
   readonly navSections = computed(() => {
     // Maps each section ID to its CSS custom property reference.
-    // ALL color values live exclusively in styles.css :root — this file holds no hex codes.
+    // ALL color values live exclusively in src/styles/variables.css :root — this file holds no hex codes.
     // Rule 16: Map used instead of bracket notation to avoid dynamic property access.
     const pillColors = new Map<string, string>([
       ['hero', 'var(--section-pill-hero)'],

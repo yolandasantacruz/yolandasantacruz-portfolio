@@ -131,7 +131,7 @@ The **+37° delta** between PlantMe (132°) and the Bridge anchor (169°) is lar
 
 ### CSS Variable Reference
 
-All tokens live in `:root` inside `src/styles.css`. No section may define a raw color value without referencing a token.
+All tokens live in `:root` inside `src/styles/variables.css`. No section may define a raw color value without referencing a token.
 
 ```css
 /* Normalization parameters (locked to anchor) */
