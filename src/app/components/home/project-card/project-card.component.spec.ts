@@ -49,12 +49,14 @@ describe('ProjectCardComponent', () => {
     const description = fixture.debugElement.query(By.css('.project-description')).nativeElement.textContent.trim();
     const image = fixture.debugElement.query(By.css('.project-image')).nativeElement;
     const link = fixture.debugElement.query(By.css('.view-project')).nativeElement;
+    const imageLink = fixture.debugElement.query(By.css('.project-image-container')).nativeElement;
 
     expect(title).toBe('Test Project');
     expect(description).toBe('A test project description.');
     expect(image.getAttribute('src')).toBe('test-image.png');
     expect(image.getAttribute('alt')).toBe('Test Project');
     expect(link.getAttribute('href')).toBe('/projects/test-project');
+    expect(imageLink.getAttribute('href')).toBe('/projects/test-project');
   });
 
   it('should apply reverse class when reverse input is true', () => {

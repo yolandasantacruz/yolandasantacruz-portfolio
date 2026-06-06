@@ -22,9 +22,11 @@ export interface Project {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="project-card flex items-center gap-16 w-full" [class.reverse]="project().reverse">
-      <div class="project-image-container relative h-auto">
+      <a [routerLink]="project().link" 
+         class="project-image-container relative h-auto block"
+         [attr.aria-label]="'View project: ' + project().title">
         <img [ngSrc]="project().imageUrl" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 580px" width="580" height="580" [alt]="project().title" class="project-image block w-full h-auto" />
-      </div>
+      </a>
       
       <div class="project-details flex flex-col items-start text-left gap-6">
         <h2 class="project-title m-0 w-full text-left font-bold color-text text-4xl">{{ project().title }}</h2>
@@ -51,6 +53,7 @@ export interface Project {
 
     .project-image-container {
       flex: 1.2;
+      border-radius: 12px;
     }
 
     .project-image {

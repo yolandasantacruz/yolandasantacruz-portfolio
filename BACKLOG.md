@@ -4,8 +4,9 @@
 - [ ] (Yolanda) Review copy and narrative arc with AI
 - [ ] Fix font sizes globally
 - [ ] (Yolanda) Review information in the case studies
-- [ ] Allow users to enter the case studies by tapping on the images
 - [ ] Fix spacing of copy in the career overview section so it aligns with the image height
+- [ ] Bring the social icons look and feel to the icons in the career overview section of the about page
+- [ ] Fix "jumpy" carousel of the testimonials section in the about page when navigating using the carousel arrows
 - [ ] Consider changing color of the first testimonial blob to yellow
 - [ ] Improve and restore animations of sections across pages
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
@@ -24,6 +25,7 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+- [x] Allow users to enter the case studies by tapping on the images
 - [x] Fix btn-blob size so the background grows with the button text
 - [x] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
 - [x] Create suble animation that shows when an image is hovered by increasing the saturation of the image
