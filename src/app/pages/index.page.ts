@@ -1,13 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { injectContentFiles } from '@analogjs/content';
+import { HomeDataService } from './home-data.service';
 import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
-import { ProjectCardComponent, Project } from '../components/home/project-card/project-card.component';
+import { ProjectCardComponent } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
-import { ProjectAttributes } from './project-attributes';
-import { HomeHeroData, HomeBridgeData } from './home.types';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
@@ -302,62 +300,13 @@ export const routeMeta: RouteMeta = {
   `
 })
 export default class PortfolioHomeComponent {
-  readonly projects = signal<Project[]>(
-    injectContentFiles<ProjectAttributes>(file => file.filename.includes('projects'))
-      .sort((a, b) => a.attributes.order - b.attributes.order)
-      .map(project => ({
-        title: project.attributes.title,
-        description: project.attributes.description,
-        imageUrl: project.attributes.imageUrl,
-        link: `/projects/${project.attributes.slug}`,
-        category: project.attributes.category,
-        role: project.attributes.role,
-        timeline: project.attributes.timeline,
-        techStack: project.attributes.techStack
-      }))
-  );
+  private homeDataService = inject(HomeDataService);
 
-  readonly heroData = injectContentFiles<HomeHeroData & Record<string, unknown>>(file =>
-    file.filename.includes('home/hero.md')
-  )[0]?.attributes;
-  readonly bridgeData = injectContentFiles<HomeBridgeData & Record<string, unknown>>(file =>
-    file.filename.includes('home/bridge.md')
-  )[0]?.attributes;
+  readonly projects = this.homeDataService.projects;
+  readonly heroData = this.homeDataService.heroData;
+  readonly bridgeData = this.homeDataService.bridgeData;
 
-  readonly navSections = computed(() => {
-    // Maps each section ID to its CSS custom property reference.
-    // ALL color values live exclusively in styles.css :root — this file holds no hex codes.
-    // Rule 16: Map used instead of bracket notation to avoid dynamic property access.
-    const pillColors = new Map<string, string>([
-      ['hero', 'var(--section-pill-hero)'],
-      ['project-0', 'var(--section-pill-pay-with-app)'],
-      ['project-1', 'var(--section-pill-fetch-pay)'],
-      ['project-2', 'var(--section-pill-isles-at-bayshore)'],
-      ['project-3', 'var(--section-pill-plant-me)'],
-      ['bridge', 'var(--section-pill-bridge)'],
-    ]);
-
-    const sections = [
-      { id: 'hero', label: 'Top', color: pillColors.get('hero') ?? 'var(--section-pill-hero)' }
-    ];
-
-    this.projects().forEach((p, i) => {
-      const sectionId = `project-${i}`;
-      sections.push({
-        id: sectionId,
-        label: p.title,
-        color: pillColors.get(sectionId) ?? 'var(--section-pill-hero)'
-      });
-    });
-
-    sections.push({
-      id: 'bridge',
-      label: this.bridgeData?.heading ?? 'About me',
-      color: pillColors.get('bridge') ?? 'var(--section-pill-bridge)'
-    });
-
-    return sections;
-  });
+  readonly navSections = this.homeDataService.navSections;
 
 
 }

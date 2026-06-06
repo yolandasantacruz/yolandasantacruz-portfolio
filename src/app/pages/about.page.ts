@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, signal, inject, PLATFORM_ID, computed, OnInit, OnDestroy, DestroyRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, OnInit, OnDestroy } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { injectContentFiles, injectContent, ContentFile } from '@analogjs/content';
+import { AboutDataService } from './about-data.service';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AboutHeroComponent } from '../components/about/about-hero.component';
@@ -27,14 +27,7 @@ export const routeMeta: RouteMeta = {
   ]
 };
 
-import {
-  HeroData,
-  SocialsData,
-  AboutMeSection,
-  Testimonial,
-  TimelineData,
-  PublicationsData,
-} from './about.types';
+
 
 @Component({
   selector: 'portfolio-about',
@@ -173,7 +166,7 @@ import {
 export default class AboutComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
-  private destroyRef = inject(DestroyRef);
+  private aboutDataService = inject(AboutDataService);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -187,96 +180,14 @@ export default class AboutComponent implements OnInit, OnDestroy {
     }
   }
 
-  readonly navSections = computed(() => {
-    const pillColors = new Map<string, string>([
-      ['hero', 'var(--section-pill-hero)'],
-      ['origins', 'var(--section-pill-plant-me)'],
-      ['at-work', 'var(--section-pill-bridge)'],
-      ['mentorship', 'var(--section-pill-fetch-pay)'],
-      ['testimonials', 'var(--section-pill-isles-at-bayshore)'],
-      ['timeline', 'var(--section-pill-pay-with-app)'],
-      ['publications', 'var(--section-pill-hero)'],
-    ]);
+  readonly navSections = this.aboutDataService.navSections;
 
-    return [
-      { id: 'hero', label: 'Top', color: pillColors.get('hero') ?? 'var(--section-pill-hero)' },
-      { id: 'origins', label: 'Origins', color: pillColors.get('origins') ?? 'var(--section-pill-plant-me)' },
-      { id: 'at-work', label: 'At Work', color: pillColors.get('at-work') ?? 'var(--section-pill-bridge)' },
-      { id: 'mentorship', label: 'Mentorship', color: pillColors.get('mentorship') ?? 'var(--section-pill-fetch-pay)' },
-      { id: 'testimonials', label: 'Testimonials', color: pillColors.get('testimonials') ?? 'var(--section-pill-isles-at-bayshore)' },
-      { id: 'timeline', label: 'Timeline', color: pillColors.get('timeline') ?? 'var(--section-pill-pay-with-app)' },
-      { id: 'publications', label: 'Publications', color: pillColors.get('publications') ?? 'var(--section-pill-hero)' },
-    ];
-  });
-
-  constructor() {
-    const beliefSub = injectContent<Record<string, unknown>>({ customFilename: 'about/belief' }).subscribe(d => this.beliefFile.set(d));
-    const originsSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/origins' }).subscribe(d => this.originsFile.set(d));
-    const atWorkSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/at-work' }).subscribe(d => this.atWorkFile.set(d));
-    const mentorshipSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/mentorship' }).subscribe(d => this.mentorshipFile.set(d));
-
-    this.destroyRef.onDestroy(() => {
-      beliefSub.unsubscribe();
-      originsSub.unsubscribe();
-      atWorkSub.unsubscribe();
-      mentorshipSub.unsubscribe();
-    });
-  }
-
-  /** Content loaded from src/content/about/*.md via Analog's content API */
-  readonly heroData = injectContentFiles<HeroData & Record<string, unknown>>(file =>
-    file.filename.includes('about/hero.md')
-  )[0]?.attributes;
-
-  readonly socialsData = injectContentFiles<SocialsData & Record<string, unknown>>(file =>
-    file.filename.includes('shared/socials.md')
-  )[0]?.attributes;
-
-
-  /** Belief section — uses injectContent to load the body text (injectContentFiles only returns frontmatter) */
-  private readonly beliefFile = signal<ContentFile<Record<string, unknown> | Record<string, never>> | null>(null);
-  readonly beliefContent = computed(() => {
-    const f = this.beliefFile();
-    return f && typeof f.content === 'string' ? f.content : '';
-  });
-
-  /** About-me sections — load each file individually with injectContent to get body text */
-  private readonly originsFile = signal<ContentFile<AboutMeSection & Record<string, unknown> | Record<string, never>> | null>(null);
-  private readonly atWorkFile = signal<ContentFile<AboutMeSection & Record<string, unknown> | Record<string, never>> | null>(null);
-  private readonly mentorshipFile = signal<ContentFile<AboutMeSection & Record<string, unknown> | Record<string, never>> | null>(null);
-
-  readonly aboutMeData = computed<AboutMeSection[]>(() => {
-    return [
-      this.originsFile(),
-      this.atWorkFile(),
-      this.mentorshipFile(),
-    ]
-      .filter((f): f is NonNullable<typeof f> => f !== null)
-      .map(file => ({
-        badge: file.attributes['badge'] as string,
-        title: file.attributes['title'] as string,
-        description: typeof file.content === 'string' ? file.content : '',
-        image: file.attributes['image'] as string | undefined,
-        videoUrl: file.attributes['videoUrl'] as string | undefined,
-        linkUrl: file.attributes['linkUrl'] as string | undefined,
-        linkLabel: file.attributes['linkLabel'] as string | undefined,
-        metrics: file.attributes['metrics'] as AboutMeSection['metrics'],
-      })) as AboutMeSection[];
-  });
-
-
-
-  readonly timelineData = injectContentFiles<TimelineData & Record<string, unknown>>(file =>
-    file.filename.includes('about/timeline.md')
-  )[0]?.attributes;
-
-  readonly publicationsData = injectContentFiles<PublicationsData & Record<string, unknown>>(file =>
-    file.filename.includes('about/publications.md')
-  )[0]?.attributes;
-
-  /** Testimonials need unwrapping: md has { items: [...] }, component expects Testimonial[] */
-  readonly testimonialItems = injectContentFiles<{ testimonials: Testimonial[] } & Record<string, unknown>>(file =>
-    file.filename.includes('about/testimonials.md')
-  )[0]?.attributes?.testimonials;
+  readonly heroData = this.aboutDataService.heroData;
+  readonly socialsData = this.aboutDataService.socialsData;
+  readonly beliefContent = this.aboutDataService.beliefContent;
+  readonly aboutMeData = this.aboutDataService.aboutMeData;
+  readonly timelineData = this.aboutDataService.timelineData;
+  readonly publicationsData = this.aboutDataService.publicationsData;
+  readonly testimonialItems = this.aboutDataService.testimonialItems;
 }
 
