@@ -3,7 +3,7 @@
 ## MVP
 - [x] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
 - [ ] (Yolanda) Review copy and narrative arc with AI
-- [ ] Fix btn-blob size
+- [x] Fix btn-blob size so the background grows with the button text
 - [ ] Fix font sizes globally
 - [ ] (Yolanda) Review information in the case studies
 - [ ] Allow users to enter the case studies by tapping on the images

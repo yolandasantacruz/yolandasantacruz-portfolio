@@ -315,18 +315,26 @@ analog-markdown blockquote p {
    ("DOWNLOAD RESUME"), and the about timeline ("View My Resume").
    ========================================================================== */
 @keyframes blob-morph {
-
-  0%,
-  100% {
-    border-radius: 55% 45% 70% 30% / 45% 55% 45% 55%;
+  0%, 100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
   }
-
-  33% {
-    border-radius: 65% 35% 50% 50% / 55% 35% 65% 45%;
+  14% {
+    border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
   }
-
-  66% {
-    border-radius: 45% 55% 35% 65% / 40% 65% 35% 60%;
+  28% {
+    border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
+  }
+  42% {
+    border-radius: 30% 70% 70% 30% / 50% 30% 70% 50%;
+  }
+  56% {
+    border-radius: 60% 40% 60% 40% / 40% 50% 50% 60%;
+  }
+  70% {
+    border-radius: 45% 55% 35% 65% / 65% 35% 65% 35%;
+  }
+  84% {
+    border-radius: 55% 45% 70% 30% / 35% 65% 35% 65%;
   }
 }
 
@@ -336,8 +344,10 @@ analog-markdown blockquote p {
   justify-content: center;
   background: color-mix(in srgb, var(--color-accent) 15%, transparent);
   color: var(--color-primary);
-  width: var(--btn-blob-width, 200px);
+  width: auto;
+  min-width: var(--btn-blob-width, 200px);
   height: 76px;
+  padding: 0 2.5rem;
   font-family: var(--font-main);
   font-size: 1.2rem;
   font-weight: 700;
@@ -347,7 +357,7 @@ analog-markdown blockquote p {
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  animation: blob-morph 6s ease-in-out infinite alternate;
+  animation: blob-morph 14s ease-in-out infinite alternate;
   white-space: nowrap;
 }
 

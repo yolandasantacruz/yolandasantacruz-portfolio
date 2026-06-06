@@ -71,6 +71,8 @@ The `.btn-blob` global utility class is the **single source of truth** for the m
 * **Border/Shadow**: `none`
 * **Color**: `var(--color-primary)` (Dark Teal Contrast Accent) -> `color-mix(in srgb, var(--color-primary) 65%, #000000)` on hover
 * **Typography**: Nunito, `1.2rem`, bold (`700`), uppercase, letter-spacing `0.15em`
+* **Sizing & Layout**: Dynamic width (`width: auto`) to grow with custom labels, combined with a default base width (`min-width: var(--btn-blob-width, 200px)`) and horizontal padding (`padding: 0 2.5rem`) for visual safety.
+* **Morphing Interaction**: High-fidelity `blob-morph` animation running over `14s` across 7 distinct asymmetric stops (`0%`, `14%`, `28%`, `42%`, `56%`, `70%`, `84%`, `100%`) for a premium, liquid feel that avoids basic oval shapes.
 * **Decoration**: Inline arrow `→` appended via CSS `::after` with a `0.5rem` left margin
 * **Hover Interaction**: Smooth translation of the arrow (`transform: translateX(6px)`) using a standard curve `cubic-bezier(0.16, 1, 0.3, 1)` to keep the visual response alive and premium
 * **Reduced Motion**: Translation disabled on hover
