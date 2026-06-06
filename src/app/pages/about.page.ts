@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, OnInit, OnDestroy } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AboutDataService } from './about-data.service';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
@@ -26,8 +25,6 @@ export const routeMeta: RouteMeta = {
     { name: 'twitter:card', content: 'summary_large_image' }
   ]
 };
-
-
 
 @Component({
   selector: 'portfolio-about',
@@ -163,25 +160,10 @@ export const routeMeta: RouteMeta = {
     }
   `
 })
-export default class AboutComponent implements OnInit, OnDestroy {
-  private platformId = inject(PLATFORM_ID);
-  private document = inject(DOCUMENT);
+export default class AboutComponent {
   private aboutDataService = inject(AboutDataService);
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.document.documentElement.classList.add('no-scrollbar');
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.document.documentElement.classList.remove('no-scrollbar');
-    }
-  }
-
   readonly navSections = this.aboutDataService.navSections;
-
   readonly heroData = this.aboutDataService.heroData;
   readonly socialsData = this.aboutDataService.socialsData;
   readonly beliefContent = this.aboutDataService.beliefContent;
@@ -190,4 +172,3 @@ export default class AboutComponent implements OnInit, OnDestroy {
   readonly publicationsData = this.aboutDataService.publicationsData;
   readonly testimonialItems = this.aboutDataService.testimonialItems;
 }
-
