@@ -2,7 +2,6 @@
 
 ## Todo
 - [ ] Bring the logo to SVG format
-- [ ] Remove usage of RxJS and use modern Angular APIs
 - [ ] Comprehensive review of mobile viewport
 - [ ] Increase "About Me" hero image dimensions and enhance visual quality
 - [ ] Review copy and narrative arc with AI
@@ -25,6 +24,7 @@
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
 
 ## Done
+- [x] Remove usage of RxJS and use modern Angular APIs
 - [x] Update fav icon with new logo
 - [x] Navigation Pills: Refine the active dot color when in the Hero section (top snap) to a more sophisticated, premium tone (such as a refined charcoal or deep warm gray) to replace the current dark teal.
 - [x] Navigation Pills: Scale down the font size of the hover labels (case study titles) and explore a cleaner, more sophisticated typeface (e.g., a geometric sans-serif or system-ui with wider tracking/letter-spacing) to improve elegance and readability.

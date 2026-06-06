@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, afterNextRender } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DOCUMENT } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
 import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-trail.component';
 
 @Component({
@@ -66,12 +64,9 @@ export class App {
 
   /** Sets up scroll restoration and focus management to improve navigation a11y */
   private setupNavigationHandling(win: Window) {
-    this.router.events
-      .pipe(
-        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe(() => {
+    const routerSub = this.router.events
+      .subscribe((e) => {
+        if (e instanceof NavigationEnd) {
         if (typeof win.scrollTo === 'function') {
           win.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }
@@ -85,7 +80,9 @@ export class App {
           body.setAttribute('tabindex', '-1');
           body.focus({ preventScroll: true });
         }
-      });
+      }
+    });
+    this.destroyRef.onDestroy(() => routerSub.unsubscribe());
   }
 }
 

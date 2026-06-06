@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, signal, inject, PLATFORM_ID, computed, afterNextRender, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, inject, PLATFORM_ID, computed, afterNextRender, OnInit, OnDestroy, DestroyRef } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { injectContentFiles, injectContent } from '@analogjs/content';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs/operators';
+import { injectContentFiles, injectContent, ContentFile } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AboutHeroComponent } from '../components/about/about-hero.component';
@@ -179,6 +177,7 @@ import {
 export default class AboutComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -237,7 +236,20 @@ export default class AboutComponent implements OnInit, OnDestroy {
         });
 
 
+
       }
+    });
+
+    const beliefSub = injectContent<Record<string, unknown>>({ customFilename: 'about/belief' }).subscribe(d => this.beliefFile.set(d));
+    const originsSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/origins' }).subscribe(d => this.originsFile.set(d));
+    const atWorkSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/at-work' }).subscribe(d => this.atWorkFile.set(d));
+    const mentorshipSub = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/mentorship' }).subscribe(d => this.mentorshipFile.set(d));
+
+    this.destroyRef.onDestroy(() => {
+      beliefSub.unsubscribe();
+      originsSub.unsubscribe();
+      atWorkSub.unsubscribe();
+      mentorshipSub.unsubscribe();
     });
   }
 
@@ -262,18 +274,16 @@ export default class AboutComponent implements OnInit, OnDestroy {
 
 
   /** Belief section — uses injectContent to load the body text (injectContentFiles only returns frontmatter) */
-  private readonly beliefFile$ = injectContent<Record<string, unknown>>({ customFilename: 'about/belief' });
-  readonly beliefContent = toSignal(this.beliefFile$.pipe(map(f => typeof f.content === 'string' ? f.content : '')), { initialValue: '' });
-
+  private readonly beliefFile = signal<ContentFile<Record<string, unknown> | Record<string, never>> | null>(null);
+  readonly beliefContent = computed(() => {
+    const f = this.beliefFile();
+    return f && typeof f.content === 'string' ? f.content : '';
+  });
 
   /** About-me sections — load each file individually with injectContent to get body text */
-  private readonly originsFile$ = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/origins' });
-  private readonly atWorkFile$ = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/at-work' });
-  private readonly mentorshipFile$ = injectContent<AboutMeSection & Record<string, unknown>>({ customFilename: 'about/mentorship' });
-
-  private readonly originsFile = toSignal(this.originsFile$, { initialValue: null });
-  private readonly atWorkFile = toSignal(this.atWorkFile$, { initialValue: null });
-  private readonly mentorshipFile = toSignal(this.mentorshipFile$, { initialValue: null });
+  private readonly originsFile = signal<ContentFile<AboutMeSection & Record<string, unknown> | Record<string, never>> | null>(null);
+  private readonly atWorkFile = signal<ContentFile<AboutMeSection & Record<string, unknown> | Record<string, never>> | null>(null);
+  private readonly mentorshipFile = signal<ContentFile<AboutMeSection & Record<string, unknown> | Record<string, never>> | null>(null);
 
   readonly aboutMeData = computed<AboutMeSection[]>(() => {
     return [

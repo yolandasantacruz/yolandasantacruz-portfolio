@@ -16,8 +16,6 @@ import {
 } from '@angular/core';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { DOCUMENT, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'portfolio-header',
@@ -169,13 +167,13 @@ export class HeaderComponent {
     this.activeIndex.set(this.getActiveIndex(this.router.url));
 
     // Listen to route changes
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      takeUntilDestroyed(destroyRef)
-    ).subscribe((event: NavigationEnd) => {
-      const url = event.urlAfterRedirects || event.url;
-      this.activeIndex.set(this.getActiveIndex(url));
+    const routerSub = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const url = event.urlAfterRedirects || event.url;
+        this.activeIndex.set(this.getActiveIndex(url));
+      }
     });
+    destroyRef.onDestroy(() => routerSub.unsubscribe());
 
     // Update indicator when activeIndex changes
     effect(() => {

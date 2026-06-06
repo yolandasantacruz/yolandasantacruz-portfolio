@@ -1,8 +1,6 @@
-import { injectContent, MarkdownComponent } from '@analogjs/content';
-import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { injectContent, MarkdownComponent, ContentFile } from '@analogjs/content';
+import { ChangeDetectionStrategy, Component, inject, effect, signal, DestroyRef } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { tap } from 'rxjs';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProjectAttributes } from './project-attributes';
@@ -10,14 +8,14 @@ import { ProjectAttributes } from './project-attributes';
 @Component({
   selector: 'portfolio-project-details',
   standalone: true,
-  imports: [AsyncPipe, MarkdownComponent, HeaderComponent, FooterComponent],
+  imports: [MarkdownComponent, HeaderComponent, FooterComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
       <portfolio-header />
 
       <main class="project-main">
-        @if (project$ | async; as project) {
+        @if (project(); as project) {
           <article class="project-article">
             <header class="project-header fade-in-on-load">
               <h1 class="project-title">{{ project.attributes.title }}</h1>
@@ -122,16 +120,25 @@ export default class ProjectDetails {
   private titleService = inject(Title);
   private metaService = inject(Meta);
 
-  readonly project$ = injectContent<ProjectAttributes>({ param: 'slug', subdirectory: 'projects' }).pipe(
-    tap(project => {
-      if (project) {
-        this.titleService.setTitle(`${project.attributes.title} | Yolanda Santa Cruz`);
+  readonly project = signal<ContentFile<ProjectAttributes | Record<string, never>> | null>(null);
+
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+    const projectSub = injectContent<ProjectAttributes>({ param: 'slug', subdirectory: 'projects' }).subscribe(p => {
+      this.project.set(p);
+    });
+    destroyRef.onDestroy(() => projectSub.unsubscribe());
+
+    effect(() => {
+      const p = this.project();
+      if (p) {
+        this.titleService.setTitle(`${p.attributes.title} | Yolanda Santa Cruz`);
         this.metaService.updateTag({
           name: 'description',
-          content: project.attributes.description || `Case study on ${project.attributes.title} by Yolanda Santa Cruz.`
+          content: p.attributes.description || `Case study on ${p.attributes.title} by Yolanda Santa Cruz.`
         });
       }
-    })
-  );
+    });
+  }
 }
 
