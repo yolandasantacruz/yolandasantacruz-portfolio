@@ -104,7 +104,7 @@ export const routeMeta: RouteMeta = {
 
           @if (resumeData.downloadUrl) {
             <div class="download-section flex justify-center">
-              <a [href]="resumeData.downloadUrl" download class="btn-link" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+              <a [href]="resumeData.downloadUrl" download class="btn-link">
                 Download PDF
               </a>
             </div>
