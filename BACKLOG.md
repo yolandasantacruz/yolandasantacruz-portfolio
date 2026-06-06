@@ -1,9 +1,7 @@
 # Project Backlog
 
 ## MVP
-- [x] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
 - [ ] (Yolanda) Review copy and narrative arc with AI
-- [x] Fix btn-blob size so the background grows with the button text
 - [ ] Fix font sizes globally
 - [ ] (Yolanda) Review information in the case studies
 - [ ] Allow users to enter the case studies by tapping on the images
@@ -26,6 +24,8 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+- [x] Fix btn-blob size so the background grows with the button text
+- [x] In the About Me page, add more glow to the upper part of the bg line so it blends more with the line line it does towards the bottom
 - [x] Create suble animation that shows when an image is hovered by increasing the saturation of the image
 - [x] Increase "About Me" hero image dimensions and enhance visual quality
 - [x] Bring the logo to SVG format
