@@ -116,6 +116,46 @@
 }
 
 /* ==========================================================================
+   DESIGN SYSTEM COMPONENT: Timeline Pattern (.timeline-item)
+   ========================================================================== */
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 15px;
+  bottom: -4.5rem;
+  width: 1px;
+  background: #EBEBEB;
+  z-index: 1;
+}
+
+.timeline-item:first-child::before {
+  top: 14px;
+}
+
+.timeline-item:last-child::before {
+  height: 0;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  z-index: 2;
+}
+
+/* ==========================================================================
    DESIGN SYSTEM SPECIFICATION: Mouse Trail Background Token
    ==========================================================================
    The WebGL2 mouse trail background (<portfolio-mouse-trail>) operates as an

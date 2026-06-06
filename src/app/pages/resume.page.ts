@@ -37,10 +37,10 @@ export const routeMeta: RouteMeta = {
             <div class="main-column">
 
               <section class="work-experience flex flex-col">
-                <h3 class="section-heading">Work Experience</h3>
+                <h3 class="text-eyebrow">Work Experience</h3>
                 
                 @for (job of resumeData.workExperience; track job.title + job.meta) {
-                  <div class="job-entry">
+                  <div class="timeline-item">
                     <header class="job-header">
                       <h1 class="job-title">{{ job.title }}</h1>
                       <p class="job-meta">{{ job.meta }}</p>
@@ -58,28 +58,28 @@ export const routeMeta: RouteMeta = {
             <aside class="sidebar flex flex-col gap-16">
               @if (resumeData.software) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="section-heading">Software</h3>
+                  <h3 class="text-eyebrow">Software</h3>
                   <p>{{ resumeData.software }}</p>
                 </div>
               }
 
               @if (resumeData.skills) {
                 <div class="sidebar-section">
-                  <h3 class="section-heading">Skills</h3>
+                  <h3 class="text-eyebrow">Skills</h3>
                   <p>{{ resumeData.skills }}</p>
                 </div>
               }
 
               @if (resumeData.languages) {
                 <div class="sidebar-section">
-                  <h3 class="section-heading">Languages</h3>
+                  <h3 class="text-eyebrow">Languages</h3>
                   <p>{{ resumeData.languages }}</p>
                 </div>
               }
 
               @if (resumeData.additional && resumeData.additional.length > 0) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="section-heading">Additional</h3>
+                  <h3 class="text-eyebrow">Additional</h3>
                   <ul class="sidebar-list no-bullets">
                     @for (item of resumeData.additional; track item) {
                       <li>{{ item }}</li>
@@ -90,7 +90,7 @@ export const routeMeta: RouteMeta = {
 
               @if (resumeData.education && resumeData.education.length > 0) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="section-heading">Education</h3>
+                  <h3 class="text-eyebrow">Education</h3>
                   @for (edu of resumeData.education; track edu.degree + edu.school) {
                     <div class="education-entry flex flex-col">
                       <span class="degree font-bold text-base">{{ edu.degree }}</span>
@@ -116,16 +116,7 @@ export const routeMeta: RouteMeta = {
     </div>
   `,
   styles: `
-    @keyframes pageFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+
 
     .resume-content {
       padding-top: 4rem;
@@ -146,51 +137,7 @@ export const routeMeta: RouteMeta = {
       gap: 6rem;
     }
 
-    .section-heading {
-      font-family: var(--font-main);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
 
-    .job-entry {
-      position: relative;
-      padding-left: 2rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .job-entry::before {
-      content: "";
-      position: absolute;
-      left: 5px;
-      top: 15px;
-      bottom: -4.5rem;
-      width: 1px;
-      background: #EBEBEB;
-      z-index: 1;
-    }
-
-    .job-entry:first-child::before {
-      top: 14px;
-    }
-
-    .job-entry:last-child::before {
-      height: 0;
-    }
-
-    .job-entry::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 15px;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: var(--color-primary);
-      z-index: 2;
-    }
 
     .job-header {
       display: flex;
@@ -245,7 +192,7 @@ export const routeMeta: RouteMeta = {
       animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
-    .sidebar-section .section-heading {
+    .sidebar-section .text-eyebrow {
       margin-bottom: 1.5rem;
     }
 

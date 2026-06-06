@@ -113,6 +113,15 @@ button:focus-visible,
   color: var(--color-text-muted);
 }
 
+.text-eyebrow {
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
 /* Layout Utilities */
 .flex {
   display: flex;

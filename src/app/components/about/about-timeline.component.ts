@@ -22,9 +22,9 @@ import { RouterLink } from '@angular/router';
         </div>
 
         <div class="timeline-positions-container flex gap-16 relative">
-          <div class="positions-col left-col flex flex-col gap-12">
+          <div class="positions-col left-col flex flex-col">
             @for (item of leftTimelineItems(); track item.company) {
-              <div class="position-item flex gap-6 items-start">
+              <div class="position-item timeline-item flex gap-6 items-start">
                 <div class="position-logo-box flex items-center justify-center" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
                     <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image w-full" />
@@ -41,9 +41,9 @@ import { RouterLink } from '@angular/router';
             }
           </div>
 
-          <div class="positions-col right-col flex flex-col gap-12">
+          <div class="positions-col right-col flex flex-col">
             @for (item of rightTimelineItems(); track item.company) {
-              <div class="position-item flex gap-6 items-start">
+              <div class="position-item timeline-item flex gap-6 items-start">
                 <div class="position-logo-box flex items-center justify-center" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
                     <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image w-full" />

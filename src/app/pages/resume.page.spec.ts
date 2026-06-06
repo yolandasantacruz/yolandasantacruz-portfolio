@@ -38,7 +38,7 @@ describe('ResumeComponent', () => {
     const workExperience = fixture.debugElement.query(By.css('.work-experience'));
     expect(workExperience).toBeTruthy();
 
-    const jobEntries = fixture.debugElement.queryAll(By.css('.job-entry'));
+    const jobEntries = fixture.debugElement.queryAll(By.css('.timeline-item'));
     expect(jobEntries.length).toBe(6); // 6 companies: Discover, Upside, Fetch, Zelenia, Home61, PSC
   });
 

@@ -35,7 +35,7 @@ import { HomeHeroData } from '../../../models/home.types';
 
 
       <div class="hero-content">
-        <span class="hero-tag">{{ data().tag }}</span>
+        <span class="hero-tag text-eyebrow">{{ data().tag }}</span>
         <h1 class="hero-hook">@if (hookParts().highlight) {<span class="cohesive-phrase">{{ hookParts().main }}</span><br class="hero-break" /><span class="cohesive-phrase italic-text">{{ hookParts().highlight }}</span>} @else {{{ data().hook }}}</h1>
         <p class="hero-subcopy">{{ data().subcopy }}</p>
         <div class="about-button-wrapper">
@@ -45,10 +45,6 @@ import { HomeHeroData } from '../../../models/home.types';
     </section>
   `,
   styles: `
-    @keyframes heroFadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
 
     @keyframes traceFloat {
       0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
@@ -98,17 +94,12 @@ import { HomeHeroData } from '../../../models/home.types';
       z-index: 10;
     }
     .hero-tag {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: #3b9f98;
-      text-transform: uppercase;
       margin-bottom: 2rem;
       display: inline-block;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .hero-hook {
@@ -123,7 +114,7 @@ import { HomeHeroData } from '../../../models/home.types';
       text-wrap: balance;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
     }
 
     .cohesive-phrase {
@@ -145,14 +136,14 @@ import { HomeHeroData } from '../../../models/home.types';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
     .about-button-wrapper {
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
     }
 
     /* Width override for the hero CTA — global .btn-blob defaults to 200px */

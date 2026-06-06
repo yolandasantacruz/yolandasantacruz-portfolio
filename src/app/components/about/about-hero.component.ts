@@ -55,7 +55,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .cohesive-phrase {
@@ -82,7 +82,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
     }
 
     .social-links {
@@ -91,7 +91,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
     .social-btn {
@@ -159,13 +159,10 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
     }
 
-    @keyframes heroFadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
 
     @media (prefers-reduced-motion: reduce) {
       .hero-greeting,
