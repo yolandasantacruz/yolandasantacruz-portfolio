@@ -123,7 +123,7 @@ export const routeMeta: RouteMeta = {
     }
 
     .page-title {
-      font-size: 4rem;
+      font-size: var(--text-6xl);
       text-align: left;
       margin-bottom: 6rem;
       font-weight: 400;
@@ -148,9 +148,9 @@ export const routeMeta: RouteMeta = {
 
     .job-title {
       font-family: var(--font-header);
-      font-size: 1.5rem;
+      font-size: var(--text-lg);
       font-weight: 500;
-      color: #111;
+      color: var(--color-text);
       line-height: 1.8;
       margin-bottom: 0;
     }
@@ -170,9 +170,9 @@ export const routeMeta: RouteMeta = {
     .job-bullets li {
       position: relative;
       padding-left: 1.5rem;
-      font-size: 1.2rem;
+      font-size: var(--text-base);
       line-height: 1.7;
-      color: #4a4a4a;
+      color: var(--color-text-muted);
       margin-bottom: 0.75rem;
     }
 
@@ -185,8 +185,8 @@ export const routeMeta: RouteMeta = {
     }
 
     .contact-info {
-      font-size: 0.9rem;
-      color: #555;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
       line-height: 1.6;
       opacity: 0;
       animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
@@ -197,9 +197,9 @@ export const routeMeta: RouteMeta = {
     }
 
     .sidebar-section p {
-      font-size: 1.2rem;
+      font-size: var(--text-base);
       line-height: 1.8;
-      color: #555;
+      color: var(--color-text-muted);
       margin: 0;
     }
 
@@ -210,7 +210,7 @@ export const routeMeta: RouteMeta = {
     }
 
     .sidebar-list li {
-      font-size: 1.2rem;
+      font-size: var(--text-base);
       margin-bottom: 0.5rem;
       line-height: 1.4;
       position: relative;

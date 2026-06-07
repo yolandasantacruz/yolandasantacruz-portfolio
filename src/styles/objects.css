@@ -39,7 +39,7 @@
   height: 76px;
   padding: 0 2.5rem;
   font-family: var(--font-main);
-  font-size: 1.2rem;
+  font-size: var(--text-base);
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -70,7 +70,7 @@
   background: transparent;
   color: var(--color-primary);
   font-family: var(--font-main);
-  font-size: 1.2rem;
+  font-size: var(--text-base);
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -205,7 +205,7 @@
   opacity: 0;
   pointer-events: none;
 
-  background: #ffffff;
+  background: var(--color-bg);
   border: 1.5px solid color-mix(in srgb, var(--pill-color) 20%, white);
   border-radius: 100px;
   padding: 6px 14px;
@@ -216,9 +216,9 @@
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-  color: #4a4a4a;
+  color: var(--color-text-muted);
   font-family: var(--font-main);
-  font-size: .6rem;
+  font-size: var(--text-micro);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -261,7 +261,7 @@
 }
 
 .nav-pill:focus-visible {
-  outline: 3px solid #111;
+  outline: 3px solid var(--color-text);
   outline-offset: 2px;
 }
 

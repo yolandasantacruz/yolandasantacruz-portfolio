@@ -164,7 +164,7 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       border: 2px solid var(--color-accent);
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
-      color: #fff;
+      color: var(--color-bg);
       font-family: var(--font-header);
       letter-spacing: -0.02em;
       user-select: none;
@@ -180,7 +180,7 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       align-items: center;
       gap: 0.5rem;
       text-decoration: none;
-      color: #111;
+      color: var(--color-text);
       transition: color 0.2s ease;
     }
 
@@ -223,14 +223,14 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       border: 1px solid rgba(0,0,0,0.12);
       background: transparent;
       cursor: pointer;
-      color: #333;
+      color: var(--color-text);
       transition: all 0.25s ease;
     }
 
     .quote-nav-btn:hover:not(:disabled) {
       border-color: var(--color-accent);
       background: var(--color-accent);
-      color: #111;
+      color: var(--color-text);
       transform: scale(1.05);
     }
 
@@ -271,7 +271,7 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       .testimonial-card-wrapper { padding: 80px 40px; }
       .testimonial-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
       .testimonial-nav { align-self: flex-end; }
-      .testimonial-quote { font-size: 1.2rem; }
+      .testimonial-quote { font-size: var(--text-base); }
       .author-details {
         min-height: 150px;
       }

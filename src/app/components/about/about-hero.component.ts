@@ -46,11 +46,11 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
 
     .hero-greeting {
       font-family: var(--font-header);
-      font-size: 3.5rem;
+      font-size: var(--text-5xl);
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
-      color: #111;
+      color: var(--color-text);
       margin-bottom: 2.5rem;
       opacity: 0;
       transform: translateY(30px);
@@ -74,10 +74,10 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
     }
 
     .hero-mission {
-      font-size: 1.3rem;
+      font-size: var(--text-md);
       font-weight: 300;
       line-height: 1.7;
-      color: #555;
+      color: var(--color-text-muted);
       margin-bottom: 3.5rem;
       opacity: 0;
       transform: translateY(30px);
@@ -99,12 +99,12 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       height: 40px;
       border-radius: 50%;
       border: none;
-      color: #666;
+      color: var(--color-text-muted);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      background: #ffffff;
+      background: var(--color-bg);
       filter: drop-shadow(2px 2px 4px rgba(0, 162, 154, 0.12)) drop-shadow(-2px -2px 4px rgba(184, 156, 224, 0.12));
     }
 
@@ -114,27 +114,27 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
 
     .social-btn.linkedin:hover {
       background: #0077b5;
-      color: #ffffff;
+      color: var(--color-bg);
     }
 
     .social-btn.github:hover {
       background: #181717;
-      color: #ffffff;
+      color: var(--color-bg);
     }
 
     .social-btn.twitter:hover {
       background: #000000;
-      color: #ffffff;
+      color: var(--color-bg);
     }
 
     .social-btn.behance:hover {
       background: #1769ff;
-      color: #ffffff;
+      color: var(--color-bg);
     }
 
     .social-btn.dribbble:hover {
       background: #ea4c89;
-      color: #ffffff;
+      color: var(--color-bg);
     }
 
     .social-icon {
@@ -226,7 +226,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
         gap: 4rem;
         margin-bottom: 10rem;
       }
-      .hero-greeting { font-size: 2.5rem; }
+      .hero-greeting { font-size: var(--text-3xl); }
       .cohesive-phrase { white-space: normal; display: inline; }
       .portrait-wrapper { width: 280px; }
     }

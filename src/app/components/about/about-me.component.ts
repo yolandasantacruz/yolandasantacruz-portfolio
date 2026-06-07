@@ -163,13 +163,13 @@ import { AboutMeSection } from '../../models/about.types';
     .section-title {
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: #111;
+      color: var(--color-text);
       margin-bottom: 2rem;
     }
 
     .section-desc {
       line-height: 1.8;
-      color: #555;
+      color: var(--color-text-muted);
       margin-bottom: 3rem;
       font-weight: 300;
     }
@@ -183,7 +183,7 @@ import { AboutMeSection } from '../../models/about.types';
     }
 
     .comp-label {
-      color: #222;
+      color: var(--color-text);
     }
 
     .comp-val {
@@ -251,14 +251,14 @@ import { AboutMeSection } from '../../models/about.types';
 
     .metric-num {
       font-weight: 300;
-      color: #111;
+      color: var(--color-text);
       letter-spacing: -0.03em;
     }
 
     .metric-label {
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: #777;
+      color: var(--color-text-muted);
     }
 
     /* Video Player Styles */
@@ -272,7 +272,7 @@ import { AboutMeSection } from '../../models/about.types';
 
     .video-label {
       letter-spacing: 0.1em;
-      color: #666;
+      color: var(--color-text-muted);
       text-transform: uppercase;
     }
 
@@ -364,13 +364,13 @@ import { AboutMeSection } from '../../models/about.types';
     .play-trigger:hover .play-overlay,
     .play-trigger:focus-visible .play-overlay {
       transform: translate(-50%, -50%) scale(1.1);
-      background: #ffffff;
+      background: var(--color-bg);
     }
 
     .play-icon {
       width: 28px;
       height: 28px;
-      color: #111;
+      color: var(--color-text);
       margin-left: 4px;
     }
 

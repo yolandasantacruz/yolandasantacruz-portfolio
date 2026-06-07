@@ -87,7 +87,7 @@ import { RouterLink } from '@angular/router';
     .timeline-heading {
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: #111;
+      color: var(--color-text);
       line-height: 1.2;
     }
 
@@ -102,7 +102,7 @@ import { RouterLink } from '@angular/router';
     .position-logo-box {
       width: 72px;
       height: 72px;
-      background: #ffffff;
+      background: var(--color-bg);
       border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
       border-radius: 16px;
       flex-shrink: 0;
@@ -111,8 +111,8 @@ import { RouterLink } from '@angular/router';
     }
 
     .position-logo-box.has-text-logo {
-      background: #111;
-      color: #fff;
+      background: var(--color-text);
+      color: var(--color-bg);
       border: none;
       font-weight: 800;
       font-size: 1.1rem;
@@ -140,13 +140,13 @@ import { RouterLink } from '@angular/router';
 
     .position-role {
       font-family: var(--font-header);
-      color: #111;
+      color: var(--color-text);
       line-height: 1.15;
       letter-spacing: -0.02em;
     }
 
     .position-company {
-      color: #888;
+      color: var(--color-text-muted);
     }
 
     @media (max-width: 1024px) {
@@ -157,7 +157,7 @@ import { RouterLink } from '@angular/router';
     @media (max-width: 768px) {
       .timeline-section { margin-bottom: 12rem; }
       .timeline-positions-container { flex-direction: column; gap: 4rem; }
-      .timeline-heading { font-size: 2rem; }
+      .timeline-heading { font-size: var(--text-xl); }
     }
   `
 })

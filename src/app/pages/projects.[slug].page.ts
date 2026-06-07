@@ -62,13 +62,13 @@ import { ProjectAttributes } from '../models/project-attributes';
     }
 
     .project-title {
-      font-size: 4rem;
+      font-size: var(--text-6xl);
       margin-bottom: 0.5rem;
       font-weight: 800;
     }
 
     .project-subtitle {
-      font-size: 1.5rem;
+      font-size: var(--text-lg);
       color: var(--color-text-muted);
       max-width: 900px;
       margin-bottom: 3.5rem;
@@ -110,8 +110,8 @@ import { ProjectAttributes } from '../models/project-attributes';
     }
 
     @media (max-width: 768px) {
-      .project-title { font-size: 2.5rem; }
-      .project-subtitle { font-size: 1.25rem; }
+      .project-title { font-size: var(--text-3xl); }
+      .project-subtitle { font-size: var(--text-md); }
       .project-header { margin-bottom: 4rem; }
     }
   `,

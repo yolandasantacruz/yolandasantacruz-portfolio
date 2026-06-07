@@ -39,7 +39,7 @@ pre {
 
 body {
   font-family: var(--font-main);
-  font-size: 1.2rem;
+  font-size: var(--text-base);
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.8;
@@ -141,14 +141,14 @@ analog-markdown blockquote p {
   font-weight: 300;
   line-height: 1.35;
   letter-spacing: -0.02em;
-  color: #111;
+  color: var(--color-text);
   text-align: center;
   margin: 0;
 }
 
 @media (max-width: 768px) {
   analog-markdown blockquote p {
-    font-size: 2rem;
+    font-size: var(--text-xl);
   }
 }
 

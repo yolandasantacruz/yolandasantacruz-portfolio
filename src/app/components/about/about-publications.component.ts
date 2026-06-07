@@ -57,7 +57,7 @@ import { PublicationsData } from '../../models/about.types';
     .published-heading {
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: #111;
+      color: var(--color-text);
       margin-bottom: 6rem;
     }
 
@@ -77,7 +77,7 @@ import { PublicationsData } from '../../models/about.types';
       aspect-ratio: 4 / 3;
       border-radius: 12px;
       overflow: hidden;
-      background: #f5f5f5;
+      background: color-mix(in srgb, var(--color-text) 5%, transparent);
     }
 
     .work-thumb {
@@ -107,7 +107,7 @@ import { PublicationsData } from '../../models/about.types';
     }
 
     .work-title {
-      color: #111;
+      color: var(--color-text);
       line-height: 1.3;
       transition: color 0.2s ease;
     }
@@ -138,7 +138,7 @@ import { PublicationsData } from '../../models/about.types';
     @media (max-width: 768px) {
       .published-section { margin-bottom: 0; }
       .works-grid { grid-template-columns: 1fr; }
-      .published-heading { font-size: 2rem; }
+      .published-heading { font-size: var(--text-xl); }
     }
   `
 })

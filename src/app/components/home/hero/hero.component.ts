@@ -108,7 +108,7 @@ import { HomeHeroData } from '../../../models/home.types';
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
-      color: #111;
+      color: var(--color-text);
       margin: 0 0 2.5rem 0;
       opacity: 0;
       text-wrap: balance;
@@ -127,9 +127,9 @@ import { HomeHeroData } from '../../../models/home.types';
     }
 
     .hero-subcopy {
-      font-size: 1.25rem;
+      font-size: var(--text-md);
       line-height: 1.8;
-      color: #555;
+      color: var(--color-text-muted);
       margin: 0 0 3.5rem 0;
       font-weight: 300;
       max-width: 800px;
@@ -160,12 +160,12 @@ import { HomeHeroData } from '../../../models/home.types';
     }
 
     @media (max-width: 1024px) {
-      .hero-hook { font-size: 3.5rem; }
+      .hero-hook { font-size: var(--text-5xl); }
     }
 
     @media (max-width: 768px) {
-      .hero-hook { font-size: 2.75rem; }
-      .hero-subcopy { font-size: 1.2rem; }
+      .hero-hook { font-size: var(--text-4xl); }
+      .hero-subcopy { font-size: var(--text-base); }
       .hero-break { display: none; }
       .cohesive-phrase { white-space: normal; display: inline; }
     }

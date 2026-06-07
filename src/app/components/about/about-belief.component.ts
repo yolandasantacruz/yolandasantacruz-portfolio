@@ -24,7 +24,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
       font-weight: 300;
       line-height: 1.35;
       letter-spacing: -0.02em;
-      color: #111;
+      color: var(--color-text);
       margin: 0 0 3rem 0;
       padding: 0;
       border: none;
@@ -39,7 +39,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
     @media (max-width: 768px) {
       .belief-section { margin-bottom: 12rem; }
-      .belief-statement { font-size: 2rem; }
+      .belief-statement { font-size: var(--text-xl); }
     }
   `
 })
