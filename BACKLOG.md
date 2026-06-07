@@ -6,7 +6,6 @@
 - [ ] Fix font sizes globally in desktop and mobile
 - [ ] Fix spacing of copy in the career overview section so it aligns with the image height
 - [ ] Bring the social icons look and feel to the icons in the career overview section of the about page
-- [x] Restore and improve animations of sections across pages
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
 - [ ] Add Google Analytics
@@ -22,6 +21,7 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+- [x] Restore and improve animations of sections across pages
 - [x] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc. Bring only unit tests for now, keeping the protection against regressions of important features
 - [x] Fix "jumpy" carousel of the testimonials section in the about page when navigating using the carousel arrows
 - [x] Allow users to enter the case studies by tapping on the images
