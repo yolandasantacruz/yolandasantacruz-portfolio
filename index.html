@@ -45,6 +45,14 @@
       transform: translateY(30px);
     }
   </style>
+  <script type="speculationrules">
+  {
+    "prerender": [{
+      "where": { "href_matches": "/*" },
+      "eagerness": "moderate"
+    }]
+  }
+  </script>
 </head>
 
 <body>

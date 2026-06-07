@@ -103,6 +103,8 @@ export const routeMeta: RouteMeta = {
       width: 100%;
       box-sizing: border-box;
       padding: 3rem 0;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 100vh;
     }
 
     .section-content {

@@ -140,6 +140,8 @@ import { AboutMeSection } from '../../models/about.types';
       grid-template-columns: 1fr 1fr;
       gap: 8rem;
       align-items: center;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 800px;
     }
 
     .section-text {
