@@ -128,8 +128,6 @@ export const routeMeta: RouteMeta = {
     </div>
   `,
   styles: `
-
-
     .resume-content {
       padding-top: 4rem;
     }
@@ -262,19 +260,22 @@ export const routeMeta: RouteMeta = {
     }
 
     @media (max-width: 900px) {
+      .resume-content {
+        padding-top: 0;
+      }
       .resume-header-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        margin-bottom: 3.5rem;
+        margin-bottom: 4rem;
+      }
+      .download-section.header-download {
+        display: none;
       }
       .download-section.bottom-download {
-        margin: 3rem 0;
+        margin: 6rem 0 3rem;
       }
       .resume-grid {
         grid-template-columns: 1fr;
-      }
-      .sidebar {
-        order: -1;
       }
     }
 
@@ -292,4 +293,3 @@ export default class ResumeComponent {
     file.filename.includes('resume.md')
   )[0]?.attributes;
 }
-
