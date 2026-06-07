@@ -1,3 +1,3 @@
 ---
-statement: "Our lives are shaped by our experiences. I work on improving the quality of those experiences."
+statement: "Our experiences shape our reality. My focus is bringing clarity and trust, using my expertise to improve how we engage with the world."
 ---

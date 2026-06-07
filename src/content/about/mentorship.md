@@ -4,7 +4,7 @@ title: "Mentorship"
 linkUrl: "https://adplist.org/mentors/yolanda-santa-cruz"
 linkLabel: "Mentorship on ADPList"
 videoUrl: "https://www.youtube.com/embed/yL_yRyzp7oo?autoplay=1"
-description: "Much of what I am today has been made possible thanks to the help of others. I am using my experience to help others navigate their goals in any way I can, and even push them to think bigger and brighter about what to achieve and how to get there."
+description: "Much of where I am today was made possible by the guidance and generosity of others. I am passing that support forward by using my experience to help emerging designers navigate their careers. We focus on pushing their potential and setting larger goals, while defining the precise, practical steps required to reach them."
 metrics:
   - num: "200+"
     label: "Sessions Hosted"

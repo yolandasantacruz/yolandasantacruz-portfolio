@@ -1,6 +1,6 @@
 ---
-badge: "Life Philosophy"
-title: "At Work"
+badge: "At Work"
+title: "Building Trust"
 image: "images/about/at-work.webp"
-description: "I believe what allows us to get far along as a species is, above all, trust. I lead with an empathetic perspective, doing my part to make every voice feel included, heard, and respected. Creating this psychological safety allows teams to drive confidently through bumpy roads, and contribute the kind of game-changing ideas that stay hidden when people don't feel like they belong in the room. This is the approach I bring to every bridge I build, from individual partnerships to broad cross-functional alignment."
+description: "I believe technical expertise and trust are the perfect foundation for success. When people know they belong in the room, providing feedback, iterating, tackling constraints, and problem-solving together becomes much easier and more enjoyable.<br><br>I have seen that internal clarity directly reflects in the output as well, with teams that communicate with transparency building products that feel intentional and trustworthy."
 ---
