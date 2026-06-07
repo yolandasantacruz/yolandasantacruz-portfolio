@@ -31,9 +31,18 @@ export const routeMeta: RouteMeta = {
       <portfolio-header />
 
       <main class="resume-content">
-        <h1 class="page-title">Resume</h1>
-
         @if (resumeData) {
+          <div class="resume-header-grid">
+            <h1 class="page-title">Resume</h1>
+            @if (resumeData.downloadUrl) {
+              <div class="download-section header-download">
+                <a [href]="resumeData.downloadUrl" download class="btn-link">
+                  Download PDF
+                </a>
+              </div>
+            }
+          </div>
+
           <div class="resume-grid">
             <div class="main-column">
 
@@ -106,7 +115,7 @@ export const routeMeta: RouteMeta = {
           </div>
 
           @if (resumeData.downloadUrl) {
-            <div class="download-section">
+            <div class="download-section bottom-download">
               <a [href]="resumeData.downloadUrl" download class="btn-link">
                 Download PDF
               </a>
@@ -128,7 +137,7 @@ export const routeMeta: RouteMeta = {
     .page-title {
       font-size: var(--text-6xl);
       text-align: left;
-      margin-bottom: 6rem;
+      margin-bottom: 0;
       font-weight: 400;
       opacity: 0;
       animation: pageFadeIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
@@ -236,11 +245,31 @@ export const routeMeta: RouteMeta = {
       gap: 0.25rem;
     }
 
-    .download-section {
-      margin: 3rem 0;
+    .resume-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 6rem;
+      align-items: baseline;
+      margin-bottom: 6rem;
+    }
+
+    .download-section.header-download {
+      margin: 0;
+    }
+
+    .download-section.bottom-download {
+      margin: 3rem 0 3rem 2rem;
     }
 
     @media (max-width: 900px) {
+      .resume-header-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3.5rem;
+      }
+      .download-section.bottom-download {
+        margin: 3rem 0;
+      }
       .resume-grid {
         grid-template-columns: 1fr;
       }
