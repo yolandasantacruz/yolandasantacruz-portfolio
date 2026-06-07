@@ -78,3 +78,8 @@ Primary contributor is a product designer. Communicate as a "Technical Design Pa
 ## Rule 10: Hands-Off Version Control (Git Commits & Pushes)
 - **No Git Commits or Pushes**: AI agents are strictly prohibited from executing `git commit`, `git push`, or any commands that alter/sync the repository history.
 - **Human-Driven Version Control**: AI agents must only edit, create, or delete the necessary workspace files, leaving all staging, committing, and pushing to be manually reviewed and executed by the user.
+
+## Rule 11: Strict CSS Variable & CSS Architecture Adherence
+- **Single Source of Truth**: All colors and typography sizes must be managed through CSS Custom Properties defined in `src/styles/variables.css`.
+- **No Hardcoding**: Agents must never hardcode raw HEX codes (e.g., `#111`, `#fff`) or absolute sizing (e.g., `1.2rem`) in component templates or stylesheets. Always map values to established tokens (e.g., `var(--color-text)`, `var(--text-base)`).
+- **CSS Architecture**: Follow the established global CSS architecture (`variables.css` → `base.css` → `objects.css` → `utilities.css`). Do not pollute component-scoped styles with global typography or color resets.
