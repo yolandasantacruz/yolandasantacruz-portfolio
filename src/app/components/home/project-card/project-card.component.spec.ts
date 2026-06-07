@@ -110,4 +110,22 @@ describe('ProjectCardComponent', () => {
     await fixture.whenStable();
     expect(location.path()).toBe('/projects/test-project');
   });
+
+  it('should set fetchpriority to high when priority input is true', () => {
+    componentRef.setInput('project', mockProject);
+    componentRef.setInput('priority', true);
+    fixture.detectChanges();
+
+    const image = fixture.debugElement.query(By.css('.project-image')).nativeElement;
+    expect(image.getAttribute('fetchpriority')).toBe('high');
+  });
+
+  it('should not set fetchpriority to high when priority input is false', () => {
+    componentRef.setInput('project', mockProject);
+    componentRef.setInput('priority', false);
+    fixture.detectChanges();
+
+    const image = fixture.debugElement.query(By.css('.project-image')).nativeElement;
+    expect(image.getAttribute('fetchpriority')).not.toBe('high');
+  });
 });
