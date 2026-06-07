@@ -25,7 +25,7 @@ import { DOCUMENT, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
   template: `
     <header class="header">
       <div class="logo">
-        <a routerLink="/" class="logo-link" (click)="scrollToTop($event)">
+        <a routerLink="/" class="logo-link btn-circle" (click)="scrollToTop($event)">
           <img [ngSrc]="logoSrc" width="40" height="40" priority alt="Yolanda Santa Cruz" class="logo-img" />
         </a>
       </div>
@@ -82,19 +82,7 @@ import { DOCUMENT, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
     }
     .nav-links a:hover, .nav-links a.active { opacity: 1; }
     .logo-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
       background: transparent;
-      transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 2px 2px 4px rgba(0, 162, 154, 0.12), -2px -2px 4px rgba(184, 156, 224, 0.12);
-    }
-    .logo-link:hover, .logo-link.active {
-      box-shadow: 5px 5px 10px rgba(143, 189, 185, 0.25), -5px -5px 10px rgba(184, 156, 224, 0.25);
     }
     .logo-img {
       width: 100%;

@@ -5,24 +5,32 @@
    ("DOWNLOAD RESUME"), and the about timeline ("View My Resume").
    ========================================================================== */
 @keyframes blob-morph {
-  0%, 100% {
+
+  0%,
+  100% {
     border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
   }
+
   14% {
     border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
   }
+
   28% {
     border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
   }
+
   42% {
     border-radius: 30% 70% 70% 30% / 50% 30% 70% 50%;
   }
+
   56% {
     border-radius: 60% 40% 60% 40% / 40% 50% 50% 60%;
   }
+
   70% {
     border-radius: 45% 55% 35% 65% / 65% 35% 65% 35%;
   }
+
   84% {
     border-radius: 55% 45% 70% 30% / 35% 65% 35% 65%;
   }
@@ -113,6 +121,37 @@
   .btn-blob:hover::after {
     transform: none !important;
   }
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM COMPONENT: Circular Icon Button (.btn-circle)
+   ========================================================================== */
+.btn-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-circle-btn);
+  height: var(--size-circle-btn);
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  box-shadow: var(--shadow-circle-btn);
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-circle:hover,
+.btn-circle.active {
+  box-shadow: var(--shadow-circle-btn-hover);
+}
+
+.btn-circle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 50%;
 }
 
 /* ==========================================================================

@@ -9,6 +9,9 @@ You are an expert in building professional portfolio websites using Angular and 
 ## Development Environment
 You are working in a TypeScript, Angular, and Analog development environment. Your goal is to develop a professional portfolio website for Yolanda Santa Cruz.
 
+## Rule 0:
+- Do not execute the browser subagent unless explicitly given permission by the developer.
+
 ## Rule 1: Angular & Analog SSR Compatibility
 Analog uses SSR. For SSR safety:
 - **No Direct Globals**: Do not access `window`/`document` directly (`no-restricted-globals`).

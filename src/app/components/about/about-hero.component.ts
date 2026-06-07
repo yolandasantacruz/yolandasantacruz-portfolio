@@ -17,7 +17,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
           @if (socialLinks().length > 0) {
             <div class="social-links">
               @for (link of socialLinks(); track link.platform) {
-                <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="link.label" [class]="'social-btn flex items-center justify-center ' + link.platform">
+                <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="link.label" [class]="'social-btn btn-circle flex items-center justify-center ' + link.platform">
                   @if (iconPath(link.platform); as path) {
                     <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path [attr.d]="path"/></svg>
                   }
@@ -94,32 +94,16 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
     }
 
-    .social-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: none;
-      color: var(--color-text-muted);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      background: var(--color-bg);
-      filter: drop-shadow(2px 2px 4px rgba(0, 162, 154, 0.12)) drop-shadow(-2px -2px 4px rgba(184, 156, 224, 0.12));
-    }
 
-    .social-btn:hover {
-      filter: drop-shadow(3px 3px 6px rgba(0, 162, 154, 0.25)) drop-shadow(-3px -3px 6px rgba(184, 156, 224, 0.25));
-    }
 
     .social-btn.linkedin:hover {
       background: var(--color-brand-linkedin);
-      color: var(--color-bg-contrast);
+      color: var(--section-bg-hero);
     }
 
     .social-btn.github:hover {
       background: var(--color-brand-github);
-      color: var(--color-bg-contrast);
+      color: var(--section-bg-hero);
     }
 
     .social-btn.twitter:hover {
