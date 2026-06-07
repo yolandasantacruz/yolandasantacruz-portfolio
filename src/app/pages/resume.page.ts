@@ -204,7 +204,7 @@ export const routeMeta: RouteMeta = {
       margin-bottom: 1.5rem;
     }
 
-    .sidebar-section p {
+    .sidebar-section {
       font-size: var(--text-base);
       line-height: 1.8;
       color: var(--color-text-muted);
