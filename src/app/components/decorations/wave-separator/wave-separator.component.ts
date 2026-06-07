@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.1" />
             <stop offset="15%" stop-color="var(--color-accent)" />
-            <stop offset="50%" stop-color="#69ffa7" />
+            <stop offset="50%" stop-color="var(--color-wave-accent)" />
             <stop offset="85%" stop-color="var(--color-accent)" />
             <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0.1" />
           </linearGradient>

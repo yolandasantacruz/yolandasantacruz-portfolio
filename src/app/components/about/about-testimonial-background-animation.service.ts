@@ -50,9 +50,9 @@ const SHAPE_DEFINITIONS: BlobDefinition[] = [
 ];
 
 const SHAPE_COLORS: readonly string[] = [
-  '#F3FCFB', // Soft mint green (paler)
-  '#FFFDF2', // Soft pale yellow (paler)
-  '#F9F7FD', // Soft pale lavender (paler)
+  'var(--color-shape-mint)', // Soft mint green (paler)
+  'var(--color-shape-yellow)', // Soft pale yellow (paler)
+  'var(--color-shape-lavender)', // Soft pale lavender (paler)
 ] as const;
 
 export const INITIAL_SHAPE_PATH =
@@ -92,7 +92,7 @@ export class TestimonialBackgroundAnimationService implements OnDestroy {
    * the color palette so it is always in bounds.
    */
   getShapeColor(index: number): string {
-    return SHAPE_COLORS.at(index % SHAPE_COLORS.length) ?? (SHAPE_COLORS.at(0) ?? '#F3FCFB');
+    return SHAPE_COLORS.at(index % SHAPE_COLORS.length) ?? (SHAPE_COLORS.at(0) ?? 'var(--color-shape-mint)');
   }
 
   /**

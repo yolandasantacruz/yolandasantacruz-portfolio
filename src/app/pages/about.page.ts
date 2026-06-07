@@ -59,10 +59,10 @@ export const routeMeta: RouteMeta = {
               <feGaussianBlur stdDeviation="50"/>
             </filter>
             <linearGradient id="about-g-trace" x1="-150" y1="-50" x2="404" y2="3600" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#8AE7DA" stop-opacity="0.8"/>
-              <stop offset="30%" stop-color="#E2F6BC" stop-opacity="0.8"/>
-              <stop offset="45%" stop-color="#E2F6BC" stop-opacity="1.0"/>
-              <stop offset="100%" stop-color="#FCFBE9" stop-opacity="1.0"/>
+              <stop offset="0%" stop-color="var(--color-gradient-stop-1)" stop-opacity="0.8"/>
+              <stop offset="30%" stop-color="var(--color-gradient-stop-2)" stop-opacity="0.8"/>
+              <stop offset="45%" stop-color="var(--color-gradient-stop-2)" stop-opacity="1.0"/>
+              <stop offset="100%" stop-color="var(--color-gradient-stop-3)" stop-opacity="1.0"/>
             </linearGradient>
           </defs>
           <!-- soft outer glow layer 1 -->

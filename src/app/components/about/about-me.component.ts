@@ -209,13 +209,13 @@ import { AboutMeSection } from '../../models/about.types';
     }
 
     .section-visual::before {
-      background: #FFE59E;
+      background: var(--color-bg-mentorship);
       bottom: -20px;
       right: -20px;
     }
 
     .section-visual::after {
-      background: #FFD5BA;
+      background: var(--color-bg-speaking);
       top: -20px;
       left: -20px;
     }
@@ -311,9 +311,9 @@ import { AboutMeSection } from '../../models/about.types';
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: 8px; /* Slight rounding matching inner frame boundaries */
+      border-radius: 20px; /* Slight rounding matching inner frame boundaries */
       overflow: hidden;
-      background: #121212;
+      background: var(--color-bg-dark);
     }
 
     .play-trigger {

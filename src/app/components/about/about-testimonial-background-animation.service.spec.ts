@@ -39,17 +39,17 @@ describe('TestimonialBackgroundAnimationService', () => {
   describe('getShapeColor', () => {
     it('returns the first color for index 0', () => {
       const color = service.getShapeColor(0);
-      expect(color).toBe('#F3FCFB');
+      expect(color).toBe('var(--color-shape-mint)');
     });
 
     it('returns the second color for index 1', () => {
       const color = service.getShapeColor(1);
-      expect(color).toBe('#FFFDF2');
+      expect(color).toBe('var(--color-shape-yellow)');
     });
 
     it('returns the third color for index 2', () => {
       const color = service.getShapeColor(2);
-      expect(color).toBe('#F9F7FD');
+      expect(color).toBe('var(--color-shape-lavender)');
     });
 
     it('wraps around — index 3 maps back to the first color', () => {

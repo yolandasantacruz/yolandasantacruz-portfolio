@@ -17,9 +17,9 @@ import { HomeHeroData } from '../../../models/home.types';
               <feGaussianBlur stdDeviation="70"/>
             </filter>
             <linearGradient id="g-trace" x1="1400" y1="-505" x2="-150" y2="667" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#8AE7DA"/>
-              <stop offset="0.5" stop-color="#E2F6BC"/>
-              <stop offset="1" stop-color="#FCFBE9"/>
+              <stop stop-color="var(--color-gradient-stop-1)"/>
+              <stop offset="0.5" stop-color="var(--color-gradient-stop-2)"/>
+              <stop offset="1" stop-color="var(--color-gradient-stop-3)"/>
             </linearGradient>
           </defs>
           <!-- soft outer glow layer 1 -->

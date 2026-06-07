@@ -251,14 +251,12 @@ export const routeMeta: RouteMeta = {
     .bridge-heading {
       font-weight: 400;
       letter-spacing: -0.02em;
-      line-height: 1.15;
-      color: #111;
+      color: var(--color-text);
     }
 
     .bridge-copy {
       font-size: 1.25rem;
-      line-height: 1.8;
-      color: #555;
+      color: var(--color-text-muted);
       font-weight: 300;
       text-align: center;
       max-width: 620px;

@@ -80,6 +80,35 @@
   --section-pill-isles-at-bayshore: #6FA3DF;
   --section-pill-plant-me: #72c4a2;
   --section-pill-bridge: #66b9bf;
+
+  /* ==========================================================================
+     CUSTOM BRAND & DECORATIVE COLORS
+     ========================================================================== */
+  /* Brand/Social Colors */
+  --color-brand-linkedin: #0077b5;
+  --color-brand-github: #181717;
+  --color-brand-x: #000000;
+  --color-brand-behance: #1769ff;
+  --color-brand-dribbble: #ea4c89;
+
+  /* Decorative Backgrounds */
+  --color-bg-resume: #D2FCA3;
+  --color-bg-mentorship: #FFE59E;
+  --color-bg-speaking: #FFD5BA;
+  --color-bg-dark: #121212;
+
+  /* Gradient Stops & Shapes */
+  --color-gradient-stop-1: #8AE7DA;
+  --color-gradient-stop-2: #E2F6BC;
+  --color-gradient-stop-3: #FCFBE9;
+  
+  /* Testimonial Shape Colors */
+  --color-shape-mint: #F3FCFB;
+  --color-shape-yellow: #FFFDF2;
+  --color-shape-lavender: #F9F7FD;
+
+  /* Wave Separator */
+  --color-wave-accent: #69ffa7;
 }
 
 @property --testimonial-shadow-color {

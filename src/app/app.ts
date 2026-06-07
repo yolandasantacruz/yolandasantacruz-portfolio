@@ -21,7 +21,7 @@ import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-
       display: block;
       min-height: 100vh;
       position: relative;
-      background-color: #ffffff !important;
+      background-color: var(--color-bg) !important;
     }
 
     .content-wrapper {

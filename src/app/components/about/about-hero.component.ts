@@ -113,28 +113,28 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
     }
 
     .social-btn.linkedin:hover {
-      background: #0077b5;
-      color: var(--color-bg);
+      background: var(--color-brand-linkedin);
+      color: var(--color-bg-contrast);
     }
 
     .social-btn.github:hover {
-      background: #181717;
-      color: var(--color-bg);
+      background: var(--color-brand-github);
+      color: var(--color-bg-contrast);
     }
 
     .social-btn.twitter:hover {
-      background: #000000;
-      color: var(--color-bg);
+      background: var(--color-brand-x);
+      color: var(--color-bg-contrast);
     }
 
     .social-btn.behance:hover {
-      background: #1769ff;
-      color: var(--color-bg);
+      background: var(--color-brand-behance);
+      color: var(--color-bg-contrast);
     }
 
     .social-btn.dribbble:hover {
-      background: #ea4c89;
-      color: var(--color-bg);
+      background: var(--color-brand-dribbble);
+      color: var(--color-bg-contrast);
     }
 
     .social-icon {
@@ -215,7 +215,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
     }
 
     .portrait-glow::after {
-      background: #D2FCA3;
+      background: var(--color-bg-resume);
       top: -20px;
       left: -20px;
     }

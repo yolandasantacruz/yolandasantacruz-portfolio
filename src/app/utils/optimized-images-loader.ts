@@ -13,7 +13,9 @@ export function optimizedImagesLoader(config: ImageLoaderConfig): string {
   }
 
   if (src.endsWith('.webp') && config.width) {
-    const availableWidths = OPTIMIZED_IMAGES[src];
+    const availableWidths = Object.prototype.hasOwnProperty.call(OPTIMIZED_IMAGES, src) 
+      ? OPTIMIZED_IMAGES[src as keyof typeof OPTIMIZED_IMAGES] 
+      : undefined;
     
     if (availableWidths && availableWidths.length > 0) {
       const lastDot = src.lastIndexOf('.');
