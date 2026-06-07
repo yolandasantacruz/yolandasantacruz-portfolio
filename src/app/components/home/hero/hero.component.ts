@@ -132,7 +132,7 @@ import { HomeHeroData } from '../../../models/home.types';
       color: var(--color-text-muted);
       margin: 0 0 3.5rem 0;
       font-weight: 300;
-      max-width: 800px;
+      max-width: 650px;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;

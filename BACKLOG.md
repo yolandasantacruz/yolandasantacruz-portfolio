@@ -2,11 +2,11 @@
 
 ## MVP
 - [ ] (Yolanda) Review copy and narrative arc with AI
-- [ ] Fix font sizes globally
 - [ ] (Yolanda) Review information in the case studies
+- [ ] Fix font sizes globally
 - [ ] Fix spacing of copy in the career overview section so it aligns with the image height
 - [ ] Bring the social icons look and feel to the icons in the career overview section of the about page
-- [ ] Improve and restore animations of sections across pages
+- [x] Restore and improve animations of sections across pages
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
 - [ ] Add Google Analytics

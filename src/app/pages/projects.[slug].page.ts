@@ -3,12 +3,13 @@ import { ChangeDetectionStrategy, Component, inject, effect, signal, DestroyRef 
 import { Title, Meta } from '@angular/platform-browser';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { ProjectAttributes } from '../models/project-attributes';
 
 @Component({
   selector: 'portfolio-project-details',
   standalone: true,
-  imports: [MarkdownComponent, HeaderComponent, FooterComponent],
+  imports: [MarkdownComponent, HeaderComponent, FooterComponent, ScrollRevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
@@ -41,7 +42,7 @@ import { ProjectAttributes } from '../models/project-attributes';
               </div>
             </header>
 
-            <div class="project-content">
+            <div class="project-content" portfolioScrollReveal>
               <analog-markdown [content]="project.content" />
             </div>
           </article>

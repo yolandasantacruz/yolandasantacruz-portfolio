@@ -9,6 +9,7 @@ import { AboutTestimonialsComponent } from '../components/about/about-testimonia
 import { AboutTimelineComponent } from '../components/about/about-timeline.component';
 import { AboutPublicationsComponent } from '../components/about/about-publications.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
@@ -39,6 +40,7 @@ export const routeMeta: RouteMeta = {
     AboutTimelineComponent,
     AboutPublicationsComponent,
     SideNavComponent,
+    ScrollRevealDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -81,11 +83,11 @@ export const routeMeta: RouteMeta = {
 
         <main class="about-main">
           <portfolio-about-hero id="hero" [data]="heroData" [socials]="socialsData" />
-          <portfolio-about-belief [content]="beliefContent()" />
+          <portfolio-about-belief portfolioScrollReveal [content]="beliefContent()" />
           <portfolio-about-me [data]="aboutMeData()" />
-          <portfolio-about-testimonials id="testimonials" [items]="testimonialItems" />
-          <portfolio-about-timeline id="timeline" [data]="timelineData" />
-          <portfolio-about-publications id="publications" [data]="publicationsData" />
+          <portfolio-about-testimonials portfolioScrollReveal id="testimonials" [items]="testimonialItems" />
+          <portfolio-about-timeline portfolioScrollReveal id="timeline" [data]="timelineData" />
+          <portfolio-about-publications portfolioScrollReveal id="publications" [data]="publicationsData" />
         </main>
 
         <portfolio-footer />

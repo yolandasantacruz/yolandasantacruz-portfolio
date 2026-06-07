@@ -6,6 +6,7 @@ import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
 
 export const routeMeta: RouteMeta = {
@@ -33,7 +34,8 @@ export const routeMeta: RouteMeta = {
     HeroComponent,
     ProjectCardComponent,
     FooterComponent,
-    SideNavComponent
+    SideNavComponent,
+    ScrollRevealDirective
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -56,7 +58,7 @@ export const routeMeta: RouteMeta = {
       <!-- Project Sections (Snaps 1 to 4) -->
       @for (project of projects(); track project.title; let i = $index) {
         <section [id]="'project-' + i" class="snap-section project-section flex items-center justify-center">
-          <div class="section-content">
+          <div class="section-content" portfolioScrollReveal>
             <portfolio-project-card [project]="{ ...project, reverse: i % 2 !== 0 }" [priority]="i === 0" />
           </div>
         </section>
@@ -64,7 +66,7 @@ export const routeMeta: RouteMeta = {
 
       <!-- About Me Bridge Section (Snap 7) -->
       <section id="bridge" class="snap-section bridge-section flex items-center justify-center">
-        <div class="section-content bridge-content flex flex-col">
+        <div class="section-content bridge-content flex flex-col" portfolioScrollReveal>
           @if (bridgeData) {
             <div class="bridge-card flex flex-col items-center gap-8">
               <span class="bridge-tag text-base font-bold">{{ bridgeData.tag }}</span>

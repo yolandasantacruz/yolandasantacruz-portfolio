@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { injectContentFiles } from '@analogjs/content';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
 import { ResumeData } from '../models/resume.types';
 
@@ -23,7 +24,7 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'portfolio-resume',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent, ScrollRevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
@@ -37,10 +38,10 @@ export const routeMeta: RouteMeta = {
             <div class="main-column">
 
               <section class="work-experience flex flex-col">
-                <h3 class="text-eyebrow">Work Experience</h3>
+                <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.6s">Work Experience</h3>
                 
-                @for (job of resumeData.workExperience; track job.title + job.meta) {
-                  <div class="timeline-item">
+                @for (job of resumeData.workExperience; track job.title + job.meta; let i = $index) {
+                  <div class="timeline-item" portfolioScrollReveal [style.transition-delay]="(i < 3) ? (i * 0.15 + 1.0) + 's' : '0s'">
                     <header class="job-header">
                       <h1 class="job-title">{{ job.title }}</h1>
                       <p class="job-meta">{{ job.meta }}</p>
@@ -58,29 +59,29 @@ export const routeMeta: RouteMeta = {
             <aside class="sidebar flex flex-col gap-16">
               @if (resumeData.software) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="text-eyebrow">Software</h3>
-                  <p>{{ resumeData.software }}</p>
+                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.75s">Software</h3>
+                  <p portfolioScrollReveal style="transition-delay: 1.15s">{{ resumeData.software }}</p>
                 </div>
               }
 
               @if (resumeData.skills) {
                 <div class="sidebar-section">
-                  <h3 class="text-eyebrow">Skills</h3>
-                  <p>{{ resumeData.skills }}</p>
+                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.9s">Skills</h3>
+                  <p portfolioScrollReveal style="transition-delay: 1.3s">{{ resumeData.skills }}</p>
                 </div>
               }
 
               @if (resumeData.languages) {
                 <div class="sidebar-section">
-                  <h3 class="text-eyebrow">Languages</h3>
-                  <p>{{ resumeData.languages }}</p>
+                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.05s">Languages</h3>
+                  <p portfolioScrollReveal style="transition-delay: 1.45s">{{ resumeData.languages }}</p>
                 </div>
               }
 
               @if (resumeData.additional && resumeData.additional.length > 0) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="text-eyebrow">Additional</h3>
-                  <ul class="sidebar-list no-bullets">
+                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.2s">Additional</h3>
+                  <ul class="sidebar-list no-bullets" portfolioScrollReveal style="transition-delay: 1.6s">
                     @for (item of resumeData.additional; track item) {
                       <li>{{ item }}</li>
                     }
@@ -90,20 +91,22 @@ export const routeMeta: RouteMeta = {
 
               @if (resumeData.education && resumeData.education.length > 0) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="text-eyebrow">Education</h3>
-                  @for (edu of resumeData.education; track edu.degree + edu.school) {
-                    <div class="education-entry flex flex-col">
-                      <span class="degree font-bold text-base">{{ edu.degree }}</span>
-                      <span class="school text-base color-text-muted">{{ edu.school }}</span>
-                    </div>
-                  }
+                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.35s">Education</h3>
+                  <div portfolioScrollReveal style="transition-delay: 1.75s" class="flex flex-col gap-4">
+                    @for (edu of resumeData.education; track edu.degree + edu.school) {
+                      <div class="education-entry flex flex-col">
+                        <span class="degree font-bold text-base">{{ edu.degree }}</span>
+                        <span class="school text-base color-text-muted">{{ edu.school }}</span>
+                      </div>
+                    }
+                  </div>
                 </div>
               }
             </aside>
           </div>
 
           @if (resumeData.downloadUrl) {
-            <div class="download-section flex justify-center">
+            <div class="download-section">
               <a [href]="resumeData.downloadUrl" download class="btn-link">
                 Download PDF
               </a>
@@ -128,7 +131,7 @@ export const routeMeta: RouteMeta = {
       margin-bottom: 6rem;
       font-weight: 400;
       opacity: 0;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      animation: pageFadeIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
     }
 
     .resume-grid {
@@ -136,8 +139,6 @@ export const routeMeta: RouteMeta = {
       grid-template-columns: 1fr 300px;
       gap: 6rem;
     }
-
-
 
     .job-header {
       display: flex;
@@ -233,6 +234,10 @@ export const routeMeta: RouteMeta = {
 
     .education-entry {
       gap: 0.25rem;
+    }
+
+    .download-section {
+      margin: 3rem 0;
     }
 
     @media (max-width: 900px) {

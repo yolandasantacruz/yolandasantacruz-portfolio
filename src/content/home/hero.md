@@ -1,5 +1,6 @@
 ---
-tag: YOLANDA SANTA CRUZ | LEAD PRODUCT DESIGNER
+tag: Yolanda Santa Cruz
 hook: Designing for ease, impact, and scale
-subcopy: With over 10 years of design experience, I thrive at distilling complex data into straightforward experiences that foster certainty and trust.
+subcopy: |
+  I'm a product designer with over 10 years of experience, distilling complex data into experiences that build certainty and trust.
 ---

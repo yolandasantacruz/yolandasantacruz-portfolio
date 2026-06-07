@@ -231,3 +231,21 @@ button:focus-visible,
 .no-scrollbar::-webkit-scrollbar {
   display: none !important;
 }
+
+/* Scroll Reveal Utilities */
+.scroll-reveal-hidden,
+.revealed {
+  transition-property: opacity, transform;
+  transition-duration: 2.0s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-hidden {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+}
+
+.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}

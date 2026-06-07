@@ -1,19 +1,20 @@
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { NgOptimizedImage, DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 import { AboutMeSection } from '../../models/about.types';
 
 @Component({
   selector: 'portfolio-about-me',
   standalone: true,
-  imports: [NgOptimizedImage, NgTemplateOutlet],
+  imports: [NgOptimizedImage, NgTemplateOutlet, ScrollRevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (data(); as sections) {
       <section class="about-me-section flex flex-col">
         @for (section of sections; track section.title; let i = $index) {
-          <article class="section-row" [id]="getSectionId(section.title)">
+          <article class="section-row" [id]="getSectionId(section)" portfolioScrollReveal>
             
             @if (i % 2 === 0) {
               <!-- Text on Left, Visual on Right -->
@@ -449,11 +450,12 @@ export class AboutMeComponent {
     }, 150);
   }
 
-  getSectionId(title: string): string {
-    if (title.toLowerCase().includes('origins')) return 'origins';
-    if (title.toLowerCase().includes('work')) return 'at-work';
-    if (title.toLowerCase().includes('mentorship')) return 'mentorship';
-    return title.toLowerCase().replace(/\s+/g, '-');
+  getSectionId(section: AboutMeSection): string {
+    const text = (section.badge || section.title).toLowerCase();
+    if (text.includes('origins')) return 'origins';
+    if (text.includes('work')) return 'at-work';
+    if (text.includes('mentorship')) return 'mentorship';
+    return section.title.toLowerCase().replace(/\s+/g, '-');
   }
 }
 
