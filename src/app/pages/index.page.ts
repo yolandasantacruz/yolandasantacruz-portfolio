@@ -57,7 +57,7 @@ export const routeMeta: RouteMeta = {
       @for (project of projects(); track project.title; let i = $index) {
         <section [id]="'project-' + i" class="snap-section project-section flex items-center justify-center">
           <div class="section-content">
-            <portfolio-project-card [project]="{ ...project, reverse: i % 2 !== 0 }" />
+            <portfolio-project-card [project]="{ ...project, reverse: i % 2 !== 0 }" [priority]="i === 0" />
           </div>
         </section>
       }

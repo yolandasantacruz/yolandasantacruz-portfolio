@@ -25,7 +25,7 @@ export interface Project {
       <a [routerLink]="project().link" 
          class="project-image-container relative h-auto block"
          [attr.aria-label]="'View project: ' + project().title">
-        <img [ngSrc]="project().imageUrl" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 580px" width="580" height="580" [alt]="project().title" class="project-image block w-full h-auto" />
+        <img [ngSrc]="project().imageUrl" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 580px" width="580" height="580" [alt]="project().title" class="project-image block w-full h-auto" [priority]="priority()" />
       </a>
       
       <div class="project-details flex flex-col items-start text-left gap-6">
@@ -113,6 +113,7 @@ export interface Project {
 })
 export class ProjectCardComponent {
   project = input.required<Project>();
+  priority = input<boolean>(false);
 }
 
 
