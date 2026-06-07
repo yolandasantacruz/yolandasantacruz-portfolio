@@ -167,7 +167,7 @@ import { HomeHeroData } from '../../../models/home.types';
       .hero-hook { font-size: var(--text-4xl); }
       .hero-subcopy { font-size: var(--text-base); }
       .hero-break { display: none; }
-      .cohesive-phrase { white-space: normal; display: inline; }
+      .cohesive-phrase { white-space: normal; }
     }
   `
 })

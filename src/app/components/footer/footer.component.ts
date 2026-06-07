@@ -21,9 +21,9 @@ import { SocialsData } from '../../models/shared.types';
     .footer { 
       text-align: center; 
       padding: 6rem 0 1rem; 
+      font-size: var(--text-regular);
     }
     .copyright {
-      font-size: var(--text-sm);
       color: var(--color-text-muted);
       text-align: center;
       border-top: none;

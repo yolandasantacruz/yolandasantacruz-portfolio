@@ -1,31 +1,32 @@
 :root {
-  --max-width: 1200px;
-  --container-padding: 0 2rem;
-  --font-main: 'Nunito', sans-serif;
-  --font-header: 'Libre Baskerville', system-ui, sans-serif;
-  --color-text: #1a1a1a;
-  --color-text-muted: #666;
-  --color-bg: #ffffff;
-  --color-primary: #3b9f98;
-  --color-accent: #5ed6cc;
+   --max-width: 1200px;
+   --container-padding: 0 2rem;
+   --font-main: 'Nunito', sans-serif;
+   --font-header: 'Libre Baskerville', system-ui, sans-serif;
+   --color-text: #1a1a1a;
+   --color-text-muted: #666;
+   --color-bg: #ffffff;
+   --color-primary: #3b9f98;
+   --color-accent: #5ed6cc;
 
-  /* ==========================================================================
+   /* ==========================================================================
      TYPOGRAPHY TOKENS
      ========================================================================== */
-  --text-micro: 0.6rem;
-  --text-xs: 0.8rem;
-  --text-sm: 0.9rem;
-  --text-base: 1.2rem;
-  --text-md: 1.25rem;
-  --text-lg: 1.5rem;
-  --text-xl: 2rem;
-  --text-2xl: 2.25rem;
-  --text-3xl: 2.5rem;
-  --text-4xl: 2.75rem;
-  --text-5xl: 3.25rem;
-  --text-6xl: 4rem;
+   --text-micro: 0.6rem;
+   --text-xs: 0.8rem;
+   --text-sm: 0.9rem;
+   --text-regular: 1.1rem;
+   --text-base: 1.2rem;
+   --text-md: 1.25rem;
+   --text-lg: 1.5rem;
+   --text-xl: 2rem;
+   --text-2xl: 2.25rem;
+   --text-3xl: 2.5rem;
+   --text-4xl: 2.75rem;
+   --text-5xl: 3.25rem;
+   --text-6xl: 4rem;
 
-  /* ==========================================================================
+   /* ==========================================================================
      SECTION PASTEL COLOR SYSTEM — Mathematical HSL Normalization
      Hue (H) extracted from each section's foreground case study image brand color.
      Saturation (S) and Lightness (L) locked to the bridge-section anchor #f0fbf9.
@@ -45,74 +46,74 @@
      PlantMe (163°) → Bridge (169°) = 6° delta — perfectly seamless handoff.
   */
 
-  /* -- Shared normalization parameters (locked to anchor) -- */
-  --section-pastel-s: 58%;
-  /* Saturation lock — mirrors bridge anchor saturation     */
-  --section-pastel-l: 96%;
-  /* Lightness lock — mirrors bridge anchor lightness       */
+   /* -- Shared normalization parameters (locked to anchor) -- */
+   --section-pastel-s: 58%;
+   /* Saturation lock — mirrors bridge anchor saturation     */
+   --section-pastel-l: 96%;
+   /* Lightness lock — mirrors bridge anchor lightness       */
 
-  /* -- Per-section hue tokens -- */
-  --section-hue-pay-with-app: 221;
-  --section-hue-fetch-pay: 263;
-  --section-hue-isles-at-bayshore: 232;
-  --section-hue-plant-me: 132;
-  --section-hue-bridge: 169;
+   /* -- Per-section hue tokens -- */
+   --section-hue-pay-with-app: 221;
+   --section-hue-fetch-pay: 263;
+   --section-hue-isles-at-bayshore: 232;
+   --section-hue-plant-me: 132;
+   --section-hue-bridge: 169;
 
-  /* -- Computed pastel backgrounds (H + locked S/L) -- */
-  /* To change any section: update the --section-bg-* value here.                  */
-  /* The gradient in that section AND its neighbor update automatically.           */
-  --section-bg-hero: #ffffff;
-  --section-bg-pay-with-app: hsl(221, 58%, 96%);
-  --section-bg-fetch-pay: hsl(263, 58%, 96%);
-  --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);
-  --section-bg-plant-me: hsl(132, 58%, 96%);
-  --section-bg-bridge: hsl(169, 58%, 96%);
+   /* -- Computed pastel backgrounds (H + locked S/L) -- */
+   /* To change any section: update the --section-bg-* value here.                  */
+   /* The gradient in that section AND its neighbor update automatically.           */
+   --section-bg-hero: #ffffff;
+   --section-bg-pay-with-app: hsl(221, 58%, 96%);
+   --section-bg-fetch-pay: hsl(263, 58%, 96%);
+   --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);
+   --section-bg-plant-me: hsl(132, 58%, 96%);
+   --section-bg-bridge: hsl(169, 58%, 96%);
 
-  /* -- Section pill (nav dot) colors: same hue, S=72%, L tuned per-hue -----------
+   /* -- Section pill (nav dot) colors: same hue, S=72%, L tuned per-hue -----------
      Target: ≥5.0:1 contrast against the corresponding pastel background (L≈96%).
      Green/teal hues have high luminance weight → need lower L to achieve contrast.
      Blue/purple hues are intrinsically dark → pass at higher L values.
      Change only these tokens to retheme nav dots alongside section backgrounds.
      -----------------------------------------------------------------------  */
-  --section-pill-hero: #80c7b7;
-  --section-pill-pay-with-app: #7B91D1;
-  --section-pill-fetch-pay: #B89CE0;
-  --section-pill-isles-at-bayshore: #6FA3DF;
-  --section-pill-plant-me: #72c4a2;
-  --section-pill-bridge: #66b9bf;
+   --section-pill-hero: #80c7b7;
+   --section-pill-pay-with-app: #7B91D1;
+   --section-pill-fetch-pay: #B89CE0;
+   --section-pill-isles-at-bayshore: #6FA3DF;
+   --section-pill-plant-me: #72c4a2;
+   --section-pill-bridge: #66b9bf;
 
-  /* ==========================================================================
+   /* ==========================================================================
      CUSTOM BRAND & DECORATIVE COLORS
      ========================================================================== */
-  /* Brand/Social Colors */
-  --color-brand-linkedin: #0077b5;
-  --color-brand-github: #181717;
-  --color-brand-x: #000000;
-  --color-brand-behance: #1769ff;
-  --color-brand-dribbble: #ea4c89;
+   /* Brand/Social Colors */
+   --color-brand-linkedin: #0077b5;
+   --color-brand-github: #181717;
+   --color-brand-x: #000000;
+   --color-brand-behance: #1769ff;
+   --color-brand-dribbble: #ea4c89;
 
-  /* Decorative Backgrounds */
-  --color-bg-resume: #D2FCA3;
-  --color-bg-mentorship: #FFE59E;
-  --color-bg-speaking: #FFD5BA;
-  --color-bg-dark: #121212;
+   /* Decorative Backgrounds */
+   --color-bg-resume: #D2FCA3;
+   --color-bg-mentorship: #FFE59E;
+   --color-bg-speaking: #FFD5BA;
+   --color-bg-dark: #121212;
 
-  /* Gradient Stops & Shapes */
-  --color-gradient-stop-1: #8AE7DA;
-  --color-gradient-stop-2: #E2F6BC;
-  --color-gradient-stop-3: #FCFBE9;
-  
-  /* Testimonial Shape Colors */
-  --color-shape-mint: #F3FCFB;
-  --color-shape-yellow: #FFFDF2;
-  --color-shape-lavender: #F9F7FD;
+   /* Gradient Stops & Shapes */
+   --color-gradient-stop-1: #8AE7DA;
+   --color-gradient-stop-2: #E2F6BC;
+   --color-gradient-stop-3: #FCFBE9;
 
-  /* Wave Separator */
-  --color-wave-accent: #69ffa7;
+   /* Testimonial Shape Colors */
+   --color-shape-mint: #F3FCFB;
+   --color-shape-yellow: #FFFDF2;
+   --color-shape-lavender: #F9F7FD;
+
+   /* Wave Separator */
+   --color-wave-accent: #69ffa7;
 }
 
 @property --testimonial-shadow-color {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgba(0, 162, 154, 0.2);
+   syntax: '<color>';
+   inherits: true;
+   initial-value: rgba(0, 162, 154, 0.2);
 }
