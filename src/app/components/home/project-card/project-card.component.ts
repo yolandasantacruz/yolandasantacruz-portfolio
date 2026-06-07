@@ -21,7 +21,7 @@ export interface Project {
   imports: [RouterLink, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="project-card flex items-center gap-16 w-full" [class.reverse]="project().reverse">
+    <article class="project-card flex items-center gap-16 w-full" [class.reverse]="project().reverse">
       <a [routerLink]="project().link" 
          class="project-image-container relative h-auto block"
          [attr.aria-label]="'View project: ' + project().title">
@@ -39,7 +39,7 @@ export interface Project {
           View Project
         </a>
       </div>
-    </div>
+    </article>
   `,
   styles: `
     :host {

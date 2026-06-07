@@ -10,10 +10,10 @@ import { PublicationsData } from '../../models/about.types';
   template: `
     @if (data(); as publications) {
       <section class="published-section">
-        <div class="published-header">
+        <header class="published-header">
           <span class="section-tag text-base font-bold">PUBLICATIONS</span>
           <h2 class="published-heading text-4xl">{{ publications.heading }}</h2>
-        </div>
+        </header>
 
         @if (items().length > 0) {
           <div class="works-grid">

@@ -13,7 +13,7 @@ import { AboutMeSection } from '../../models/about.types';
     @if (data(); as sections) {
       <section class="about-me-section flex flex-col">
         @for (section of sections; track section.title; let i = $index) {
-          <div class="section-row" [id]="getSectionId(section.title)">
+          <article class="section-row" [id]="getSectionId(section.title)">
             
             @if (i % 2 === 0) {
               <!-- Text on Left, Visual on Right -->
@@ -85,7 +85,7 @@ import { AboutMeSection } from '../../models/about.types';
               </div>
             }
 
-          </div>
+          </article>
         }
       </section>
     }

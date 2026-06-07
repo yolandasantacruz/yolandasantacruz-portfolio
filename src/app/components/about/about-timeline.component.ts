@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
   template: `
     @if (data(); as timeline) {
       <section class="timeline-section">
-        <div class="timeline-header-grid">
+        <header class="timeline-header-grid">
           <div class="header-left">
             <span class="section-tag text-base font-bold">Career Overview</span>
             <h2 class="timeline-heading text-4xl m-0">{{ timeline.heading }}</h2>
@@ -19,12 +19,12 @@ import { RouterLink } from '@angular/router';
           <div class="header-right flex justify-end">
             <a routerLink="/resume" class="btn-blob download-btn">View My Resume</a>
           </div>
-        </div>
+        </header>
 
         <div class="timeline-positions-container flex gap-16 relative">
           <div class="positions-col left-col flex flex-col">
             @for (item of leftTimelineItems(); track item.company) {
-              <div class="position-item timeline-item flex gap-6 items-start">
+              <article class="position-item timeline-item flex gap-6 items-start">
                 <div class="position-logo-box flex items-center justify-center" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
                     <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image w-full" />
@@ -37,13 +37,13 @@ import { RouterLink } from '@angular/router';
                   <h3 class="position-role text-md font-bold m-0">{{ item.role }}</h3>
                   <span class="position-company text-base">{{ item.company }}</span>
                 </div>
-              </div>
+              </article>
             }
           </div>
 
           <div class="positions-col right-col flex flex-col">
             @for (item of rightTimelineItems(); track item.company) {
-              <div class="position-item timeline-item flex gap-6 items-start">
+              <article class="position-item timeline-item flex gap-6 items-start">
                 <div class="position-logo-box flex items-center justify-center" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
                     <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image w-full" />
@@ -56,7 +56,7 @@ import { RouterLink } from '@angular/router';
                   <h3 class="position-role text-md font-bold m-0">{{ item.role }}</h3>
                   <span class="position-company text-base">{{ item.company }}</span>
                 </div>
-              </div>
+              </article>
             }
           </div>
         </div>
