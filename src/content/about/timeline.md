@@ -1,5 +1,5 @@
 ---
-heading: "10+ years of experience in crafting exceptional digital experiences"
+heading: "10+ years of solving challenges through design"
 items:
   - company: "Discover Financial Services"
     logo: "images/logos/discover.webp"

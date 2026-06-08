@@ -24,16 +24,16 @@ import { RouterLink } from '@angular/router';
         <div class="timeline-positions-container flex gap-16 relative">
           <div class="positions-col left-col flex flex-col">
             @for (item of leftTimelineItems(); track item.company) {
-              <article class="position-item timeline-item flex gap-6 items-start">
+              <article class="position-item flex gap-6 items-center">
                 <div class="position-logo-box flex items-center justify-center" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
-                    <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image w-full" />
+                    <img [ngSrc]="item.logo" width="84" height="84" [alt]="item.company + ' logo'" class="logo-image w-full" />
                   } @else {
                     <span class="logo-text">{{ item.logo }}</span>
                   }
                 </div>
                 <div class="position-copy flex flex-col">
-                  <span class="position-period text-base font-bold">{{ item.period }}</span>
+                  <span class="position-period text-sm font-bold">{{ item.period }}</span>
                   <h3 class="position-role text-md font-bold m-0">{{ item.role }}</h3>
                   <span class="position-company text-base">{{ item.company }}</span>
                 </div>
@@ -43,16 +43,16 @@ import { RouterLink } from '@angular/router';
 
           <div class="positions-col right-col flex flex-col">
             @for (item of rightTimelineItems(); track item.company) {
-              <article class="position-item timeline-item flex gap-6 items-start">
+              <article class="position-item flex gap-6 items-center">
                 <div class="position-logo-box flex items-center justify-center" [class.has-text-logo]="!isImagePath(item.logo)">
                   @if (isImagePath(item.logo)) {
-                    <img [ngSrc]="item.logo" width="72" height="72" [alt]="item.company + ' logo'" class="logo-image w-full" />
+                    <img [ngSrc]="item.logo" width="84" height="84" [alt]="item.company + ' logo'" class="logo-image w-full" />
                   } @else {
                     <span class="logo-text">{{ item.logo }}</span>
                   }
                 </div>
                 <div class="position-copy flex flex-col">
-                  <span class="position-period text-base font-bold">{{ item.period }}</span>
+                  <span class="position-period text-sm font-bold">{{ item.period }}</span>
                   <h3 class="position-role text-md font-bold m-0">{{ item.role }}</h3>
                   <span class="position-company text-base">{{ item.company }}</span>
                 </div>
@@ -99,9 +99,13 @@ import { RouterLink } from '@angular/router';
       flex: 1;
     }
 
+    .position-item {
+      margin-bottom: 3rem;
+    }
+
     .position-logo-box {
-      width: 72px;
-      height: 72px;
+      width: 84px;
+      height: 84px;
       background: var(--color-bg);
       border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
       border-radius: 16px;
@@ -130,19 +134,20 @@ import { RouterLink } from '@angular/router';
     }
 
     .position-copy {
-      gap: 0.3rem;
+      gap: 0.2rem;
     }
 
     .position-period {
       color: var(--color-primary);
       letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
     }
 
     .position-role {
       font-family: var(--font-header);
       color: var(--color-text);
       line-height: 1.15;
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
     }
 
     .position-company {
@@ -163,7 +168,7 @@ import { RouterLink } from '@angular/router';
 })
 export class AboutTimelineComponent {
   data = input<TimelineData | undefined>();
- 
+
   leftTimelineItems = computed(() => {
     const items = this.data()?.items || [];
     return items.slice(0, Math.ceil(items.length / 2)).map(item => ({
@@ -171,7 +176,7 @@ export class AboutTimelineComponent {
       logo: item.logo
     }));
   });
- 
+
   rightTimelineItems = computed(() => {
     const items = this.data()?.items || [];
     return items.slice(Math.ceil(items.length / 2)).map(item => ({
@@ -179,7 +184,7 @@ export class AboutTimelineComponent {
       logo: item.logo
     }));
   });
- 
+
   isImagePath(logo: string): boolean {
     if (!logo) return false;
     return logo.startsWith('/') || logo.endsWith('.png') || logo.endsWith('.svg') || logo.endsWith('.jpg') || logo.endsWith('.jpeg') || logo.endsWith('.webp');

@@ -8,7 +8,7 @@ packages:
 # ==============================================================================
 
 # Explicitly whitelist only trusted packages allowed to run postinstall/preinstall scripts.
-# By default, pnpm v10+ blocks all lifecycle scripts to prevent malicious code execution.
+# By default, pnpm v blocks all lifecycle scripts to prevent malicious code execution.
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true

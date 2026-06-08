@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
 const MOCK_TIMELINE_DATA: TimelineData = {
-  heading: '10+ years of experience in crafting digital experiences',
+  heading: 'heading',
   items: [
     {
       company: 'Discover',
@@ -38,7 +38,7 @@ describe('AboutTimelineComponent', () => {
 
     const heading = fixture.debugElement.query(By.css('.timeline-heading'));
     expect(heading).toBeTruthy();
-    expect(heading.nativeElement.textContent).toBe('10+ years of experience in crafting digital experiences');
+    expect(heading.nativeElement.textContent).toBe('heading');
   });
 
   it('should partition timeline items into left and right columns', () => {
