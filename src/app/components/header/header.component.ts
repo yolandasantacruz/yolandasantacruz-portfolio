@@ -15,18 +15,22 @@ import {
   afterNextRender,
 } from '@angular/core';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
-import { DOCUMENT, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'portfolio-header',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage],
+  imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="header">
       <div class="logo">
         <a routerLink="/" class="logo-link btn-circle" (click)="scrollToTop($event)">
-          <img [ngSrc]="logoSrc" width="40" height="40" priority alt="Yolanda Santa Cruz" class="logo-img" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="logo-img" aria-label="Logo" role="img">
+            <circle cx="24" cy="24" r="24" fill="#fff"/>
+            <path fill="#00a29a" d="m15.6 15.125-.095.112c-1.78 2.157-.144 4.928 2.324 6.243.337.18.695.387 1.08.645 2 1.343 2.929.07 3.499-.5.5-.5.592-1.5.5-2-.09-.492-.868-3-2.175-4.5s-3.825-1.5-5.133 0"/>
+            <path fill="#00a29a" d="M34.236 15.125c-1.2-1.2-3.449-1.107-4.5-.5-1.05.607-1.87 1.676-3 4.5-3 7.5-5.236 8-7.5 9-1.649.728-3.5.5-4.5 1.5-.79.79-1.5 3 1 4.5 4.223 2.533 11-6 15-10 3.5-3.5 3-2.5 4-4s1-3.5-.5-5"/>
+          </svg>
         </a>
       </div>
       <nav class="nav-links">
@@ -126,8 +130,6 @@ export class HeaderComponent {
   private document = inject(DOCUMENT);
   private platformId = inject(PLATFORM_ID);
   private ngZone = inject(NgZone);
-
-  readonly logoSrc = 'images/logo.svg';
 
   readonly activeIndex = signal(0);
   readonly indicatorLeft = signal(0);

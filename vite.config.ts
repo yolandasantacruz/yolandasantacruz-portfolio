@@ -185,11 +185,6 @@ export default defineConfig(() => ({
             type: 'image/x-icon'
           },
           {
-            src: 'images/logo.svg',
-            sizes: 'any',
-            type: 'image/svg+xml'
-          },
-          {
             src: 'favicon-16x16.png',
             sizes: '16x16',
             type: 'image/png'
