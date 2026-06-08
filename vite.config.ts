@@ -4,6 +4,76 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 import { VitePWA } from 'vite-plugin-pwa';
+import fs from 'fs';
+import path from 'path';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
+// Helper to resolve lightningcss path in pnpm's virtual store
+function findPackageInPnpm(packageName: string): string | null {
+  const pnpmDir = path.resolve('node_modules/.pnpm');
+  if (!fs.existsSync(pnpmDir)) return null;
+  const files = fs.readdirSync(pnpmDir);
+  for (const file of files) {
+    if (file.startsWith(`${packageName}@`)) {
+      const pkgPath = path.join(pnpmDir, file, 'node_modules', packageName);
+      if (fs.existsSync(pkgPath)) {
+        return pkgPath;
+      }
+    }
+  }
+  return null;
+}
+
+// Instantiate css minifier using lightningcss, with regex fallback
+function getCssMinifier() {
+  const lightningcssPath = findPackageInPnpm('lightningcss');
+  if (lightningcssPath) {
+    try {
+      const { transform } = require(lightningcssPath);
+      return (css: string) => {
+        const { code } = transform({
+          filename: 'style.css',
+          code: Buffer.from(css),
+          minify: true,
+          sourceMap: false,
+        });
+        return code.toString();
+      };
+    } catch (e) {
+      console.warn('[minify-css] Failed to load lightningcss from pnpm path:', e);
+    }
+  }
+
+  try {
+    const { transform } = require('lightningcss');
+    return (css: string) => {
+      const { code } = transform({
+        filename: 'style.css',
+        code: Buffer.from(css),
+        minify: true,
+        sourceMap: false,
+      });
+      return code.toString();
+    };
+  } catch (e) {
+    // Safe fallback below
+  }
+
+  console.warn('[minify-css] lightningcss not found. Falling back to regex minification.');
+  return (css: string) => {
+    return css
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s*([{}:;,])\s*/g, '$1')
+      .replace(/;}/g, '}')
+      .trim();
+  };
+}
+
+const minifyCss = getCssMinifier();
+
 
 // Normalizing base path for production builds (e.g., GitHub Pages subpaths)
 let base = process.env['VITE_BASE_URL'] || '/';
@@ -162,6 +232,23 @@ export default defineConfig(() => ({
           '/android-chrome-*.png': { headers: { 'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400' } },
           '/sw.js': { headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' } },
           '/**': { headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' } }
+        },
+        hooks: {
+          'prerender:generate'(route) {
+            if (route.fileName?.endsWith('.html') && route.contents) {
+              route.contents = route.contents.replace(
+                /(<style[^>]*>)([\s\S]*?)(<\/style>)/gi,
+                (match, openTag, cssContent, closeTag) => {
+                  try {
+                    return openTag + minifyCss(cssContent) + closeTag;
+                  } catch (err) {
+                    console.error(`[minify-css] Error minifying styles in ${route.fileName}:`, err);
+                    return match;
+                  }
+                }
+              );
+            }
+          }
         }
       }
     }),
