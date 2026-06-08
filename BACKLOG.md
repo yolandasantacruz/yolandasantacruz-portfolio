@@ -9,7 +9,6 @@
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
 - [ ] Add Google Analytics
-- [ ] Deploy to yolandasantacruz.com
 
 ## Todo
 - [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
@@ -21,6 +20,7 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+- [x] Deploy to yolandasantacruz.com
 - [x] Restore and improve animations of sections across pages
 - [x] Create automated tests for critical user journeys: navigation to case studies, responsive layout assertions, mouse trail assertions, etc. Bring only unit tests for now, keeping the protection against regressions of important features
 - [x] Fix "jumpy" carousel of the testimonials section in the about page when navigating using the carousel arrows
