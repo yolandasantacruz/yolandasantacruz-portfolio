@@ -55,7 +55,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          VITE_BASE_URL: ${{ steps.pages.outputs.base_path }}/
+          VITE_BASE_URL: '/'
 
       - name: Add .nojekyll
         run: touch dist/analog/public/.nojekyll
