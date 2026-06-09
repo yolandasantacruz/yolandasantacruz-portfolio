@@ -57,9 +57,40 @@ export class MouseTrailComponent implements OnDestroy {
   constructor() {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
-        this.initEngine();
+        const win = this.document.defaultView;
+        if (win && this.shouldEnableTrail(win)) {
+          this.initEngine();
+        }
       }
     });
+  }
+
+  private shouldEnableTrail(win: Window): boolean {
+    if (typeof win.matchMedia !== 'function') {
+      return false;
+    }
+
+    // Detect if device supports fine pointer (like mouse/trackpad)
+    const hasFinePointer = win.matchMedia('(pointer: fine)').matches;
+
+    // Detect if hover capability is supported
+    const hasHover = win.matchMedia('(any-hover: hover)').matches;
+
+    // Detect if screen width is indicative of mobile/tablet (typically <= 1024px)
+    const isMobileScreen = win.matchMedia('(max-width: 1024px)').matches;
+
+    // Detect touch primary device via pointer media query (e.g. finger touch)
+    const isCoarsePointer = win.matchMedia('(pointer: coarse)').matches;
+
+    // Fallback detection using User Agent for mobile/tablet devices
+    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(win.navigator.userAgent || '');
+
+    // Disable mouse trail if the device is touch-primary, lacks hover, is small screen, or matches a mobile User Agent.
+    if (isCoarsePointer || !hasHover || !hasFinePointer || isMobileScreen || isMobileUA) {
+      return false;
+    }
+
+    return true;
   }
 
   private initEngine() {
