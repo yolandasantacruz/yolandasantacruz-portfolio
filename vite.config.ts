@@ -254,7 +254,10 @@ export default defineConfig(() => ({
     }),
     ...clientPwa({
       registerType: 'autoUpdate',
-      injectRegister: 'inline',
+      injectRegister: false,
+      workbox: {
+        cleanupOutdatedCaches: true
+      },
       manifest: {
         name: 'Yolanda Santa Cruz - Portfolio',
         short_name: 'Yolanda SC',
