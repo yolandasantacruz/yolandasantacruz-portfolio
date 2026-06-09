@@ -9,6 +9,10 @@ const FEED_URL = 'https://medium.com/feed/@yolanda_santacruz';
 const OUTPUT_FILE = path.join(__dirname, '../src/content/about/publications.md');
 
 async function main() {
+  if (process.env.SKIP_EXTERNAL_FETCH === 'true') {
+    console.log('Skipping publications fetch because SKIP_EXTERNAL_FETCH is true.');
+    return;
+  }
   try {
     console.log(`Fetching Medium RSS feed from ${FEED_URL}...`);
     const response = await fetch(FEED_URL);

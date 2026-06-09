@@ -60,6 +60,10 @@ function readExistingFile(filePath) {
 }
 
 async function main() {
+  if (process.env.SKIP_EXTERNAL_FETCH === 'true') {
+    console.log('Skipping ADPList stats fetch because SKIP_EXTERNAL_FETCH is true.');
+    return;
+  }
   try {
     console.log(`Fetching ADPList profile from ${ADPLIST_URL}...`);
     const response = await fetch(ADPLIST_URL, {

@@ -23,9 +23,8 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
-  build-and-test:
+  lint:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -45,8 +44,53 @@ jobs:
       - name: Lint
         run: pnpm run lint
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Test
         run: pnpm run test run
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Angular cache
+        uses: actions/cache@v4
+        with:
+          path: .angular/cache
+          key: ${{ runner.os }}-angular-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-angular-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-angular-
 
       - name: Setup Pages
         id: pages
@@ -56,6 +100,7 @@ jobs:
         run: pnpm run build
         env:
           VITE_BASE_URL: '/'
+          SKIP_EXTERNAL_FETCH: 'true'
 
       - name: Add .nojekyll
         run: touch dist/analog/public/.nojekyll
@@ -67,7 +112,7 @@ jobs:
           path: dist/analog/public
 
   deploy:
-    needs: build-and-test
+    needs: [lint, test, build]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     concurrency:
