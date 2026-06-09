@@ -5,7 +5,6 @@
 - [ ] (Yolanda) Review information in the case studies
 - [ ] Fix font sizes globally in desktop and mobile
 - [ ] Fix spacing of copy in the career overview section so it aligns with the image height
-- [ ] Bring the social icons look and feel to the icons in the career overview section of the about page
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
 
