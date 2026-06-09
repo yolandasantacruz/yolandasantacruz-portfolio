@@ -48,7 +48,7 @@ export const routeMeta: RouteMeta = {
       <!-- Fixed Side Rail Navigation -->
       <portfolio-side-nav 
         [sections]="navSections()" 
-        intersectionSelector="#hero, .section-row, #testimonials, #timeline, #publications" 
+        intersectionSelector="#top, .section-row, #testimonials, #timeline, #publications" 
         [intersectionOptions]="{ rootMargin: '-25% 0px -70% 0px', threshold: 0 }" 
         mutationTargetSelector=".about-main" 
       />
@@ -78,11 +78,11 @@ export const routeMeta: RouteMeta = {
         </svg>
       </div>
 
-      <div class="container relative-container">
+      <div id="top" class="container relative-container">
         <portfolio-header />
 
         <main class="about-main">
-          <portfolio-about-hero id="hero" [data]="heroData" [socials]="socialsData" />
+          <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
           <portfolio-about-belief portfolioScrollReveal [content]="beliefContent()" />
           <portfolio-about-me [data]="aboutMeData()" />
           <portfolio-about-testimonials portfolioScrollReveal id="testimonials" [items]="testimonialItems" />

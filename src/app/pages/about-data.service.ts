@@ -64,7 +64,7 @@ export class AboutDataService {
 
   readonly navSections = computed(() => {
     const pillColors = new Map<string, string>([
-      ['hero', 'var(--section-pill-hero)'],
+      ['top', 'var(--section-pill-hero)'],
       ['origins', 'var(--section-pill-plant-me)'],
       ['at-work', 'var(--section-pill-bridge)'],
       ['mentorship', 'var(--section-pill-fetch-pay)'],
@@ -74,7 +74,7 @@ export class AboutDataService {
     ]);
 
     return [
-      { id: 'hero', label: 'Top', color: pillColors.get('hero') ?? 'var(--section-pill-hero)' },
+      { id: 'top', label: 'Top', color: pillColors.get('top') ?? 'var(--section-pill-hero)' },
       { id: 'origins', label: 'Origins', color: pillColors.get('origins') ?? 'var(--section-pill-plant-me)' },
       { id: 'at-work', label: 'At Work', color: pillColors.get('at-work') ?? 'var(--section-pill-bridge)' },
       { id: 'mentorship', label: 'Mentorship', color: pillColors.get('mentorship') ?? 'var(--section-pill-fetch-pay)' },

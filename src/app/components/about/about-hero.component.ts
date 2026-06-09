@@ -139,7 +139,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
 
     .portrait-wrapper {
       position: relative;
-      width: 500px;
+      width: 400px;
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;

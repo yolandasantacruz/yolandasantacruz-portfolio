@@ -280,7 +280,7 @@ import { AboutMeSection } from '../../models/about.types';
     .filmstrip-card {
       position: relative;
       width: 100%;
-      aspect-ratio: 1.48; /* Aspect ratio of the user's filmstrip image (900x608 is ~1.48) */
+      aspect-ratio: 1.4485; /* Proportioned to make the inner transparent cutout exactly 16:9 */
       overflow: hidden;
       border-radius: 16px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.02);
@@ -301,10 +301,10 @@ import { AboutMeSection } from '../../models/about.types';
 
     .video-container {
       position: absolute;
-      top: 11.5%;
-      bottom: 11.5%;
-      left: 2%;
-      right: 2%;
+      top: 10.39%;
+      bottom: 10.67%;
+      left: 1.56%;
+      right: 1.56%;
       z-index: 1;
     }
 
@@ -312,7 +312,6 @@ import { AboutMeSection } from '../../models/about.types';
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: 20px; /* Slight rounding matching inner frame boundaries */
       overflow: hidden;
       background: var(--color-bg-dark);
     }
@@ -382,7 +381,6 @@ import { AboutMeSection } from '../../models/about.types';
       position: absolute;
       top: 0;
       left: 0;
-      transform: scale(1.15); /* Scale up to crop black borders on the sides */
     }
 
     /* CTA Button Styles */
