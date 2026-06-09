@@ -10,6 +10,4 @@ metrics:
     label: "Sessions Hosted"
   - num: "20"
     label: "Reviews (4.5★)"
-  - num: "Super Mentor"
-    label: "ADPList Badge"
 ---

@@ -31,8 +31,8 @@ import { AboutMeSection } from '../../models/about.types';
                   </div>
                 }
                 
-                @if (section.metrics) {
-                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics }" />
+                @if (section.metrics || section.title === 'Mentorship') {
+                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics, isMentorship: section.title === 'Mentorship' }" />
                 }
               </div>
 
@@ -66,8 +66,8 @@ import { AboutMeSection } from '../../models/about.types';
                   </div>
                 }
                 
-                @if (section.metrics) {
-                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics }" />
+                @if (section.metrics || section.title === 'Mentorship') {
+                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics, isMentorship: section.title === 'Mentorship' }" />
                 }
               </div>
             }
@@ -116,23 +116,22 @@ import { AboutMeSection } from '../../models/about.types';
       }
     </ng-template>
 
-    <ng-template #metricsBox let-metrics>
-      @if (metrics) {
-        <div class="quiet-metrics-box">
+    <ng-template #metricsBox let-metrics let-isMentorship="isMentorship">
+      <ul class="quiet-metrics-box">
+        @if (metrics) {
           @for (metric of metrics; track metric.label) {
-            <div class="quiet-metric flex flex-col justify-center">
-              @if (metric.num === 'Super Mentor' || metric.label === 'ADPList Badge') {
-                <div class="adplist-badge-container" aria-label="ADPList Super Mentor Badge" title="ADPList Super Mentor Badge">
-                  <img ngSrc="images/about/top_10.svg" width="160" height="161" alt="ADPList Super Mentor Badge" title="ADPList Super Mentor Badge" class="badge-svg" />
-                </div>
-              } @else {
-                <span class="metric-num text-2xl">{{ metric.num }}</span>
-                <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
-              }
-            </div>
+            <li class="quiet-metric flex flex-col">
+              <span class="metric-num text-2xl">{{ metric.num }}</span>
+              <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
+            </li>
           }
-        </div>
-      }
+        }
+        @if (isMentorship) {
+          <li class="adplist-badge-container">
+            <img ngSrc="images/about/top_10.svg" width="160" height="161" alt="ADPList Top 10 Mentor" title="ADPList Top 10 Mentor" class="badge-svg" />
+          </li>
+        }
+      </ul>
     </ng-template>
   `,
   styles: `
@@ -249,6 +248,7 @@ import { AboutMeSection } from '../../models/about.types';
       gap: 2rem;
       border-top: 1px solid rgba(0,0,0,0.08);
       padding-top: 2.5rem;
+      list-style: none;
     }
 
     .quiet-metric {

@@ -125,10 +125,7 @@ describe('AboutMeComponent', () => {
       {
         badge: 'Giving Back',
         title: 'Mentorship',
-        description: 'Mentorship on ADPList is a priority for me.',
-        metrics: [
-          { num: 'Super Mentor', label: 'ADPList Badge' }
-        ]
+        description: 'Mentorship on ADPList is a priority for me.'
       }
     ];
     componentRef.setInput('data', dataWithBadge);
