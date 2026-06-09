@@ -9,6 +9,8 @@ import { provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
 import { AboutMeSection } from '../../models/about.types';
 import { AboutMeComponent } from './about-me.component';
+import { IMAGE_LOADER } from '@angular/common';
+import { optimizedImagesLoader } from '../../utils/optimized-images-loader';
 
 const MOCK_ABOUT_DATA: AboutMeSection[] = [
   {
@@ -44,6 +46,7 @@ describe('AboutMeComponent', () => {
         provideContent(withMarkdownRenderer()),
         provideHttpClient(),
         provideHttpClientTesting(),
+        { provide: IMAGE_LOADER, useValue: optimizedImagesLoader }
       ]
     }).compileComponents();
 

@@ -6,6 +6,8 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { provideContent } from '@analogjs/content';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { IMAGE_LOADER } from '@angular/common';
+import { optimizedImagesLoader } from '../utils/optimized-images-loader';
 import PortfolioHomeComponent from './index.page';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { By } from '@angular/platform-browser';
@@ -32,6 +34,7 @@ describe('PortfolioHomeComponent - Navigation Dots (Side Rail)', () => {
         provideContent(),
         provideHttpClient(),
         provideHttpClientTesting(),
+        { provide: IMAGE_LOADER, useValue: optimizedImagesLoader }
       ],
     })
       .overrideComponent(PortfolioHomeComponent, {

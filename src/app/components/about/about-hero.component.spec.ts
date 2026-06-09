@@ -3,6 +3,8 @@ import { AboutHeroComponent } from './about-hero.component';
 import { By } from '@angular/platform-browser';
 import { ComponentRef } from '@angular/core';
 import { describe, it, expect, beforeEach } from 'vitest';
+import { IMAGE_LOADER } from '@angular/common';
+import { optimizedImagesLoader } from '../../utils/optimized-images-loader';
 
 describe('AboutHeroComponent', () => {
   let component: AboutHeroComponent;
@@ -12,6 +14,9 @@ describe('AboutHeroComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AboutHeroComponent],
+      providers: [
+        { provide: IMAGE_LOADER, useValue: optimizedImagesLoader }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AboutHeroComponent);

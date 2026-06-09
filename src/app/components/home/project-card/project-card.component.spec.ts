@@ -3,7 +3,8 @@ import { ProjectCardComponent, Project } from './project-card.component';
 import { By } from '@angular/platform-browser';
 import { ComponentRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, IMAGE_LOADER } from '@angular/common';
+import { optimizedImagesLoader } from '../../../utils/optimized-images-loader';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 @Component({ template: '', changeDetection: ChangeDetectionStrategy.OnPush })
@@ -34,7 +35,8 @@ describe('ProjectCardComponent', () => {
       providers: [
         provideRouter([
           { path: 'projects/test-project', component: DummyComponent }
-        ])
+        ]),
+        { provide: IMAGE_LOADER, useValue: optimizedImagesLoader }
       ]
     }).compileComponents();
 

@@ -7,6 +7,8 @@ import { Testimonial } from '../models/about.types';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { IMAGE_LOADER } from '@angular/common';
+import { optimizedImagesLoader } from '../utils/optimized-images-loader';
 import AboutComponent from './about.page';
 
 const MOCK_TESTIMONIALS: Testimonial[] = [
@@ -100,6 +102,7 @@ describe('AboutComponent content loading', () => {
         provideContent(withMarkdownRenderer()),
         provideHttpClient(),
         provideHttpClientTesting(),
+        { provide: IMAGE_LOADER, useValue: optimizedImagesLoader }
       ]
     }).compileComponents();
   });
