@@ -146,10 +146,6 @@ async function main() {
       metrics.push({ num: `"${reviewsCount}"`, label: `"Reviews (${rating}★)"` });
     }
 
-    // Badge: derive from active status
-    if (isActive !== null) {
-      metrics.push({ num: '"Super Mentor"', label: '"ADPList Badge"' });
-    }
 
     newFmLines.push('metrics:');
     for (const m of metrics) {

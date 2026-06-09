@@ -32,14 +32,7 @@ import { AboutMeSection } from '../../models/about.types';
                 }
                 
                 @if (section.metrics) {
-                  <div class="quiet-metrics-box">
-                    @for (metric of section.metrics; track metric.label) {
-                      <div class="quiet-metric flex flex-col">
-                        <span class="metric-num text-2xl">{{ metric.num }}</span>
-                        <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
-                      </div>
-                    }
-                  </div>
+                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics }" />
                 }
               </div>
 
@@ -74,14 +67,7 @@ import { AboutMeSection } from '../../models/about.types';
                 }
                 
                 @if (section.metrics) {
-                  <div class="quiet-metrics-box">
-                    @for (metric of section.metrics; track metric.label) {
-                      <div class="quiet-metric flex flex-col">
-                        <span class="metric-num text-2xl">{{ metric.num }}</span>
-                        <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
-                      </div>
-                    }
-                  </div>
+                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics }" />
                 }
               </div>
             }
@@ -127,6 +113,25 @@ import { AboutMeSection } from '../../models/about.types';
         <img [ngSrc]="section.image" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1386" alt="Design Execution" />
       } @else {
         <img [ngSrc]="section.image || 'images/about/at-work.webp'" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1487" alt="Design Execution" />
+      }
+    </ng-template>
+
+    <ng-template #metricsBox let-metrics>
+      @if (metrics) {
+        <div class="quiet-metrics-box">
+          @for (metric of metrics; track metric.label) {
+            <div class="quiet-metric flex flex-col justify-center">
+              @if (metric.num === 'Super Mentor' || metric.label === 'ADPList Badge') {
+                <div class="adplist-badge-container" aria-label="ADPList Super Mentor Badge" title="ADPList Super Mentor Badge">
+                  <img ngSrc="images/about/top_10.svg" width="160" height="161" alt="ADPList Super Mentor Badge" title="ADPList Super Mentor Badge" class="badge-svg" />
+                </div>
+              } @else {
+                <span class="metric-num text-2xl">{{ metric.num }}</span>
+                <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
+              }
+            </div>
+          }
+        </div>
       }
     </ng-template>
   `,
@@ -260,6 +265,25 @@ import { AboutMeSection } from '../../models/about.types';
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--color-text-muted);
+    }
+
+    .adplist-badge-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%;
+    }
+
+    .badge-svg {
+      height: var(--size-adplist-badge-height);
+      width: auto;
+      max-width: 100%;
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .badge-svg:hover {
+      transform: scale(1.05);
     }
 
     /* Video Player Styles */

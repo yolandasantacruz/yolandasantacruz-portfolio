@@ -119,4 +119,24 @@ describe('AboutMeComponent', () => {
     expect(iframe).toBeTruthy();
     expect(iframe.nativeElement.getAttribute('src')).toBeTruthy();
   });
+
+  it('should render ADPList Super Mentor badge image', async () => {
+    const dataWithBadge: AboutMeSection[] = [
+      {
+        badge: 'Giving Back',
+        title: 'Mentorship',
+        description: 'Mentorship on ADPList is a priority for me.',
+        metrics: [
+          { num: 'Super Mentor', label: 'ADPList Badge' }
+        ]
+      }
+    ];
+    componentRef.setInput('data', dataWithBadge);
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const badgeImg = fixture.debugElement.query(By.css('.adplist-badge-container img'));
+    expect(badgeImg).toBeTruthy();
+    expect(badgeImg.nativeElement.getAttribute('src')).toContain('images/about/top_10.svg');
+  });
 });

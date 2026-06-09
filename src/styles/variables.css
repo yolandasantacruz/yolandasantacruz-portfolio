@@ -103,6 +103,9 @@
    --color-bg-speaking: #FFD5BA;
    --color-bg-dark: #121212;
 
+   /* ADPList Badge */
+   --size-adplist-badge-height: 5.5rem;
+
    /* Gradient Stops & Shapes */
    --color-gradient-stop-1: #8AE7DA;
    --color-gradient-stop-2: #E2F6BC;
