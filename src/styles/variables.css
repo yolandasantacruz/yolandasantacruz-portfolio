@@ -115,6 +115,18 @@
 
    /* Wave Separator */
    --color-wave-accent: #69ffa7;
+
+   /* ==========================================================================
+     BREAKPOINT TOKENS
+     ==========================================================================
+     NOTE: Native CSS does not allow using var() inside @media declarations directly.
+     These custom properties are defined as the single source of truth for documented
+     design tokens, JavaScript matchMedia queries, and element-scoped rules.
+     ========================================================================== */
+   --breakpoint-sm: 768px;      /* Mobile devices (portrait & landscape) */
+   --breakpoint-md: 900px;      /* Mid-sized tablets and compact layouts */
+   --breakpoint-lg: 1024px;     /* Desktop scaling and landscape tablets */
+   --breakpoint-xl: 1200px;     /* Wide screen desktop and side-rails */
 }
 
 @property --testimonial-shadow-color {

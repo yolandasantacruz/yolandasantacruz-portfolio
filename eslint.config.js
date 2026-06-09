@@ -12,7 +12,8 @@ export default defineConfig(
       "node_modules/",
       "Library/",
       "public/",
-      "vite.config.ts"
+      "vite.config.ts",
+      "legacy-site/"
     ]
   },
   {

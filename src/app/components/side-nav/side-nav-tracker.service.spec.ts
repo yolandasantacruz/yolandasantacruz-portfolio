@@ -116,4 +116,20 @@ describe('SideNavTrackerService', () => {
     // Now there are 2 elements matching '.track-me'
     expect(observedElements.length).toBe(2);
   });
+
+  it('should disconnect and cleanup observers on cleanup()', () => {
+    documentMock.body.innerHTML = `
+      <div id="section1" class="track-me"></div>
+    `;
+
+    service.initialize({
+      intersectionSelector: '.track-me'
+    });
+
+    expect(observedElements.length).toBe(1);
+
+    service.cleanup();
+
+    expect(observedElements.length).toBe(0);
+  });
 });

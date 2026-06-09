@@ -18,7 +18,20 @@ export class SideNavTrackerService {
   private observer: IntersectionObserver | null = null;
   private mutationObserver: MutationObserver | null = null;
 
+  cleanup() {
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+      this.mutationObserver = null;
+    }
+  }
+
   initialize(config: SideNavConfig) {
+    this.cleanup();
+
     if (!isPlatformBrowser(this.platformId) || typeof globalThis.IntersectionObserver === 'undefined') {
       return;
     }
@@ -52,8 +65,7 @@ export class SideNavTrackerService {
     }
 
     this.destroyRef.onDestroy(() => {
-      this.observer?.disconnect();
-      this.mutationObserver?.disconnect();
+      this.cleanup();
     });
   }
 

@@ -77,7 +77,9 @@ export class MouseTrailComponent implements OnDestroy {
     const hasHover = win.matchMedia('(any-hover: hover)').matches;
 
     // Detect if screen width is indicative of mobile/tablet (typically <= 1024px)
-    const isMobileScreen = win.matchMedia('(max-width: 1024px)').matches;
+    const computedStyle = win.getComputedStyle(this.document.documentElement);
+    const breakpointLg = computedStyle.getPropertyValue('--breakpoint-lg').trim() || '1024px';
+    const isMobileScreen = win.matchMedia(`(max-width: ${breakpointLg})`).matches;
 
     // Detect touch primary device via pointer media query (e.g. finger touch)
     const isCoarsePointer = win.matchMedia('(pointer: coarse)').matches;
