@@ -151,13 +151,6 @@ import { HomeHeroData } from '../../../models/home.types';
       --btn-blob-width: 180px;
     }
 
-    @media (max-width: 768px) {
-      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
 
     @media (prefers-reduced-motion: reduce) {
       .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper, .hero-bg-trace svg {
