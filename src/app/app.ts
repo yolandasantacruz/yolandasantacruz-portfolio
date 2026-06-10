@@ -43,12 +43,8 @@ export class App {
       // Initialize Google Analytics 4 (gtag.js) tracking
       this.initGoogleAnalytics(win);
 
-      // Handle service worker registration in production / cleanup in development
-      if (import.meta.env.DEV) {
-        this.cleanupDevServiceWorker(win);
-      } else {
-        this.registerProductionServiceWorker(win);
-      }
+      // Force cleanup and unregistration of any legacy service workers
+      this.cleanupServiceWorkers(win);
 
       // Handle scroll restoration and focus management on navigation
       this.setupNavigationHandling(win);
@@ -78,42 +74,19 @@ export class App {
     this.document.head.appendChild(script);
   }
 
-  /** Registers and configures the service worker in production with automatic cache busting reloads */
-  private registerProductionServiceWorker(win: Window) {
+  /** Cleans up and unregisters any registered service workers to prevent aggressive caching issues */
+  private cleanupServiceWorkers(win: Window) {
     if ('serviceWorker' in win.navigator) {
-      const baseHref = this.document.querySelector('base')?.getAttribute('href') || '/';
-      const swUrl = `${baseHref}sw.js`.replace(/\/+/g, '/');
-
-      // Only reload if we already had a controlling service worker (avoids reload on first load)
-      const hasController = !!win.navigator.serviceWorker.controller;
-      let refreshing = false;
-
-      win.navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (refreshing) return;
-        refreshing = true;
-        if (hasController) {
-          win.location.reload();
-        }
-      });
-
-      win.navigator.serviceWorker.register(swUrl, { scope: baseHref })
-        .then((reg) => {
-          console.log('Service Worker registered successfully with scope:', reg.scope);
-        })
-        .catch((err) => {
-          console.error('Service Worker registration failed:', err);
-        });
-    }
-  }
-
-  /** Cleans up any registered service workers when running in local development mode */
-  private cleanupDevServiceWorker(win: Window) {
-    if (import.meta.env.DEV && 'serviceWorker' in win.navigator) {
       win.navigator.serviceWorker.getRegistrations().then((registrations) => {
         for (const registration of registrations) {
-          registration.unregister();
-          console.log('Successfully unregistered service worker in development mode:', registration);
+          registration.unregister().then((success) => {
+            if (success) {
+              console.log('Successfully cleaned up legacy service worker:', registration.scope);
+            }
+          });
         }
+      }).catch((err) => {
+        console.error('Error unregistering legacy service workers:', err);
       });
     }
   }

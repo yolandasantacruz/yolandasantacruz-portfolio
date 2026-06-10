@@ -3,7 +3,6 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
-import { VitePWA } from 'vite-plugin-pwa';
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
@@ -107,26 +106,6 @@ function wrapClientOnlyHook(
   };
 }
 
-// Wrapper to ensure VitePWA only runs in the client environment (Vite 6/8 Environment API compatibility)
-function clientPwa(options: any) {
-  const res = VitePWA(options);
-  const plugins = Array.isArray(res) ? res : [res];
-  return plugins.map((plugin) => {
-    if (!plugin) return plugin;
-    const wrapped: any = { ...plugin };
-
-    const configResolved = wrapClientOnlyHook(plugin.configResolved, (_, config) => !!config?.build?.ssr);
-    if (configResolved) wrapped.configResolved = configResolved;
-
-    const generateBundle = wrapClientOnlyHook(plugin.generateBundle, (ctx) => !!ctx?.environment?.config?.build?.ssr);
-    if (generateBundle) wrapped.generateBundle = generateBundle;
-
-    const closeBundle = wrapClientOnlyHook(plugin.closeBundle, (ctx) => !!ctx?.environment?.config?.build?.ssr);
-    if (closeBundle) wrapped.closeBundle = closeBundle;
-
-    return wrapped;
-  });
-}
 
 // Custom plugin to inline client CSS directly into index.html at build time (Vite 6/8 Environment API compatibility)
 function inlineCssPlugin() {
@@ -250,68 +229,6 @@ export default defineConfig(() => ({
             }
           }
         }
-      }
-    }),
-    ...clientPwa({
-      registerType: 'autoUpdate',
-      injectRegister: false,
-      workbox: {
-        cleanupOutdatedCaches: true
-      },
-      manifest: {
-        name: 'Yolanda Santa Cruz - Portfolio',
-        short_name: 'Yolanda SC',
-        description: 'Professional portfolio of Yolanda Santa Cruz, Web Designer & Developer',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
-        display: 'standalone',
-        orientation: 'portrait',
-        scope: base,
-        start_url: base,
-        icons: [
-          {
-            src: 'favicon.ico',
-            sizes: '32x32',
-            type: 'image/x-icon'
-          },
-          {
-            src: 'favicon-16x16.png',
-            sizes: '16x16',
-            type: 'image/png'
-          },
-          {
-            src: 'favicon-32x32.png',
-            sizes: '32x32',
-            type: 'image/png'
-          },
-          {
-            src: 'apple-touch-icon.png',
-            sizes: '180x180',
-            type: 'image/png'
-          },
-          {
-            src: 'android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          },
-          {
-            src: 'android-chrome-maskable-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'maskable'
-          },
-          {
-            src: 'android-chrome-maskable-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable'
-          }
-        ]
       }
     }),
     inlineCssPlugin(),
