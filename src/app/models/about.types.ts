@@ -21,7 +21,11 @@ export interface AboutMeSection {
   badge: string;
   title: string;
   description: string;
-  metrics?: { num: string; label: string; }[];
+  metrics?: {
+    sessionsHosted?: string;
+    reviews?: string;
+    stars?: string;
+  }[];
   linkUrl?: string;
   linkLabel?: string;
   videoUrl?: string;

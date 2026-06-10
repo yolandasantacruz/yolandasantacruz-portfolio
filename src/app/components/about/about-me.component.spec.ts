@@ -27,7 +27,9 @@ const MOCK_ABOUT_DATA: AboutMeSection[] = [
     linkUrl: 'https://adplist.org/mentors/yolanda-santa-cruz',
     linkLabel: 'Mentorship on ADPList',
     metrics: [
-      { num: '200+', label: 'Sessions Hosted' }
+      { sessionsHosted: '200+' },
+      { reviews: '20' },
+      { stars: '4.5' }
     ]
   }
 ];

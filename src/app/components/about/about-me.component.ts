@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { NgOptimizedImage, DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
@@ -31,8 +31,8 @@ import { AboutMeSection } from '../../models/about.types';
                   </div>
                 }
                 
-                @if (section.metrics || section.title === 'Mentorship') {
-                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics, isMentorship: section.title === 'Mentorship' }" />
+                @if (section.title === 'Mentorship') {
+                  <ng-container *ngTemplateOutlet="metricsBox" />
                 }
               </div>
 
@@ -66,8 +66,8 @@ import { AboutMeSection } from '../../models/about.types';
                   </div>
                 }
                 
-                @if (section.metrics || section.title === 'Mentorship') {
-                  <ng-container *ngTemplateOutlet="metricsBox; context: { $implicit: section.metrics, isMentorship: section.title === 'Mentorship' }" />
+                @if (section.title === 'Mentorship') {
+                  <ng-container *ngTemplateOutlet="metricsBox" />
                 }
               </div>
             }
@@ -116,21 +116,26 @@ import { AboutMeSection } from '../../models/about.types';
       }
     </ng-template>
 
-    <ng-template #metricsBox let-metrics let-isMentorship="isMentorship">
+    <ng-template #metricsBox>
       <ul class="quiet-metrics-box">
-        @if (metrics) {
-          @for (metric of metrics; track metric.label) {
-            <li class="quiet-metric flex flex-col">
-              <span class="metric-num text-2xl">{{ metric.num }}</span>
-              <span class="metric-label text-base font-semibold">{{ metric.label }}</span>
-            </li>
-          }
-        }
-        @if (isMentorship) {
-          <li class="adplist-badge-container">
-            <img ngSrc="images/about/top_10.svg" width="160" height="161" alt="ADPList Top 10 Mentor" title="ADPList Top 10 Mentor" class="badge-svg" />
-          </li>
-        }
+        <li class="quiet-metric flex flex-col">
+          <div class="metric-val-container">
+            <span class="metric-num text-2xl">{{ sessionsHostedCount() }}</span>
+          </div>
+          <span class="metric-label text-xs font-semibold">Sessions Hosted</span>
+        </li>
+        <li class="quiet-metric flex flex-col">
+          <div class="metric-val-container">
+            <span class="metric-num text-2xl">{{ reviewsCount() }}</span>
+          </div>
+          <span class="metric-label text-sm font-semibold">{{ ratingValue() }}★ <br> Reviews</span>
+        </li>
+        <li class="quiet-metric flex flex-col">
+          <div class="metric-val-container adplist-badge-container">
+            <img ngSrc="images/about/top_10.svg" width="50" height="50" alt="ADPList Top 10 Mentor" title="ADPList Top 10 Mentor" class="badge-svg" />
+          </div>
+          <span class="metric-label text-xs font-semibold">Top 10 Mentor <br> Jan-Mar 2026</span>
+        </li>
       </ul>
     </ng-template>
   `,
@@ -255,6 +260,12 @@ import { AboutMeSection } from '../../models/about.types';
       gap: 0.5rem;
     }
 
+    .metric-val-container {
+      display: flex;
+      align-items: flex-end;
+      height: 50px;
+    }
+
     .metric-num {
       font-weight: 300;
       color: var(--color-text);
@@ -265,19 +276,21 @@ import { AboutMeSection } from '../../models/about.types';
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--color-text-muted);
+      line-height: 1.4;
     }
 
     .adplist-badge-container {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: flex-start;
       height: 100%;
+      top: -7px;
+      position: relative;
     }
 
     .badge-svg {
       height: var(--size-adplist-badge-height);
-      width: auto;
-      max-width: 100%;
+      width: var(--size-adplist-badge-height);
       display: block;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -435,6 +448,24 @@ export class AboutMeComponent {
 
   /** Cache of trusted HTML per description string */
   private readonly renderedCache = new Map<string, SafeHtml>();
+
+  readonly sessionsHostedCount = computed(() => {
+    const sections = this.data();
+    const mentorshipSection = sections?.find(s => s.title === 'Mentorship');
+    return mentorshipSection?.metrics?.at(0)?.sessionsHosted ?? '200+';
+  });
+
+  readonly reviewsCount = computed(() => {
+    const sections = this.data();
+    const mentorshipSection = sections?.find(s => s.title === 'Mentorship');
+    return mentorshipSection?.metrics?.at(1)?.reviews ?? '20';
+  });
+
+  readonly ratingValue = computed(() => {
+    const sections = this.data();
+    const mentorshipSection = sections?.find(s => s.title === 'Mentorship');
+    return mentorshipSection?.metrics?.at(2)?.stars ?? '4.5';
+  });
 
   /** injectContent returns pre-rendered HTML from Analog's Vite plugin — just trust and pass through */
   getRenderedHtml(html: string | undefined): SafeHtml {

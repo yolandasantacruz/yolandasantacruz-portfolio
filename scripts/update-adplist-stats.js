@@ -136,22 +136,10 @@ async function main() {
       newFmLines.push(line);
     }
 
-    // Build the fresh metrics array in YAML
-    const metrics = [];
-
-    // Keep the existing "Sessions Hosted" metric as-is (manual until minutes API available)
-    metrics.push({ num: '"200+"', label: '"Sessions Hosted"' });
-
-    if (reviewsCount !== null && rating !== null) {
-      metrics.push({ num: `"${reviewsCount}"`, label: `"Reviews (${rating}★)"` });
-    }
-
-
     newFmLines.push('metrics:');
-    for (const m of metrics) {
-      newFmLines.push(`  - num: ${m.num}`);
-      newFmLines.push(`    label: ${m.label}`);
-    }
+    newFmLines.push('  - sessionsHosted: "200+"');
+    newFmLines.push(`  - reviews: "${reviewsCount !== null ? reviewsCount : '20'}"`);
+    newFmLines.push(`  - stars: "${rating !== null ? rating : '4.5'}"`);
 
     const markdownContent = `---\n${newFmLines.join('\n')}\n---\n${body}`;
 

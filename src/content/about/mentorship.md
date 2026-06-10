@@ -2,12 +2,11 @@
 badge: "Giving Back"
 title: "Mentorship"
 linkUrl: "https://adplist.org/mentors/yolanda-santa-cruz"
-linkLabel: "Mentorship on ADPList"
+linkLabel: "Book a session"
 videoUrl: "https://www.youtube.com/embed/yL_yRyzp7oo?autoplay=1"
 description: "Much of where I am today was made possible by the guidance and generosity of others. I am passing that support forward by using my experience to help emerging designers navigate their careers. We focus on pushing their potential and setting larger goals, while defining the precise, practical steps required to reach them."
 metrics:
-  - num: "200+"
-    label: "Sessions Hosted"
-  - num: "20"
-    label: "Reviews (4.5★)"
+  - sessionsHosted: "88"
+  - reviews: "20"
+  - stars: "5"
 ---
