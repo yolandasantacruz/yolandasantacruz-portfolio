@@ -1,10 +1,8 @@
 # Project Backlog
 
 ## MVP
-- [ ] (Yolanda) Review copy and narrative arc with AI
 - [ ] (Yolanda) Review information in the case studies
 - [ ] Fix font sizes globally in desktop and mobile
-- [ ] Fix spacing of copy in the career overview section so it aligns with the image height
 - [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
 
@@ -18,6 +16,8 @@
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+- [x] Fix spacing of copy in the career overview section so it aligns with the image height
+- [x] (Yolanda) Review copy and narrative arc with AI
 - [x] Add Google Analytics
 - [x] Deploy to yolandasantacruz.com
 - [x] Restore and improve animations of sections across pages

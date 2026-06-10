@@ -120,15 +120,22 @@ export class App {
 
   /** Sets up scroll restoration and focus management to improve navigation a11y */
   private setupNavigationHandling(win: Window) {
+    let isFirstNavigation = true;
     const routerSub = this.router.events
       .subscribe((e) => {
         if (e instanceof NavigationEnd) {
+          if (isFirstNavigation) {
+            isFirstNavigation = false;
+            return; // Skip scroll-reset and focus shifting on the initial page load
+          }
+
           if (typeof win.scrollTo === 'function') {
             win.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           }
 
           const mainEl = this.document.querySelector('main');
           if (mainEl) {
+            mainEl.scrollTop = 0; // Reset scroll position of custom scroll container (e.g. .snap-container)
             mainEl.setAttribute('tabindex', '-1');
             mainEl.focus({ preventScroll: true });
           } else {

@@ -41,6 +41,11 @@ import { MouseTrailService } from './mouse-trail.service';
       height: 100%;
       z-index: 999999;
       mix-blend-mode: multiply;
+      opacity: 0;
+      transition: opacity 1.0s ease-out;
+    }
+
+    .shader-canvas.active {
       opacity: 0.50;
     }
   `
@@ -104,6 +109,10 @@ export class MouseTrailComponent implements OnDestroy {
 
     this.setupEventListeners(win);
     this.handleResize(win);
+
+    requestAnimationFrame(() => {
+      canvas.classList.add('active');
+    });
   }
 
   private setupEventListeners(win: Window) {

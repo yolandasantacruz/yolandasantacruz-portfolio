@@ -99,7 +99,7 @@ import { HomeHeroData } from '../../../models/home.types';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
     }
 
     .hero-hook {
@@ -114,7 +114,7 @@ import { HomeHeroData } from '../../../models/home.types';
       text-wrap: balance;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+      animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
     }
 
     .cohesive-phrase {
@@ -136,19 +136,27 @@ import { HomeHeroData } from '../../../models/home.types';
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+      animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .about-button-wrapper {
       opacity: 0;
       transform: translateY(30px);
       will-change: transform, opacity;
-      animation: pageFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+      animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
     }
 
     /* Width override for the hero CTA — global .btn-blob defaults to 200px */
     .about-button {
       --btn-blob-width: 180px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {

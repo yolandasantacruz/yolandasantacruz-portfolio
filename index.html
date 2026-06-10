@@ -35,18 +35,29 @@
     href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
     media="print" onload="this.media='all'" />
   <noscript>
+    <style>
+      .scroll-reveal-hidden {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" />
   </noscript>
-  <link rel="stylesheet" href="/src/styles/styles.css" />
+  <link rel="stylesheet" href="/src/styles/variables.css" />
+  <link rel="stylesheet" href="/src/styles/base.css" />
+  <link rel="stylesheet" href="/src/styles/objects.css" />
+  <link rel="stylesheet" href="/src/styles/utilities.css" />
   <style>
-    .hero-content .hero-tag,
-    .hero-content .hero-hook,
-    .hero-content .hero-subcopy,
-    .hero-content .about-button-wrapper {
-      opacity: 0;
-      transform: translateY(30px)
+    @media (min-width: 769px) {
+      .hero-content .hero-tag,
+      .hero-content .hero-hook,
+      .hero-content .hero-subcopy,
+      .hero-content .about-button-wrapper {
+        opacity: 0;
+        transform: translateY(30px)
+      }
     }
   </style>
   <script type="speculationrules">

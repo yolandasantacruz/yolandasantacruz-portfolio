@@ -87,7 +87,6 @@ export const routeMeta: RouteMeta = {
       height: 100vh;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
       width: 100%;
       position: relative;
       -ms-overflow-style: none;
