@@ -119,7 +119,7 @@ import { RouterLink } from '@angular/router';
       color: var(--color-bg);
       border: none;
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: var(--text-regular);
     }
 
     .logo-text {

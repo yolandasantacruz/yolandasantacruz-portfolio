@@ -144,12 +144,14 @@ export const routeMeta: RouteMeta = {
 
     @media (max-width: 1024px) {
       .about-main {
+        padding-top: 4rem;
         padding-right: 3.5rem;
       }
     }
 
     @media (max-width: 768px) {
       .about-main {
+        padding-top: 0;
         padding-right: 0;
       }
     }

@@ -164,7 +164,7 @@ export const routeMeta: RouteMeta = {
     }
 
     .job-meta {
-      font-size: 1.1rem;
+      font-size: var(--text-regular);
       line-height: 1.4;
       margin-bottom: 0;
     }

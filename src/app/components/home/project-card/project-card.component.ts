@@ -87,7 +87,7 @@ export interface Project {
         gap: 2rem;
       }
       .project-title {
-        font-size: 1.75rem;
+        font-size: var(--text-2xl);
       }
     }
 

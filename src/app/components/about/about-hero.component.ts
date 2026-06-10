@@ -46,7 +46,7 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
 
     .hero-greeting {
       font-family: var(--font-header);
-      font-size: var(--text-5xl);
+      font-size: var(--text-hero);
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
@@ -210,7 +210,6 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
         gap: 4rem;
         margin-bottom: 10rem;
       }
-      .hero-greeting { font-size: var(--text-3xl); }
       .cohesive-phrase { white-space: normal; display: inline; }
       .portrait-wrapper { width: 280px; }
     }

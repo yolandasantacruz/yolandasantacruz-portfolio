@@ -258,16 +258,12 @@ export const routeMeta: RouteMeta = {
     }
 
     .bridge-copy {
-      font-size: 1.25rem;
+      font-size: var(--text-md);
       color: var(--color-text-muted);
       font-weight: 300;
       text-align: center;
       max-width: 620px;
       padding: 60px 0;
-    }
-
-    @media (max-width: 1024px) {
-      .bridge-heading { font-size: 2.75rem; }
     }
 
     @media (max-width: 768px) {
@@ -276,8 +272,8 @@ export const routeMeta: RouteMeta = {
       .hero-section { padding-top: 0; }
       .hero-content-wrapper { min-height: auto; }
       .bridge-content { min-height: auto; padding-top: 4rem; }
-      .bridge-heading { font-size: 2.25rem; }
-      .bridge-copy { font-size: 1.2rem; }
+      .bridge-heading { font-size: var(--text-2xl); }
+      .bridge-copy { font-size: var(--text-base); }
     }
   `
 })

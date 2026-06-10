@@ -104,7 +104,7 @@ import { HomeHeroData } from '../../../models/home.types';
 
     .hero-hook {
       font-family: var(--font-header);
-      font-size: 4.5rem;
+      font-size: var(--text-hero);
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.15;
@@ -167,12 +167,7 @@ import { HomeHeroData } from '../../../models/home.types';
       }
     }
 
-    @media (max-width: 1024px) {
-      .hero-hook { font-size: var(--text-5xl); }
-    }
-
     @media (max-width: 768px) {
-      .hero-hook { font-size: var(--text-4xl); }
       .hero-subcopy { font-size: var(--text-base); }
       .hero-break { display: none; }
       .cohesive-phrase { white-space: normal; }

@@ -117,6 +117,18 @@ analog-markdown h3 {
   font-family: var(--font-header);
 }
 
+analog-markdown h1 {
+  font-size: var(--text-4xl);
+}
+
+analog-markdown h2 {
+  font-size: var(--text-3xl);
+}
+
+analog-markdown h3 {
+  font-size: var(--text-2xl);
+}
+
 analog-markdown p {
   margin-bottom: 1.5rem;
 }
