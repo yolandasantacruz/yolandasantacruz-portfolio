@@ -6,7 +6,7 @@ linkLabel: "Book a session"
 videoUrl: "https://www.youtube.com/embed/yL_yRyzp7oo?autoplay=1"
 description: "Much of where I am today was made possible by the guidance and generosity of others. I am passing that support forward by using my experience to help emerging designers navigate their careers. We focus on pushing their potential and setting larger goals, while defining the precise, practical steps required to reach them."
 metrics:
-  - sessionsHosted: "88"
+  - sessionsHosted: "200+"
   - reviews: "20"
-  - stars: "5"
+  - stars: "4.5"
 ---
