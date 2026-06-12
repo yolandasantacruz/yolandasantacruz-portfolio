@@ -6,7 +6,7 @@ imageUrl: images/projects/plant-me/cover.webp
 category: PROPTECH
 role: Senior UX/UI Designer
 timeline: Mar 2022 - Dec 2022
-team: ["Angular", "SCSS", "Firebase"]
+team: ["Senior UX/UI Designer", "Product Manager", "Software Engineers"]
 order: 4
 ---
 
