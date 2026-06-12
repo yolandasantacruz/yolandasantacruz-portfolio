@@ -20,7 +20,7 @@ import { AboutMeSection } from '../../models/about.types';
               <!-- Text on Left, Visual on Right -->
               <div class="section-text">
                 <span class="section-badge text-base font-bold">{{ section.badge }}</span>
-                <h3 class="section-title text-3xl">{{ section.title }}</h3>
+                <h2 class="section-title text-3xl">{{ section.title }}</h2>
                 <div class="section-desc text-base" [innerHTML]="getRenderedHtml(section.description)"></div>
 
                 @if (section.linkUrl && section.linkLabel) {
@@ -55,7 +55,7 @@ import { AboutMeSection } from '../../models/about.types';
 
               <div class="section-text">
                 <span class="section-badge text-base font-bold">{{ section.badge }}</span>
-                <h3 class="section-title text-3xl">{{ section.title }}</h3>
+                <h2 class="section-title text-3xl">{{ section.title }}</h2>
                 <div class="section-desc text-base" [innerHTML]="getRenderedHtml(section.description)"></div>
 
                 @if (section.linkUrl && section.linkLabel) {

@@ -47,12 +47,12 @@ export const routeMeta: RouteMeta = {
             <div class="main-column">
 
               <section class="work-experience flex flex-col">
-                <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.6s">Work Experience</h3>
+                <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.6s">Work Experience</h2>
                 
                 @for (job of resumeData.workExperience; track job.title + job.meta; let i = $index) {
                   <div class="timeline-item" portfolioScrollReveal [style.transition-delay]="(i < 3) ? (i * 0.15 + 1.0) + 's' : '0s'">
                     <header class="job-header">
-                      <h1 class="job-title">{{ job.title }}</h1>
+                      <h3 class="job-title">{{ job.title }}</h3>
                       <p class="job-meta">{{ job.meta }}</p>
                     </header>
                     <ul class="job-bullets">
@@ -68,28 +68,28 @@ export const routeMeta: RouteMeta = {
             <aside class="sidebar flex flex-col gap-16">
               @if (resumeData.software) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.75s">Software</h3>
+                  <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.75s">Software</h2>
                   <p portfolioScrollReveal style="transition-delay: 1.15s">{{ resumeData.software }}</p>
                 </div>
               }
 
               @if (resumeData.skills) {
                 <div class="sidebar-section">
-                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.9s">Skills</h3>
+                  <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.9s">Skills</h2>
                   <p portfolioScrollReveal style="transition-delay: 1.3s">{{ resumeData.skills }}</p>
                 </div>
               }
 
               @if (resumeData.languages) {
                 <div class="sidebar-section">
-                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.05s">Languages</h3>
+                  <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.05s">Languages</h2>
                   <p portfolioScrollReveal style="transition-delay: 1.45s">{{ resumeData.languages }}</p>
                 </div>
               }
 
               @if (resumeData.additional && resumeData.additional.length > 0) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.2s">Additional</h3>
+                  <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.2s">Additional</h2>
                   <ul class="sidebar-list no-bullets" portfolioScrollReveal style="transition-delay: 1.6s">
                     @for (item of resumeData.additional; track item) {
                       <li>{{ item }}</li>
@@ -100,7 +100,7 @@ export const routeMeta: RouteMeta = {
 
               @if (resumeData.education && resumeData.education.length > 0) {
                 <div class="sidebar-section flex flex-col">
-                  <h3 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.35s">Education</h3>
+                  <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 1.35s">Education</h2>
                   <div portfolioScrollReveal style="transition-delay: 1.75s" class="flex flex-col gap-4">
                     @for (edu of resumeData.education; track edu.degree + edu.school) {
                       <div class="education-entry flex flex-col">

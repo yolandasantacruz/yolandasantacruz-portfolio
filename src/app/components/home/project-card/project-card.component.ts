@@ -24,7 +24,8 @@ export interface Project {
     <article class="project-card flex items-center gap-16 w-full" [class.reverse]="project().reverse">
       <a [routerLink]="project().link" 
          class="project-image-container relative h-auto block"
-         [attr.aria-label]="'View project: ' + project().title">
+         tabindex="-1"
+         aria-hidden="true">
         <img [ngSrc]="project().imageUrl" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 580px" width="580" height="580" [alt]="project().title" class="project-image block w-full h-auto" [priority]="priority()" />
       </a>
       

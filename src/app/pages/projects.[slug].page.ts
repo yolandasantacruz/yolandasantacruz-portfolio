@@ -64,7 +64,7 @@ import { ProjectAttributes } from '../models/project-attributes';
               @for (other of otherProjects(); track other.attributes.slug) {
                 <a [routerLink]="['/projects', other.attributes.slug]" class="work-card flex flex-col gap-6">
                   <div class="work-thumb-box">
-                    <img [ngSrc]="other.attributes.imageUrl" fill [alt]="other.attributes.title" class="work-thumb" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 400px" />
+                    <img [ngSrc]="other.attributes.imageUrl" fill alt="" role="presentation" class="work-thumb" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 400px" />
                   </div>
                   <div class="work-info flex flex-col">
                     <h3 class="work-title text-lg m-0">{{ other.attributes.title }}</h3>

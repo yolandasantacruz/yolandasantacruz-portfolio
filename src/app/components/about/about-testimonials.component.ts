@@ -29,6 +29,7 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
     @if (items(); as testimonials) {
       @if (currentTestimonial(); as activeTestimonial) {
         <section class="premium-testimonial-section">
+          <h2 class="visually-hidden">Testimonials</h2>
           <div class="testimonial-card-wrapper" [style.--testimonial-shadow-color]="currentBlobColor()">
             <svg 
               viewBox="0 0 1200 600" 

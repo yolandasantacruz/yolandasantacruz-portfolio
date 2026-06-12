@@ -20,7 +20,7 @@ import { PublicationsData } from '../../models/about.types';
             @for (work of items(); track work.title) {
               <a [href]="work.url" target="_blank" rel="noopener noreferrer" class="work-card flex flex-col gap-6">
                 <div class="work-thumb-box">
-                  <img [ngSrc]="work.imageUrl" fill [alt]="work.title" class="work-thumb" />
+                  <img [ngSrc]="work.imageUrl" fill alt="" role="presentation" class="work-thumb" />
                 </div>
                 <div class="work-info flex flex-col">
                   <h3 class="work-title text-lg m-0">{{ work.title }}</h3>
