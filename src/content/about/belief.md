@@ -1,3 +1,3 @@
 ---
-statement: "Our experiences shape our reality. I focus on using my expertise to improve how we engage with the digital world."
+statement: Our experiences shape our reality, with design being a key player to elevate them both.
 ---

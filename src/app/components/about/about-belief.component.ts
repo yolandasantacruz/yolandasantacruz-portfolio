@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   template: `
     @if (quoteText()) {
       <section class="belief-section text-center">
-        <blockquote class="belief-statement text-4xl">"{{ quoteText() }}"</blockquote>
+        <blockquote class="belief-statement text-4xl">{{ quoteText() }}</blockquote>
         <div class="belief-dash"></div>
       </section>
     }
