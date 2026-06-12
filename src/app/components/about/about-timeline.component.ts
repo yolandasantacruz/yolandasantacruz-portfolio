@@ -34,7 +34,7 @@ import { RouterLink } from '@angular/router';
                 </div>
                 <div class="position-copy flex flex-col">
                   <span class="position-period text-sm font-bold">{{ item.period }}</span>
-                  <h3 class="position-role text-md font-bold m-0">{{ item.role }}</h3>
+                  <h3 class="position-role text-md font-normal m-0">{{ item.role }}</h3>
                   <span class="position-company text-base">{{ item.company }}</span>
                 </div>
               </article>
@@ -53,7 +53,7 @@ import { RouterLink } from '@angular/router';
                 </div>
                 <div class="position-copy flex flex-col">
                   <span class="position-period text-sm font-bold">{{ item.period }}</span>
-                  <h3 class="position-role text-md font-bold m-0">{{ item.role }}</h3>
+                  <h3 class="position-role text-md font-normal m-0">{{ item.role }}</h3>
                   <span class="position-company text-base">{{ item.company }}</span>
                 </div>
               </article>
@@ -85,7 +85,7 @@ import { RouterLink } from '@angular/router';
     }
 
     .timeline-heading {
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: -0.02em;
       color: var(--color-text);
       line-height: 1.2;

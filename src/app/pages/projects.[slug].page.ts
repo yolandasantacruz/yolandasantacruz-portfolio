@@ -70,7 +70,7 @@ import { ProjectAttributes } from '../models/project-attributes';
     .project-title {
       font-size: var(--text-6xl);
       margin-bottom: 0.5rem;
-      font-weight: 800;
+      font-weight: 400;
     }
 
     .project-subtitle {

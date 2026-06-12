@@ -11,7 +11,7 @@
 
 ## 2. Typography
 - **Body**: 'Nunito' (400, 600, 700, 800), LH: 1.8.
-- **Header**: 'Libre Baskerville' (400, 400i, 700), LH: 1.15, Tracking: -0.02em.
+- **Header**: 'Libre Baskerville' (400, 400i), LH: 1.15, Tracking: -0.02em.
 
 ## 3. Colors (Strict `variables.css` usage)
 - **Base**: `var(--color-bg)`, `var(--color-text)`, `var(--color-text-muted)`.

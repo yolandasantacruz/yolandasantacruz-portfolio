@@ -157,7 +157,7 @@ export const routeMeta: RouteMeta = {
     .job-title {
       font-family: var(--font-header);
       font-size: var(--text-lg);
-      font-weight: 500;
+      font-weight: 400;
       color: var(--color-text);
       line-height: 1.8;
       margin-bottom: 0;

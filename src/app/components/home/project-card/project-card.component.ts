@@ -29,7 +29,7 @@ export interface Project {
       </a>
       
       <div class="project-details flex flex-col items-start text-left gap-6">
-        <h2 class="project-title m-0 w-full text-left font-bold color-text text-4xl">{{ project().title }}</h2>
+        <h2 class="project-title m-0 w-full text-left font-normal color-text text-4xl">{{ project().title }}</h2>
         
         <p class="project-description m-0 text-left color-text-muted text-base">{{ project().description }}</p>
         

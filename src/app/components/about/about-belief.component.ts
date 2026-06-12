@@ -21,7 +21,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
     }
 
     .belief-statement {
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.35;
       letter-spacing: -0.02em;
       color: var(--color-text);
