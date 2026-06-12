@@ -122,19 +122,19 @@ import { AboutMeSection } from '../../models/about.types';
           <div class="metric-val-container">
             <span class="metric-num text-2xl">{{ sessionsHostedCount() }}</span>
           </div>
-          <span class="metric-label text-xs font-semibold">Sessions Hosted</span>
+          <span class="metric-label text-xs font-bold">Sessions Hosted</span>
         </li>
         <li class="quiet-metric flex flex-col">
           <div class="metric-val-container">
             <span class="metric-num text-2xl">{{ reviewsCount() }}</span>
           </div>
-          <span class="metric-label text-sm font-semibold">{{ ratingValue() }}★ <br> Reviews</span>
+          <span class="metric-label text-sm font-bold">{{ ratingValue() }}★ <br> Reviews</span>
         </li>
         <li class="quiet-metric flex flex-col">
           <div class="metric-val-container adplist-badge-container">
             <img ngSrc="images/about/top_10.svg" width="50" height="50" alt="ADPList Top 10 Mentor" title="ADPList Top 10 Mentor" class="badge-svg" />
           </div>
-          <span class="metric-label text-xs font-semibold">Top 10 Mentor <br> Jan-Mar 2026</span>
+          <span class="metric-label text-xs font-bold">Top 10 Mentor <br> Jan-Mar 2026</span>
         </li>
       </ul>
     </ng-template>
@@ -171,7 +171,7 @@ import { AboutMeSection } from '../../models/about.types';
     }
 
     .section-title {
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: -0.02em;
       color: var(--color-text);
       margin-bottom: 2rem;
@@ -181,7 +181,7 @@ import { AboutMeSection } from '../../models/about.types';
       line-height: 1.8;
       color: var(--color-text-muted);
       margin-bottom: 3rem;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     :host ::ng-deep .section-desc p {
@@ -267,7 +267,7 @@ import { AboutMeSection } from '../../models/about.types';
     }
 
     .metric-num {
-      font-weight: 300;
+      font-weight: 400;
       color: var(--color-text);
       letter-spacing: -0.03em;
     }

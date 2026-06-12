@@ -118,7 +118,7 @@ import { RouterLink } from '@angular/router';
       background: var(--color-text);
       color: var(--color-bg);
       border: none;
-      font-weight: 800;
+      font-weight: 700;
       font-size: var(--text-regular);
     }
 

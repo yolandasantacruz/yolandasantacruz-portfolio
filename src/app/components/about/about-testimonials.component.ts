@@ -67,7 +67,7 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
                   <button class="quote-nav-btn flex items-center justify-center" (click)="prevSlide()" [disabled]="currentIndex() === 0" aria-label="Previous testimonial">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
                   </button>
-                  <span class="testimonial-counter text-base font-semibold color-text text-center">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
+                  <span class="testimonial-counter text-base font-bold color-text text-center">{{ currentIndex() + 1 }} / {{ testimonials.length }}</span>
                   <button class="quote-nav-btn flex items-center justify-center" (click)="nextSlide()" [disabled]="currentIndex() === testimonials.length - 1" aria-label="Next testimonial">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                   </button>

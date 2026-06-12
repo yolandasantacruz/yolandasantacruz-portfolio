@@ -23,7 +23,7 @@ import { PublicationsData } from '../../models/about.types';
                   <img [ngSrc]="work.imageUrl" fill [alt]="work.title" class="work-thumb" />
                 </div>
                 <div class="work-info flex flex-col">
-                  <h3 class="work-title text-lg font-semibold m-0">{{ work.title }}</h3>
+                  <h3 class="work-title text-lg font-bold m-0">{{ work.title }}</h3>
                   <p class="work-desc text-base color-text-muted m-0">{{ work.description }}</p>
                 </div>
               </a>
@@ -55,7 +55,7 @@ import { PublicationsData } from '../../models/about.types';
     }
 
     .published-heading {
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: -0.02em;
       color: var(--color-text);
       margin-bottom: 6rem;

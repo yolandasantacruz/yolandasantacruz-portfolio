@@ -10,7 +10,7 @@
 - **Transitions**: `cubic-bezier(0.16, 1, 0.3, 1)`.
 
 ## 2. Typography
-- **Body**: 'Nunito' (400, 600, 700, 800), LH: 1.8.
+- **Body**: 'Nunito' (400, 700), LH: 1.8.
 - **Header**: 'Libre Baskerville' (400, 400i), LH: 1.15, Tracking: -0.02em.
 
 ## 3. Colors (Strict `variables.css` usage)
