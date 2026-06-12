@@ -45,7 +45,7 @@
   width: auto;
   min-width: var(--btn-blob-width, 200px);
   height: 76px;
-  padding: 0 2.5rem;
+  padding: 0 2rem;
   font-family: var(--font-main);
   font-size: var(--text-base);
   font-weight: 700;

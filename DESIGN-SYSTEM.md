@@ -21,7 +21,8 @@
 ## 4. Core Components
 - **Mouse Trail**: `MouseTrailComponent` (`z-index: 5`). Sibling containers `z-index >= 10`. Keep out of Angular change detection.
 - **Nav Dots**: 24px dots. Safepadding: `16px` right. Active: solid dot (`border-width: 0`). Hover: 70% opacity border.
-- **`.btn-blob`**: Global CTA button. Uses `var(--color-primary)` text, morphing bg, inline `→` via `::after`. Use the class, do not rebuild.
+- **`.btn-blob`**: Global CTA button. Uses `var(--color-primary)` text and a morphing background animation. Use the class, do not rebuild.
+- **`.btn-link`**: Minimalist text link. Uses `var(--color-primary)` text and features an inline `→` via `::after` that slides horizontally on hover. Use the class, do not rebuild.
 - **Testimonial Blob**: Ambient sine/cosine wave. Dynamic tangents (Catmull-Rom `k=0.22`). 800ms morphing with pastel color shifts.
 
 ## 5. Homepage Pastel System
