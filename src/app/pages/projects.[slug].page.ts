@@ -53,6 +53,11 @@ import { ProjectAttributes } from '../models/project-attributes';
     </div>
   `,
   styles: `
+    .project-main {
+      max-width: var(--project-max-width);
+      margin: 0 auto;
+    }
+
     .project-article {
       margin-top: 4rem;
       margin-bottom: 8rem;

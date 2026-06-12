@@ -1,5 +1,6 @@
 :root {
   --max-width: 1200px;
+  --project-max-width: 800px;
   --container-padding: 0 2rem;
   --font-main: 'Nunito', sans-serif;
   --font-header: 'Libre Baskerville', system-ui, sans-serif;
