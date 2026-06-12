@@ -10,7 +10,7 @@ export interface Project {
   category: string;
   role: string;
   timeline: string;
-  techStack: string[];
+  team: string[];
   reverse?: boolean;
 }
 

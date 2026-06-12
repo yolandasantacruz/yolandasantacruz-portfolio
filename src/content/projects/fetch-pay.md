@@ -6,7 +6,7 @@ imageUrl: images/projects/fetch-pay/cover.webp
 category: MOBILE
 role: Senior Product Designer
 timeline: Dec 2024 - Present
-techStack: ["React", "TypeScript", "Ionic"]
+team: ["React", "TypeScript", "Ionic"]
 order: 2
 ---
 

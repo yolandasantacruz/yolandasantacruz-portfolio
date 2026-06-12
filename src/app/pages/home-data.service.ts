@@ -19,7 +19,7 @@ export class HomeDataService {
         category: project.attributes.category,
         role: project.attributes.role,
         timeline: project.attributes.timeline,
-        techStack: project.attributes.techStack
+        team: project.attributes.team
       }))
   );
 

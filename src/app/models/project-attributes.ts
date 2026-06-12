@@ -6,6 +6,6 @@ export interface ProjectAttributes {
   category: string;
   role: string;
   timeline: string;
-  techStack: string[];
+  team: string[];
   order: number;
 }

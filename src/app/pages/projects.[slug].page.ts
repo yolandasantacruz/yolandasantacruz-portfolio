@@ -32,10 +32,10 @@ import { ProjectAttributes } from '../models/project-attributes';
                   <span class="value text-base font-normal">{{ project.attributes.timeline }}</span>
                 </div>
                 <div class="meta-item flex flex-col">
-                  <span class="label">Tech Stack</span>
-                  <div class="tech-tags flex flex-wrap">
-                    @for (tech of project.attributes.techStack; track tech) {
-                      <span class="tech-tag text-base">{{ tech }}</span>
+                  <span class="label">Team</span>
+                  <div class="team-members flex flex-wrap">
+                    @for (member of project.attributes.team; track member) {
+                      <span class="team-member text-base">{{ member }}</span>
                     }
                   </div>
                 </div>
@@ -101,11 +101,11 @@ import { ProjectAttributes } from '../models/project-attributes';
       color: var(--color-text-muted);
     }
 
-    .tech-tags {
+    .team-members {
       gap: 0.5rem;
     }
 
-    .tech-tag {
+    .team-member {
       background: rgba(0,0,0,0.05);
       padding: 2px 10px;
       border-radius: 4px;

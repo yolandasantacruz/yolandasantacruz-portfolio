@@ -6,7 +6,7 @@ imageUrl: images/projects/pay-with-app/cover.webp
 category: FINTECH
 role: Lead Product Designer
 timeline: Jan 2023 - May 2024
-techStack: ["React Native", "TypeScript", "Node.js"]
+team: ["React Native", "TypeScript", "Node.js"]
 order: 1
 ---
 

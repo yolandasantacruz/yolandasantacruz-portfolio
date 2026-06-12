@@ -6,7 +6,7 @@ imageUrl: images/projects/isles-at-bayshore/cover.webp
 category: WEB
 role: Product Designer
 timeline: Jun 2018 - Nov 2024
-techStack: ["React", "TypeScript", "Figma Plugin API"]
+team: ["React", "TypeScript", "Figma Plugin API"]
 order: 3
 ---
 

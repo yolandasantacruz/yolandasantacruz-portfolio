@@ -55,7 +55,7 @@ describe('ProjectDetails Page', () => {
         category: '',
         role: 'Designer',
         timeline: '2023',
-        techStack: ['Figma']
+        team: ['Product Designer', 'Frontend Developer']
       },
       content: 'Some test content',
       filename: 'pay-with-app.md',

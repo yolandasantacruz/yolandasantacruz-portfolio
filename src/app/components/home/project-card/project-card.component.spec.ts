@@ -25,7 +25,7 @@ describe('ProjectCardComponent', () => {
     category: 'Design',
     role: 'Lead Designer',
     timeline: '3 months',
-    techStack: ['Angular', 'TypeScript', 'CSS'],
+    team: ['Product Designer', 'Frontend Engineer', 'Product Manager'],
     reverse: false
   };
 
