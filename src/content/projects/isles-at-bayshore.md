@@ -6,7 +6,10 @@ imageUrl: images/projects/isles-at-bayshore/cover.webp
 category: WEB
 role: Product Designer
 timeline: Jun 2018 - Nov 2024
-team: ["UX/UI Designer", "CEO", "Software Engineers"]
+team:
+  - UX/UI Designer
+  - CEO
+  - Software Engineers
 order: 3
 ---
 
@@ -114,7 +117,3 @@ The final results reduced the lead capture cost from **$65 to only $11**, and th
   </div>
 </div>
 
----
-
-### More to come
-Check out my other projects below.

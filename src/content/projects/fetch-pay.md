@@ -6,7 +6,10 @@ imageUrl: images/projects/fetch-pay/cover.webp
 category: MOBILE
 role: Senior Product Designer
 timeline: Dec 2024 - Present
-team: ["Product Designer", "Product Manager", "Software Engineers"]
+team:
+  - Product Designer
+  - Product Manager
+  - Software Engineers
 order: 2
 ---
 
@@ -142,7 +145,3 @@ Since most debit cards do not offer theft protection, I proposed adding the card
 
 *Note: The mockup demonstrates three of the most commonly used wearables in the industry.*
 
----
-
-### More to come
-Check out my other projects below.

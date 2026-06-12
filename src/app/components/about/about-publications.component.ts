@@ -11,7 +11,7 @@ import { PublicationsData } from '../../models/about.types';
     @if (data(); as publications) {
       <section class="published-section">
         <header class="published-header">
-          <span class="section-tag text-base font-bold">PUBLICATIONS</span>
+          <span class="section-tag text-base font-bold">Publications</span>
           <h2 class="published-heading text-4xl">{{ publications.heading }}</h2>
         </header>
 
@@ -23,7 +23,7 @@ import { PublicationsData } from '../../models/about.types';
                   <img [ngSrc]="work.imageUrl" fill [alt]="work.title" class="work-thumb" />
                 </div>
                 <div class="work-info flex flex-col">
-                  <h3 class="work-title text-lg font-bold m-0">{{ work.title }}</h3>
+                  <h3 class="work-title text-lg m-0">{{ work.title }}</h3>
                   <p class="work-desc text-base color-text-muted m-0">{{ work.description }}</p>
                 </div>
               </a>

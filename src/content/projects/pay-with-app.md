@@ -6,7 +6,11 @@ imageUrl: images/projects/pay-with-app/cover.webp
 category: FINTECH
 role: Lead Product Designer
 timeline: Jan 2023 - May 2024
-team: ["Lead Product Designer", "Product Manager", "User Researcher", "Software Engineers"]
+team:
+  - Lead Product Designer
+  - Product Manager
+  - User Researcher
+  - Software Engineers
 order: 1
 ---
 
@@ -105,7 +109,3 @@ For clarity, we renamed the previous "Upside Pay" label to "Pay with app" and ch
   </div>
 </div>
 
----
-
-### More to come
-Check out my other projects below.

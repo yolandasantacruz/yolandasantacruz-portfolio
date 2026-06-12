@@ -6,7 +6,10 @@ imageUrl: images/projects/plant-me/cover.webp
 category: PROPTECH
 role: Senior UX/UI Designer
 timeline: Mar 2022 - Dec 2022
-team: ["Senior UX/UI Designer", "Product Manager", "Software Engineers"]
+team:
+  - Senior UX/UI Designer
+  - Product Manager
+  - Software Engineers
 order: 4
 ---
 
@@ -140,7 +143,3 @@ As the project moved forward I worked on the onboarding screens and the checkout
 ### Takeaways
 Designing a C2C service platform from 0 to 1 taught me the value of structured visual guidelines and modular components early. It allowed our engineering pod to move straight from mid-fidelity iterations to final code-ready layers without confusion.
 
----
-
-### More to come
-Check out my other projects below.
