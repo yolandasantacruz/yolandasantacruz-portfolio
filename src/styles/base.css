@@ -49,6 +49,10 @@ body {
   text-align: left;
 }
 
+::selection {
+  background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
 .snap-center {
   scroll-snap-stop: normal;
 }
@@ -131,6 +135,17 @@ analog-markdown h3 {
 
 analog-markdown p {
   margin-bottom: 1.5rem;
+}
+
+analog-markdown ul,
+analog-markdown ol {
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+analog-markdown li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
 }
 
 analog-markdown img {

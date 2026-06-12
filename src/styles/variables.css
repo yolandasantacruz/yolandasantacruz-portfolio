@@ -1,9 +1,27 @@
+@font-face {
+  font-family: 'Nunito Fallback';
+  src: local('Arial');
+  size-adjust: 98.13%;
+  ascent-override: 103.02%;
+  descent-override: 35.97%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville Fallback';
+  src: local('Georgia');
+  size-adjust: 96%;
+  ascent-override: 93.5%;
+  descent-override: 26.5%;
+  line-gap-override: 0%;
+}
+
 :root {
   --max-width: 1200px;
   --project-max-width: 800px;
   --container-padding: 0 2rem;
-  --font-main: 'Nunito', sans-serif;
-  --font-header: 'Libre Baskerville', system-ui, sans-serif;
+  --font-main: 'Nunito', 'Nunito Fallback', sans-serif;
+  --font-header: 'Libre Baskerville', 'Libre Baskerville Fallback', system-ui, sans-serif;
   --color-text: #1a1a1a;
   --color-text-muted: #666;
   --color-bg: #ffffff;

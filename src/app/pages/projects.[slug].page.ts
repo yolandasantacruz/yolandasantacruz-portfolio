@@ -24,24 +24,26 @@ import { ProjectAttributes } from '../models/project-attributes';
               <h1 class="project-title">{{ project.attributes.title }}</h1>
               <p class="project-subtitle">{{ project.attributes.description }}</p>
               
-              <div class="project-meta">
+              <dl class="project-meta">
                 <div class="meta-item flex flex-col">
-                  <span class="label">Role</span>
-                  <span class="value text-base font-normal">{{ project.attributes.role }}</span>
+                  <dt class="label">Role</dt>
+                  <dd class="value text-base font-normal">{{ project.attributes.role }}</dd>
                 </div>
                 <div class="meta-item flex flex-col">
-                  <span class="label">Timeline</span>
-                  <span class="value text-base font-normal">{{ project.attributes.timeline }}</span>
+                  <dt class="label">Timeline</dt>
+                  <dd class="value text-base font-normal">{{ project.attributes.timeline }}</dd>
                 </div>
                 <div class="meta-item flex flex-col">
-                  <span class="label">Team</span>
-                  <div class="team-members flex flex-wrap">
-                    @for (member of project.attributes.team; track member) {
-                      <span class="team-member text-base">{{ member }}</span>
-                    }
-                  </div>
+                  <dt class="label">Team</dt>
+                  <dd class="value text-base font-normal">
+                    <ul class="team-members flex flex-wrap">
+                      @for (member of project.attributes.team; track member) {
+                        <li class="team-member text-base">{{ member }}</li>
+                      }
+                    </ul>
+                  </dd>
                 </div>
-              </div>
+              </dl>
             </header>
 
             <div class="project-content" portfolioScrollReveal>
@@ -114,10 +116,15 @@ import { ProjectAttributes } from '../models/project-attributes';
       gap: 2rem;
       padding-top: 3rem;
       border-top: 1px solid rgba(0,0,0,0.1);
+      margin: 0;
     }
 
     .meta-item {
       gap: 0.5rem;
+    }
+
+    .meta-item dd {
+      margin: 0;
     }
 
     .label {
@@ -128,13 +135,16 @@ import { ProjectAttributes } from '../models/project-attributes';
     }
 
     .team-members {
-      gap: 0.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.5rem;
     }
 
     .team-member {
-      background: rgba(0,0,0,0.05);
-      padding: 2px 10px;
-      border-radius: 4px;
+      color: var(--color-text);
     }
 
     .project-content {
