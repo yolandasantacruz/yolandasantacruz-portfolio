@@ -5,7 +5,7 @@ description: Boosting lead generation by 125% through UX/UI enhancements
 imageUrl: images/projects/isles-at-bayshore/cover.webp
 category: WEB
 role: UX/UI Designer
-timeline: 2 Months
+timeline: 4 Months
 team:
   - UX/UI Designer
   - CEO & CTO

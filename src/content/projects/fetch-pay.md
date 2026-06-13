@@ -5,7 +5,7 @@ description: Increasing user sign-ups by 20%, reducing activation costs by 96%, 
 imageUrl: images/projects/fetch-pay/cover.webp
 category: FINTECH, MOBILE
 role: Senior Product Designer
-timeline: 4 Months
+timeline: 6 Months
 team:
   - Senior Product Designer
   - Product Manager 

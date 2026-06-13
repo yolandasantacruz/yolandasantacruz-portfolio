@@ -10,7 +10,7 @@ team:
   - Senior Product Designer
   - Product Manager
   - User Researcher
-  - Software Engineers
+  - 8 Software Engineers
 order: 1
 ---
 

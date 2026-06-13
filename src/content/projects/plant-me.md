@@ -5,11 +5,11 @@ description: Designed a 0 to 1 experience for a C2C app
 imageUrl: images/projects/plant-me/cover.webp
 category: PROPTECH
 role: Senior UX/UI Designer
-timeline: 2 Months
+timeline: 3 Months
 team:
   - Senior UX/UI Designer
   - Product Manager
-  - Software Engineers
+  - 2 Software Engineers
 order: 4
 ---
 
