@@ -3,13 +3,15 @@ title: Fetch Pay
 slug: fetch-pay
 description: Increasing user sign-ups by 20%, reducing activation costs by 96%, and boosting card activations by 35%
 imageUrl: images/projects/fetch-pay/cover.webp
-category: MOBILE
+category: FINTECH, MOBILE
 role: Senior Product Designer
-timeline: Dec 2024 - Present
+timeline: 4 Months
 team:
-  - Product Designer
-  - Product Manager
-  - Software Engineers
+  - Senior Product Designer
+  - Product Manager 
+  - UX Researcher
+  - 4 Software Engineers
+  - QA Engineer
 order: 2
 ---
 

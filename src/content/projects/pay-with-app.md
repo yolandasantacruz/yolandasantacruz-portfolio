@@ -3,11 +3,11 @@ title: Pay with App
 slug: pay-with-app
 description: Redesigned the transaction flow leading to a 50% drop in dispute rates and a 92% reduction in dispute-related costs
 imageUrl: images/projects/pay-with-app/cover.webp
-category: FINTECH
-role: Lead Product Designer
-timeline: Jan 2023 - May 2024
+category: FINTECH, MOBILE
+role: Senior Product Designer
+timeline: 6 Months
 team:
-  - Lead Product Designer
+  - Senior Product Designer
   - Product Manager
   - User Researcher
   - Software Engineers

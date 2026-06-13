@@ -4,12 +4,12 @@ slug: isles-at-bayshore
 description: Boosting lead generation by 125% through UX/UI enhancements
 imageUrl: images/projects/isles-at-bayshore/cover.webp
 category: WEB
-role: Product Designer
-timeline: Jun 2018 - Nov 2024
+role: UX/UI Designer
+timeline: 2 Months
 team:
   - UX/UI Designer
-  - CEO
-  - Software Engineers
+  - CEO & CTO
+  - Software Engineer
 order: 3
 ---
 
