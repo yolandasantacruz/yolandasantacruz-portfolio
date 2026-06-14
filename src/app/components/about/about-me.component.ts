@@ -110,7 +110,12 @@ import { AboutMeSection } from '../../models/about.types';
 
     <ng-template #imageVisual let-section>
       @if (section.image === 'images/about/origins.webp') {
-        <img [ngSrc]="section.image" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1386" alt="Design Execution" />
+        <div class="origins-wrapper">
+          <img [ngSrc]="section.image" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1386" alt="Design Execution" />
+          <div class="name-hotspot" tabindex="0" aria-label="Fun fact about Yolanda's full name">
+            <div class="name-tooltip" role="tooltip">Fun fact: My full name<br>frequently tests system limits</div>
+          </div>
+        </div>
       } @else {
         <img [ngSrc]="section.image || 'images/about/at-work.webp'" ngSrcset="400w, 800w, 1200w" sizes="(max-width: 768px) 100vw, 504px" width="1200" height="1487" alt="Design Execution" />
       }
@@ -244,7 +249,63 @@ import { AboutMeSection } from '../../models/about.types';
 
     .section-visual img:hover {
       filter: brightness(1.05);
-      transform: scale(1.01);
+    }
+
+    /* Origins image tooltip hotspot */
+    .origins-wrapper {
+      position: relative;
+      display: block;
+    }
+
+    .origins-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Invisible hotspot covers the highlighted name-row area of the document photo */
+    .name-hotspot {
+      position: absolute;
+      top: 38%;
+      left: 14%;
+      width: 66%;
+      height: 20%;
+      cursor: default;
+      border-radius: 4px;
+    }
+
+    .name-hotspot:focus {
+      outline: none;
+    }
+
+    /* Speech-bubble tooltip — tip on left, body fans right */
+    .name-tooltip {
+      position: absolute;
+      bottom: -0.75rem;
+      left: 45%;
+      background: #ECFDFC;
+      color: var(--color-text);
+      font-family: var(--font-main);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      line-height: 1.5;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(83, 199, 160, 0.3);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(calc(100% + 0.75rem)) scale(0.95);
+      transform-origin: top left;
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 20;
+    }
+
+
+    .name-hotspot:hover .name-tooltip,
+    .name-hotspot:focus .name-tooltip {
+      opacity: 1;
+      transform: translateY(calc(100% + 0.75rem)) scale(1);
     }
 
     .quiet-metrics-box {

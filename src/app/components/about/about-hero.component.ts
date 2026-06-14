@@ -169,7 +169,6 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
 
     .hero-portrait:hover {
       filter: brightness(1.05);
-      transform: scale(1.01);
     }
 
     .portrait-glow {
