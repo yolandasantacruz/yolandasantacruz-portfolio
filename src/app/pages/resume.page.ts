@@ -35,7 +35,7 @@ export const routeMeta: RouteMeta = {
           <div class="resume-header-grid">
             <h1 class="page-title">Resume</h1>
             @if (resumeData.downloadUrl) {
-              <div class="download-section header-download">
+              <div class="download-section header-download" portfolioScrollReveal style="transition-delay: 0.4s">
                 <a [href]="resumeData.downloadUrl" download class="btn-link">
                   Download PDF
                 </a>
@@ -50,7 +50,7 @@ export const routeMeta: RouteMeta = {
                 <h2 class="text-eyebrow" portfolioScrollReveal style="transition-delay: 0.6s">Work Experience</h2>
                 
                 @for (job of resumeData.workExperience; track job.title + job.meta; let i = $index) {
-                  <div class="timeline-item" portfolioScrollReveal [style.transition-delay]="(i < 3) ? (i * 0.15 + 1.0) + 's' : '0s'">
+                  <div class="timeline-item" portfolioScrollReveal [style.transition-delay]="(i * 0.12 + 0.75) + 's'">
                     <header class="job-header">
                       <h3 class="job-title">{{ job.title }}</h3>
                       <p class="job-meta">{{ job.meta }}</p>
@@ -115,7 +115,7 @@ export const routeMeta: RouteMeta = {
           </div>
 
           @if (resumeData.downloadUrl) {
-            <div class="download-section bottom-download">
+            <div class="download-section bottom-download" portfolioScrollReveal>
               <a [href]="resumeData.downloadUrl" download class="btn-link">
                 Download PDF
               </a>
