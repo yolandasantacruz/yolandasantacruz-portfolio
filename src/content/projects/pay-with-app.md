@@ -153,7 +153,7 @@ Your browser does not support the video tag.
       <div class="metric-value">50<span class="percent-sign">%</span></div>
       <p class="metric-label">Reduction in dispute rates</p>
       <div class="metric-divider"></div>
-      <p class="results-stack-text">Dispute rates went from 0.69% to 0.33%, and kept the margin since.</p>
+      <p class="metric-desc">Dispute rates fell from 0.69% to 0.33%, keeping the rate consistently below the critical Stripe limit.</p>
     </div>
     <div class="results-stack-chart">
       <img src="/images/projects/pay-with-app/dispute-rates.webp" alt="Dispute Rates Chart" loading="lazy" decoding="async" />
@@ -164,9 +164,9 @@ Your browser does not support the video tag.
   <div class="results-stack-row">
     <div class="results-stack-info">
       <div class="metric-value">92<span class="percent-sign">%</span></div>
-      <p class="metric-label">Reduction of dispute-related costs</p>
+      <p class="metric-label">Reduction in dispute costs</p>
       <div class="metric-divider"></div>
-      <p class="results-stack-text">Dispute costs went from an all-time high in May of $8,800 to $700 per month.</p>
+      <p class="metric-desc">Monthly chargeback expenses fell from an all-time high of $8,800 to just $700.</p>
     </div>
     <div class="results-stack-chart">
       <img src="/images/projects/pay-with-app/dispute-costs.webp" alt="Dispute Costs Chart" loading="lazy" decoding="async" />
@@ -177,9 +177,9 @@ Your browser does not support the video tag.
   <div class="results-stack-row">
     <div class="results-stack-info">
       <div class="metric-value">251<span class="percent-sign">%</span></div>
-      <p class="metric-label">Surge in transaction volume</p>
+      <p class="metric-label">Increase in transaction volume</p>
       <div class="metric-divider"></div>
-      <p class="results-stack-text">With the reduction of disputes, we were able to roll out "Pay with app" from 25% to 100% of our user base, resulting in a 251% surge in transaction volume.</p>
+      <p class="metric-desc">Expanding the feature to 100% of the user base unlocked a major surge in overall payment volume.</p>
     </div>
     <div class="results-stack-chart">
       <img src="/images/projects/pay-with-app/transaction-volume.webp" alt="Transaction Volume Chart" loading="lazy" decoding="async" />

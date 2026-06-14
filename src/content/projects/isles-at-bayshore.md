@@ -156,22 +156,26 @@ order: 3
 </div>
 <div class="section-body-col">
 <p>Although the redesign of the experience was the main focus of the project, we were able to exceed expectations thanks to the collaborative effort of everyone on the team.</p>
-<div class="metrics-grid">
-<div class="metric-card">
-<span class="metric-value">$11</span>
-<span class="metric-divider"></span>
-<p class="metric-label">Lead capture cost (down from $65)</p>
-</div>
-<div class="metric-card">
-<span class="metric-value">90</span>
-<span class="metric-divider"></span>
-<p class="metric-label">Monthly lead conversions (up from 40)</p>
-</div>
-<div class="metric-card">
-<span class="metric-value">125%</span>
-<span class="metric-divider"></span>
-<p class="metric-label">Increase in overall lead conversions</p>
-</div>
-</div>
 </div>
 </section>
+
+<div class="metrics-grid">
+<div class="metric-card">
+<div class="metric-value">125<span class="percent-sign">%</span></div>
+<p class="metric-label">Increase in monthly leads</p>
+<div class="metric-divider"></div>
+<p class="metric-desc">Conversions rose from an average of 40 to 90 per month.</p>
+</div>
+<div class="metric-card">
+<div class="metric-value">83<span class="percent-sign">%</span></div>
+<p class="metric-label">Reduction in cost per lead</p>
+<div class="metric-divider"></div>
+<p class="metric-desc">Average cost to capture a lead dropped from $65 to only $11.</p>
+</div>
+<div class="metric-card">
+<div class="metric-value">62<span class="percent-sign">%</span></div>
+<p class="metric-label">Decrease in marketing spend</p>
+<div class="metric-divider"></div>
+<p class="metric-desc">Overall marketing expenses were cut down, exceeding the 30% savings goal.</p>
+</div>
+</div>

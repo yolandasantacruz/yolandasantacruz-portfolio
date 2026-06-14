@@ -164,26 +164,28 @@ Your browser does not support the video tag.
 <div class="section-intro-col">
 <p class="section-intro">Proven impact on conversions and activation costs.</p>
 </div>
-<div class="section-body-col">
+</section>
+
 <div class="metrics-grid">
 <div class="metric-card">
-<span class="metric-value">20%</span>
-<span class="metric-divider"></span>
-<p class="metric-label">Increase in user sign-ups in the application flow</p>
+<div class="metric-value">20<span class="percent-sign">%</span></div>
+<p class="metric-label">Increase in sign-up conversions</p>
+<div class="metric-divider"></div>
+<p class="metric-desc">The application completion rate grew steadily with the new onboarding experience.</p>
 </div>
 <div class="metric-card">
-<span class="metric-value">35%</span>
-<span class="metric-divider"></span>
-<p class="metric-label">Boost in card activations post-approval</p>
+<div class="metric-value">35<span class="percent-sign">%</span></div>
+<p class="metric-label">Increase in card activations</p>
+<div class="metric-divider"></div>
+<p class="metric-desc">Active card activations rose post-approval, driving transaction velocity.</p>
 </div>
 <div class="metric-card">
-<span class="metric-value">96%</span>
-<span class="metric-divider"></span>
-<p class="metric-label">Reduction in activation costs by using branded envelopes</p>
+<div class="metric-value">96<span class="percent-sign">%</span></div>
+<p class="metric-label">Reduction in card delivery costs</p>
+<div class="metric-divider"></div>
+<p class="metric-desc">Transitioning to standard branded envelopes eliminated high express courier fees.</p>
 </div>
 </div>
-</div>
-</section>
 
 <section class="case-study-section">
 <div class="section-header-col">
