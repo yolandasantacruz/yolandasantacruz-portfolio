@@ -27,6 +27,10 @@
   --color-bg: #ffffff;
   --color-primary: #3b9f98;
   --color-accent: #5ed6cc;
+  --color-metric-down: #c29c83;
+  --color-border-subtle: rgba(0, 0, 0, 0.1);
+  --spacing-section: clamp(8rem, 12vw, 14rem);
+  --spacing-media: clamp(4rem, 6vw, 8rem);
 
   /* ==========================================================================
      TYPOGRAPHY TOKENS

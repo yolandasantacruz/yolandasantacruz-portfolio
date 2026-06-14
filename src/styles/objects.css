@@ -315,3 +315,290 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   DESIGN SYSTEM COMPONENT: Case Study Split Layout
+   ========================================================================== */
+.case-study-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1.5rem;
+  column-gap: 2rem;
+  margin-top: calc(var(--spacing-section) / 1.5);
+  margin-bottom: calc(var(--spacing-section) / 1.5);
+}
+
+@media (min-width: 900px) {
+  .case-study-section {
+    grid-template-columns: 1.2fr 1.8fr;
+    column-gap: clamp(3rem, 5vw, 6rem);
+    row-gap: 1.5rem;
+    margin-top: var(--spacing-section);
+    margin-bottom: var(--spacing-section);
+  }
+
+  .section-header-col {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .section-intro-col {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .section-body-col {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.section-num {
+  font-family: var(--font-header);
+  font-size: var(--text-base);
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+  font-weight: 700;
+}
+
+.section-title {
+  font-family: var(--font-header);
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.section-intro {
+  font-family: var(--font-main);
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.section-body-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-body-col p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+.section-body-col p strong {
+  color: var(--color-text);
+}
+
+.section-body-col ul,
+.section-body-col ol {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.section-body-col li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.text-block-narrow {
+  max-width: var(--project-max-width);
+  margin: var(--spacing-media) auto;
+}
+
+
+/* Media Containers within Case Studies */
+.media-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: var(--spacing-media) 0;
+}
+
+.media-container.grid-2 {
+  grid-template-columns: 1fr;
+}
+
+.media-container.grid-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .media-container.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .media-container.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.media-container img,
+.media-container video {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+.media-container video {
+  aspect-ratio: 9/16;
+  object-fit: cover;
+}
+
+.media-caption {
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM COMPONENT: High-Fidelity Metrics Grid
+   ========================================================================== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.metric-value {
+  font-family: var(--font-header);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-text);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.metric-divider {
+  width: 40px;
+  height: 4px;
+  background-color: var(--color-primary);
+  margin-bottom: 1rem;
+  display: block;
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+.metric-label {
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin: 0 !important;
+}
+
+.case-study-section:has(+ .results-stack) {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 900px) {
+  .case-study-section:has(+ .results-stack) {
+    margin-bottom: 3rem;
+  }
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM COMPONENT: Stacked Results Rows
+   ========================================================================== */
+.results-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.results-stack-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .results-stack-row {
+    grid-template-columns: 1.1fr 1.9fr;
+    gap: 3.5rem;
+    align-items: flex-end;
+  }
+}
+
+.results-stack-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.results-stack-info .metric-label {
+  font-size: var(--text-regular) !important;
+  color: var(--color-text);
+}
+
+.results-stack-info .metric-divider {
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.results-stack-text {
+  margin-top: 0 !important;
+  font-size: var(--text-sm) !important;
+  line-height: 1.6 !important;
+  color: var(--color-text-muted);
+}
+
+.results-stack-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.results-stack-chart img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 0;
+}
+
+.percent-sign {
+  font-size: 0.6em;
+  font-weight: 300;
+  margin-left: 0.05rem;
+}

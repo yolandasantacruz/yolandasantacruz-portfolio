@@ -17,12 +17,15 @@ import { ProjectAttributes } from '../models/project-attributes';
     <div class="container">
       <portfolio-header />
 
-      <main class="project-main">
+      <main class="project-main wide-layout">
         @if (project(); as project) {
           <article class="project-article">
             <header class="project-header fade-in-on-load">
-              <h1 class="project-title">{{ project.attributes.title }}</h1>
-              <p class="project-subtitle">{{ project.attributes.description }}</p>
+              <div class="header-main">
+                <span class="project-eyebrow">About the project</span>
+                <h1 class="project-title">{{ project.attributes.title }}</h1>
+                <p class="project-subtitle">{{ project.attributes.brief ?? project.attributes.description }}</p>
+              </div>
               
               <dl class="project-meta">
                 <div class="meta-item flex flex-col">
@@ -95,6 +98,20 @@ import { ProjectAttributes } from '../models/project-attributes';
       margin-bottom: 6rem;
     }
 
+    .project-eyebrow {
+      display: none;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .project-main.wide-layout .project-eyebrow {
+      display: inline-block;
+    }
+
     .project-title {
       font-size: var(--text-6xl);
       margin-bottom: 0.5rem;
@@ -115,8 +132,33 @@ import { ProjectAttributes } from '../models/project-attributes';
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
       padding-top: 3rem;
-      border-top: 1px solid rgba(0,0,0,0.1);
+      border-top: 1px solid var(--color-border-subtle);
       margin: 0;
+    }
+
+    @media (min-width: 900px) {
+      .project-main.wide-layout {
+        max-width: var(--max-width);
+      }
+
+      .project-main.wide-layout .project-header {
+        display: grid;
+        grid-template-columns: 1.8fr 1fr;
+        gap: clamp(3rem, 5vw, 6rem);
+        align-items: start;
+        margin-bottom: 8rem;
+      }
+
+      .project-main.wide-layout .project-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 0;
+        border-top: none;
+        border-left: 1px solid var(--color-border-subtle);
+        padding-left: 3rem;
+        margin: 0;
+      }
     }
 
     .meta-item {

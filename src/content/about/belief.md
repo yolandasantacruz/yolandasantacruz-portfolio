@@ -1,3 +1,3 @@
 ---
-statement: Our experiences shape our reality, with design being a key player to elevate them both.
+statement: Our experiences shape our reality. Design is a key player when elevating them both.
 ---

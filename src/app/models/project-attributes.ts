@@ -8,4 +8,5 @@ export interface ProjectAttributes {
   timeline: string;
   team: string[];
   order: number;
+  brief?: string;
 }
