@@ -499,10 +499,6 @@ import { AboutMeSection } from '../../models/about.types';
       .section-row { grid-template-columns: 1fr; }
       .section-visual { order: -1; }
       .quiet-metrics-box { grid-template-columns: 1fr; }
-      .section-visual::before,
-      .section-visual::after {
-        display: none !important; /* Hide image glows on mobile devices to prevent performance degradation */
-      }
     }
   `
 })

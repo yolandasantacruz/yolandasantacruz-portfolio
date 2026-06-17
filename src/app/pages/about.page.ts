@@ -154,7 +154,16 @@ export const routeMeta: RouteMeta = {
 
     @media (max-width: 768px) {
       .fluid-line-bg {
-        display: none !important;
+        left: calc(50% - 50vw);
+        width: 100vw;
+        background: 
+          radial-gradient(circle at 15% 5%, color-mix(in srgb, var(--color-gradient-stop-1) 18%, transparent) 0%, transparent 45%),
+          radial-gradient(circle at 85% 30%, color-mix(in srgb, var(--color-gradient-stop-2) 20%, transparent) 0%, transparent 50%),
+          radial-gradient(circle at 10% 60%, color-mix(in srgb, var(--color-gradient-stop-1) 15%, transparent) 0%, transparent 45%),
+          radial-gradient(circle at 90% 88%, color-mix(in srgb, var(--color-gradient-stop-2) 18%, transparent) 0%, transparent 45%);
+      }
+      .fluid-line-bg svg {
+        display: none !important; /* Hide heavy blurred SVG on mobile to save CPU/GPU rasterization */
       }
       .about-main {
         padding-top: calc(80px + 4rem);

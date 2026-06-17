@@ -170,6 +170,10 @@ import { HomeHeroData } from '../../../models/home.types';
 
     @media (max-width: 768px) {
       .hero-bg-trace {
+        display: block !important;
+        background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--color-gradient-stop-1) 20%, transparent) 0%, transparent 60%);
+      }
+      .hero-bg-trace svg {
         display: none !important;
       }
       .hero-subcopy { font-size: var(--text-base); }

@@ -279,10 +279,6 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       .author-details {
         min-height: 150px;
       }
-      .testimonial-card-wrapper::before,
-      .testimonial-card-wrapper::after {
-        display: none !important; /* Hide image glows on mobile devices to prevent performance degradation */
-      }
     }
   `
 })

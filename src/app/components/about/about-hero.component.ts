@@ -214,9 +214,6 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       }
       .cohesive-phrase { white-space: normal; display: inline; }
       .portrait-wrapper { width: 280px; }
-      .portrait-glow {
-        display: none !important; /* Hide image glows on mobile devices to prevent performance degradation */
-      }
     }
   `
 })
