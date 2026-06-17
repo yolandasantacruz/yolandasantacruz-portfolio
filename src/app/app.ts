@@ -2,17 +2,21 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, afterNextRender
 import { DOCUMENT } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-trail.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'portfolio-root',
   standalone: true,
-  imports: [RouterOutlet, MouseTrailComponent],
+  imports: [RouterOutlet, MouseTrailComponent, HeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- High-Performance WebGL2 Shader Canvas (Isolated Design System Token) -->
     <portfolio-mouse-trail />
 
     <div class="content-wrapper">
+      <div class="header-container container">
+        <portfolio-header />
+      </div>
       <router-outlet />
     </div>
   `,
@@ -27,6 +31,19 @@ import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-
     .content-wrapper {
       position: relative;
       z-index: 20;
+    }
+
+    .header-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    portfolio-header {
+      pointer-events: auto;
     }
   `,
 })

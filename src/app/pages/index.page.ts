@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HomeDataService } from './home-data.service';
-import { HeaderComponent } from '../components/header/header.component';
 import { HeroComponent } from '../components/home/hero/hero.component';
 import { ProjectCardComponent } from '../components/home/project-card/project-card.component';
 import { FooterComponent } from '../components/footer/footer.component';
@@ -30,7 +29,6 @@ export const routeMeta: RouteMeta = {
   standalone: true,
   imports: [
     RouterLink,
-    HeaderComponent,
     HeroComponent,
     ProjectCardComponent,
     FooterComponent,
@@ -50,7 +48,6 @@ export const routeMeta: RouteMeta = {
       <!-- Hero Section (Snap 0) -->
       <section id="hero" class="snap-section hero-section flex items-center justify-center">
         <div class="section-content hero-content-wrapper flex flex-col">
-          <portfolio-header />
           <portfolio-hero [data]="heroData" />
         </div>
       </section>
@@ -132,6 +129,7 @@ export const routeMeta: RouteMeta = {
     .hero-content-wrapper {
       min-height: 100vh;
       justify-content: flex-start;
+      padding-top: calc(80px + 4rem);
     }
 
     .hero-content-wrapper portfolio-hero {

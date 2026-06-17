@@ -51,7 +51,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
              [style.left.px]="indicatorLeft()" 
              [style.width.px]="indicatorWidth()">
           <svg viewBox="0 0 100 25" preserveAspectRatio="none" class="nav-indicator-svg">
-            <path [attr.d]="currentPath()" [style.fill]="currentColor()" class="nav-indicator-path" />
+            <path [attr.d]="currentPath()" class="nav-indicator-path" />
           </svg>
         </div>
       </nav>
@@ -120,8 +120,8 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
       display: block;
     }
     .nav-indicator-path {
-      transition: d 0.38s cubic-bezier(0.25, 1, 0.5, 1),
-                  fill 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+      fill: var(--color-nav-indicator);
+      transition: d 0.38s cubic-bezier(0.25, 1, 0.5, 1);
     }
   `
 })
@@ -147,8 +147,6 @@ export class HeaderComponent {
     if (idx === 2) return 'M 14,23 C 3,23 3,9 14,9 C 35,7 65,3 86,4 C 97,4 97,18 86,18 C 65,19 35,22 14,23 Z';
     return 'M 14,20 C 3,20 3,6 14,6 C 35,2 65,2 86,6 C 97,6 97,20 86,20 C 65,22 35,22 14,20 Z';
   });
-
-  readonly currentColor = computed(() => '#D4F2EE');
 
   constructor() {
     const destroyRef = inject(DestroyRef);

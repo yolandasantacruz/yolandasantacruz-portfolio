@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { injectContentFiles } from '@analogjs/content';
-import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
@@ -24,12 +23,10 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'portfolio-resume',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, ScrollRevealDirective],
+  imports: [FooterComponent, ScrollRevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
-      <portfolio-header />
-
       <main class="resume-content">
         @if (resumeData) {
           <div class="resume-header-grid">
@@ -129,7 +126,7 @@ export const routeMeta: RouteMeta = {
   `,
   styles: `
     .resume-content {
-      padding-top: 4rem;
+      padding-top: calc(80px + 4rem + 4rem);
     }
 
     .page-title {
@@ -261,7 +258,7 @@ export const routeMeta: RouteMeta = {
 
     @media (max-width: 900px) {
       .resume-content {
-        padding-top: 0;
+        padding-top: calc(80px + 4rem);
       }
       .resume-header-grid {
         grid-template-columns: 1fr;

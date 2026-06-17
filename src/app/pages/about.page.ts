@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AboutDataService } from './about-data.service';
-import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AboutHeroComponent } from '../components/about/about-hero.component';
 import { AboutBeliefComponent } from '../components/about/about-belief.component';
@@ -31,7 +30,6 @@ export const routeMeta: RouteMeta = {
   selector: 'portfolio-about',
   standalone: true,
   imports: [
-    HeaderComponent,
     FooterComponent,
     AboutHeroComponent,
     AboutBeliefComponent,
@@ -79,8 +77,6 @@ export const routeMeta: RouteMeta = {
       </div>
 
       <div id="top" class="container relative-container">
-        <portfolio-header />
-
         <main class="about-main">
           <portfolio-about-hero [data]="heroData" [socials]="socialsData" />
           <portfolio-about-belief portfolioScrollReveal [content]="beliefContent()" />
@@ -132,7 +128,7 @@ export const routeMeta: RouteMeta = {
     }
 
     .about-main {
-      padding-top: 8rem;
+      padding-top: calc(80px + 4rem + 8rem);
       padding-bottom: 4rem;
       padding-right: 5rem;
       box-sizing: border-box;
@@ -144,14 +140,14 @@ export const routeMeta: RouteMeta = {
 
     @media (max-width: 1024px) {
       .about-main {
-        padding-top: 4rem;
+        padding-top: calc(80px + 4rem + 4rem);
         padding-right: 3.5rem;
       }
     }
 
     @media (max-width: 768px) {
       .about-main {
-        padding-top: 0;
+        padding-top: calc(80px + 4rem);
         padding-right: 0;
       }
     }

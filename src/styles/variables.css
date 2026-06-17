@@ -109,6 +109,9 @@
   /* ==========================================================================
      CUSTOM BRAND & DECORATIVE COLORS
      ========================================================================== */
+  /* Header Navigation Highlight */
+  --color-nav-indicator: #D4F2EE;
+
   /* Circular Icon Buttons */
   --size-circle-btn: 40px;
   --shadow-circle-btn: 2px 2px 4px rgba(0, 162, 154, 0.12), -2px -2px 4px rgba(184, 156, 224, 0.12);

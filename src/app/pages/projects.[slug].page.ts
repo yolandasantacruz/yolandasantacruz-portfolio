@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, inject, effect, signal, DestroyRef,
 import { Title, Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
-import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { ProjectAttributes } from '../models/project-attributes';
@@ -11,12 +10,10 @@ import { ProjectAttributes } from '../models/project-attributes';
 @Component({
   selector: 'portfolio-project-details',
   standalone: true,
-  imports: [MarkdownComponent, HeaderComponent, FooterComponent, ScrollRevealDirective, RouterLink, NgOptimizedImage],
+  imports: [MarkdownComponent, FooterComponent, ScrollRevealDirective, RouterLink, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
-      <portfolio-header />
-
       <main class="project-main wide-layout">
         @if (project(); as project) {
           <article class="project-article">
@@ -90,7 +87,7 @@ import { ProjectAttributes } from '../models/project-attributes';
     }
 
     .project-article {
-      margin-top: 4rem;
+      margin-top: calc(80px + 4rem + 4rem);
       margin-bottom: 8rem;
     }
 
