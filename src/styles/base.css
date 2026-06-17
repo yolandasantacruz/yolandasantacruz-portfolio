@@ -15,6 +15,30 @@ pre {
   scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
 }
 
+/* Viewport scroll snapping configuration (Home page only) */
+html:has(portfolio-home) {
+  scroll-snap-type: y mandatory;
+}
+
+@media (max-width: 768px) {
+  html:has(portfolio-home) {
+    scroll-snap-type: none;
+  }
+}
+
+/* Viewport scrollbar hiding utility (Home and About pages only) */
+html:has(portfolio-home),
+html:has(portfolio-about) {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html:has(portfolio-home)::-webkit-scrollbar,
+html:has(portfolio-about)::-webkit-scrollbar {
+  display: none;
+}
+
+
 /* Custom scrollbar styling for floating overlay look */
 ::-webkit-scrollbar {
   width: var(--system-scrollbar-width);

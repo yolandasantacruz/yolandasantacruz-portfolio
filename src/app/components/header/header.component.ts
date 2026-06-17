@@ -176,10 +176,10 @@ export class HeaderComponent {
 
   scrollToTop(event: Event) {
     if (this.router.url === '/' || this.router.url === '/#hero') {
-      const snapContainer = this.document.querySelector('.snap-container');
-      if (snapContainer) {
+      const win = this.document.defaultView;
+      if (win) {
         event.preventDefault();
-        snapContainer.scrollTo({ top: 0, behavior: 'smooth' });
+        win.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   }

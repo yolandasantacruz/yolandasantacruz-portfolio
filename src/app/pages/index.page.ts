@@ -81,17 +81,8 @@ export const routeMeta: RouteMeta = {
   `,
   styles: `
     .snap-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
       width: 100%;
       position: relative;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    .snap-container::-webkit-scrollbar {
-      display: none;
     }
 
     .snap-section {
@@ -265,7 +256,6 @@ export const routeMeta: RouteMeta = {
     }
 
     @media (max-width: 768px) {
-      .snap-container { scroll-snap-type: none; overflow-y: visible; height: auto; }
       .snap-section { min-height: auto; padding: 4rem 0; scroll-snap-align: none; }
       .hero-section { padding-top: 0; }
       .hero-content-wrapper { min-height: auto; }

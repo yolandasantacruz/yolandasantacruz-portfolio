@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
 import { AboutDataService } from './about-data.service';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AboutHeroComponent } from '../components/about/about-hero.component';
@@ -10,7 +10,7 @@ import { AboutPublicationsComponent } from '../components/about/about-publicatio
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+
 
 export const routeMeta: RouteMeta = {
   title: 'About | Yolanda Santa Cruz',
@@ -103,14 +103,6 @@ export const routeMeta: RouteMeta = {
     .about-wrapper {
       position: relative;
       width: 100%;
-      height: 100vh;
-      overflow-y: scroll;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    .about-wrapper::-webkit-scrollbar {
-      display: none;
     }
 
     .fluid-line-bg {
@@ -174,8 +166,6 @@ export const routeMeta: RouteMeta = {
 })
 export default class AboutComponent {
   private aboutDataService = inject(AboutDataService);
-  private platformId = inject(PLATFORM_ID);
-  private document = inject(DOCUMENT);
 
   readonly navSections = this.aboutDataService.navSections;
   readonly heroData = this.aboutDataService.heroData;
@@ -187,15 +177,8 @@ export default class AboutComponent {
   readonly testimonialItems = this.aboutDataService.testimonialItems;
 
   readonly intersectionOptions = computed<IntersectionObserverInit>(() => {
-    if (isPlatformBrowser(this.platformId)) {
-      const root = this.document.querySelector('.about-wrapper') as HTMLElement;
-      return {
-        root,
-        rootMargin: '-25% 0px -70% 0px',
-        threshold: 0
-      };
-    }
     return {
+      root: null,
       rootMargin: '-25% 0px -70% 0px',
       threshold: 0
     };
