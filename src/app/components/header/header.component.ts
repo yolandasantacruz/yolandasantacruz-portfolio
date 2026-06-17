@@ -72,6 +72,7 @@ import { Location, DOCUMENT } from '@angular/common';
       gap: 2rem;
       position: relative;
       z-index: 1;
+      view-transition-name: nav-links-container;
     }
     .nav-links a {
       text-decoration: none;
@@ -82,6 +83,7 @@ import { Location, DOCUMENT } from '@angular/common';
       position: relative;
       display: inline-block;
       padding: 0.25rem 0;
+      z-index: 1; /* Create local stacking context for each navigation link */
     }
     .nav-links a:hover, .nav-links a.active { opacity: 1; }
     .nav-text {
@@ -107,19 +109,27 @@ import { Location, DOCUMENT } from '@angular/common';
       right: -6px;
       height: 23px;
       pointer-events: none;
-      z-index: 1; /* Render behind text span */
+      z-index: -1; /* Render behind text flow of the link */
       opacity: 0;
       transform: scaleX(0.9);
       transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+      mix-blend-mode: multiply; /* Blends light indicator behind the dark text */
     }
     .nav-indicator.visible {
       opacity: 1;
       transform: scaleX(1);
       view-transition-name: active-nav-indicator;
     }
-    ::view-transition-group(active-nav-indicator) {
+    ::view-transition-group(nav-links-container) {
+      z-index: 2;
       animation-duration: 0.38s;
       animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    ::view-transition-group(active-nav-indicator) {
+      z-index: 1;
+      animation-duration: 0.38s;
+      animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+      mix-blend-mode: multiply; /* Ensures text shows through during view transition */
     }
     .nav-indicator-svg {
       width: 100%;
