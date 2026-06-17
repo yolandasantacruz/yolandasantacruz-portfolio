@@ -108,13 +108,13 @@ export const routeMeta: RouteMeta = {
     .fluid-line-bg {
       position: absolute;
       top: 0;
-      left: 50%;
+      left: calc(50% - 50vw);
       width: 100vw;
-      transform: translateX(-50%);
       height: 100%;
       z-index: -1; /* Sits behind content inside relative-container */
       pointer-events: none;
       opacity: 0.7;
+      contain: paint; /* Prevent page repaints on Firefox when SVG transforms */
     }
 
     .fluid-line-bg svg {
@@ -122,7 +122,7 @@ export const routeMeta: RouteMeta = {
       height: 25%;
       position: absolute;
       left: 37.5%;
-      transform: scale(4);
+      transform: scale(4) translateZ(0); /* Force 3D GPU layer cache */
       /* Static placement allows browser to rasterize the blur filter once and cache on GPU */
       transform-origin: top center;
       will-change: transform;
@@ -145,11 +145,6 @@ export const routeMeta: RouteMeta = {
       display: block;
     }
 
-    .about-main > *:not(portfolio-about-hero) {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 600px;
-    }
-
     @media (max-width: 1024px) {
       .about-main {
         padding-top: calc(80px + 4rem + 4rem);
@@ -164,9 +159,6 @@ export const routeMeta: RouteMeta = {
       .about-main {
         padding-top: calc(80px + 4rem);
         padding-right: 0;
-      }
-      .about-main > *:not(portfolio-about-hero) {
-        contain-intrinsic-size: auto 400px;
       }
     }
 

@@ -47,8 +47,8 @@ import { HomeHeroData } from '../../../models/home.types';
   styles: `
 
     @keyframes traceFloat {
-      0%, 100% { transform: scale(4) translateY(0) scale(1) rotate(0deg); }
-      50% { transform: scale(4) translateY(-15px) scale(1.03) rotate(1deg); }
+      0%, 100% { transform: scale(4) translateY(0) scale(1) rotate(0deg) translateZ(0); }
+      50% { transform: scale(4) translateY(-15px) scale(1.03) rotate(1deg) translateZ(0); }
     }
 
     .hero {
@@ -71,6 +71,7 @@ import { HomeHeroData } from '../../../models/home.types';
       display: flex;
       align-items: center;
       justify-content: center;
+      contain: paint; /* Isolates layout and paint bounds for the SVG */
     }
 
     .hero-bg-trace svg {
@@ -163,7 +164,7 @@ import { HomeHeroData } from '../../../models/home.types';
     @media (max-width: 1024px) {
       .hero-bg-trace svg {
         animation: none !important;
-        transform: scale(4) !important;
+        transform: scale(4) translateZ(0) !important;
       }
     }
 

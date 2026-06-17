@@ -108,12 +108,13 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
     .testimonial-card-wrapper::after {
       content: '';
       position: absolute;
-      width: 320px;
-      height: 320px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(50px);
+      filter: blur(12.5px);
       will-change: transform;
+      transform: scale(4) translateZ(0); /* Force GPU compositing and scale up from 25% */
       opacity: 0.8;
       z-index: -2;
     }
@@ -122,12 +123,14 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       background: color-mix(in srgb, var(--color-primary) 30%, transparent);
       bottom: -20px;
       right: -20px;
+      transform-origin: bottom right;
     }
 
     .testimonial-card-wrapper::after {
       background: var(--testimonial-shadow-color, rgba(0, 162, 154, 0.3));
       top: -20px;
       left: -20px;
+      transform-origin: top left;
       transition: --testimonial-shadow-color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
@@ -275,6 +278,10 @@ import { TestimonialBackgroundAnimationService } from './about-testimonial-backg
       .testimonial-quote { font-size: var(--text-base); }
       .author-details {
         min-height: 150px;
+      }
+      .testimonial-card-wrapper::before,
+      .testimonial-card-wrapper::after {
+        display: none !important; /* Hide image glows on mobile devices to prevent performance degradation */
       }
     }
   `

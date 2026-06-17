@@ -182,12 +182,13 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
     .portrait-glow::after {
       content: '';
       position: absolute;
-      width: 320px;
-      height: 320px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(50px);
+      filter: blur(12.5px);
       will-change: transform;
+      transform: scale(4) translateZ(0); /* Force GPU compositing and scale up from 25% */
       opacity: 0.85;
     }
 
@@ -195,12 +196,14 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       background: rgba(0, 162, 154, 0.35);
       bottom: -20px;
       right: -20px;
+      transform-origin: bottom right;
     }
 
     .portrait-glow::after {
       background: var(--color-bg-resume);
       top: -20px;
       left: -20px;
+      transform-origin: top left;
     }
 
     @media (max-width: 768px) {
@@ -211,6 +214,9 @@ import { AboutSocialIconService } from '../../pages/about-social-icon.service';
       }
       .cohesive-phrase { white-space: normal; display: inline; }
       .portrait-wrapper { width: 280px; }
+      .portrait-glow {
+        display: none !important; /* Hide image glows on mobile devices to prevent performance degradation */
+      }
     }
   `
 })

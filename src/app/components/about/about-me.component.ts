@@ -212,12 +212,13 @@ import { AboutMeSection } from '../../models/about.types';
     .section-visual::after {
       content: '';
       position: absolute;
-      width: 320px;
-      height: 320px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(50px);
+      filter: blur(12.5px);
       will-change: transform;
+      transform: scale(4) translateZ(0); /* Force GPU compositing and scale up from 25% */
       opacity: 0.9;
       z-index: -1;
       transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -227,12 +228,14 @@ import { AboutMeSection } from '../../models/about.types';
       background: var(--color-bg-mentorship);
       bottom: -20px;
       right: -20px;
+      transform-origin: bottom right;
     }
 
     .section-visual::after {
       background: var(--color-bg-speaking);
       top: -20px;
       left: -20px;
+      transform-origin: top left;
     }
 
     .section-visual:hover::before,
@@ -496,6 +499,10 @@ import { AboutMeSection } from '../../models/about.types';
       .section-row { grid-template-columns: 1fr; }
       .section-visual { order: -1; }
       .quiet-metrics-box { grid-template-columns: 1fr; }
+      .section-visual::before,
+      .section-visual::after {
+        display: none !important; /* Hide image glows on mobile devices to prevent performance degradation */
+      }
     }
   `
 })
