@@ -160,6 +160,12 @@ import { HomeHeroData } from '../../../models/home.types';
       }
     }
 
+    @media (max-width: 1024px) {
+      .hero-bg-trace svg {
+        animation: none !important;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero-subcopy { font-size: var(--text-base); }
       .hero-break { display: none; }
