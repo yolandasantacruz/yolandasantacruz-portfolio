@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
 import { provideFileRouter, requestContextInterceptor } from '@analogjs/router';
+import { withViewTransitions } from '@angular/router';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { withPrismHighlighter } from '@analogjs/content/prism-highlighter';
 import { APP_BASE_HREF, IMAGE_LOADER } from '@angular/common';
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     { provide: APP_BASE_HREF, useValue: import.meta.env.BASE_URL },
     provideZonelessChangeDetection(),
     provideBrowserGlobalErrorListeners(),
-    provideFileRouter(),
+    provideFileRouter(withViewTransitions()),
     provideHttpClient(
       withFetch(),
       withInterceptors([requestContextInterceptor])
