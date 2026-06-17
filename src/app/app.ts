@@ -109,6 +109,7 @@ export class App {
     }
   }
 
+
   /** Sets up focus management and custom layout scroll resets to improve navigation a11y */
   private setupNavigationHandling() {
     let isFirstNavigation = true;

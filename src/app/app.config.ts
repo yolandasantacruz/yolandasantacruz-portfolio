@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import {
   ApplicationConfig,
+  ErrorHandler,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { withPrismHighlighter } from '@analogjs/content/prism-highlighter';
 import { APP_BASE_HREF, IMAGE_LOADER } from '@angular/common';
 import { optimizedImagesLoader } from './utils/optimized-images-loader';
+import { CacheErrorHandler } from './utils/cache-error-handler';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,5 +37,6 @@ export const appConfig: ApplicationConfig = {
     },
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
     provideContent(withMarkdownRenderer(), withPrismHighlighter()),
+    { provide: ErrorHandler, useClass: CacheErrorHandler },
   ],
 };

@@ -289,6 +289,7 @@ export class AboutTestimonialsComponent implements OnDestroy {
   readonly testimonialBackgroundAnimationService = inject(TestimonialBackgroundAnimationService);
 
   private resizeObserver?: ResizeObserver;
+  private animIntersectionObserver?: IntersectionObserver;
 
   items = input<Testimonial[] | undefined>();
   readonly currentIndex = signal(0);
@@ -312,11 +313,20 @@ export class AboutTestimonialsComponent implements OnDestroy {
   constructor() {
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
-        if (this.blobPathElement?.nativeElement) {
-          this.testimonialBackgroundAnimationService.startLoop(this.blobPathElement.nativeElement);
-        }
-
         this.ngZone.runOutsideAngular(() => {
+          if (typeof globalThis.IntersectionObserver !== 'undefined' && this.blobPathElement?.nativeElement) {
+            this.animIntersectionObserver = new IntersectionObserver(([entry]) => {
+              if (entry.isIntersecting) {
+                this.testimonialBackgroundAnimationService.startLoop(this.blobPathElement!.nativeElement);
+              } else {
+                this.testimonialBackgroundAnimationService.stopLoop();
+              }
+            }, { rootMargin: '100px 0px 100px 0px' });
+            this.animIntersectionObserver.observe(this.blobPathElement.nativeElement);
+          } else if (this.blobPathElement?.nativeElement) {
+            this.testimonialBackgroundAnimationService.startLoop(this.blobPathElement.nativeElement);
+          }
+
           if (typeof globalThis.ResizeObserver !== 'undefined') {
             this.resizeObserver = new ResizeObserver(() => {
               this.ngZone.run(() => this.updateHeight());
@@ -385,6 +395,9 @@ export class AboutTestimonialsComponent implements OnDestroy {
   ngOnDestroy(): void {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
+    }
+    if (this.animIntersectionObserver) {
+      this.animIntersectionObserver.disconnect();
     }
     // TestimonialBackgroundAnimationService.ngOnDestroy() handles RAF cancellation automatically
     // as it is component-scoped and destroyed alongside this component.

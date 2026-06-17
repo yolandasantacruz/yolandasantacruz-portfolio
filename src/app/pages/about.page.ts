@@ -142,6 +142,11 @@ export const routeMeta: RouteMeta = {
       display: block;
     }
 
+    .about-main > *:not(portfolio-about-hero) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 600px;
+    }
+
     @media (max-width: 1024px) {
       .about-main {
         padding-top: calc(80px + 4rem + 4rem);
@@ -150,9 +155,20 @@ export const routeMeta: RouteMeta = {
     }
 
     @media (max-width: 768px) {
+      .fluid-line-bg svg {
+        width: 75% !important;
+        height: 25% !important;
+        position: absolute;
+        left: 12.5% !important;
+        transform: scale(4) !important;
+        transform-origin: top center !important;
+      }
       .about-main {
         padding-top: calc(80px + 4rem);
         padding-right: 0;
+      }
+      .about-main > *:not(portfolio-about-hero) {
+        contain-intrinsic-size: auto 400px;
       }
     }
 

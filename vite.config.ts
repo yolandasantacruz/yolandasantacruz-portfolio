@@ -3,6 +3,7 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import { VitePWA } from 'vite-plugin-pwa';
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
@@ -107,6 +108,31 @@ function wrapClientOnlyHook(
 }
 
 
+// Wrapper to constrain VitePWA to the client build environment (Vite 6/8 Environment API).
+// Root cause: configResolved runs for both client and SSR. The SSR call overwrites the plugin's
+// shared ctx.viteConfig, so closeBundle sees build.ssr=true and skips SW generation.
+function clientPwa(pwaPlugins: any[]) {
+  return pwaPlugins.flat().map((plugin: any) => {
+    const wrapped = { ...plugin };
+
+    // Guard configResolved: prevent SSR environment from overwriting client config in shared context
+    if (plugin.configResolved) {
+      const orig = typeof plugin.configResolved === 'function'
+        ? plugin.configResolved
+        : plugin.configResolved.handler;
+      const guardedFn = async function (this: any, config: any) {
+        if (config.build?.ssr) return;
+        return orig.call(this, config);
+      };
+      wrapped.configResolved = typeof plugin.configResolved === 'function'
+        ? guardedFn
+        : { ...plugin.configResolved, handler: guardedFn };
+    }
+
+    return wrapped;
+  });
+}
+
 // Custom plugin to inline client CSS directly into index.html at build time (Vite 6/8 Environment API compatibility)
 function inlineCssPlugin() {
   return {
@@ -183,7 +209,7 @@ export default defineConfig(() => ({
   },
   plugins: [
     safeAnalogVirtualModulesPlugin(),
-    analog({
+      analog({
       content: {
         highlighter: 'prism',
       },
@@ -232,6 +258,50 @@ export default defineConfig(() => ({
       }
     }),
     inlineCssPlugin(),
+    ...clientPwa(VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: 'inline',
+      workbox: {
+        cleanupOutdatedCaches: true,
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
+        navigateFallback: undefined,
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts',
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/images\/.*/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'images',
+              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            },
+          },
+        ],
+      },
+      manifest: {
+        name: 'Yolanda Santa Cruz - Product Design Portfolio',
+        short_name: 'YSC Portfolio',
+        description: 'Professional portfolio of Yolanda Santa Cruz, Product Designer.',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone',
+        scope: base,
+        start_url: base,
+        icons: [
+          { src: 'android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'android-chrome-maskable-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
+          { src: 'android-chrome-maskable-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+      },
+    })),
     {
       name: 'transform-base-href',
       transformIndexHtml(html) {
