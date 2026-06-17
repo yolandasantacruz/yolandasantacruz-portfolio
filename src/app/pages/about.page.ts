@@ -158,9 +158,8 @@ export const routeMeta: RouteMeta = {
     }
 
     @media (max-width: 768px) {
-      .fluid-line-bg svg {
-        width: 75% !important;
-        left: 12.5% !important;
+      .fluid-line-bg {
+        display: none !important;
       }
       .about-main {
         padding-top: calc(80px + 4rem);
