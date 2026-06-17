@@ -84,14 +84,23 @@ import { Location, DOCUMENT } from '@angular/common';
       display: inline-block;
       padding: 0.25rem 0;
       z-index: 1; /* Create local stacking context for each navigation link */
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-links a.active { opacity: 1; }
+    @media (hover: hover) {
+      .nav-links a:hover { opacity: 1; }
+    }
     .nav-text {
       position: relative;
       z-index: 2; /* Force text in front of indicator */
     }
     .logo-link {
       background: transparent;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .logo-img {
       width: 100%;
