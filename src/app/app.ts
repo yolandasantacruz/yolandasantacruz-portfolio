@@ -40,6 +40,7 @@ import { HeaderComponent } from './components/header/header.component';
       right: 0;
       z-index: 30;
       pointer-events: none;
+      right: calc(var(--system-scrollbar-width, 0px) - (100vw - 100%));
     }
 
     portfolio-header {

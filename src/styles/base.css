@@ -17,8 +17,8 @@ pre {
 
 /* Custom scrollbar styling for floating overlay look */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--system-scrollbar-width);
+  height: var(--system-scrollbar-width);
 }
 
 ::-webkit-scrollbar-track {

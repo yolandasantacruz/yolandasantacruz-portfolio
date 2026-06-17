@@ -31,6 +31,7 @@
   --color-border-subtle: rgba(0, 0, 0, 0.1);
   --spacing-section: clamp(8rem, 12vw, 14rem);
   --spacing-media: clamp(4rem, 6vw, 8rem);
+  --system-scrollbar-width: 8px;
 
   /* ==========================================================================
      TYPOGRAPHY TOKENS
