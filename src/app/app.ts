@@ -65,7 +65,7 @@ export class App {
       this.cleanupServiceWorkers(win);
 
       // Handle scroll restoration and focus management on navigation
-      this.setupNavigationHandling(win);
+      this.setupNavigationHandling();
     });
   }
 
@@ -109,8 +109,8 @@ export class App {
     }
   }
 
-  /** Sets up scroll restoration and focus management to improve navigation a11y */
-  private setupNavigationHandling(win: Window) {
+  /** Sets up focus management and custom layout scroll resets to improve navigation a11y */
+  private setupNavigationHandling() {
     let isFirstNavigation = true;
     const routerSub = this.router.events
       .subscribe((e) => {
@@ -118,10 +118,6 @@ export class App {
           if (isFirstNavigation) {
             isFirstNavigation = false;
             return; // Skip scroll-reset and focus shifting on the initial page load
-          }
-
-          if (typeof win.scrollTo === 'function') {
-            win.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           }
 
           const mainEl = this.document.querySelector('main');
