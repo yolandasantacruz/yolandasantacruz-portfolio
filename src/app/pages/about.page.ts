@@ -118,10 +118,13 @@ export const routeMeta: RouteMeta = {
     }
 
     .fluid-line-bg svg {
-      width: 100%;
-      height: 100%;
+      width: 25%;
+      height: 25%;
+      position: absolute;
+      left: 37.5%;
+      transform: scale(4);
       /* Static placement allows browser to rasterize the blur filter once and cache on GPU */
-      transform-origin: center;
+      transform-origin: top center;
       will-change: transform;
       overflow: visible;
     }
@@ -157,11 +160,7 @@ export const routeMeta: RouteMeta = {
     @media (max-width: 768px) {
       .fluid-line-bg svg {
         width: 75% !important;
-        height: 25% !important;
-        position: absolute;
         left: 12.5% !important;
-        transform: scale(4) !important;
-        transform-origin: top center !important;
       }
       .about-main {
         padding-top: calc(80px + 4rem);
