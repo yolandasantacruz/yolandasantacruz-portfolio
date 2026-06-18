@@ -87,7 +87,7 @@ import { ProjectAttributes } from '../models/project-attributes';
     }
 
     .project-article {
-      margin-top: calc(80px + 4rem + 4rem);
+      padding-top: calc(80px + 4rem + 4rem);
       margin-bottom: 8rem;
     }
 

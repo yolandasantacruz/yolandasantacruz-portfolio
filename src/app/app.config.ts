@@ -6,6 +6,7 @@ import {
 import {
   ApplicationConfig,
   ErrorHandler,
+  inject,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
@@ -14,7 +15,7 @@ import { provideFileRouter, requestContextInterceptor } from '@analogjs/router';
 import { withViewTransitions, withInMemoryScrolling } from '@angular/router';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { withPrismHighlighter } from '@analogjs/content/prism-highlighter';
-import { APP_BASE_HREF, IMAGE_LOADER } from '@angular/common';
+import { APP_BASE_HREF, IMAGE_LOADER, DOCUMENT } from '@angular/common';
 import { optimizedImagesLoader } from './utils/optimized-images-loader';
 import { CacheErrorHandler } from './utils/cache-error-handler';
 
@@ -24,7 +25,21 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideBrowserGlobalErrorListeners(),
     provideFileRouter(
-      withViewTransitions(),
+      withViewTransitions({
+        onViewTransitionCreated: ({ transition }) => {
+          const doc = inject(DOCUMENT);
+          if (doc && doc.visibilityState === 'hidden') {
+            transition.skipTransition();
+          }
+          // Log expected aborted transitions as warnings instead of letting them bubble up as uncaught errors
+          transition.ready.catch((err) => {
+            console.warn('View transition ready aborted:', err);
+          });
+          transition.finished.catch((err) => {
+            console.warn('View transition finished aborted:', err);
+          });
+        }
+      }),
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })
     ),
     provideHttpClient(
