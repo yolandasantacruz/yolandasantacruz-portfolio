@@ -3,6 +3,7 @@ export const OPTIMIZED_IMAGES: Record<string, number[]> = {
   'images/about/at-work.webp': [400, 800, 1200],
   'images/about/origins.webp': [400, 800, 1200],
   'images/about/portrait-1.webp': [400, 800],
+  'images/og-card.webp': [400, 800, 1200],
   'images/projects/fetch-pay/cover.webp': [400, 800, 1200],
   'images/projects/fetch-pay/industry-standards-1.webp': [400, 800],
   'images/projects/fetch-pay/industry-standards-2.webp': [400, 800],

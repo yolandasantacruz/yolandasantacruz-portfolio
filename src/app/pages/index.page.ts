@@ -13,11 +13,12 @@ export const routeMeta: RouteMeta = {
   meta: [
     {
       name: 'description',
-      content: 'Professional portfolio of Yolanda Santa Cruz, Product Designer. Discover user-centric interfaces, design systems, and responsive prototypes.'
+      content: 'Portfolio of Yolanda Santa Cruz, Product Designer. Explore user-centric interfaces, design systems, and prototypes.'
     },
     { property: 'og:title', content: 'Yolanda Santa Cruz - Product Design Portfolio' },
-    { property: 'og:description', content: 'Professional portfolio of Yolanda Santa Cruz, Product Designer. Discover user-centric interfaces, design systems, and responsive prototypes.' },
+    { property: 'og:description', content: 'Portfolio of Yolanda Santa Cruz, Product Designer. Explore user-centric interfaces, design systems, and prototypes.' },
     { property: 'og:image', content: '/images/og-card.webp' },
+    { property: 'og:site_name', content: 'Yolanda Santa Cruz Portfolio' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' }
   ]

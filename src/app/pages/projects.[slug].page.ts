@@ -343,6 +343,30 @@ export default class ProjectDetails {
           name: 'description',
           content: p.attributes.description || `Case study on ${p.attributes.title} by Yolanda Santa Cruz.`
         });
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: `${p.attributes.title} | Yolanda Santa Cruz`
+        });
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: p.attributes.description || `Case study on ${p.attributes.title} by Yolanda Santa Cruz.`
+        });
+        this.metaService.updateTag({
+          property: 'og:image',
+          content: p.attributes.imageUrl || '/images/og-card.webp'
+        });
+        this.metaService.updateTag({
+          property: 'og:site_name',
+          content: 'Yolanda Santa Cruz Portfolio'
+        });
+        this.metaService.updateTag({
+          property: 'og:type',
+          content: 'article'
+        });
+        this.metaService.updateTag({
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        });
       }
     });
   }
