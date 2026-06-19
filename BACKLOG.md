@@ -1,21 +1,25 @@
 # Project Backlog
 
 ## MVP
+
 - [ ] (Yolanda) Review information in the case studies
-- [ ] Fix font sizes globally in desktop and mobile
-- [ ] Fix mentorship section with ADPList badge and YouTube video rendering
 - [ ] Comprehensive review of mobile viewport
+- [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
+- [ ] Favicon in SVG format
 
 ## Todo
-- [ ] Generate a custom, professionally designed `og-card.webp` image (1200×630) for social sharing previews. The current image is a temporary homepage screenshot.
+
 - [ ] Add Discover's use case
-- [ ] Normalize the circular icon effects for logo and social links to have a more similar look and feel
-- [ ] Create manual double drop-shadow for hero image and testimonials blob in About Me page
-- [ ] Update new logo's color
 - [ ] Determine the optimal level of compression/quality for "about me" images to find a balance between visual quality and page load performance.
 - [ ] Optimize videos using a widely available video format to find a balance between file size and visual quality.
 
 ## Done
+
+- [x] Create manual double drop-shadow for hero image and testimonials blob in About Me page
+- [x] Update new logo's color
+- [x] Normalize the circular icon effects for logo and social links to have a more similar look and feel
+- [x] Fix mentorship section with ADPList badge and YouTube video rendering
+- [x] Fix font sizes globally in desktop and mobile
 - [x] Fix spacing of copy in the career overview section so it aligns with the image height
 - [x] (Yolanda) Review copy and narrative arc with AI
 - [x] Add Google Analytics
