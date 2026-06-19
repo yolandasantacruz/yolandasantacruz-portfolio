@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { injectContentFiles } from '@analogjs/content';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
 import { ResumeData } from '../models/resume.types';
+import { SeoService } from '../services/seo.service';
 
 export const routeMeta: RouteMeta = {
   title: 'Resume | Yolanda Santa Cruz',
@@ -287,7 +288,19 @@ export const routeMeta: RouteMeta = {
   `,
 })
 export default class ResumeComponent {
+  private seoService = inject(SeoService);
+
   readonly resumeData = injectContentFiles<ResumeData & Record<string, unknown>>(file =>
     file.filename.includes('resume.md')
   )[0]?.attributes;
+
+  constructor() {
+    this.seoService.setJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      'name': 'Resume | Yolanda Santa Cruz',
+      'description': "View Yolanda Santa Cruz's professional work history, skills, software tools, BFA education, and language proficiencies.",
+      'url': 'https://yolandasantacruz.com/resume'
+    });
+  }
 }

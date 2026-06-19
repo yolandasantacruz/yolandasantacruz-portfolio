@@ -7,6 +7,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
+import { SeoService } from '../services/seo.service';
 
 export const routeMeta: RouteMeta = {
   title: 'Yolanda Santa Cruz - Product Design Portfolio',
@@ -268,11 +269,27 @@ export const routeMeta: RouteMeta = {
 })
 export default class PortfolioHomeComponent {
   private homeDataService = inject(HomeDataService);
+  private seoService = inject(SeoService);
 
   readonly projects = this.homeDataService.projects;
   readonly heroData = this.homeDataService.heroData;
   readonly bridgeData = this.homeDataService.bridgeData;
   readonly navSections = this.homeDataService.navSections;
+
+  constructor() {
+    this.seoService.setJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Yolanda Santa Cruz',
+      'jobTitle': 'Product Designer',
+      'url': 'https://yolandasantacruz.com',
+      'image': 'https://yolandasantacruz.com/images/og-card.webp',
+      'sameAs': [
+        'https://linkedin.com/in/yolandasantacruz',
+        'https://github.com/yolandasantacruz'
+      ]
+    });
+  }
 }
 
 

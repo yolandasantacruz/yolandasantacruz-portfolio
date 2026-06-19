@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { MouseTrailComponent } from './components/decorations/mouse-trail/mouse-trail.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'portfolio-root',
@@ -52,6 +53,7 @@ export class App {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
   private readonly router = inject(Router);
+  private readonly seoService = inject(SeoService);
 
   constructor() {
     afterNextRender(() => {

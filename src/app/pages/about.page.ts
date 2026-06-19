@@ -10,6 +10,7 @@ import { AboutPublicationsComponent } from '../components/about/about-publicatio
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { RouteMeta } from '@analogjs/router';
+import { SeoService } from '../services/seo.service';
 
 
 export const routeMeta: RouteMeta = {
@@ -182,6 +183,7 @@ export const routeMeta: RouteMeta = {
 })
 export default class AboutComponent {
   private aboutDataService = inject(AboutDataService);
+  private seoService = inject(SeoService);
 
   readonly navSections = this.aboutDataService.navSections;
   readonly heroData = this.aboutDataService.heroData;
@@ -199,4 +201,23 @@ export default class AboutComponent {
       threshold: 0
     };
   });
+
+  constructor() {
+    this.seoService.setJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      'mainEntity': {
+        '@type': 'Person',
+        'name': 'Yolanda Santa Cruz',
+        'jobTitle': 'Product Designer',
+        'url': 'https://yolandasantacruz.com',
+        'image': 'https://yolandasantacruz.com/images/og-card.webp',
+        'description': "Learn more about Yolanda Santa Cruz's design philosophy, work competencies, and community mentorship as a Product Designer.",
+        'sameAs': [
+          'https://linkedin.com/in/yolandasantacruz',
+          'https://github.com/yolandasantacruz'
+        ]
+      }
+    });
+  }
 }

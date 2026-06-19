@@ -6,6 +6,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { ProjectAttributes } from '../models/project-attributes';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'portfolio-project-details',
@@ -313,6 +314,7 @@ import { ProjectAttributes } from '../models/project-attributes';
 export default class ProjectDetails {
   private titleService = inject(Title);
   private metaService = inject(Meta);
+  private seoService = inject(SeoService);
 
   readonly project = signal<ContentFile<ProjectAttributes | Record<string, never>> | null>(null);
 
@@ -337,23 +339,32 @@ export default class ProjectDetails {
 
     effect(() => {
       const p = this.project();
-      if (p) {
-        this.titleService.setTitle(`${p.attributes.title} | Yolanda Santa Cruz`);
+      if (p && p.attributes && p.attributes.title) {
+        const title = p.attributes.title;
+        const description = p.attributes.description || `Case study on ${title} by Yolanda Santa Cruz.`;
+        const imageUrl = p.attributes.imageUrl || '/images/og-card.webp';
+        const slug = p.attributes.slug;
+
+        this.titleService.setTitle(`${title} | Yolanda Santa Cruz`);
         this.metaService.updateTag({
           name: 'description',
-          content: p.attributes.description || `Case study on ${p.attributes.title} by Yolanda Santa Cruz.`
+          content: description
         });
         this.metaService.updateTag({
           property: 'og:title',
-          content: `${p.attributes.title} | Yolanda Santa Cruz`
+          content: `${title} | Yolanda Santa Cruz`
         });
         this.metaService.updateTag({
           property: 'og:description',
-          content: p.attributes.description || `Case study on ${p.attributes.title} by Yolanda Santa Cruz.`
+          content: description
         });
         this.metaService.updateTag({
           property: 'og:image',
-          content: p.attributes.imageUrl || '/images/og-card.webp'
+          content: imageUrl
+        });
+        this.metaService.updateTag({
+          property: 'og:image:alt',
+          content: `Case study image for ${title}`
         });
         this.metaService.updateTag({
           property: 'og:site_name',
@@ -366,6 +377,28 @@ export default class ProjectDetails {
         this.metaService.updateTag({
           name: 'twitter:card',
           content: 'summary_large_image'
+        });
+
+        this.seoService.setJsonLd({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          'headline': title,
+          'description': description,
+          'image': imageUrl.startsWith('http') ? imageUrl : `https://yolandasantacruz.com${imageUrl}`,
+          'author': {
+            '@type': 'Person',
+            'name': 'Yolanda Santa Cruz',
+            'url': 'https://yolandasantacruz.com'
+          },
+          'publisher': {
+            '@type': 'Organization',
+            'name': 'Yolanda Santa Cruz Portfolio',
+            'logo': {
+              '@type': 'ImageObject',
+              'url': 'https://yolandasantacruz.com/favicon.svg'
+            }
+          },
+          'url': `https://yolandasantacruz.com/projects/${slug}`
         });
       }
     });
