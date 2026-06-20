@@ -97,10 +97,6 @@ export const routeMeta: RouteMeta = {
     </main>
   `,
   styles: `
-    @keyframes aboutTraceFloat {
-      0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
-      50% { transform: translateY(-20px) scale(1.01) rotate(0.5deg); }
-    }
 
     .about-wrapper {
       position: relative;
@@ -173,12 +169,6 @@ export const routeMeta: RouteMeta = {
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .fluid-line-bg svg {
-        animation: none !important;
-        transform: none !important;
-      }
-    }
   `
 })
 export default class AboutComponent {

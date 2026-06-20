@@ -46,11 +46,6 @@ import { HomeHeroData } from '../../../models/home.types';
   `,
   styles: `
 
-    @keyframes traceFloat {
-      0%, 100% { transform: scale(4) translateY(0) scale(1) rotate(0deg) translateZ(0); }
-      50% { transform: scale(4) translateY(-15px) scale(1.03) rotate(1deg) translateZ(0); }
-    }
-
     .hero {
       display: flex;
       align-items: center;
@@ -78,7 +73,7 @@ import { HomeHeroData } from '../../../models/home.types';
       width: 25%;
       height: 25%;
       min-width: 250px;
-      animation: traceFloat 8s ease-in-out infinite;
+      transform: scale(4) translateZ(0);
       transform-origin: center;
       will-change: transform;
       overflow: visible;
@@ -154,17 +149,10 @@ import { HomeHeroData } from '../../../models/home.types';
 
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper, .hero-bg-trace svg {
+      .hero-tag, .hero-hook, .hero-subcopy, .about-button-wrapper {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .hero-bg-trace svg {
-        animation: none !important;
-        transform: scale(4) translateZ(0) !important;
       }
     }
 
