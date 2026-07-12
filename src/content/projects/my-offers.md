@@ -16,11 +16,7 @@ team:
 order: 1
 ---
 
-<div class="media-container placeholder-container" style="background: color-mix(in srgb, var(--color-accent) 5%, transparent); border: 2px dashed var(--color-primary); border-radius: 12px; padding: 6rem 2rem; text-align: center; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-  <span style="font-size: 2.5rem; margin-bottom: 1rem;">📱</span>
-  <h4 style="margin: 0; font-family: var(--font-header); font-size: var(--text-lg); color: var(--color-primary); font-weight: 400; letter-spacing: -0.01em;">Main Feature Image Placeholder</h4>
-  <p style="margin: 0.5rem 0 0 0; font-size: var(--text-base); color: var(--color-text-muted); max-width: 520px; line-height: 1.6;">The final mobile "My Offers" interface collage showing the core ecosystem.</p>
-</div>
+<img src="/images/projects/my-offers/main.webp" srcset="/images/projects/my-offers/main-400w.webp 400w, /images/projects/my-offers/main-800w.webp 800w, /images/projects/my-offers/main-1200w.webp 1200w, /images/projects/my-offers/main-2400w.webp 2400w" sizes="(max-width: 768px) 100vw, 1200px" alt="My Offers Interface Collage" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
 
 <section class="case-study-section">
 <div class="section-header-col">

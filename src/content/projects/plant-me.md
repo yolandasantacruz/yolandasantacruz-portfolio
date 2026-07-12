@@ -11,10 +11,10 @@ team:
   - Senior UX/UI Designer
   - Product Manager
   - 2 Software Engineers
-order: 4
+order: 5
 ---
 
-<img src="/images/projects/plant-me/main.webp" srcset="/images/projects/plant-me/main-400w.webp 400w, /images/projects/plant-me/main-800w.webp 800w, /images/projects/plant-me/main-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="PlantMe Hero Mockup" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
+<img src="/images/projects/plant-me/main.webp" srcset="/images/projects/plant-me/main-400w.webp 400w, /images/projects/plant-me/main-800w.webp 800w, /images/projects/plant-me/main-1200w.webp 1200w, /images/projects/plant-me/main-2400w.webp 2400w" sizes="(max-width: 768px) 100vw, 1200px" alt="PlantMe Hero Mockup" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
 
 <section class="case-study-section">
 <div class="section-header-col">

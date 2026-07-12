@@ -12,10 +12,10 @@ team:
   - Product Manager
   - User Researcher
   - 8 Software Engineers
-order: 1
+order: 2
 ---
 
-<img src="/images/projects/pay-with-app/main.webp" srcset="/images/projects/pay-with-app/main-400w.webp 400w, /images/projects/pay-with-app/main-800w.webp 800w, /images/projects/pay-with-app/main-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="Pay with App Interface Collage" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
+<img src="/images/projects/pay-with-app/main.webp" srcset="/images/projects/pay-with-app/main-400w.webp 400w, /images/projects/pay-with-app/main-800w.webp 800w, /images/projects/pay-with-app/main-1200w.webp 1200w, /images/projects/pay-with-app/main-2400w.webp 2400w" sizes="(max-width: 768px) 100vw, 1200px" alt="Pay with App Interface Collage" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
 
 <section class="case-study-section">
 <div class="section-header-col">

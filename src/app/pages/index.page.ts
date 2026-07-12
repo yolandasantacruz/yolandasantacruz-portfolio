@@ -115,7 +115,7 @@ export const routeMeta: RouteMeta = {
         to bottom,
         transparent                      0%,
         transparent                      85%,
-        var(--section-bg-pay-with-app)   100%
+        var(--section-bg-my-offers)      100%
       );
     }
 
@@ -170,7 +170,18 @@ export const routeMeta: RouteMeta = {
     }
 
     #project-0 {
-      /* Holds periwinkle, bleeds to Fetch Pay purple */
+      /* My Offers coral — holds, bleeds to Pay with App blue */
+      background: linear-gradient(
+        to bottom,
+        var(--section-bg-my-offers)      0%,
+        var(--section-bg-my-offers)      78%,
+        var(--section-bg-pay-with-app)   100%
+      );
+      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #project-1 {
+      /* Pay with App blue — holds, bleeds to Fetch Pay purple */
       background: linear-gradient(
         to bottom,
         var(--section-bg-pay-with-app)   0%,
@@ -180,7 +191,7 @@ export const routeMeta: RouteMeta = {
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    #project-1 {
+    #project-2 {
       /* Fetch Pay purple — holds, bleeds to Isles indigo */
       background: linear-gradient(
         to bottom,
@@ -191,7 +202,7 @@ export const routeMeta: RouteMeta = {
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    #project-2 {
+    #project-3 {
       /* Isles indigo — holds, bleeds to PlantMe sage */
       background: linear-gradient(
         to bottom,
@@ -202,7 +213,7 @@ export const routeMeta: RouteMeta = {
       transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    #project-3 {
+    #project-4 {
       /* PlantMe sage — holds, bleeds to bridge teal anchor */
       background: linear-gradient(
         to bottom,

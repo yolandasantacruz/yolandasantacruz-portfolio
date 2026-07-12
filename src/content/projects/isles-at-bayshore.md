@@ -11,10 +11,10 @@ team:
   - UX/UI Designer
   - CEO & CTO
   - Software Engineer
-order: 3
+order: 4
 ---
 
-<img src="/images/projects/isles-at-bayshore/main.webp" alt="Isles at Bayshore Hero Mockup" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
+<img src="/images/projects/isles-at-bayshore/main.webp" srcset="/images/projects/isles-at-bayshore/main-400w.webp 400w, /images/projects/isles-at-bayshore/main-800w.webp 800w, /images/projects/isles-at-bayshore/main-1200w.webp 1200w, /images/projects/isles-at-bayshore/main-2400w.webp 2400w" sizes="(max-width: 768px) 100vw, 1200px" alt="Isles at Bayshore Hero Mockup" style="border-radius: 12px; width: 100%; margin-bottom: 2rem;" fetchpriority="high" />
 
 <section class="case-study-section">
 <div class="section-header-col">

@@ -60,14 +60,15 @@
      ==========================================================================
 
      Section order on homepage:
-       1. .hero-section      → transparent / global bg (#ffffff) — no pastel override
-       2. #project-0         → Pay with App   — brand blue   H=221° → hsl(221, 58%, 96%)
-       3. #project-1         → Fetch Pay      — brand purple H=263° → hsl(263, 58%, 96%)
-       4. #project-2         → Isles at Bay   — brand indigo H=232° → hsl(232, 58%, 96%)
-       5. #project-3         → PlantMe        — brand mint   H=163° → hsl(163, 58%, 96%)
-       6. .bridge-section    → Anchor (fixed) — brand teal   H=169° → hsl(169, 58%, 96%) = #f0fbf9
+        1. .hero-section      → transparent / global bg (#ffffff) — no pastel override
+        2. #project-0         → My Offers      — brand navy   H=229° → hsl(229, 58%, 96%)
+        3. #project-1         → Pay with App   — brand blue   H=221° → hsl(221, 58%, 96%)
+        4. #project-2         → Fetch Pay      — brand purple H=263° → hsl(263, 58%, 96%)
+        5. #project-3         → Isles at Bay   — brand indigo H=232° → hsl(232, 58%, 96%)
+        6. #project-4         → PlantMe        — brand mint   H=163° → hsl(163, 58%, 96%)
+        7. .bridge-section    → Anchor (fixed) — brand teal   H=169° → hsl(169, 58%, 96%) = #f0fbf9
 
-     Hue delta between adjacent sections: +42° → -31° → -69° → +6°
+     Hue delta between adjacent sections: +8° → +42° → -31° → -69° → +6°
      PlantMe (163°) → Bridge (169°) = 6° delta — perfectly seamless handoff.
   */
 
@@ -78,6 +79,7 @@
   /* Lightness lock — mirrors bridge anchor lightness       */
 
   /* -- Per-section hue tokens -- */
+  --section-hue-my-offers: 229;
   --section-hue-pay-with-app: 221;
   --section-hue-fetch-pay: 263;
   --section-hue-isles-at-bayshore: 232;
@@ -88,6 +90,7 @@
   /* To change any section: update the --section-bg-* value here.                  */
   /* The gradient in that section AND its neighbor update automatically.           */
   --section-bg-hero: #ffffff;
+  --section-bg-my-offers: hsl(229, 58%, 96%);
   --section-bg-pay-with-app: hsl(221, 58%, 96%);
   --section-bg-fetch-pay: hsl(263, 58%, 96%);
   --section-bg-isles-at-bayshore: hsl(232, 58%, 96%);
@@ -101,6 +104,7 @@
      Change only these tokens to retheme nav dots alongside section backgrounds.
      -----------------------------------------------------------------------  */
   --section-pill-hero: #80c7b7;
+  --section-pill-my-offers: #6B7FD4;
   --section-pill-pay-with-app: #7B91D1;
   --section-pill-fetch-pay: #B89CE0;
   --section-pill-isles-at-bayshore: #6FA3DF;

@@ -37,10 +37,11 @@ export class HomeDataService {
     // Rule 16: Map used instead of bracket notation to avoid dynamic property access.
     const pillColors = new Map<string, string>([
       ['hero', 'var(--section-pill-hero)'],
-      ['project-0', 'var(--section-pill-pay-with-app)'],
-      ['project-1', 'var(--section-pill-fetch-pay)'],
-      ['project-2', 'var(--section-pill-isles-at-bayshore)'],
-      ['project-3', 'var(--section-pill-plant-me)'],
+      ['project-0', 'var(--section-pill-my-offers)'],
+      ['project-1', 'var(--section-pill-pay-with-app)'],
+      ['project-2', 'var(--section-pill-fetch-pay)'],
+      ['project-3', 'var(--section-pill-isles-at-bayshore)'],
+      ['project-4', 'var(--section-pill-plant-me)'],
       ['bridge', 'var(--section-pill-bridge)'],
     ]);
 

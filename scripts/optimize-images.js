@@ -20,8 +20,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const IMAGES_DIR = join(ROOT, 'public', 'images');
 
-const WIDTHS = [400, 800, 1200];
-const QUALITY = 95;
+const WIDTHS = [400, 800, 1200, 2400];
+const QUALITY = 100;
 
 /**
  * Recursively find all source .webp images.
@@ -40,6 +40,7 @@ function findImages(dir, results = []) {
       const isVariant = entry.includes('-400w.webp') ||
                         entry.includes('-800w.webp') ||
                         entry.includes('-1200w.webp') ||
+                        entry.includes('-2400w.webp') ||
                         entry.endsWith('.original.webp');
 
       if (!isVariant) {
@@ -84,7 +85,7 @@ async function processImage(srcPath) {
   console.log(`  [BACKUP] Created ${name}.original.webp`);
 
   const metadata = await sharp(originalBackup).metadata();
-  const srcWidth = metadata.width || 1200;
+  const srcWidth = metadata.width || 2400;
 
   for (const width of WIDTHS) {
     if (width > srcWidth * 1.1) {
@@ -100,10 +101,10 @@ async function processImage(srcPath) {
     console.log(`  [GENERATED] ${name}-${width}w.webp`);
   }
 
-  // Re-compress the default image at max width (1200px)
+  // Re-compress the default image at max width (2400px)
   const tmpPath = join(dir, `${name}.tmp.webp`);
   await sharp(originalBackup)
-    .resize({ width: Math.min(srcWidth, 1200), withoutEnlargement: true })
+    .resize({ width: Math.min(srcWidth, 2400), withoutEnlargement: true })
     .webp({ quality: QUALITY })
     .toFile(tmpPath);
 
