@@ -57,9 +57,8 @@ order: 3
 </div>
 </section>
 
-<div class="media-container grid-2">
-<img src="/images/projects/fetch-pay/dropoffs.webp" alt="Application Drop-offs Analysis" loading="lazy" decoding="async" />
-<img src="/images/projects/fetch-pay/research.webp" srcset="/images/projects/fetch-pay/research-400w.webp 400w, /images/projects/fetch-pay/research-800w.webp 800w, /images/projects/fetch-pay/research-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" alt="User Research Themes and Blockers" loading="lazy" decoding="async" />
+<div class="media-container">
+<img src="/images/projects/fetch-pay/dropoffs.webp" srcset="/images/projects/fetch-pay/dropoffs-400w.webp 400w, /images/projects/fetch-pay/dropoffs-800w.webp 800w, /images/projects/fetch-pay/dropoffs-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="Application Drop-offs Analysis" loading="lazy" decoding="async" />
 </div>
 
 <div class="text-block-narrow">
@@ -70,6 +69,10 @@ order: 3
 <li><strong>Product Confusion:</strong> Confusion between Debit versus Credit and why an SSN or background check was required.</li>
 <li><strong>Brand Leverage:</strong> 50% of users who did sign up did so because they trusted Fetch first and foremost.</li>
 </ul>
+</div>
+
+<div class="media-container">
+<img src="/images/projects/fetch-pay/research.webp" srcset="/images/projects/fetch-pay/research-400w.webp 400w, /images/projects/fetch-pay/research-800w.webp 800w, /images/projects/fetch-pay/research-1200w.webp 1200w" sizes="(max-width: 768px) 100vw, 1200px" alt="User Research Themes and Blockers" loading="lazy" decoding="async" />
 </div>
 
 <section class="case-study-section">
