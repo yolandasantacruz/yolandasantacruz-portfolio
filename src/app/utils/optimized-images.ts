@@ -5,7 +5,7 @@ export const OPTIMIZED_IMAGES: Record<string, number[]> = {
   'images/about/portrait-1.webp': [400, 800],
   'images/og-card.webp': [400, 800, 1200],
   'images/projects/fetch-pay/cover.webp': [400, 800, 1200],
-  'images/projects/fetch-pay/dropoffs.webp': [400, 800, 1200],
+  'images/projects/fetch-pay/dropoffs.webp': [400, 800, 1200, 2400],
   'images/projects/fetch-pay/envelopes.webp': [400, 800, 1200],
   'images/projects/fetch-pay/industry-standards-1.webp': [400, 800, 1200],
   'images/projects/fetch-pay/industry-standards-2.webp': [400, 800, 1200],
