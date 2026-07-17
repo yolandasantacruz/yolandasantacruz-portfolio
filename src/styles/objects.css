@@ -557,8 +557,8 @@
 }
 
 .custom-video-control-play-btn svg {
-  width: 16px; /* Increased by 2px to 16px */
-  height: 16px;
+  width: 18px; /* Increased to 18px */
+  height: 18px;
   fill: #1a1a1a; /* Default dark charcoal color */
   transition: fill 0.2s ease, transform 0.2s ease;
 }
