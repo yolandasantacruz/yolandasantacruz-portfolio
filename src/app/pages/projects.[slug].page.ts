@@ -1,8 +1,8 @@
 import { injectContent, injectContentFiles, MarkdownComponent, ContentFile } from '@analogjs/content';
-import { ChangeDetectionStrategy, Component, inject, effect, signal, DestroyRef, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, effect, signal, DestroyRef, computed, PLATFORM_ID, afterNextRender } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { ProjectAttributes } from '../models/project-attributes';
@@ -315,6 +315,8 @@ export default class ProjectDetails {
   private titleService = inject(Title);
   private metaService = inject(Meta);
   private seoService = inject(SeoService);
+  private document = inject(DOCUMENT);
+  private platformId = inject(PLATFORM_ID);
 
   readonly project = signal<ContentFile<ProjectAttributes | Record<string, never>> | null>(null);
 
@@ -336,6 +338,10 @@ export default class ProjectDetails {
       this.project.set(p);
     });
     destroyRef.onDestroy(() => projectSub.unsubscribe());
+
+    afterNextRender(() => {
+      this.enhanceVideos();
+    });
 
     effect(() => {
       const p = this.project();
@@ -400,7 +406,117 @@ export default class ProjectDetails {
           },
           'url': `https://yolandasantacruz.com/projects/${slug}`
         });
+
+        // Enhance newly rendered comparison videos after layout has initialized
+        setTimeout(() => this.enhanceVideos(), 150);
       }
+    });
+  }
+
+  private enhanceVideos() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const document = this.document;
+    const wrappers = document.querySelectorAll('.showcase-video-wrapper');
+    
+    wrappers.forEach(wrapper => {
+      // Avoid duplicate enhancements
+      if (wrapper.querySelector('.custom-video-controls')) return;
+
+      const video = wrapper.querySelector('video');
+      if (!video) return;
+
+      // Force video to start paused
+      video.autoplay = false;
+      video.pause();
+
+      // Create controls progress bar and small bottom play/pause button
+      const controls = document.createElement('div');
+      controls.className = 'custom-video-controls';
+      controls.innerHTML = `
+        <button class="custom-video-control-play-btn" aria-label="Play/Pause">
+          <svg viewBox="0 0 24 24" class="control-play-icon" style="display: block;"><path d="M8 6.82v10.36c0 .79.86 1.27 1.52.82l8.03-5.18c.59-.38.59-1.25 0-1.63L9.52 6c-.66-.45-1.52.03-1.52.82z"/></svg>
+          <svg viewBox="0 0 24 24" class="control-pause-icon" style="display: none;"><path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z"/></svg>
+        </button>
+        <div class="custom-video-progress-bar">
+          <div class="custom-video-progress-fill"></div>
+        </div>
+      `;
+
+      wrapper.appendChild(controls);
+
+      const progressFill = controls.querySelector('.custom-video-progress-fill') as HTMLElement;
+      const progressBar = controls.querySelector('.custom-video-progress-bar') as HTMLElement;
+      
+      const controlPlayBtn = controls.querySelector('.custom-video-control-play-btn') as HTMLElement;
+      const controlPlayIcon = controls.querySelector('.control-play-icon') as HTMLElement;
+      const controlPauseIcon = controls.querySelector('.control-pause-icon') as HTMLElement;
+
+      const togglePlay = (e?: Event) => {
+        if (e) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+        if (video.paused) {
+          video.play().then(() => {
+            controlPlayIcon.style.display = 'none';
+            controlPauseIcon.style.display = 'block';
+          }).catch(err => console.warn('Playback interrupted:', err));
+        } else {
+          video.pause();
+          controlPlayIcon.style.display = 'block';
+          controlPauseIcon.style.display = 'none';
+        }
+      };
+
+      // Add click behavior on video itself and control play button
+      video.addEventListener('click', togglePlay);
+      controlPlayBtn.addEventListener('click', togglePlay);
+
+      // Track playback progress
+      video.addEventListener('timeupdate', () => {
+        if (video.duration) {
+          const pct = (video.currentTime / video.duration) * 100;
+          progressFill.style.width = `${pct}%`;
+        }
+      });
+
+      // Synchronize video state shifts back to icons
+      video.addEventListener('pause', () => {
+        controlPlayIcon.style.display = 'block';
+        controlPauseIcon.style.display = 'none';
+      });
+
+      video.addEventListener('play', () => {
+        controlPlayIcon.style.display = 'none';
+        controlPauseIcon.style.display = 'block';
+      });
+
+      // Drag seeking functionality
+      let isSeeking = false;
+      const handleSeek = (e: MouseEvent) => {
+        const rect = progressBar.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        let percentage = clickX / width;
+        if (percentage < 0) percentage = 0;
+        if (percentage > 1) percentage = 1;
+        video.currentTime = percentage * video.duration;
+      };
+
+      progressBar.addEventListener('mousedown', (e) => {
+        isSeeking = true;
+        handleSeek(e);
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isSeeking) {
+          handleSeek(e);
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isSeeking = false;
+      });
     });
   }
 }

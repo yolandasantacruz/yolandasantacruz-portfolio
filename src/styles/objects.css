@@ -461,6 +461,141 @@
   text-align: center;
 }
 
+/* Flow Comparison Showcase */
+.showcase-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: var(--spacing-media) auto;
+  max-width: 768px; /* Increased by 20% from 640px */
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .showcase-comparison {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+.showcase-comparison-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.showcase-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 336px; /* Increased by 20% from 280px */
+  aspect-ratio: 9/16;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-bg);
+  box-shadow: none; /* Removed external drop shadow so limits are seamless on the page */
+}
+
+.showcase-video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(0.94) translateY(-4.5%); /* Scaled default, shifted up by 4.5% to increase bottom space under the device mockup */
+  transform-origin: center center;
+}
+
+/* Aligning visual elements and cropping dashed border lines */
+.showcase-comparison-item.previous-design video {
+  clip-path: inset(1.5% 0px 1.5% 0px); /* Seamlessly clips off top/bottom dotted/dashed border lines */
+  transform: scale(0.909) translateY(-4.69%); /* Visually scales phone frame to match right size, and shifts up to align bezels with extra bottom margin */
+  transform-origin: center center;
+}
+
+/* Custom Premium Video Controls */
+.custom-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 7%; /* Center horizontally inside the scaled device width */
+  width: 86%; /* Narrower width constraint to sit cleanly within phone edges */
+  padding: 2rem 0 1rem 0; /* Padding matches width boundaries exactly */
+  background: linear-gradient(to top, var(--color-bg) 0%, rgba(255, 255, 255, 0) 100%); /* Fade to white page background */
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.custom-video-control-play-btn {
+  background: #ffffff; /* White circular background for high contrast */
+  border: none;
+  outline: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px rgba(59, 159, 152, 0.20); /* Centered drop shadow, 8px blur, 20% opacity */
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  pointer-events: auto;
+  transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-video-control-play-btn:hover {
+  transform: scale(1.1);
+  background: var(--color-bg);
+  box-shadow: 0 0 12px rgba(59, 159, 152, 0.30); /* Glow slightly stronger on hover */
+}
+
+.custom-video-control-play-btn svg {
+  width: 16px; /* Increased by 2px to 16px */
+  height: 16px;
+  fill: #1a1a1a; /* Default dark charcoal color */
+  transition: fill 0.2s ease, transform 0.2s ease;
+}
+
+.custom-video-control-play-btn:hover svg {
+  fill: var(--color-primary); /* Transitions to primary theme teal on hover/interaction */
+  transform: scale(1.05);
+}
+
+.custom-video-progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(59, 159, 152, 0.12); /* Subtle teal progress track */
+  position: relative;
+  cursor: pointer;
+  pointer-events: auto;
+  overflow: visible; /* Ensure shadow is not clipped by container boundaries */
+  box-shadow: 0 0 8px rgba(59, 159, 152, 0.20); /* Centered drop shadow, 8px blur, 20% opacity */
+  transition: height 0.15s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.15s ease;
+}
+
+.showcase-video-wrapper:hover .custom-video-progress-bar:hover {
+  height: 6px;
+  box-shadow: 0 0 12px rgba(59, 159, 152, 0.30);
+}
+
+.custom-video-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-primary);
+  width: 0%;
+  border-radius: 2px;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;

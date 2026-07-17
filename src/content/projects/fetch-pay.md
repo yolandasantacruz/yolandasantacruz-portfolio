@@ -84,21 +84,25 @@ order: 3
 </div>
 </section>
 
-<div class="media-container grid-2">
-<div class="text-center">
-<video autoplay loop muted playsinline preload="none" poster="/images/projects/fetch-pay/previous-design-poster.jpg">
+<div class="showcase-comparison">
+<div class="showcase-comparison-item previous-design">
+<div class="showcase-video-wrapper">
+<video loop muted playsinline preload="metadata" poster="/images/projects/fetch-pay/previous-design-poster.jpg">
 <source src="/images/projects/fetch-pay/previous-design.webm" type="video/webm">
 <source src="/images/projects/fetch-pay/previous-design.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
+</div>
 <p class="media-caption">Previous design flow (high drop-offs)</p>
 </div>
-<div class="text-center">
-<video autoplay loop muted playsinline preload="none" poster="/images/projects/fetch-pay/final-design-poster.jpg">
+<div class="showcase-comparison-item final-design">
+<div class="showcase-video-wrapper">
+<video loop muted playsinline preload="metadata" poster="/images/projects/fetch-pay/final-design-poster.jpg">
 <source src="/images/projects/fetch-pay/final-design.webm" type="video/webm">
 <source src="/images/projects/fetch-pay/final-design.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
+</div>
 <p class="media-caption">Redesigned onboarding flow (improved trust and clarity)</p>
 </div>
 </div>
