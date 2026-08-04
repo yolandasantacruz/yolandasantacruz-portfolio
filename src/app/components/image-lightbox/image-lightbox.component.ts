@@ -72,7 +72,7 @@ import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
           <div 
             class="minimap-preview" 
             (click)="onMinimapClick($event)"
-            (keyup.enter)="onMinimapClick($event)"
+            (keyup.enter)="onMinimapKeydown($event)"
             (mousedown)="onMinimapMouseDown($event)"
             (mousemove)="onMinimapMouseMove($event)"
             (mouseup)="onMinimapMouseUp()"
@@ -600,6 +600,21 @@ export class ImageLightboxComponent {
   onMinimapClick(event: MouseEvent): void {
     event.stopPropagation();
     this.navigateFromMinimap(event);
+  }
+
+  onMinimapKeydown(event: Event): void {
+    event.stopPropagation();
+    if (!isPlatformBrowser(this.platformId)) return;
+    const backdrop = this.document.querySelector('.lightbox-backdrop.is-zoomed-backdrop') as HTMLElement;
+    if (!backdrop) return;
+
+    const maxScrollX = backdrop.scrollWidth - backdrop.clientWidth;
+    const maxScrollY = backdrop.scrollHeight - backdrop.clientHeight;
+
+    backdrop.scrollLeft = maxScrollX / 2;
+    backdrop.scrollTop = maxScrollY / 2;
+
+    this.updateMinimapRect(backdrop);
   }
 
   onMinimapMouseDown(event: MouseEvent): void {
