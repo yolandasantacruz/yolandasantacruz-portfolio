@@ -5,14 +5,16 @@ import { RouterLink } from '@angular/router';
 import { NgOptimizedImage, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
+import { ImageLightboxComponent } from '../components/image-lightbox/image-lightbox.component';
 import { ProjectAttributes } from '../models/project-attributes';
 import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'portfolio-project-details',
   standalone: true,
-  imports: [MarkdownComponent, FooterComponent, ScrollRevealDirective, RouterLink, NgOptimizedImage],
+  imports: [MarkdownComponent, FooterComponent, ScrollRevealDirective, RouterLink, NgOptimizedImage, ImageLightboxComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+
   template: `
     <div class="container">
       <main class="project-main wide-layout">
@@ -79,6 +81,14 @@ import { SeoService } from '../services/seo.service';
       </main>
 
       <portfolio-footer />
+
+      <portfolio-image-lightbox
+        [isOpen]="!!activeLightboxImage()"
+        [imageSrc]="activeLightboxImage()?.src ?? null"
+        [imageAlt]="activeLightboxImage()?.alt ?? ''"
+        [caption]="activeLightboxImage()?.caption ?? null"
+        (closed)="closeLightbox()"
+      />
     </div>
   `,
   styles: `
@@ -189,6 +199,15 @@ import { SeoService } from '../services/seo.service';
 
     .project-content {
       max-width: 100%;
+    }
+
+    .project-content img:not([fetchpriority="high"]):not([src*="/main."]):not(.cover-image):not(.no-lightbox) {
+      cursor: zoom-in;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-content img:not([fetchpriority="high"]):not([src*="/main."]):not(.cover-image):not(.no-lightbox):hover {
+      opacity: 0.95;
     }
 
     .other-projects-section {
@@ -332,15 +351,23 @@ export default class ProjectDetails {
       .sort((a, b) => a.attributes.order - b.attributes.order);
   });
 
+  readonly activeLightboxImage = signal<{ src: string; alt: string; caption?: string } | null>(null);
+
   constructor() {
     const destroyRef = inject(DestroyRef);
     const projectSub = injectContent<ProjectAttributes>({ param: 'slug', subdirectory: 'projects' }).subscribe(p => {
       this.project.set(p);
     });
-    destroyRef.onDestroy(() => projectSub.unsubscribe());
+    destroyRef.onDestroy(() => {
+      projectSub.unsubscribe();
+      if (isPlatformBrowser(this.platformId)) {
+        this.document.body.style.overflow = '';
+      }
+    });
 
     afterNextRender(() => {
       this.enhanceVideos();
+      this.setupImageLightbox();
     });
 
     effect(() => {
@@ -407,9 +434,62 @@ export default class ProjectDetails {
           'url': `https://yolandasantacruz.com/projects/${slug}`
         });
 
-        // Enhance newly rendered comparison videos after layout has initialized
-        setTimeout(() => this.enhanceVideos(), 150);
+        // Enhance newly rendered comparison videos and lightbox listeners after layout has initialized
+        setTimeout(() => {
+          this.enhanceVideos();
+          this.setupImageLightbox();
+        }, 150);
       }
+    });
+  }
+
+  closeLightbox() {
+    this.activeLightboxImage.set(null);
+    if (isPlatformBrowser(this.platformId)) {
+      this.document.body.style.overflow = '';
+    }
+  }
+
+  private setupImageLightbox() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const document = this.document;
+    const projectContent = document.querySelector('.project-content');
+    if (!projectContent) return;
+
+    if (projectContent.getAttribute('data-lightbox-bound') === 'true') return;
+    projectContent.setAttribute('data-lightbox-bound', 'true');
+
+    projectContent.addEventListener('click', (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (!target || target.tagName.toLowerCase() !== 'img') return;
+
+      const img = target as HTMLImageElement;
+      if (img.closest('a')) return;
+
+      const src = img.currentSrc || img.getAttribute('src');
+      if (!src) return;
+
+      // Exclude cover / hero images from opening in the lightbox
+      const isCoverImage = 
+        src.includes('/main.') || 
+        img.getAttribute('fetchpriority') === 'high' ||
+        img.classList.contains('cover-image') ||
+        img.classList.contains('no-lightbox');
+
+      if (isCoverImage) return;
+
+      const alt = img.getAttribute('alt') || '';
+      const figure = img.closest('figure');
+      const figcaption = figure ? figure.querySelector('figcaption') : null;
+      const caption = figcaption ? figcaption.textContent?.trim() : undefined;
+
+      this.activeLightboxImage.set({
+        src,
+        alt,
+        caption: caption || undefined
+      });
+
+      this.document.body.style.overflow = 'hidden';
     });
   }
 
